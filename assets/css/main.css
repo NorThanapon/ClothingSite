@@ -1,0 +1,109 @@
+/* general */
+
+body{
+    line-height: 1;
+    font-weight: 300;
+    font-family: sans-serif;
+}
+
+a, a:active, a:visited {
+    color:#EE008A;
+    text-decoration: none;
+}
+
+.wrapper{
+    min-width:1000px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+
+.box {
+    background-color:white;
+    padding: 10px;
+}
+
+.section-header {
+    background-color:rgba(255,255,255,0.4);
+    font-weight:bold;
+}
+
+/* end general */
+
+/* header */
+
+#header{
+    /*background-color: #303030;*/
+    background-color:#FFF;
+    border-bottom:1px solid silver;
+    -moz-box-shadow: 0px 2px 3px #888;
+    -webkit-box-shadow: 0px 2px 3px #888;
+    box-shadow: 0px 2px 3px #888;
+}
+
+#header-wrapper{
+    background-color:#FFF;
+    /*background-color: #303030;*/
+}
+
+header {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 10px;
+    height:22px;
+}
+
+/* header. navigation bar */
+
+header nav {
+    float: right;
+}
+
+header nav ul, nav ul li {
+    margin: 0;
+    list-style: none;
+    list-style-image: none;
+}
+
+header nav ul li {
+    display: block;
+    margin-right: 20px;
+    font-size: 90%;
+    float: left;
+}
+
+
+header nav ul li a, a:active, a:visited {
+    
+    text-align:center;
+    display: block;
+    color: #EE008A;
+    white-space: nowrap;
+    padding-top: 5px;
+    margin-top: 3px;
+}
+
+
+a.logo {
+    background: url(../img/gear-icon.png) no-repeat 0 0;
+    display: block;
+    height: 20px;
+    width: 270px;
+    border: none;
+    padding: 0px;
+    float: left;
+    color: white;
+    line-height:20px;
+    margin-top:5px;
+}
+
+a.logo h1{
+    margin-left:24px;
+    font-weight:normal;
+    color:#EE008A;
+}
+
+/* end header.navigation-bar */
+/* end header */
