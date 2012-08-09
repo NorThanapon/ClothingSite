@@ -1,5 +1,9 @@
 /* general */
 
+html.admin { 
+	background: url(../img/admin-bg.png) repeat;
+}
+
 body{
     line-height: 1;
     font-weight: 300;
@@ -112,8 +116,6 @@ a.logo h1{
 
 #content-wrapper{
     margin-top:3px;
-    background-image:url(../img/admin-bg.png);
-    background-repeat:repeat;
 }
 #content-detail {
     max-width: 1000px;
