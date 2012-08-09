@@ -34,7 +34,7 @@ class Brand_model extends CI_Model {
 	function delete_brand()
 	{
 		$this->db->delete('brands',array('brand_name' => $_POST['brand_name']));
-	
+	}
 	
 	function view_brand()
 	{
