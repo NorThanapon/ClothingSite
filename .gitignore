@@ -3,3 +3,5 @@ application/config/database.php
 
 
 application/controllers/.DS_Store
+
+.DS_Store
