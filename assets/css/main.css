@@ -107,3 +107,21 @@ a.logo h1{
 
 /* end header.navigation-bar */
 /* end header */
+
+/* content */
+
+#content-wrapper{
+    margin-top:3px;
+    background-image:url(../img/admin-bg.png);
+    background-repeat:repeat;
+}
+#content-detail {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    min-height:480px;
+    padding-top:20px;
+}
+
+/* end content */

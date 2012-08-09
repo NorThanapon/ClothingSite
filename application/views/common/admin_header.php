@@ -47,3 +47,6 @@
     </div><!-- #header-wrapper .wrapper -->
 </div>
 <!-- #header -->
+<section id="content">
+        <div id="content-wrapper" class="wrapper">
+            <div id="content-detail">
