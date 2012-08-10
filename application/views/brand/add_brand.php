@@ -5,7 +5,7 @@
     </head>
 	
     <body>
-	
+        <?php $this->load->view('common/admin_header');?>
 	<form  >
 
 		  <form >

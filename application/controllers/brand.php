@@ -9,5 +9,9 @@ class Brand extends CI_Controller {
         $data['brand_list'] =  $this->brand_model->get_brand();
 	$this->load->view('brand/brand_list', $data);
     }
+    
+    public function add_brand() {
+        $this->load->view('brand/add_brand');
+    }
 }
 ?>
