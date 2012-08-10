@@ -14,9 +14,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            Brand
-                        </a>
+                        <?php echo anchor('brand', 'Brand', 'title="Manage Brand"'); ?>
                     </li>
                     <li>
                         <a href="#">
@@ -37,6 +35,11 @@
                         <a href="#">
                             Banner
                         </a>
+                    </li>
+                    <li>
+                        <strong>
+                            <?php echo anchor('authen/logout', 'Log Out', 'title="Log Out"');?>
+                        </strong>
                     </li>
                 </ul>
             </nav>
