@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="admin">
     <head>
         <?php $this->load->view('common/head');?>
     </head>
@@ -7,9 +7,6 @@
     <body>
         <?php $this->load->view('common/admin_header');?>
 	<form  >
-
-		  <form >
-
           <div style="border: thin solid #000000; margin: 10px; width: 460px;">
      <table  
             style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #000000" >
@@ -20,8 +17,7 @@
 				</td>
 				<td valign="baseline" align="left" 
                     style="padding: 5px; width: 290px;">
-					<input id= "brand_name" type ="text" style="width: 260px"/>
-                
+					<input name="brand_name" type ="text" style="width: 260px"/>
 				</td>
 			</tr>
 	</table>
@@ -32,8 +28,7 @@
 				</strong> 
 				</td>
 				<td align="left" class="style3" style="padding: 5px;width: 290px; ">
-					<textarea id ="description" style="width: 260px; height: 120px" >
-                    </textarea>
+					<textarea name ="description" style="width: 260px; height: 120px" ></textarea>
 				</td>
 			</tr>
 	</table>
@@ -44,7 +39,7 @@
 				</strong> 
 				</td>
 				<td align="left" class="style1" style="padding: 5px; width: 290px;">
-					<input id= "logo " type ="file"/>
+					<input name="logo " type ="file"/>
 				</td>
 			</tr>
 	</table>
@@ -55,7 +50,7 @@
 				</strong>
 				</td>
 				<td align="left" class="style1" style="padding: 5px; width: 290px;">
-					<input id= "size_chart" type ="file"/>
+					<input name="size_chart" type ="file"/>
 				</td>
 			</tr>
 	</table>
@@ -67,10 +62,6 @@
 		
 	
 	</form>
-	
-	
-	
-	
-	
+    <?php $this->load->view('common/admin_footer');?>
     </body>
 </html>

@@ -11,8 +11,18 @@ class Brand extends CI_Controller {
 	$this->load->view('brand/brand_list', $data);
     }
     
-    public function add_brand() {
-        $this->load->view('brand/add_brand');
+    public function add() {
+        if(!check_authen('staff',TRUE)) {
+            return;            
+        }
+        if (!$this->input->post('brand_name')) {
+            $data['page_title'] = 'Admin: Brand Management';
+            $this->load->view('brand/add_brand',$data);
+            return;
+        }
+        else {
+            
+        }
     }
 }
 ?>
