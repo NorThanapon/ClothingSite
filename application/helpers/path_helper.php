@@ -1,5 +1,4 @@
 <?php
-// application/helpers/path_helper.php
 if (!function_exists('asset_url')) {   
     function asset_url() {
         // the helper function doesn't have access to $this, so we need to get a reference to the 

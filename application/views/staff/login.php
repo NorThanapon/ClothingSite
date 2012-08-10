@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html class="admin">
     <head>
         <?php $this->load->view('common/head');?>
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-		<form>
+		<?php echo form_open('authen/login_staff') ?>
 			<table border="1">
 				<tr>
 					<td>Username:</td>
@@ -22,5 +22,7 @@
 				</tr>
 			</table>
 		</form>
+	
+        <?php $this->load->view('common/admin_footer');?>
     </body>
 </html>

@@ -21,7 +21,7 @@ class Staff_model extends CI_Model {
     function get_staff($username)
     {
         $query = $this->db->get_where('staffs', array('username' => $username));
-        return $query->row_array();
+        return $query;
     }
 	
 }
