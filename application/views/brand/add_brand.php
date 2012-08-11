@@ -5,7 +5,6 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-	<?php echo $error;?>
 	<?php echo form_open_multipart('brand/add');?>
 	    <div style="border: thin solid #000000; margin: 10px; width: 460px;">
 		<table>
@@ -29,11 +28,11 @@
 		<table>
 		    <tr>
 			<td>Size Chart</td>
-			<td><input name="size_chart" type ="file"/></td>
+			<td><input name="size" type ="file"/></td>
 		    </tr>
 		</table>
 		<div>
-		    <input type = "submit" value="submit"/>
+		    <input type = "submit" name="submit" value="submit"/>
 		</div>
 	    </div>
 	</form>

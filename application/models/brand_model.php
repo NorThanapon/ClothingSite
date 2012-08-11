@@ -12,12 +12,12 @@ class Brand_model extends CI_Model {
         parent::__construct();
     }
 	
-	function add_brand()
+	function add_brand($logo_name, $size_name)
 	{
 		$this->brand_name = $this->input->post('brand_name');
 		$this->description = $this->input->post('description');
-		$this->logo = $this->input->post('logo');
-		$this->size_chart = $this->input->post('size_chart');
+		$this->logo = $logo_name;
+		$this->size_chart = $size_name;
 		
 		$this->db->insert('brands',$this);
 	}
