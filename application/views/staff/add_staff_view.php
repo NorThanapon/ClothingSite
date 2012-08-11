@@ -8,10 +8,10 @@
         <?php echo form_open('staff/process_add_staff') ?>
         
             <label for="Username">Username</label> 
-            <input type="input" name="username" /><br />
+            <input type="text" name="username" /><br />
     
             <label for="password">Password</label>
-            <input type="input" name="password" /><br />
+            <input type="password" name="password" /><br />
             
             <input type="submit" name="submit" value="Create news item" /> 
         

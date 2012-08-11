@@ -13,7 +13,7 @@
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input type = "pass" name = "password" /></td>
+					<td><input type = "password" name = "password" /></td>
 				</tr>
 				<tr>
 					<td colspan = "2">
