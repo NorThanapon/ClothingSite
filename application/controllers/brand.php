@@ -29,8 +29,8 @@ class Brand extends CI_Controller
          
 		
 		$this->load->library('upload');
-		$result_logo = $this->upload_brand_file($this->input->post('brand_name'), 'logo');
-		$result_size = $this->upload_brand_file($this->input->post('brand_name'), 'size');
+		$result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo');
+		$result_size = $this->_upload_brand_file($this->input->post('brand_name'), 'size');
 		//TODO:handel error
 		if(isset($result_logo['error']))
 		{
@@ -67,7 +67,7 @@ class Brand extends CI_Controller
         }		
 	}
 	
-    function upload_brand_file($brand_name, $form_name) 
+    function _upload_brand_file($brand_name, $form_name) 
 	{
         if (!empty($_FILES[$form_name]['name'])) 
 		{
