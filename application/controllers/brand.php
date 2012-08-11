@@ -60,7 +60,7 @@ class Brand extends CI_Controller
 		if (!$this->input->post('submit')) {
             $this->load->model('brand_model');
 			//echo $brand_name;
-			$data['brand'] =  $this->brand_model->get_brand($brand_name);
+			$data['brand'] =  $this->brand_model->get($brand_name);
 			$this->load->view('brand/edit',$data);
 			
             return;
