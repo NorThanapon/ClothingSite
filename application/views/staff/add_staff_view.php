@@ -7,7 +7,7 @@
         <?php $this->load->view('common/admin_header');?>
         <?php echo form_open('staff/process_add_staff') ?>
         
-            <label for="Username">Username</label> 
+            <label for="username">Username</label> 
             <input type="text" name="username" /><br />
     
             <label for="password">Password</label>
@@ -15,7 +15,7 @@
             
             <input type="submit" name="submit" value="Create news item" /> 
         
-        </form>
+        </for20.m>
         
         
         <?php $this->load->view('common/admin_footer');?>

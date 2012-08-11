@@ -4,7 +4,7 @@ class Staff extends CI_Controller {
     public function index() {
             
     }
-    /*
+    
     public function add_staff() {
         $this->load->view('staff/add_staff_view');
     }
@@ -14,7 +14,7 @@ class Staff extends CI_Controller {
         $this->staff_model->add_staff();
         $this->load->view('staff/add_staff_view');
     }
-    */
+    
 }
     
 ?>
