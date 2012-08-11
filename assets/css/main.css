@@ -16,7 +16,7 @@ a, a:active, a:visited {
 }
 
 .wrapper{
-    min-width:1000px;
+    min-width:780px;
     margin: 0 auto;
     padding: 0;
 }
@@ -119,11 +119,17 @@ a.logo h1{
 }
 #content-detail {
     max-width: 1000px;
+	min-height: 650px;
     width: 100%;
-    margin: 0 auto;
+    margin: 10px auto;
     position: relative;
-    min-height:480px;
-    padding-top:20px;
+    padding: 30px 20px 20px 30px;
+	background-color: white;
+	opacity: 0.85;
+	border-radius: 10px;
+	-moz-box-shadow:    3px 2px 3px 3px #FFCCFF;
+	-webkit-box-shadow: 3px 2px 3px 3px #FFCCFF;
+	box-shadow:         3px 2px 3px 3px #FFCCFF;
 }
 
 /* end content */
