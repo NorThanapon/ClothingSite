@@ -26,6 +26,7 @@ class Brand_model extends CI_Model
 	
 	function edit()
 	{
+	
 		$this->brand_name = $this->input->post('brand_name');
 		$this->description = $this->input->post('description');
 		$this->logo = $this->input->post('logo');
@@ -35,11 +36,13 @@ class Brand_model extends CI_Model
 	
 	function delete()
 	{
+	
 		$this->db->delete('brands',array('brand_name' => $this->input->post('brand_name')));
 	}
 	
 	function get($brand_name = FALSE)
 	{
+	
 	    if ($brand_name === FALSE) 
 		{
 			$query = $this->db->get('brands');	
