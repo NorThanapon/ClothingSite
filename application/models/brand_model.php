@@ -1,13 +1,14 @@
 
 <?php
 
+
 class Brand_model extends CI_Model 
 {
-
     var $brand_name = '';
     var $description = '';
     var $logo = '';
     var $size_chart = '';
+
 
     function __construct() 
 	{
@@ -37,7 +38,6 @@ class Brand_model extends CI_Model
 		$this->db->delete('brands',array('brand_name' => $this->input->post('brand_name')));
 	}
 	
-	
 	function get($brand_name = FALSE)
 	{
 	    if ($brand_name === FALSE) 
@@ -46,7 +46,7 @@ class Brand_model extends CI_Model
 			return $query->result();
 	    }
 	    $query = $this->db->get_where('brands', array('brand_name' => $brand_name));
-	    return $query->row_array();
+	    return $query->row();
 	}
 	
 }
