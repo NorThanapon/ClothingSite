@@ -37,6 +37,8 @@ a, a:active, a:visited {
 /* header */
 
 #header{
+    z-index:2;
+    position:relative;
     /*background-color: #303030;*/
     background-color:#FFF;
     border-bottom:1px solid silver;
@@ -51,10 +53,10 @@ a, a:active, a:visited {
 }
 
 header {
+    position:relative;
     max-width: 1000px;
     width: 100%;
     margin: 0 auto;
-    position: relative;
     padding-bottom: 10px;
     height:22px;
 }
@@ -113,23 +115,26 @@ a.logo h1{
 /* end header */
 
 /* content */
+#content {
+    z-index:1;
+    position:relative;
+}
 
 #content-wrapper{
     margin-top:3px;
 }
 #content-detail {
     max-width: 1000px;
-	min-height: 650px;
+    min-height: 650px;
     width: 100%;
-    margin: 10px auto;
+    margin: -5px auto;
     position: relative;
     padding: 30px 20px 20px 30px;
-	background-color: white;
-	opacity: 0.85;
-	border-radius: 10px;
-	-moz-box-shadow:    3px 2px 3px 3px #FFCCFF;
-	-webkit-box-shadow: 3px 2px 3px 3px #FFCCFF;
-	box-shadow:         3px 2px 3px 3px #FFCCFF;
+    background-color: white;
+    -moz-box-shadow: 0px 4px 7px #888;
+    -webkit-box-shadow: 0px 4px 7px #888;
+    box-shadow: 0px 4px 7px #888;
+    border-radius:.2em;
 }
 
 /* end content */
