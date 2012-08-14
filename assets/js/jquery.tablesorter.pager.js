@@ -3,7 +3,23 @@
 		tablesorterPager: new function() {
 			
 			function updatePageDisplay(c) {
-				var s = $(c.cssPageDisplay,c.container).html((c.page+1) + c.seperator + c.totalPages);	
+				var s = $(c.cssPageDisplay,c.container).html((c.page+1) + c.seperator + c.totalPages);
+				if (c.page == 0) {
+					$(c.cssPrev,c.container).addClass('disabled');
+					$(c.cssFirst,c.container).addClass('disabled');
+				}
+				else {
+					$(c.cssPrev,c.container).removeClass('disabled');
+					$(c.cssFirst,c.container).removeClass('disabled');
+				}
+				if (c.page == c.totalPages-1) {
+					$(c.cssLast,c.container).addClass('disabled');
+					$(c.cssNext,c.container).addClass('disabled');
+				}
+				else {
+					$(c.cssLast,c.container).removeClass('disabled');
+					$(c.cssNext,c.container).removeClass('disabled');
+				}
 			}
 			
 			function setPageSize(table,size) {
