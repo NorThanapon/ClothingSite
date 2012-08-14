@@ -4,9 +4,7 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="#">
-                            Order
-                        </a>
+                        <?php echo anchor('order', 'Order', 'title="Manage Orders"'); ?>
                     </li>
                     <li>
                         <a href="#">
@@ -14,7 +12,7 @@
                         </a>
                     </li>
                     <li>
-                        <?php echo anchor('brand', 'Brand', 'title="Manage Brand"'); ?>
+                        <?php echo anchor('brand', 'Brand', 'title="Manage Brands"'); ?>
                     </li>
                     <li>
                         <a href="#">
@@ -22,9 +20,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            Product
-                        </a>
+                        <?php echo anchor('product', 'Product', 'title="Manage Products"'); ?>
                     </li>
                     <li>
                         <a href="#">
