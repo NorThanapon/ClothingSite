@@ -8,6 +8,7 @@ body{
     line-height: 1;
     font-weight: 300;
     font-family: sans-serif;
+    color:#333;
 }
 
 a, a:active, a:visited {
@@ -30,6 +31,12 @@ a, a:active, a:visited {
 .section-header {
     background-color:rgba(255,255,255,0.4);
     font-weight:bold;
+}
+
+h1 {
+    color:#333;
+    font-size:large;
+    margin-bottom:20px;
 }
 
 /* end general */
@@ -93,6 +100,7 @@ header nav ul li a, a:active, a:visited {
 
 
 a.logo {
+	position:absolute;
     background: url(../img/gear-icon.png) no-repeat 0 0;
     display: block;
     height: 20px;
@@ -108,6 +116,7 @@ a.logo {
 a.logo h1{
     margin-left:24px;
     font-weight:normal;
+    font-size:medium;
     color:#EE008A;
 }
 
@@ -124,17 +133,110 @@ a.logo h1{
     margin-top:3px;
 }
 #content-detail {
-    max-width: 1000px;
-    min-height: 650px;
-    width: 100%;
-    margin: -5px auto;
-    position: relative;
-    padding: 30px 20px 20px 30px;
-    background-color: white;
-    -moz-box-shadow: 0px 4px 7px #888;
-    -webkit-box-shadow: 0px 4px 7px #888;
-    box-shadow: 0px 4px 7px #888;
-    border-radius:.2em;
+	max-width: 900px;
+	min-height: 350px;
+	width: 100%;
+	margin: -5px auto;
+	position: relative;
+	padding: 30px 20px 30px 30px;
+	background-color: white;
+	-moz-box-shadow: 0px 4px 7px #888;
+	-webkit-box-shadow: 0px 4px 7px #888;
+	box-shadow: 0px 4px 7px #888;
+	border-radius:.2em;
 }
 
 /* end content */
+
+/* report */
+/* report filter */
+div.report-filter {
+	margin-bottom:10px;
+}
+div.report-filter fieldset {
+	border: solid 1px silver;
+	border-left: none;
+	border-right: none;
+}
+div.report-filter fieldset legend {
+	color:#555;
+	font-size:85%;
+}
+/* end report filter */
+/*report items*/
+div.report-items {
+	margin-bottom:10px;
+}
+div.report-items table {
+	border-width: 1px;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: #555;
+	border-collapse: collapse;
+	background-color: white;
+	font-size:85%;
+	width:100%;
+	border-left:none;
+	border-right:none;
+}
+div.report-items table th{
+	text-align:left;
+	min-height:50px;
+	padding:5px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: silver;
+	background-color: #FDFDFD;
+	font-weight:normal !important;
+	padding-left:20px;
+	border-left:none;
+	border-right:none;
+}
+div.report-items table td {
+	border-width: 1px;
+	border-style: solid;
+	border-color: silver;
+	text-align:left;
+	background-color:white;
+	padding:5px;
+	border-left:none;
+	border-right:none;
+}
+div.report-items table tr.even td{
+    background-color:#FEF0FF;
+}
+div.report-items table th.header {
+    background-position:0% center !important;
+    background-image: url(../img/asc-desc.gif);     
+    cursor: pointer; 
+    font-weight: bold; 
+    background-repeat: no-repeat; 
+    background-position: center left;
+}
+
+div.report-items table th.headerSortUp {
+    background-position:0% 50% !important;
+    background-image: url(../img/asc.gif);
+}
+
+div.report-items table th.headerSortDown {
+    background-position:0% 50% !important;
+    background-image: url(../img/desc.gif);
+}
+
+/* end report items */
+/* report action */
+div.report-action {
+	margin-bottom:10px;
+}
+div.report-action fieldset {
+	border: solid 1px silver;
+	border-left: none;
+	border-right: none;
+}
+div.report-action fieldset legend {
+	color:#555;
+	font-size:85%;
+}
+/* end report action */
+/* end report */
