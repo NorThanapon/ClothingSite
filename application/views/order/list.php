@@ -23,6 +23,7 @@
             </fieldset>
         </div>
         <div class="report-items">
+            <?php $this->load->view('common/table_pager');?>
             <table class="tablesorter">
                 <thead>
                     <tr>
