@@ -28,7 +28,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            Item
+                            Inventory
                         </a>
                     </li>
                     <li>

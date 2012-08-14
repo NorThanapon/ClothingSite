@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="admin">
     <head>
-        <?php $this->load->view('common/head');?>
+        <?php $this->load->view('common/admin_head');?>
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
