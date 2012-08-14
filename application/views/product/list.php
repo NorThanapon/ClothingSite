@@ -48,80 +48,117 @@
 	    </fieldset>
         </div>
         <div class="report-items">
-	    <table border ="1">
-		<tr>
-		    <td>&nbsp;</td>
-		    <td>Product ID</td>
-		    <td>Product Name</td>
-		    <td>Brand</td>
-		    <td>Category</td>
-		    <td>Total Quantity</td>
-		    <td>Status</td>
-		    <td>&nbsp;</td>
-		</td>
-		<tr>
-		    <td><input type = "checkbox" /></td>
-		    <td>000001</td>
-		    <td>IVY LEAVE POLO</td>
-		    <td>ELLE</td>
-		    <td>POLO</td>
-		    <td>10</td>
-		    <td>Active</td>
-		    <td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
-		</tr>
-		<tr>
-		    <td><input type = "checkbox" /></td>
-		    <td>000002</td>
-		    <td>COLD RIVER SHIRT</td>
-		    <td>BECKY RUSSEL</td>
-		    <td>Shirts</td>
-		    <td>10</td>
-		    <td>Active</td>
-		    <td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
-		</tr>
-		<tr>
-		    <td><input type = "checkbox" /></td>
-		    <td>000003</td>
-		    <td>BSC SKINNY PANTS</td>
-		    <td>BSC WOMEN</td>
-		    <td>Pants</td>
-		    <td>0</td>
-		    <td>Inactive</td>
-		    <td><a href = "#">Detail</a> <a href = "#">Activate</a> <a href = "#">Delete</a></td>
-		</tr>
-		<tr>
-		    <td><input type = "checkbox" /></td>
-		    <td>000004</td>
-		    <td>SPRING JACKET</td>
-		    <td>BASIC DE NUVO</td>
-		    <td>Outerwear</td>
-		    <td>0</td>
-		    <td>Inactive</td>
-		    <td><a href = "#">Detail</a> <a href = "#">Activate</a> <a href = "#">Delete</a></td>
-		</tr>
-		<tr>
-		    <td><input type = "checkbox" /></td>
-		    <td>000005</td>
-		    <td>JACKY SHIRT</td>
-		    <td>ITOKIN BOUTIQUE</td>
-		    <td>Shirts</td>
-		    <td>10</td>
-		    <td>Active</td>
-		    <td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
-		</tr>
-		<tr>
-		    <td><input type = "checkbox" /></td>
-		    <td>000006</td>
-		    <td>SUPER SKINNY SHORTS</td>
-		    <td>BSC WOMEN</td>
-		    <td>Shorts</td>
-		    <td>10</td>
-		    <td>Active</td>
-		    <td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
-		</tr>
+	    <table class="tablesorter">
+		<thead>
+		    <tr>
+			<th>&nbsp;</th>
+			<th>Product ID</th>
+			<th>Product Name</th>
+			<th>Brand</th>
+			<th>Category</th>
+			<th>Total Quantity</th>
+			<th>Status</th>
+			<th>&nbsp;</th>
+		    </tr>
+		</thead>
+		<tbody>
+		    <tr>
+			<td><input type = "checkbox" /></td>
+			<td>000001</td>
+			<td>IVY LEAVE POLO</td>
+			<td>ELLE</td>
+			<td>POLO</td>
+			<td>10</td>
+			<td>Active</td>
+			<td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
+		    </tr>
+		    <tr>
+			<td><input type = "checkbox" /></td>
+			<td>000002</td>
+			<td>COLD RIVER SHIRT</td>
+			<td>BECKY RUSSEL</td>
+			<td>Shirts</td>
+			<td>10</td>
+			<td>Active</td>
+			<td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
+		    </tr>
+		    <tr>
+			<td><input type = "checkbox" /></td>
+			<td>000003</td>
+			<td>BSC SKINNY PANTS</td>
+			<td>BSC WOMEN</td>
+			<td>Pants</td>
+			<td>0</td>
+			<td>Inactive</td>
+			<td><a href = "#">Detail</a> <a href = "#">Activate</a> <a href = "#">Delete</a></td>
+		    </tr>
+		    <tr>
+			<td><input type = "checkbox" /></td>
+			<td>000004</td>
+			<td>SPRING JACKET</td>
+			<td>BASIC DE NUVO</td>
+			<td>Outerwear</td>
+			<td>0</td>
+			<td>Inactive</td>
+			<td><a href = "#">Detail</a> <a href = "#">Activate</a> <a href = "#">Delete</a></td>
+		    </tr>
+		    <tr>
+			<td><input type = "checkbox" /></td>
+			<td>000005</td>
+			<td>JACKY SHIRT</td>
+			<td>ITOKIN BOUTIQUE</td>
+			<td>Shirts</td>
+			<td>10</td>
+			<td>Active</td>
+			<td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
+		    </tr>
+		    <tr>
+			<td><input type = "checkbox" /></td>
+			<td>000006</td>
+			<td>SUPER SKINNY SHORTS</td>
+			<td>BSC WOMEN</td>
+			<td>Shorts</td>
+			<td>10</td>
+			<td>Active</td>
+			<td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
+		    </tr>
+		</tbody>
 	    </table>
+            <?php $this->load->view('common/table_pager');?>
 	</div>
-	<div class="report-action"></div>
+	<div class="report-action">
+	    <fieldset>
+		<legend>Update Product Status</legend>
+		<label>Change all selected products to</label>
+		<select>
+		    <option>Inactive</option>
+		    <option>Active</option>
+		</select>
+		<input type = "button" value = "Update" />
+	    </fieldset>
+	</div>
         <?php $this->load->view('common/admin_footer');?>
+	<script type="text/javascript">
+	    $(document).ready(function() {        
+		$(".tablesorter").find("tr:even").addClass("even");
+		$(".tablesorter")
+		    .tablesorter({
+			headers: {
+			    0:{sorter:false},
+			    7:{sorter:false}
+			}
+		    })
+		    .tablesorterPager({
+			container: $(".table-pager"),
+			positionFixed: false,
+			size:20
+		    });
+		$(".tablesorter").on('sortEnd', function(){
+		    //set striping color
+		    $(".tablesorter").find('tr').removeClass('even');
+		    $(".tablesorter").find("tr:even").addClass("even");
+		});
+	    }); 
+	</script>
     </body>
 </html>

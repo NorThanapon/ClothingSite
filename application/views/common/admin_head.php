@@ -7,3 +7,10 @@
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery.tablesorter.js';?>" charset="utf-8"></script>
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery.tablesorter.pager.js';?>" charset="utf-8"></script>
 <script type="text/javascript" src="<?php echo asset_url().'js/clothing-app.js';?>" charset="utf-8"></script>
+<!--[if gte IE 9]>
+<style type="text/css">
+    .gradient {
+        filter: none;
+    }
+</style>
+<![endif]-->

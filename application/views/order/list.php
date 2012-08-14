@@ -23,7 +23,7 @@
             </fieldset>
         </div>
         <div class="report-items">
-            <table border ="1" class="tablesorter">
+            <table class="tablesorter">
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
@@ -285,5 +285,28 @@
             </fieldset>
 	</div>
         <?php $this->load->view('common/admin_footer');?>
+	<script type="text/javascript">
+	    $(document).ready(function() {        
+		$(".tablesorter").find("tr:even").addClass("even");
+		$(".tablesorter")
+		    .tablesorter({
+			headers: {
+			    0:{sorter:false},
+			    1:{sorter:'datetime'},
+			    7:{sorter:false}
+			}
+		    })
+		    .tablesorterPager({
+			container: $(".table-pager"),
+			positionFixed: false,
+			size:20
+		    });
+		$(".tablesorter").on('sortEnd', function(){
+		    //set striping color
+		    $(".tablesorter").find('tr').removeClass('even');
+		    $(".tablesorter").find("tr:even").addClass("even");
+		});
+	    }); 
+	</script>
     </body>
 </html>
