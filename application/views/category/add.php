@@ -22,7 +22,7 @@
 			<br />
 			<label for="cat_parent">Parent</textarea>
 			<select name="cat_parent" > 
-				<option value=""></option>
+				<option value="">--None--</option>
 				<?php foreach($categories as $item)
 				{  ?>
 				
