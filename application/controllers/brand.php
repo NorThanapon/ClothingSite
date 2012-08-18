@@ -37,9 +37,10 @@ class Brand extends CI_Controller
 			echo 'error';
 		}
 		
+		
 		$this->load->model('brand_model');
 		$this->brand_model->add($result_logo['file_name'],$result_size['file_name']);
-		redirect();
+		redirect('brand');
 		
 		//$this->load->model('staff_model');
 		//$this->staff_model->add_staff();
@@ -51,20 +52,52 @@ class Brand extends CI_Controller
 		
 		if(!check_authen('staff',TRUE)) {
             return;            
-        }		
+        }
+			
 		if($brand_name===FALSE)
 		{
 			redirect('brand');
 		}
 		
-		if (!$this->input->post('submit')) {
-            $this->load->model('brand_model');
-			//echo $brand_name;
-			$data['brand'] =  $this->brand_model->get($brand_name);
-			$this->load->view('brand/edit',$data);
+		$this->load->model('brand_model');
 			
-            return;
-        }		
+		if (!$this->input->post('submit')) //not pass submit
+		{			        
+			$data['brand'] =  $this->brand_model->get($brand_name);
+			$this->load->view('brand/edit',$data);			
+        }
+		else
+		{				
+			$logo_name = FALSE;
+			$size_name = FALSE;
+			$this->load->library('upload');
+			
+			$test = $this->input->post('logo');
+			echo $test;
+			
+			if($result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo'))
+			{			
+				//TODO:handel error
+				if(isset($result_logo['error']))
+				{
+					echo 'error';				
+				}
+				$logo_name = $result_logo['file_name'];
+			}
+			if($result_size = $this->_upload_brand_file($this->input->post('brand_name'), 'size'))	
+			{	
+				//TODO:handel error			
+				if(isset($result_size['error']))
+				{
+					echo 'error';
+				}
+				$size_name = $result_size['file_name'];
+			}
+				
+		    $this->brand_model->edit($this->input->post('brand_name_key'),$logo_name,$size_name);
+			redirect('brand');
+		}
+       
 	}
 	
     function _upload_brand_file($brand_name, $form_name) 

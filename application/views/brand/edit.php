@@ -5,9 +5,11 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-		<?php echo form_open_multipart('brand/edit');?>
+		<?php echo form_open_multipart('brand/edit/'.$brand->brand_name);?>
 		<h1>Edit Brand</h1> 
 			<div>
+				<input name="brand_name_key" type="hidden" value="<?php echo $brand->brand_name; ?>" />
+				
 				<label for="brand_name" >Brand Name</label>
 				<input name="brand_name" type ="text" value="<?php echo $brand->brand_name; ?>" />
 				<br />
@@ -27,7 +29,6 @@
 				<br />
 				
 				<input type = "submit" name="submit" value="save"/>
-				<input type = "submit" name="submit" value="Cancel"/>
 				<br />
 				
 			</div>
