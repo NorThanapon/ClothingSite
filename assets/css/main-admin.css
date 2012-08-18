@@ -289,6 +289,7 @@ a.logo h1{
 /* report filter */
 div.report-filter {
 	margin-bottom:10px;
+	font-size:13px;
 }
 div.report-filter fieldset {
 	border: solid 1px silver;
@@ -364,6 +365,7 @@ div.report-items table th.headerSortDown {
 /* end report items */
 /* report action */
 div.report-action {
+	font-size:13px;
 	margin-bottom:10px;
 }
 div.report-action fieldset {

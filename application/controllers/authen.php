@@ -2,7 +2,7 @@
 
 class Authen extends CI_Controller {
     public function index() {
-            
+         redirect();   
     }
     
     public function login_staff(){
@@ -52,7 +52,6 @@ class Authen extends CI_Controller {
     }
     
     function test () {
-        
         $this->load->library('encrypt');
         echo 'test cookie <br />';
         echo $this->encrypt->decode($this->input->cookie('role'));
