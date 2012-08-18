@@ -17,18 +17,21 @@ class Category extends CI_Controller
 	public function add() 
 	{
 		$data['page_title'] = 'Admin: Category Management';	
+		$this->load->model('category_model');
+		$data['categories'] = $this->category_model->get();
 		if(!check_authen('staff',TRUE)) 
 		{
             return;            
         }
 		if (!$this->input->post('submit')) 
 		{
+			
             $this->load->view('category/add',$data);
             return;
         }
 				
-		$this->load->model('category_model');
-		$this->brand_model->add();
+		
+		$this->category_model->add();
 		redirect();
 	}
 	
@@ -47,8 +50,8 @@ class Category extends CI_Controller
 		{
             $this->load->model('category_model');
 			$data['categories'] =  $this->category_model->get($cat_id);
+			$data['allCat'] = $this->category_model->get();
 			$this->load->view('category/edit',$data);
-			
             return;
         }		
 	}

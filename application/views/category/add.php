@@ -12,20 +12,20 @@
 			<input name="cat_name_th" type ="text"/>
 			<br />
 			<label for="cat_name_en">Name (English)</label>
-			<textarea name ="cat_name_en"></textarea>
+			<input name="cat_name_en" type ="text"/>
 			<br />
-		    <label for="description_th">Description (Thai)</textarea>
-			<input name="description_th" type ="file"/>
+		    <label for="description_th">Description (Thai)</label>
+			<textarea name ="description_th" ></textarea>
 			<br />
-		    <label for="description_en">Description (English)</textarea>
-			<input name="description_en" type ="file"/>
+		    <label for="description_en">Description (English)</label>
+			<textarea name ="description_en" ></textarea>
 			<br />
 			<label for="cat_parent">Parent</textarea>
 			<select> 
 				<?php foreach($categories as $item)
 				{  ?>
 				
-					<option value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name; ?></option>
+					<option value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name_en; ?></option>
 				<?php 
 				}
 				?>
