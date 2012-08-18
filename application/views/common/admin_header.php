@@ -49,3 +49,10 @@
 <section id="content">
         <div id="content-wrapper" class="wrapper">
             <div id="content-detail">
+                <?php if(isset($error_message)) { ?>
+                    <div class="error-box">
+                         <img id="error-close-button" src="<?php echo asset_url().'img/close_icon.gif'?>" />
+                         <h3>Notice: </h3>
+                         <p class="error-message"><?php echo $error_message; ?></p>
+                    </div>
+                <?php } ?>

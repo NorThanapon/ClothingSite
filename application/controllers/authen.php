@@ -51,17 +51,10 @@ class Authen extends CI_Controller {
         redirect($this->session->flashdata('redirect_url'));
     }
     
-    function test () {
-        $this->load->library('encrypt');
-        echo 'test cookie <br />';
-        echo $this->encrypt->decode($this->input->cookie('role'));
-        echo '<br />';
-        echo $this->encrypt->decode($this->input->cookie('username'));
-    }
-    
     function _redirect($fail_authen) {
         $data['page_title'] = 'Admin: Log In';
-        $data['fail_authen'] = $fail_authen;
+        if ($fail_authen)
+            $data['error_message'] = 'Username or passward you entered is incorrect.';
         $this->session->set_flashdata('redirect_url', $this->session->flashdata('redirect_url'));
         $this->load->view('staff/login', $data);
     }

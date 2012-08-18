@@ -129,6 +129,27 @@ label {
     text-align: right;
 }
 
+.error-box {
+	border-radius:.2em;
+	border:solid 1px #F4A122;
+	background-color:#FFE3C3;
+	color:#C90704;
+	font-size:15px;
+	padding:10px;
+	margin-bottom:20px;
+}
+
+.error-box img {
+	float:right;
+	position:relative;
+	top:-5px;
+	right:-5px;
+}
+
+.error-message {
+	margin-top:5px;
+	margin-left:5px;
+}
 /* end general */
 
 /* header */
@@ -224,7 +245,7 @@ a.logo h1{
 }
 #content-detail {
 	max-width: 900px;
-	min-height: 350px;
+	min-height: 400px;
 	width: 100%;
 	margin: -5px auto;
 	position: relative;
