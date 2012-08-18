@@ -18,13 +18,19 @@ class Category_model extends CI_Model
 	
 	function add()
 	{
-		$this->cat_name_th = $this->input->post('cat_name_th');
+		/*$this->cat_name_th = $this->input->post('cat_name_th');
 		$this->cat_name_en = $this->input->post('cat_name_en');
 		$this->description_th = $this->input->post('description_th');
 		$this->description_en = $this->input->post('description_en');
-		$this->cat_parent = $this->input->post('cat_parent');	
-		
-		$this->db->insert('categories',$this);
+		$this->cat_parent = $this->input->post('cat_parent');*/
+		$data = array(
+						'cat_name_th' =>  $this->input->post('cat_name_th'),
+						'cat_name_en' =>  $this->input->post('cat_name_en'),
+						'description_th' => $this->input->post('description_th'),
+						'description_en ' => $this->input->post('description_en'),
+						'cat_parent' => $this->input->post('cat_parent')
+					);
+		$this->db->insert('categories', $data); 
 	}
 	
 	function edit()
@@ -57,12 +63,12 @@ class Category_model extends CI_Model
 	    return $query->row();
 	}
 	
-	function get_parent()
+	/*function get_parent()
 	{
 		$query = $this->db->query("SELECT * FROM categories;");
 		//$query = $this->db->get_where('categories', array('cat_id' => $cat_id));
 	    return $query->row();	
-	}
+	}*/
 	
 	
 	
