@@ -10,7 +10,7 @@ class Category extends CI_Controller
 		}
 		$this->load->model('category_model');
 		$data['page_title'] = 'Admin: Category Management';
-		$data['cat_list'] = $this->category_model->get();
+		$data['cat_list'] = $this->category_model->get();		
 		$this->load->view('category/list',$data);
 	}
 	
