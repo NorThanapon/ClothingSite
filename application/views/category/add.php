@@ -21,7 +21,8 @@
 			<textarea name ="description_en" ></textarea>
 			<br />
 			<label for="cat_parent">Parent</textarea>
-			<select> 
+			<select name="cat_parent" > 
+				<option value=""></option>
 				<?php foreach($categories as $item)
 				{  ?>
 				

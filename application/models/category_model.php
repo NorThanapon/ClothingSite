@@ -24,6 +24,7 @@ class Category_model extends CI_Model
 		$this->description_en = $this->input->post('description_en');
 		$this->cat_parent = $this->input->post('cat_parent');*/
 		$data = array(
+						
 						'cat_name_th' =>  $this->input->post('cat_name_th'),
 						'cat_name_en' =>  $this->input->post('cat_name_en'),
 						'description_th' => $this->input->post('description_th'),
@@ -41,14 +42,14 @@ class Category_model extends CI_Model
 		$this->description_th = $this->input->post('description_th');
 		$this->description_en = $this->input->post('description_en');
 		$this->cat_parent = $this->input->post('cat_parent');	
-		$this->db->update('categories',$this,array('cat_id'=>$thia->input->post('cat_id')));
+		$this->db->update('categories',$this,array('cat_id'=>$this->input->post('cat_id')));
 		//$this->db->update('categories',$this,array('brand_name' => $this->input->post('brand_name')));
 	}
 	
 	function delete()
 	{
 	
-		$this->db->delete('categories',array('cat_id'=>$thia->input->post('cat_id')));
+		$this->db->delete('categories',array('cat_id'=>$this->input->post('cat_id')));
 	}
 	
 	function get($cat_id = FALSE)

@@ -5,7 +5,7 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-		<?php echo form_open_multipart('category/list');?>
+		<?php echo form_open_multipart('category/edit');?>
 		<h1>Edit Category</h1> 
 			<div>
 				<label for="cat_name_th" >Name (Thai)</label>
@@ -29,17 +29,18 @@
 					<?php 
 					echo "<select>";
 					$thisCat = $categories->cat_parent;
-					foreach($categories as $item)
+					//echo "<option value='".$categories->cat_id."' >".$categories->cat_id."</option>";
+					foreach($allCat as $item)
 					{	
-						//if($allCat->cat_id == $thisCat )
-						//{
-							//echo "<option value='".$allCat->cat_id."'  selected='selected'>".$allCat->cat_name_en."</option>";
+						if($item->cat_id == $thisCat )
+						{
+							echo "<option value='".$item->cat_id."'  selected='selected'>".$item->cat_name_en."</option>";
 							
-						//}
-						
-						//{
-							echo "<option value='".$categories->cat_id."' >".$categories->cat_name_en."</option>";
-					//	}
+						}
+						else
+						{
+							echo "<option value='".$item->cat_id."' >".$item->cat_name_en."</option>";
+						}
 					}	
 					echo "</select>";
 					?>

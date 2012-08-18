@@ -46,14 +46,23 @@ class Category extends CI_Controller
 		{
 			redirect('category');
 		}
+		$this->load->model('category_model');
 		if (!$this->input->post('submit')) 
 		{
-            $this->load->model('category_model');
+            
 			$data['categories'] =  $this->category_model->get($cat_id);
 			$data['allCat'] = $this->category_model->get();
 			$this->load->view('category/edit',$data);
             return;
-        }		
+        }
+		else
+		{
+		    $this->category_model->edit();
+			$data['categories'] =  $this->category_model->get($cat_id);
+			$data['allCat'] = $this->category_model->get();
+			$this->load->view('category/edit',$data);
+			return;
+		}
 	}
 	
 	public function get()
