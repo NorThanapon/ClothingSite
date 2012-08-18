@@ -4,6 +4,7 @@
 
 class Category_model extends CI_Model 
 {
+	var $cat_id = '';
     var $cat_name_th = '';
     var $cat_name_en = '';
     var $description_th = '';
@@ -21,36 +22,38 @@ class Category_model extends CI_Model
 		$this->cat_name_en = $this->input->post('cat_name_en');
 		$this->description_th = $this->input->post('description_th');
 		$this->description_en = $this->input->post('description_en');
-		$this->cat_parent = $this->input->post('cat_parent');		
+		$this->cat_parent = $this->input->post('cat_parent');	
+		
 		$this->db->insert('categories',$this);
 	}
 	
 	function edit()
 	{
-	//TODO:
+		$this->cat_id = $this->input->post('cat_id');
 		$this->cat_name_th = $this->input->post('cat_name_th');
 		$this->cat_name_en = $this->input->post('cat_name_en');
 		$this->description_th = $this->input->post('description_th');
 		$this->description_en = $this->input->post('description_en');
-		$this->cat_parent = $this->input->post('cat_parent');				
+		$this->cat_parent = $this->input->post('cat_parent');	
+		$this->db->update('categories',$this,array('cat_id'=>$thia->input->post('cat_id')));
 		//$this->db->update('categories',$this,array('brand_name' => $this->input->post('brand_name')));
 	}
 	
 	function delete()
 	{
-	//TODO:
-		$this->db->delete('brands',array('brand_name' => $this->input->post('brand_name')));
+	
+		$this->db->delete('categories',array('cat_id'=>$thia->input->post('cat_id')));
 	}
 	
-	function get($brand_name = FALSE)
+	function get($cat_id = FALSE)
 	{
-	//TODO:
-	    if ($brand_name === FALSE) 
+	
+	    if ($cat_id === FALSE) 
 		{
-			$query = $this->db->get('brands');	
+			$query = $this->db->get('categories');	
 			return $query->result();
 	    }
-	    $query = $this->db->get_where('brands', array('brand_name' => $brand_name));
+	    $query = $this->db->get_where('categories', array('cat_id' => $cat_id));
 	    return $query->row();
 	}
 	
