@@ -32,7 +32,7 @@ class Category extends CI_Controller
 				
 		
 		$this->category_model->add();
-		redirect();
+		redirect('category');
 	}
 	
 	public function edit($cat_id=FALSE) 
@@ -49,7 +49,7 @@ class Category extends CI_Controller
 		$this->load->model('category_model');
 		if (!$this->input->post('submit')) 
 		{
-            
+        
 			$data['categories'] =  $this->category_model->get($cat_id);
 			$data['allCat'] = $this->category_model->get();
 			$this->load->view('category/edit',$data);

@@ -22,30 +22,53 @@ class Category_model extends CI_Model
 		$this->cat_name_en = $this->input->post('cat_name_en');
 		$this->description_th = $this->input->post('description_th');
 		$this->description_en = $this->input->post('description_en');
-		$this->cat_parent = $this->input->post('cat_parent');*/
-		$data = array(
-						
-						'cat_name_th' =>  $this->input->post('cat_name_th'),
-						'cat_name_en' =>  $this->input->post('cat_name_en'),
-						'description_th' => $this->input->post('description_th'),
-						'description_en ' => $this->input->post('description_en'),
-						'cat_parent' => $this->input->post('cat_parent')
-					);
+		$this->cat_parent = $this->input->post('cat_parent');*/			
+		if($this->input->post('cat_parent')!="")
+		{
+				$data = array(
+					'cat_name_th' => $this->input->post('cat_name_th'),
+					'cat_name_en' => $this->input->post('cat_name_en'),
+					'description_th' => $this->input->post('description_th'),
+					'description_en' => $this->input->post('description_en'),
+				    'cat_parent' => $this->input->post('cat_parent')
+				);
+		}	
+		else
+		{
+			$data = array(
+					'cat_name_th' => $this->input->post('cat_name_th'),
+					'cat_name_en' => $this->input->post('cat_name_en'),
+					'description_th' => $this->input->post('description_th'),
+					'description_en' => $this->input->post('description_en'),
+				);
+		}
+		
 		$this->db->insert('categories', $data); 
 	}
 	
 	function edit($cat_id)
 	{
-		$data = array(
-			'cat_name_th' = $this->input->post('cat_name_th');
-			'cat_name_en' = $this->input->post('cat_name_en');
-			'description_th' = $this->input->post('description_th');
-			'description_en' = $this->input->post('description_en');
-			if($this->input->post('cat_parent')!="")
-			{
-				'cat_parent' = $this->input->post('cat_parent');
-			}			
-		};
+		
+	    if($this->input->post('cat_parent')!="")
+		{
+				$data = array(
+					'cat_name_th' => $this->input->post('cat_name_th'),
+					'cat_name_en' => $this->input->post('cat_name_en'),
+					'description_th' => $this->input->post('description_th'),
+					'description_en' => $this->input->post('description_en'),
+				    'cat_parent' => $this->input->post('cat_parent')
+				);
+		}	
+		else
+		{
+			$data = array(
+					'cat_name_th' => $this->input->post('cat_name_th'),
+					'cat_name_en' => $this->input->post('cat_name_en'),
+					'description_th' => $this->input->post('description_th'),
+					'description_en' => $this->input->post('description_en'),
+				);
+		}
+		
 		$this->db->update('categories',$data,array('cat_id'=>$cat_id));
 		//$this->db->update('categories',$this,array('brand_name' => $this->input->post('brand_name')));
 	}

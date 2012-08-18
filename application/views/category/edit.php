@@ -38,7 +38,7 @@
 						{
 							echo "<option value='".$item->cat_id."'  selected='selected'>".$item->cat_name_en."</option>";
 						}
-						else if(!$item->cat_id == $categories->cat_id)
+						if(!$item->cat_id == $categories->cat_id)
 						{
 							echo "<option value='".$item->cat_id."' >".$item->cat_name_en."</option>";
 						}
