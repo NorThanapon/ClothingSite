@@ -57,5 +57,15 @@ class Category_model extends CI_Model
 	    return $query->row();
 	}
 	
+	function get_parent()
+	{
+		$query = $this->db->query("SELECT * FROM categories;");
+		//$query = $this->db->get_where('categories', array('cat_id' => $cat_id));
+	    return $query->row();	
+	}
+	
+	
+	
+	
 }
 ?>
