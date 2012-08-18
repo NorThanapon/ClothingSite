@@ -10,20 +10,59 @@ class Category extends CI_Controller
 		}
 		$this->load->model('category_model');
 		$data['page_title'] = 'Admin: Category Management';
-		$data['brand_list'] = $this->category_model->get();
+		$data['cat_list'] = $this->category_model->get();
 		$this->load->view('category',$data);
 	}
 	
 	public function add() 
 	{
-	
+		$data['page_title'] = 'Admin: Category Management';	
+		if(!check_authen('staff',TRUE)) 
+		{
+            return;            
+        }
+		if (!$this->input->post('submit')) 
+		{
+            $this->load->view('category/add',$data);
+            return;
+        }
+				
+		$this->load->model('category_model');
+		$this->brand_model->add();
+		redirect();
 	}
 	
-	public function edit($brand_name=FALSE) 
+	public function edit($cat_id=FALSE) 
 	{
-	
+		$data['page_title'] = 'Admin: Category Management';	
+		if(!check_authen('staff',TRUE)) 
+		{
+            return;            
+        }
+		if($cat_id===FALSE)
+		{
+			redirect('category');
+		}
+		if (!$this->input->post('submit')) 
+		{
+            $this->load->model('category_model');
+			$data['categories'] =  $this->category_model->get($cat_id);
+			$this->load->view('category/edit',$data);
+			
+            return;
+        }		
 	}
 	
+	public function get()
+	{
+		$data['page_title'] = 'Admin: Category Management';	
+		if(!check_authen('staff',TRUE)) 
+		{
+            return;            
+        }
+		$this->load->model('category_model');
+		$data['categories'] = $this->category_model->get($cat_id);
+	}
 	
 }
 ?>
