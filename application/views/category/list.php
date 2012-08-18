@@ -48,7 +48,7 @@
 				<td><?php echo $item->description_th;?></td>
 				<td><?php echo $item->description_en;?></td>
 				
-				<td><?php echo $item->cat_parent?></td>
+				<td><?php echo $item->parent_name?></td>
 				<td>
 					 <?php echo anchor('category/edit/'.$item->cat_id, ' ', array('title'=>"Edit Category",'class'=>'edit-button')); ?>
 					 <?php echo anchor('category/delete/'.$item->cat_id, ' ', array('title'=>"Delete Category",'class'=>'delete-button')); ?>
