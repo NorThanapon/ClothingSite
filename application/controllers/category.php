@@ -87,5 +87,12 @@ class Category extends CI_Controller
 		$data['categories'] = $this->category_model->get($cat_id);
 	}
 	
+	public function get_parent_name($cat_parent)
+	{
+		$this->load->model('category_model'); 
+		$data['cat_parent'] = $this->category_model->get($cat_parent);
+		
+	}
+	
 }
 ?>
