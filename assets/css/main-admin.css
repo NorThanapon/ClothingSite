@@ -326,6 +326,21 @@ div.report-filter fieldset legend {
 div.report-items {
 	margin-bottom:10px;
 }
+
+div.report-items  .edit-button {
+	width:16px;
+	height:16px;
+	background-image:url(../img/edit.png);
+	display:inline-block;
+}
+
+div.report-items  .delete-button{
+	width:11px;
+	height:14px;
+	background-image:url(../img/delete.gif);
+	display:inline-block;
+}
+
 div.report-items table {
 	border-width: 1px;
 	border-spacing: 0px;

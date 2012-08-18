@@ -26,7 +26,7 @@
 	    <table  class="tablesorter" >
 		<thead>
             <tr>
-                <th>ID</th>
+              
 				<th>Name (Thai)</th>
                 <th>Name (English)</th>
 				<th>Description (Thai)</th>
@@ -50,8 +50,8 @@
 				
 				<td><?php echo $item->cat_parent?></td>
 				<td>
-					 <?php echo anchor('category/edit/'.$item->cat_id, 'Edit', 'title="Edit Category"'); ?>
-					 <?php echo anchor('category/delete/'.$item->cat_id, 'Delete', 'title="Delete Category"'); ?>
+					 <?php echo anchor('category/edit/'.$item->cat_id, ' ', array('title'=>"Edit Category",'class'=>'edit-button')); ?>
+					 <?php echo anchor('category/delete/'.$item->cat_id, ' ', array('title'=>"Delete Category",'class'=>'delete-button')); ?>
 				</td>
             </tr>
             <?php
@@ -71,7 +71,7 @@
 		    .tablesorter({
 			headers: {
 			    //0:{sorter:false},
-			    6:{sorter:false}
+			    5:{sorter:false}
 			}
 		    })
 		    .tablesorterPager({
