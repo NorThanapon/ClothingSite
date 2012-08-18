@@ -34,7 +34,7 @@
                     </li>
                     <li>
                         <strong>
-                            <?php echo anchor('authen/logout', 'Log Out', 'title="Log Out"');?>
+                            <?php if(check_authen('staff', FALSE)) echo anchor('authen/logout', 'Logout', 'title="Logout"');?>
                         </strong>
                     </li>
                 </ul>

@@ -2,7 +2,18 @@
 if (!function_exists('check_authen')) {   
     function check_authen($role, $is_redirect) {
         $CI =& get_instance();
+        $CI->load->library('encrypt');
         if($CI->session->userdata('logged_in') && $CI->session->userdata('role') == $role) {
+            return true;
+        }
+        else if( $CI->encrypt->decode($CI->input->cookie('username'))
+                &&  $CI->encrypt->decode($CI->input->cookie('role'))==$role){
+            $data = array(
+               'username'   => cookie('username'),
+               'logged_in'  => TRUE,
+               'role'       => cookie('role')
+            );
+            $CI->session->set_userdata($data);
             return true;
         }
         else if($is_redirect){
