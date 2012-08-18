@@ -5,9 +5,11 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-		<?php echo form_open_multipart('category/edit');?>
+		<?php echo form_open_multipart('category/edit/'.$categories->cat_id);?>
 		<h1>Edit Category</h1> 
 			<div>
+				<input type="hidden" name="cat_id" value="<?php echo $categories->cat_id;?>" />
+				
 				<label for="cat_name_th" >Name (Thai)</label>
 				<input name="cat_name_th" type ="text" value="<?php echo $categories->cat_name_th; ?>" />
 				<br />
@@ -25,26 +27,25 @@
 				<br />
 			
 				<label for="cat_parent" >Parent</label>
-				
+				<select name="cat_parent">
+					<option value="">--None--</option>
 					<?php 
-					echo "<select>";
 					$thisCat = $categories->cat_parent;
-					//echo "<option value='".$categories->cat_id."' >".$categories->cat_id."</option>";
+					
 					foreach($allCat as $item)
 					{	
-						if($item->cat_id == $thisCat )
+						if($item->cat_id == $thisCat)
 						{
 							echo "<option value='".$item->cat_id."'  selected='selected'>".$item->cat_name_en."</option>";
-							
 						}
-						else
+						else if(!$item->cat_id == $categories->cat_id)
 						{
 							echo "<option value='".$item->cat_id."' >".$item->cat_name_en."</option>";
 						}
 					}	
-					echo "</select>";
+					
 					?>
-				
+				</select>
 				<br />
 				
 				<input type = "submit" name="submit" value="save"/>
