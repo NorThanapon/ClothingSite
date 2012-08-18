@@ -60,7 +60,8 @@ class Category extends CI_Controller
 		    $this->category_model->edit($this->input->post('cat_id'));
 			$data['categories'] =  $this->category_model->get($cat_id);
 			$data['allCat'] = $this->category_model->get();
-			$this->load->view('category',$data);
+			redirect('category');
+			//$this->load->view('category',$data);
 			return;
 		}
 	}
