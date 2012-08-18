@@ -6,6 +6,7 @@
     <body>
         <?php $this->load->view('common/admin_header');?>
 		<?php echo form_open_multipart('brand/edit');?>
+		<h1>Edit Brand</h1> 
 			<div>
 				<label for="brand_name" >Brand Name</label>
 				<input name="brand_name" type ="text" value="<?php echo $brand->brand_name; ?>" />

@@ -5,26 +5,34 @@
     </head>
     <body>
     <?php $this->load->view('common/admin_header');?>
-	<?php echo form_open_multipart('brand/add');?>
+	<?php echo form_open_multipart('category/add');?>
+	<h1>Add Category</h1> 
 		<div>
-			<label for="brand_name">Brand Name</label>
-			<input name="brand_name" type ="text"/>
+			<label for="cat_name_th">Name (Thai)</label>
+			<input name="cat_name_th" type ="text"/>
 			<br />
-			<label for="description">Description</label>
-			<textarea name ="description"></textarea>
+			<label for="cat_name_en">Name (English)</label>
+			<textarea name ="cat_name_en"></textarea>
 			<br />
-		    <label for="logo">Logo</textarea>
-			<input name="logo" type ="file"/>
+		    <label for="description_th">Description (Thai)</textarea>
+			<input name="description_th" type ="file"/>
 			<br />
-		    <label for="size_chart">Size Chart</textarea>
-			<input name="size" type ="file"/>
+		    <label for="description_en">Description (English)</textarea>
+			<input name="description_en" type ="file"/>
+			<br />
+			<label for="cat_parent">Parent</textarea>
+			<select> 
+				<?php foreach($categories as $item)
+				{  ?>
+				
+					<option value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name; ?></option>
+				<?php 
+				}
+				?>
+			</select>
 			<br />
 			<input type = "submit" name="submit" value="submit"/>
-		</div>
-		
-		    
-		
-	  
+		</div>	  
 	</form>
 	<?php $this->load->view('common/admin_footer');?>
     </body>

@@ -6,7 +6,7 @@
     <body>
         <?php $this->load->view('common/admin_header');?>
 	  
-	
+		<h1>Brand List</h1>
 	    <table border="1">
             <tr>
                 <td>No.</td>
