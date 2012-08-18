@@ -30,8 +30,8 @@
 				<td><?php echo $item->description_en;?></td>
 				<td><?php echo $item->cat_parent?></td>
 				<td>
-					<input type="submit" name="submit" value="Edit" />
-					<input type="submit" name="submit" value="Delete" />
+					 <?php echo anchor('category/edit/'.$item->cat_id, 'Edit', 'title="Edit Category"'); ?>
+					 <?php echo anchor('category/delete/'.$item->cat_id, 'Delete', 'title="Delete Category"'); ?>
 				</td>
             </tr>
             <?php

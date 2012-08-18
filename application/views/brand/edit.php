@@ -27,6 +27,7 @@
 				<br />
 				
 				<input type = "submit" name="submit" value="save"/>
+				<input type = "submit" name="submit" value="Cancel"/>
 				<br />
 				
 			</div>

@@ -33,6 +33,7 @@
 			</select>
 			<br />
 			<input type = "submit" name="submit" value="submit"/>
+			<input type = "submit" name="cancel" value="Cancel" />
 		</div>	  
 	</form>
 	<?php $this->load->view('common/admin_footer');?>

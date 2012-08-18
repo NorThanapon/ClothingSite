@@ -23,6 +23,11 @@ class Category extends CI_Controller
 		{
             return;            
         }
+		if($this->input->post('cancel'))
+		{
+			redirect('category');
+			return;
+		}
 		if (!$this->input->post('submit')) 
 		{
 			
@@ -47,6 +52,11 @@ class Category extends CI_Controller
 			redirect('category');
 		}
 		$this->load->model('category_model');
+		if($this->input->post('cancel'))
+		{
+			redirect('category');
+			return;
+		}
 		if (!$this->input->post('submit')) 
 		{
         
