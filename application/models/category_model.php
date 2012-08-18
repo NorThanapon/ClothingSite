@@ -36,12 +36,16 @@ class Category_model extends CI_Model
 	
 	function edit()
 	{
+		
 		$this->cat_id = $this->input->post('cat_id');
 		$this->cat_name_th = $this->input->post('cat_name_th');
 		$this->cat_name_en = $this->input->post('cat_name_en');
 		$this->description_th = $this->input->post('description_th');
 		$this->description_en = $this->input->post('description_en');
-		$this->cat_parent = $this->input->post('cat_parent');	
+		if($this->input->post('cat_parent')!=null)
+		{
+			$this->cat_parent = $this->input->post('cat_parent');
+		}			
 		$this->db->update('categories',$this,array('cat_id'=>$this->input->post('cat_id')));
 		//$this->db->update('categories',$this,array('brand_name' => $this->input->post('brand_name')));
 	}
