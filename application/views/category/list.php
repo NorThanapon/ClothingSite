@@ -10,10 +10,10 @@
 	    <table border="1">
             <tr>
                 <td>ID</td>
-				<td>Name_th</td>
-                <td>Name_en</td>
-				<td>Description_th</td>
-				<td>Description_en</td>
+				<td>Name (Thai)</td>
+                <td>Name (English)</td>
+				<td>Description (Thai)</td>
+				<td>Description (English)</td>
 				<td>Parent</td>
 				<td>&nbsp;</td>
             </tr>
