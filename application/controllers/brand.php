@@ -116,5 +116,25 @@ class Brand extends CI_Controller
         }
         return FALSE;
     }
+	
+	public function delete($brand_name=FALSE)
+	{
+		if(!check_authen('staff',TRUE)) 
+		{		
+            return;            
+        }
+		if($brand_name===FALSE)
+		{
+			redirect('category');
+		}
+		
+		$this->load->model('brand_model');
+		
+		$this->category_model->delete($brand_name);
+		//ToDo:		
+		redirect('brand');		
+		return;
+		
+	}
 }
 ?>

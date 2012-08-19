@@ -94,5 +94,26 @@ class Category extends CI_Controller
 		
 	}
 	
+	public function delete($cat_id=FALSE)
+	{
+		if(!check_authen('staff',TRUE)) 
+		{		
+            return;            
+        }
+		if($cat_id===FALSE)
+		{
+			redirect('category');
+		}
+		
+		$this->load->model('category_model');
+		
+		$this->category_model->delete($cat_id);
+		$data['cat_list'] = $this->category_model->get();	
+		//$this->load->view('category');
+		redirect('category');		
+		return;
+		
+	}
+	
 }
 ?>

@@ -73,10 +73,9 @@ class Category_model extends CI_Model
 		//$this->db->update('categories',$this,array('brand_name' => $this->input->post('brand_name')));
 	}
 	
-	function delete()
-	{
-	
-		$this->db->delete('categories',array('cat_id'=>$this->input->post('cat_id')));
+	function delete($cat_id)
+	{	
+		$this->db->delete('categories',array('cat_id'=>$cat_id));
 	}
 	
 	function get($cat_id = FALSE)
