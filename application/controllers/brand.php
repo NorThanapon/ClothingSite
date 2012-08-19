@@ -125,12 +125,12 @@ class Brand extends CI_Controller
         }
 		if($brand_name===FALSE)
 		{
-			redirect('category');
+			redirect('brand');
 		}
 		
 		$this->load->model('brand_model');
 		
-		$this->category_model->delete($brand_name);
+		$this->brand_model->delete($brand_name);
 		//ToDo:		
 		redirect('brand');		
 		return;
