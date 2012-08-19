@@ -21,16 +21,16 @@ class Brand extends CI_Controller
 		{
             return;            
         }
+		if($this->input->post('cancel'))
+		{
+			redirect('brand');
+			return;
+		}
         if (!$this->input->post('submit')) 
 		{
             $this->load->view('brand/add',$data);
             return;
         }
-        if($this->input->post('cancel'))
-		{
-			redirect('category');
-			return;
-		}
 		$this->load->library('upload');
 		$result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo');
 		//$result_size = $this->_upload_brand_file($this->input->post('brand_name'), 'size');
