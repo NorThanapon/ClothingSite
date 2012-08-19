@@ -15,9 +15,7 @@
                         <?php echo anchor('brand', 'Brand', 'title="Manage Brands"'); ?>
                     </li>
                     <li>
-                        <a href="#">
-                            Category
-                        </a>
+                        <?php echo anchor('category', 'Category', 'title="Manage Categories"'); ?>
                     </li>
                     <li>
                         <?php echo anchor('product', 'Product', 'title="Manage Products"'); ?>
