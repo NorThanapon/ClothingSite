@@ -18,6 +18,7 @@
 			<input name="logo" type ="file"/>
 			<br />
 			<input type = "submit" name="submit" value="submit"/>
+			<input type = "submit" name="cancel" value="Cancel" />
 		</div>
 		
 		    

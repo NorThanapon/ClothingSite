@@ -26,8 +26,11 @@ class Brand extends CI_Controller
             $this->load->view('brand/add',$data);
             return;
         }
-         
-		
+        if($this->input->post('cancel'))
+		{
+			redirect('category');
+			return;
+		}
 		$this->load->library('upload');
 		$result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo');
 		//$result_size = $this->_upload_brand_file($this->input->post('brand_name'), 'size');
@@ -60,7 +63,11 @@ class Brand extends CI_Controller
 		}
 		
 		$this->load->model('brand_model');
-			
+		if($this->input->post('cancel'))
+		{
+			redirect('brand');
+			return;
+		}
 		if (!$this->input->post('submit')) //not pass submit
 		{			        
 			$data['brand'] =  $this->brand_model->get($brand_name);
