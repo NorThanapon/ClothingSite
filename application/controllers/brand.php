@@ -30,7 +30,7 @@ class Brand extends CI_Controller
 		
 		$this->load->library('upload');
 		$result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo');
-		$result_size = $this->_upload_brand_file($this->input->post('brand_name'), 'size');
+		//$result_size = $this->_upload_brand_file($this->input->post('brand_name'), 'size');
 		//TODO:handel error
 		if(isset($result_logo['error']))
 		{
@@ -39,7 +39,7 @@ class Brand extends CI_Controller
 		
 		
 		$this->load->model('brand_model');
-		$this->brand_model->add($result_logo['file_name'],$result_size['file_name']);
+		$this->brand_model->add($result_logo['file_name']);
 		redirect('brand');
 		
 		//$this->load->model('staff_model');
@@ -69,12 +69,8 @@ class Brand extends CI_Controller
 		else
 		{				
 			$logo_name = FALSE;
-			$size_name = FALSE;
 			$this->load->library('upload');
-			
-			$test = $this->input->post('logo');
-			echo $test;
-			
+									
 			if($result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo'))
 			{			
 				//TODO:handel error
@@ -84,17 +80,8 @@ class Brand extends CI_Controller
 				}
 				$logo_name = $result_logo['file_name'];
 			}
-			if($result_size = $this->_upload_brand_file($this->input->post('brand_name'), 'size'))	
-			{	
-				//TODO:handel error			
-				if(isset($result_size['error']))
-				{
-					echo 'error';
-				}
-				$size_name = $result_size['file_name'];
-			}
-				
-		    $this->brand_model->edit($this->input->post('brand_name_key'),$logo_name,$size_name);
+			
+		    $this->brand_model->edit($this->input->post('brand_name_key'));
 			redirect('brand');
 		}
        

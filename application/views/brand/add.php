@@ -17,9 +17,6 @@
 		    <label for="logo">Logo</textarea>
 			<input name="logo" type ="file"/>
 			<br />
-		    <label for="size_chart">Size Chart</textarea>
-			<input name="size" type ="file"/>
-			<br />
 			<input type = "submit" name="submit" value="submit"/>
 		</div>
 		

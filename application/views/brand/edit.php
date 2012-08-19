@@ -21,13 +21,7 @@
 				<label for="logo" >Logo</label>
 				<img src="<?php echo asset_url().'db/brands/'.$brand->logo; ?>" />
 				<input name="logo" type ="file"/>
-				<br />
-			
-				<label for="size" >Size Chart</label>
-				<img src="<?php echo asset_url().'db/brands/'.$brand->logo; ?>" />
-				<input name="size" type ="file"/>	
-				<br />
-				
+				<br />							
 				<input type = "submit" name="submit" value="save"/>
 				<br />
 				

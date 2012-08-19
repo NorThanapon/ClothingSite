@@ -12,8 +12,7 @@
                 <td>No.</td>
 				<td>Logo</td>
                 <td>Name</td>
-				<td>Description</td>
-				<td>Size</td>
+				<td>Description</td>				
 				<td>&nbsp;</td>
             </tr>
             <?php 
@@ -25,8 +24,7 @@
                 <td><?php echo $i;?></td>
 				<td><img width="100" height="100" src="<?php echo asset_url().'db/brands/'.$item->logo;?>" /></td>
                 <td><?php echo $item->brand_name;?> </td>
-				<td><?php echo $item->description;?></td>
-				<td><?php echo $item->size_chart;?></td>
+				<td><?php echo $item->description;?></td>				
 				<td>
 					<input type="submit" name="submit" value="Edit" />
 					<input type="submit" name="submit" value="Delete" />
