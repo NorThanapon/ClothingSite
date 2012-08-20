@@ -85,7 +85,7 @@
 			});
 			//add confirm event for delete button
 			$('a.delete-button').click(function() { 
-			    confirm('Do you want to delete this brand. The products in this brand will be modify to the default brand.',this.href, 'Delete'); 
+			    confirm('Confirm for deletion','Do you want to delete this brand.',this.href, 'Delete'); 
 				return false;
 			    });
 		</script>

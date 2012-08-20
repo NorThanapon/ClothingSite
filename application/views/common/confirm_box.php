@@ -21,7 +21,8 @@
 
 <script type="text/javascript">
     $('#confirm-modal').jqm({modal: true, trigger: false});
-    function confirm(msg, callback, confirm_value) {
+    function confirm(title, msg, callback, confirm_value) {
+        $('#jqmdTC').html(title)
         $('#confirm-box-yes-button').val(confirm_value);
         $('#confirm-modal')
             .jqmShow()
