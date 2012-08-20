@@ -17,8 +17,8 @@
 		    <label for="logo">Logo</textarea>
 			<input name="logo" type ="file"/>
 			<br />
-			<input type = "submit" name="submit" value="Add this brand"/>
-			<input type = "button" name="cancel" value="Cancel" />
+			<input class="button" type = "submit" name="submit" value="Add this brand"/>
+			<?php echo anchor('brand','Cancel' ,'Cancel'); ?>
 		</div>
 	</form>
 	<?php $this->load->view('common/admin_footer');?>

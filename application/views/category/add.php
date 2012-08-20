@@ -32,8 +32,8 @@
 				?>
 			</select>
 			<br />
-			<input type = "submit" name="submit" value="submit"/>
-			<input type = "submit" name="cancel" value="Cancel" />
+			<input class="button" type = "submit" name="submit" value="Add this category"/>
+			<?php echo anchor('category','Cancel' ,'Cancel'); ?>
 		</div>	  
 	</form>
 	<?php $this->load->view('common/admin_footer');?>
