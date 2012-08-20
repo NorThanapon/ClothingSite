@@ -64,27 +64,34 @@
 	</div>
 	</form>
     <?php $this->load->view('common/admin_footer');?>
+	<?php $this->load->view('common/confirm_box');?>
 	<script type="text/javascript">
 	    $(document).ready(function() {        
-		$(".tablesorter").find("tr:even").addClass("even");
-		$(".tablesorter")
-		    .tablesorter({
-			headers: {
-			    //0:{sorter:false},
-			    5:{sorter:false}
-			}
-		    })
-		    .tablesorterPager({
-			container: $(".table-pager"),
-			positionFixed: false,
-			size:20
-		    });
-		$(".tablesorter").on('sortEnd', function(){
-		    //set striping color
-		    $(".tablesorter").find('tr').removeClass('even');
-		    $(".tablesorter").find("tr:even").addClass("even");
-		});
+			$(".tablesorter").find("tr:even").addClass("even");
+			$(".tablesorter")
+				.tablesorter({
+					headers: {
+						//0:{sorter:false},
+						5:{sorter:false}
+					}
+				})
+				.tablesorterPager({
+					container: $(".table-pager"),
+					positionFixed: false,
+					size:20
+				});
+			$(".tablesorter").on('sortEnd', function(){
+				//set striping color
+				$(".tablesorter").find('tr').removeClass('even');
+				$(".tablesorter").find("tr:even").addClass("even");
+			});
+		
 	    }); 
+		//add confirm event for delete button
+		$('a.delete-button').click(function() { 
+			confirm('Confirm for deletion','Do you want to delete this brand.',this.href, 'Delete'); 
+			return false;
+		});
 	</script>
     </body>
 </html>
