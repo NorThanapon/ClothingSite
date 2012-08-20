@@ -27,11 +27,11 @@
 			<table  class="tablesorter" >
 				<thead>
 					<tr>
-						<th>No.</th>
-						<th>Logo</th>
-						<th>Name</th>
+						<th width="20">No.</th>
+						<th width="200">Logo</th>
+						<th width="100">Name</th>
 						<th>Description</th>				
-						<th>&nbsp;</th>
+						<th width="30">&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,12 +42,12 @@
 					?>
 					<tr>
 						<td><?php echo $i;?></td>
-						<td><img width="120px" height="100px" src="<?php echo asset_url().'db/brands/'.$item->logo;?>" /></td>
+						<td><img src="<?php echo asset_url().'db/brands/'.$item->logo;?>" /></td>
 						<td><?php echo $item->brand_name;?> </td>
 						<td><?php echo $item->description;?> </td>
 						<td>
-							<?php echo anchor('brand/edit/'.$item->brand_name, ' ', array('title'=>"Edit Category",'class'=>'edit-button')); ?>
-							<?php echo anchor('brand/delete/'.$item->brand_name, ' ', array('title'=>"Delete Category",'class'=>'delete-button')); ?>
+							<?php echo anchor('brand/edit/'.$item->brand_name, ' ', array('title'=>"Edit this brand",'class'=>'edit-button')); ?>
+							<?php echo anchor('brand/delete/'.$item->brand_name, ' ', array('title'=>"Delete this category",'class'=>'delete-button')); ?>
 						</td>
 					</tr>
 					<?php
@@ -60,8 +60,10 @@
 		</div>
 		</form>
 	    <?php $this->load->view('common/admin_footer');?>
+	    <?php $this->load->view('common/confirm_box');?>
 		<script type="text/javascript">
-			$(document).ready(function() {        
+			$(document).ready(function() {
+			//add sorter and pager
 			$(".tablesorter").find("tr:even").addClass("even");
 			$(".tablesorter")
 				.tablesorter({
@@ -80,7 +82,12 @@
 					$(".tablesorter").find('tr').removeClass('even');
 					$(".tablesorter").find("tr:even").addClass("even");
 				});
-			}); 
+			});
+			//add confirm event for delete button
+			$('a.delete-button').click(function() { 
+			    confirm('Do you want to delete this brand. The products in this brand will be modify to the default brand.',this.href, 'Delete'); 
+				return false;
+			    });
 		</script>
     </body>
 </html>

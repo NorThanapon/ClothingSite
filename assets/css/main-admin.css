@@ -49,7 +49,7 @@ h2 {
     cursor:pointer;
     color:#333;
     line-height:20px;
-    font-size:75%;
+    font-size:80%;
     text-align:center;
     display:inline-block;
     border:solid 1px silver;
@@ -327,20 +327,23 @@ div.report-items {
 	margin-bottom:10px;
 }
 
-div.report-items  .edit-button {
+div.report-items  .edit-button,
+div.report-items  .edit-button:active,
+div.report-items  .edit-button:hover{
 	width:16px;
 	height:16px;
 	background-image:url(../img/edit.png);
 	display:inline-block;
 }
 
-div.report-items  .delete-button{
+div.report-items  .delete-button,
+div.report-items  .delete-button:active,
+div.report-items  .delete-button:hover{
 	width:11px;
 	height:14px;
 	background-image:url(../img/delete.gif);
 	display:inline-block;
 }
-
 div.report-items table {
 	border-width: 1px;
 	border-spacing: 0px;
@@ -367,6 +370,7 @@ div.report-items table th{
 	border-right:none;
 }
 div.report-items table td {
+	vertical-align: top;
 	border-width: 1px;
 	border-style: solid;
 	border-color: silver;
@@ -375,6 +379,11 @@ div.report-items table td {
 	padding:5px;
 	border-left:none;
 	border-right:none;
+}
+div.report-items table td img {
+	height:90px;
+	width:auto;
+	max-width:200px;
 }
 div.report-items table tr.even td{
     background-color:#FEF0FF;
