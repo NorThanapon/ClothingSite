@@ -37,8 +37,7 @@
                     </li>
                 </ul>
             </nav>
-            <a href="index.html" class="logo">
-                <h1>B-Fash: Administration</h1>
+            <?php echo anchor('order', '<h1>BFash Shop: Administration</h1>', array('title'=>"BFash Shop: Administration", 'class'=>'logo')); ?>
             </a>
         </header>
     </div><!-- #header-wrapper .wrapper -->
