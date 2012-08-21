@@ -24,6 +24,9 @@
     function confirm(title, msg, callback, confirm_value) {
         $('#jqmdTC').html(title)
         $('#confirm-box-yes-button').val(confirm_value);
+        if(confirm_value=="Delete"){
+            $('#confirm-box-yes-button').addClass('btn-delete');
+        }
         $('#confirm-modal')
             .jqmShow()
             .find('p.jqmConfirmMsg')
