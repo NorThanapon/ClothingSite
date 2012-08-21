@@ -13,12 +13,20 @@
 	    </a>
     </div>
 	<div class="report-filter">
-        <fieldset>
+	    <fieldset>
 		<legend>Search Options</legend>
-		<label>Keyword:</label>
-		<input type = "text" />
-	    <input type = "button" value = "Search" />
-		</fieldset>
+		
+		<label>Name:</label>
+		<input type = "text" name="cat_name"/>
+		<label for="cat_parent">Under category</textarea>
+		<select name="cat_parent" > 
+		    <option value="">--Any category--</option>
+		    <?php foreach($cat_list as $item) {  ?>
+			<option value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name_en; ?></option>
+		    <?php } ?>
+		</select>
+		<input type = "button" value = "Search" />
+	    </fieldset>
     </div>
 	<div class="report-items">
 		<?php $this->load->view('common/table_pager');?>
@@ -89,7 +97,7 @@
 	    }); 
 		//add confirm event for delete button
 		$('a.delete-button').click(function() { 
-			confirm('Confirm for deletion','Do you want to delete this brand.',this.href, 'Delete'); 
+			confirm('Confirm for deletion','Do you want to delete this category.',this.href, 'Delete'); 
 			return false;
 		});
 	</script>

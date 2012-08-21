@@ -5,7 +5,7 @@
     </head>
     <body>
     <?php $this->load->view('common/admin_header');?>
-	<?php echo form_open_multipart('category/add');?>
+	<?php echo form_open('category/add'); ?>
 	<h1>Add Category</h1> 
 		<div>
 			<label for="cat_name_th">Name (Thai)</label>

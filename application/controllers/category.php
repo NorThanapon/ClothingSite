@@ -76,23 +76,6 @@ class Category extends CI_Controller
 		}
 	}
 	
-	public function get()
-	{
-		$data['page_title'] = 'Admin: Category Management';	
-		if(!check_authen('staff',TRUE)) 
-		{
-            return;            
-        }
-		$this->load->model('category_model');
-		$data['categories'] = $this->category_model->get($cat_id);
-	}
-	
-	public function get_parent_name($cat_parent)
-	{
-		$this->load->model('category_model'); 
-		$data['cat_parent'] = $this->category_model->get($cat_parent);
-		
-	}
 	
 	public function delete($cat_id=FALSE)
 	{
