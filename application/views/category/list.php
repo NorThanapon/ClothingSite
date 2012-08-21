@@ -16,15 +16,15 @@
 	    <fieldset>
 		<legend>Search Options</legend>
 		<label>Name:</label>
-		<input type = "text" name="cat_name"/>
+		<input id="txt_cat_name" type="text" name="cat_name" value="<?php if(isset($filter_name)) echo $filter_name;  ?>"/>
 		<label for="cat_parent">Under category</textarea>
-		<select name="cat_parent" > 
-		    <option value="">--Any category--</option>
-		    <?php foreach($cat_list as $item) {  ?>
-			<option value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name_en; ?></option>
+		<select name="cat_parent" id="ddl_cat_parent"> 
+		    <option value="0">--Any category--</option>
+		    <?php foreach($categories as $item) {  ?>
+			<option <?php if (isset($filter_parent) && $item->cat_id == $filter_parent) echo 'selected' ?> value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name_en; ?></option>
 		    <?php } ?>
 		</select>
-		<input type="button" value="Search" />
+		<input id="btn_filter" type="button" value="Filter" />
 	    </fieldset>
     </div>
 	<div class="report-items">
@@ -73,31 +73,37 @@
     <?php $this->load->view('common/admin_footer');?>
 	<?php $this->load->view('common/confirm_box');?>
 	<script type="text/javascript">
-	    $(document).ready(function() {        
-		$(".tablesorter").find("tr:even").addClass("even");
-		$(".tablesorter")
-			.tablesorter({
-				headers: {
-					//0:{sorter:false},
-					5:{sorter:false}
-				}
-			})
-			.tablesorterPager({
-				container: $(".table-pager"),
-				positionFixed: false,
-				size:20
-			});
-		$(".tablesorter").on('sortEnd', function(){
-			//set striping color
-			$(".tablesorter").find('tr').removeClass('even');
-			$(".tablesorter").find("tr:even").addClass("even");
-		});
+	    $(document).ready(function() {
 		//add confirm event for delete button
 		$('a.delete-button').click(function() { 
-			confirm('Confirm for deletion','Do you want to delete this category.',this.href, 'Delete'); 
-			return false;
+		    confirm('Confirm for deletion','Do you want to delete this category.',this.href, 'Delete'); 
+		    return false;
 		});
-		
+		$('#btn_filter').click(function() {
+		    var url = document.URL;
+		    url = url.substring(0, url.indexOf('/category') + 9);
+		    url = url + '/filter/' + $('#ddl_cat_parent').val() + '/' + $('#txt_cat_name').val();
+		    window.location = url;
+		});
+		        
+		$(".tablesorter").find("tr:even").addClass("even");
+		$(".tablesorter")
+		    .tablesorter({
+			headers: {
+				//0:{sorter:false},
+				5:{sorter:false}
+			}
+		    })
+		    .tablesorterPager({
+			container: $(".table-pager"),
+			positionFixed: false,
+			size:20
+		    });
+		$(".tablesorter").on('sortEnd', function(){
+		    //set striping color
+		    $(".tablesorter").find('tr').removeClass('even');
+		    $(".tablesorter").find("tr:even").addClass("even");
+		});
 	    }); 
 		
 	</script>

@@ -83,15 +83,28 @@ class Category_model extends CI_Model
 	
 	    if ($cat_id === FALSE) 
 		{
-			$query = $query = $this->db->query("SELECT sub_cat . * , sup_cat.cat_name_en AS  `parent_name` 
-												FROM  `categories` AS sub_cat LEFT JOIN  `categories` AS sup_cat 
-												ON sub_cat.cat_parent = sup_cat.cat_id");
+			$query = $this->db->get_where('categories_parent');
 			return $query->result();
 	    }
 		//$query = $this->db->query("SELECT *,c1.cat_name_en as parent_name FROM `categories` as c1 inner join `categories` as c2 on c1.cat_id = c2.cat_parent");
-	    $query = $this->db->get_where('categories', array('cat_id' => $cat_id));
+	    $query = $this->db->get_where('categories_parent', array('cat_id' => $cat_id));
 		
 	    return $query->row();
+	}
+	
+	function filter($parent, $name)
+	{
+		$where = "";
+		if ($parent != "0" && $parent != FALSE) $where = $where . "cat_parent = " . $parent;
+		if ($name != "" && $name != " " && $name != FALSE)
+		{
+			if ($where != "" ) $where = $where . " AND ";
+			$where = $where . "(cat_name_th LIKE '%".$name."%' OR cat_name_en LIKE '%".$name."%')";
+		}
+		
+		if ($where != "" ) $query = $this->db->get_where('categories_parent', $where);
+		else $query = $this->db->get('categories_parent');
+		return $query->result();
 	}
 	
 	/*function get_parent()
