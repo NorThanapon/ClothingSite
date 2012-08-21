@@ -5,7 +5,7 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-		<?php echo form_open_multipart('brand/edit/'.$brand->brand_name);?>
+		<?php echo form_open_multipart('admin/brand/edit/'.$brand->brand_name);?>
 		<h1>Edit Brand</h1> 
 			<div>
 				<input name="brand_name_key" type="hidden" value="<?php echo $brand->brand_name; ?>" />

@@ -7,7 +7,7 @@
         <?php $this->load->view('common/admin_header');?>
 	<h1>Category Management</h1>  
 	<div class="page-action">
-        <a href="category/add" class="button gradient">
+	    <a href="category/add" class="button gradient">
 		<img  src="<?php echo asset_url().'img/add-icon.png'?>" />
 		Add New Category
 	    </a>
@@ -57,8 +57,8 @@
 				
 				<td><?php echo $item->parent_name?></td>
 				<td>
-					 <?php echo anchor('category/edit/'.$item->cat_id, ' ', array('title'=>"Edit Category",'class'=>'edit-button')); ?>
-					 <?php echo anchor('category/delete/'.$item->cat_id, ' ', array('title'=>"Delete Category",'class'=>'delete-button')); ?>
+					 <?php echo anchor('admin/category/edit/'.$item->cat_id, ' ', array('title'=>"Edit Category",'class'=>'edit-button')); ?>
+					 <?php echo anchor('admin/category/delete/'.$item->cat_id, ' ', array('title'=>"Delete Category",'class'=>'delete-button')); ?>
 				</td>
             </tr>
             <?php

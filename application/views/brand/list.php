@@ -23,7 +23,6 @@
 		</div>
 	   	<div class="report-items">
 			<?php $this->load->view('common/table_pager');?>
-			<?php echo form_open_multipart('brand/list');?>
 			<table  class="tablesorter" >
 				<thead>
 					<tr>
@@ -46,8 +45,8 @@
 						<td><?php echo $item->brand_name;?> </td>
 						<td><?php echo $item->description;?> </td>
 						<td>
-							<?php echo anchor('brand/edit/'.$item->brand_name, ' ', array('title'=>"Edit this brand",'class'=>'edit-button')); ?>
-							<?php echo anchor('brand/delete/'.$item->brand_name, ' ', array('title'=>"Delete this category",'class'=>'delete-button')); ?>
+							<?php echo anchor('admin/brand/edit/'.$item->brand_name, ' ', array('title'=>"Edit this brand",'class'=>'edit-button')); ?>
+							<?php echo anchor('admin/brand/delete/'.$item->brand_name, ' ', array('title'=>"Delete this category",'class'=>'delete-button')); ?>
 						</td>
 					</tr>
 					<?php
@@ -58,7 +57,6 @@
 			</table>
 			<?php $this->load->view('common/table_pager');?>
 		</div>
-		</form>
 	    <?php $this->load->view('common/admin_footer');?>
 	    <?php $this->load->view('common/confirm_box');?>
 		<script type="text/javascript">

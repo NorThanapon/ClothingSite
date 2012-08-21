@@ -51,7 +51,7 @@ class Brand extends CI_Controller
         //no file error
         $this->load->model('brand_model');
         $this->brand_model->add($result_logo['file_name']);
-        redirect('brand');
+        redirect('admin/brand');
     }
 
     public function edit($brand_name=FALSE) 
@@ -63,11 +63,11 @@ class Brand extends CI_Controller
         }
 			
 		if($brand_name===FALSE){
-			redirect('brand');
+			redirect('admin/brand');
 		}
 		$this->load->model('brand_model');
 		if($this->input->post('cancel')){
-			redirect('brand');
+			redirect('admin/brand');
 			return;
 		}
 		if (!$this->input->post('submit')) //not pass submit
@@ -104,7 +104,7 @@ class Brand extends CI_Controller
 				}
 				
 				$this->brand_model->edit($this->input->post('brand_name_key'));
-				redirect('brand');
+				redirect('admin/brand');
 			}
 		}
        
@@ -141,13 +141,13 @@ class Brand extends CI_Controller
         }
 		if($brand_name===FALSE)
 		{
-			redirect('brand');
+			redirect('admin/brand');
 		}
 		
 		$this->load->model('brand_model');
 		$logo = './assets/db/brands/'.$this->brand_model->get($brand_name)->logo;
 		$this->brand_model->delete($brand_name,$logo);		
-		redirect('brand');		
+		redirect('admin/brand');		
 		return;
 		
 	}

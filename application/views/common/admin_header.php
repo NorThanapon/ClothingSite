@@ -4,7 +4,7 @@
             <nav>
                 <ul>
                     <li>
-                        <?php echo anchor('order', 'Order', 'title="Manage Orders"'); ?>
+                        <?php echo anchor('admin/order', 'Order', 'title="Manage Orders"'); ?>
                     </li>
                     <li>
                         <a href="#">
@@ -12,13 +12,13 @@
                         </a>
                     </li>
                     <li>
-                        <?php echo anchor('brand', 'Brand', 'title="Manage Brands"'); ?>
+                        <?php echo anchor('admin/brand', 'Brand', 'title="Manage Brands"'); ?>
                     </li>
                     <li>
-                        <?php echo anchor('category', 'Category', 'title="Manage Categories"'); ?>
+                        <?php echo anchor('admin/category', 'Category', 'title="Manage Categories"'); ?>
                     </li>
                     <li>
-                        <?php echo anchor('product', 'Product', 'title="Manage Products"'); ?>
+                        <?php echo anchor('admin/product', 'Product', 'title="Manage Products"'); ?>
                     </li>
                     <li>
                         <a href="#">
@@ -37,7 +37,7 @@
                     </li>
                 </ul>
             </nav>
-            <?php echo anchor('order', '<h1>BFash Shop: Administration</h1>', array('title'=>"BFash Shop: Administration", 'class'=>'logo')); ?>
+            <?php echo anchor('admin', '<h1>BFash Shop: Administration</h1>', array('title'=>"BFash Shop: Administration", 'class'=>'logo')); ?>
             </a>
         </header>
     </div><!-- #header-wrapper .wrapper -->

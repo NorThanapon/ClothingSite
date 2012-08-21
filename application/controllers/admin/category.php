@@ -29,7 +29,7 @@ class Category extends CI_Controller
 		return;
 	    }
 	    $this->category_model->add();
-	    redirect('category');
+	    redirect('admin/category');
 	}
 	
 	public function edit($cat_id=FALSE) 
@@ -41,7 +41,7 @@ class Category extends CI_Controller
 	    }
 	    if($cat_id===FALSE)
 	    {
-		redirect('category');
+		redirect('admin/category');
 	    }
 	    $this->load->model('category_model');
 	    if (!$this->input->post('submit')) 
@@ -56,7 +56,7 @@ class Category extends CI_Controller
 		$this->category_model->edit($this->input->post('cat_id'));
 		$data['categories'] =  $this->category_model->get($cat_id);
 		$data['allCat'] = $this->category_model->get();
-		redirect('category');
+		redirect('admin/category');
 	    }
 	}
 	
@@ -83,12 +83,12 @@ class Category extends CI_Controller
 	    }
 	    if($cat_id===FALSE)
 	    {
-		    redirect('category');
+		    redirect('admin/category');
 	    }
 	    $this->load->model('category_model');
 	    $this->category_model->delete($cat_id);
 	    $data['cat_list'] = $this->category_model->get();
-	    redirect('category');
+	    redirect('admin/category');
 	}
 	
 }

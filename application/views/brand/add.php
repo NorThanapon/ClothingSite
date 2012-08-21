@@ -5,7 +5,7 @@
     </head>
     <body>
     <?php $this->load->view('common/admin_header');?>
-	<?php echo form_open_multipart('brand/add');?>
+	<?php echo form_open_multipart('admin/brand/add');?>
 	<h1>Add brand</h1> 
 		<div>
 		    <?php $this->load->helper("form"); ?>

@@ -5,7 +5,7 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-		<?php echo form_open('category/edit/'.$categories->cat_id); ?>
+		<?php echo form_open('admin/category/edit/'.$categories->cat_id); ?>
 		<h1>Edit Category</h1> 
 			<div>
 				<input type="hidden" name="cat_id" value="<?php echo $categories->cat_id;?>" />

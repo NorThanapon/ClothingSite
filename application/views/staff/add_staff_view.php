@@ -5,7 +5,7 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-        <?php echo form_open('staff/process_add_staff') ?>
+        <?php echo form_open('admin/staff/process_add_staff') ?>
         
             <label for="username">Username</label> 
             <input type="text" name="username" /><br />
