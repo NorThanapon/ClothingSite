@@ -40,8 +40,10 @@ class Brand_model extends CI_Model
 	
 	function delete($brand_name,$logo_name)
 	{
+		
 		$data['logo'] = $logo_name;
 		$this->db->delete('brands',array('brand_name' => $brand_name));
+		
 		
 	}
 	
