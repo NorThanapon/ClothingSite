@@ -34,10 +34,7 @@ class Brand extends CI_Controller
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('brand_name', 'Brand name', 'trim|required');
-		$this->form_validation->set_message('brand_name', 'You must select a business ');
-		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('logo', 'Logo', 'required');
-		
+
 		if ($this->form_validation->run() == FALSE)	{
 			$this->load->view('brand/add');
 			return;
@@ -69,14 +66,11 @@ class Brand extends CI_Controller
             return;            
         }
 			
-		if($brand_name===FALSE)
-		{
+		if($brand_name===FALSE){
 			redirect('brand');
 		}
-		
 		$this->load->model('brand_model');
-		if($this->input->post('cancel'))
-		{
+		if($this->input->post('cancel')){
 			redirect('brand');
 			return;
 		}
@@ -86,22 +80,35 @@ class Brand extends CI_Controller
 			$this->load->view('brand/edit',$data);			
         }
 		else
-		{				
-			$logo_name = FALSE;
-			$this->load->library('upload');
-									
-			if($result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo'))
-			{			
-				//TODO:handel error
-				if(isset($result_logo['error']))
-				{
-					echo 'error';				
-				}
-				$logo_name = $result_logo['file_name'];
+		{
+			$this->load->helper(array('form', 'url'));
+
+			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('brand_name', 'Brand name', 'trim|required');
+
+			if ($this->form_validation->run() == FALSE)	{
+				$this->load->view('brand/edit');
+				return;
 			}
-			
-		    $this->brand_model->edit($this->input->post('brand_name_key'));
-			redirect('brand');
+			else
+			{				
+				$logo_name = FALSE;
+				$this->load->library('upload');
+										
+				if($result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo'))
+				{			
+					//TODO:handel error
+					if(isset($result_logo['error']))
+					{
+						echo 'error';				
+					}
+					$logo_name = $result_logo['file_name'];
+				}
+				
+				$this->brand_model->edit($this->input->post('brand_name_key'));
+				redirect('brand');
+			}
 		}
        
 	}

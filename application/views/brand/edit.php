@@ -9,9 +9,8 @@
 		<h1>Edit Brand</h1> 
 			<div>
 				<input name="brand_name_key" type="hidden" value="<?php echo $brand->brand_name; ?>" />
-				
 				<label for="brand_name" >Brand Name</label>
-				<input name="brand_name" type ="text" value="<?php echo $brand->brand_name; ?>" />
+				<input name="brand_name" readonly="true" type ="text" value="<?php echo $brand->brand_name; ?>" />
 				<br />
 		
 				<label for="description" >Description</label>
