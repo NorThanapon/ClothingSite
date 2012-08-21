@@ -9,9 +9,9 @@ if (!function_exists('check_authen')) {
         else if( $CI->encrypt->decode($CI->input->cookie('username'))
                 &&  $CI->encrypt->decode($CI->input->cookie('role'))==$role){
             $data = array(
-               'username'   => cookie('username'),
+               'username'   => $CI->input->cookie('username'),
                'logged_in'  => TRUE,
-               'role'       => cookie('role')
+               'role'       => $CI->input->cookie('role')
             );
             $CI->session->set_userdata($data);
             return true;
