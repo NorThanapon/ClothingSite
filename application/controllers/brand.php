@@ -130,8 +130,7 @@ class Brand extends CI_Controller
 		
 		$this->load->model('brand_model');
 		$logo = './assets/db/brands/'.$this->brand_model->get($brand_name)->logo;
-		$this->brand_model->delete($brand_name,$logo);
-		//$this->load->view('brand/'.$logo);
+		$this->brand_model->delete($brand_name,$logo);		
 		redirect('brand');		
 		return;
 		
