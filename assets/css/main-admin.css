@@ -218,6 +218,13 @@ label {
 	margin-top:5px;
 	margin-left:5px;
 }
+
+.form-error-message {
+	margin-left:5px;
+	font-size:80%;
+	color:red;
+}
+
 /* end general */
 
 /* header */

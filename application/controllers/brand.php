@@ -36,7 +36,8 @@ class Brand extends CI_Controller
 		$this->form_validation->set_rules('brand_name', 'Brand name', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE)	{
-			$this->load->view('brand/add');
+                        $data['error_message']='Please fill in the brand name.';
+			$this->load->view('brand/add', $data);
 			return;
 		}
 		else{//if success
