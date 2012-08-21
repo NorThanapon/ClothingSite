@@ -17,38 +17,50 @@ class Brand extends CI_Controller
     public function add() 
 	{
         $data['page_title'] = 'Admin: Brand Management';
-        if(!check_authen('staff',TRUE)) 
-		{
+        if(!check_authen('staff',TRUE)){
             return;            
         }
-		if($this->input->post('cancel'))
-		{
+		if($this->input->post('cancel')){
 			redirect('brand');
 			return;
 		}
-        if (!$this->input->post('submit')) 
-		{
+        if (!$this->input->post('submit')){
             $this->load->view('brand/add',$data);
             return;
         }
-		$this->load->library('upload');
-		$result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo');
-		//$result_size = $this->_upload_brand_file($this->input->post('brand_name'), 'size');
-		//TODO:handel error
-		if(isset($result_logo['error']))
-		{
-			echo 'error';
+		
+		$this->load->helper(array('form', 'url'));
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('brand_name', 'Brand name', 'trim|required');
+		$this->form_validation->set_message('brand_name', 'You must select a business ');
+		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('logo', 'Logo', 'required');
+		
+		if ($this->form_validation->run() == FALSE)	{
+			$this->load->view('brand/add');
+			return;
 		}
+		else{//if success
+			//$this->load->view('myform');
+			$this->load->library('upload');
+			$result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo');
+			//$result_size = $this->_upload_brand_file($this->input->post('brand_name'), 'size');
+			//TODO:handel error (eg. add duplicate name)
+			if(isset($result_logo['error']))
+			{
+				echo 'error';
+			}
 		
-		
-		$this->load->model('brand_model');
-		$this->brand_model->add($result_logo['file_name']);
-		redirect('brand');
-		
-		//$this->load->model('staff_model');
-		//$this->staff_model->add_staff();
+			$this->load->model('brand_model');
+			$this->brand_model->add($result_logo['file_name']);
+			redirect('brand');
+		}
         
     }
+	
+	
     public function edit($brand_name=FALSE) 
 	{		
 		$data['page_title'] = 'Admin: Brand Management';
