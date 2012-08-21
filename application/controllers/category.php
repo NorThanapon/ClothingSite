@@ -26,6 +26,7 @@ class Category extends CI_Controller
 	    if (!$this->input->post('submit')) 
 	    {    
 		$this->load->view('category/add',$data);
+		return;
 	    }
 	    $this->category_model->add();
 	    redirect('category');
@@ -48,6 +49,7 @@ class Category extends CI_Controller
 		$data['categories'] =  $this->category_model->get($cat_id);
 		$data['allCat'] = $this->category_model->get();
 		$this->load->view('category/edit',$data);
+		return;
 	    }
 	    else
 	    {

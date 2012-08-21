@@ -10,14 +10,14 @@
 		<div>
 		    <?php $this->load->helper("form"); ?>
 			<label for="brand_name">Brand Name</label>
-			<input name="brand_name" value="<?php echo set_value('brand_name'); ?>" type ="text"/>*
+			<input name="brand_name" value="<?php if(isset($brand_name)) echo $brand_name; ?>" type ="text"/>*
 			<?php echo form_error('brand_name', '<span class="form-error-message">', '</span>'); ?>
 			<br />
 			<label for="description">Description</label>
-			<textarea name ="description"  ><?php echo set_value('description'); ?></textarea>
+			<textarea name ="description"  ><?php if(isset($form_description)) echo $form_description; ?></textarea>
 			<br />
 			<label for="logo">Logo</textarea>
-			<input name="logo"  value="<?php echo set_value('logo'); ?>" type ="file"/>
+			<input name="logo" type ="file"/>
 			<br />
 			<?php echo anchor('brand','Cancel' ,array('class' => 'button')); ?>
 			<input class="button btn-submit" type = "submit" name="submit" value="Add this brand"/>	

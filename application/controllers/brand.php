@@ -3,62 +3,57 @@
 class Brand extends CI_Controller 
 {
     public function index() 
-	{
+    {
         if(!check_authen('staff',TRUE)) 
-		{
-			return;
-		}
-		$this->load->model('brand_model');
-		$data['page_title'] = 'Admin: Brand Management';
-		$data['brand_list'] = $this->brand_model->get();
-		$this->load->view('brand/list',$data);
-	}
+        {
+                return;
+        }
+        $this->load->model('brand_model');
+        $data['page_title'] = 'Admin: Brand Management';
+        $data['brand_list'] = $this->brand_model->get();
+        $this->load->view('brand/list',$data);
+    }
 
     public function add() 
-	{
-        $data['page_title'] = 'Admin: Brand Management';
-        if(!check_authen('staff',TRUE)){
+    {
+        if(!check_authen('staff',TRUE))
+        {
             return;            
         }
-		if($this->input->post('cancel')){
-			redirect('brand');
-			return;
-		}
-        if (!$this->input->post('submit')){
+        //authenticated
+        $data['page_title'] = 'Admin: Brand Management';
+        if (!$this->input->post('submit'))
+        {
             $this->load->view('brand/add',$data);
             return;
         }
-		
-		$this->load->helper(array('form', 'url'));
-
-		$this->load->library('form_validation');
-
-		$this->form_validation->set_rules('brand_name', 'Brand name', 'trim|required');
-
-		if ($this->form_validation->run() == FALSE)	{
-                        $data['error_message']='Please fill in the brand name.';
-			$this->load->view('brand/add', $data);
-			return;
-		}
-		else{//if success
-			//$this->load->view('myform');
-			$this->load->library('upload');
-			$result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo');
-			//$result_size = $this->_upload_brand_file($this->input->post('brand_name'), 'size');
-			//TODO:handel error (eg. add duplicate name)
-			if(isset($result_logo['error']))
-			{
-				echo 'error';
-			}
-		
-			$this->load->model('brand_model');
-			$this->brand_model->add($result_logo['file_name']);
-			redirect('brand');
-		}
-        
+        //form submitted
+        $data['form_band_name'] = $this->input->post('brand_name');
+        $data['form_description'] = $this->input->post('description');
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('brand_name', 'Brand name', 'trim|required');
+	if ($this->form_validation->run() == FALSE)
+        { 
+            $data['error_message']='Please fill in the brand name.';
+            $this->load->view('brand/add', $data);
+            return;
+	}
+        //validation passed
+        $this->load->library('upload');
+        $result_logo = $this->_upload_brand_file($this->input->post('brand_name'), 'logo');
+        if(isset($result_logo['error']))
+        {
+            $data["error_message"] = $result_logo['error'];
+            $this->load->view('brand/add', $data);
+            return;
+        }
+        //no file error
+        $this->load->model('brand_model');
+        $this->brand_model->add($result_logo['file_name']);
+        redirect('brand');
     }
-	
-	
+
     public function edit($brand_name=FALSE) 
 	{		
 		$data['page_title'] = 'Admin: Brand Management';
@@ -78,8 +73,9 @@ class Brand extends CI_Controller
 		if (!$this->input->post('submit')) //not pass submit
 		{			        
 			$data['brand'] =  $this->brand_model->get($brand_name);
-			$this->load->view('brand/edit',$data);			
-        }
+			$this->load->view('brand/edit',$data);
+                        return;
+                }
 		else
 		{
 			$this->load->helper(array('form', 'url'));
