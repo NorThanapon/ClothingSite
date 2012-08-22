@@ -16,18 +16,58 @@ class Category extends CI_Controller
 	
 	public function add() 
 	{
-	    if(!check_authen('staff',TRUE)) 
-	    {
-		return;            
+	    if(!check_authen('staff',TRUE)) {	
+			return;       
 	    }
+		//authenticated
 	    $data['page_title'] = 'Admin: Category Management';	
 	    $this->load->model('category_model');
 	    $data['categories'] = $this->category_model->get();
 	    if (!$this->input->post('submit')) 
 	    {    
-		$this->load->view('category/add',$data);
-		return;
+			$this->load->view('category/add',$data);
+			return;
 	    }
+		//form submitted
+		$data['form_cat_name_th'] = $this->input->post('cat_name_th');
+        $data['form_cat_name_en'] = $this->input->post('cat_name_en');
+		$this->load->library('form_validation');
+        $this->form_validation->set_rules('cat_name_th', 'Category name(Thai)', 'trim|required');
+		$this->form_validation->set_rules('cat_name_en', 'Category name(English)', 'trim|required');
+	if ($this->form_validation->run() == FALSE)
+    { 
+            $data['error_message']='Please fill in the category name.';
+            $this->load->view('category/add', $data);
+            return;
+	}
+		//validation passed
+		$data['dup_message_th']="";
+		$data['dup_message_en']="";
+		if($this->category_model->get_by_name($data['form_cat_name_th'],FALSE)!=FALSE)
+        {
+            $data['error_message'] = 'Duplicate category name. The category name you entered is already existed in the database.';
+			$data['dup_message_th'] = "This field is already existed in the database.";
+            $this->load->view('category/add',$data);
+            return;
+        }
+		if($this->category_model->get_by_name(FALSE,$data['form_cat_name_en'])!=FALSE)
+        {
+            $data['error_message'] = 'Duplicate category name. The category name you entered is already existed in the database.';
+			$data['dup_message_en'] = "This field is already existed in the database.";
+            $this->load->view('category/add',$data);
+            return;
+        }
+		if($this->category_model->get_by_name($data['form_cat_name_th'],$data['form_cat_name_en'])!=FALSE)
+        {
+            $data['error_message'] = 'Duplicate category name. The category name you entered is already existed in the database.';
+			$data['dup_message_th'] = "This field is already existed in the database.";
+			$data['dup_message_en'] = "This field is already existed in the database.";
+            $this->load->view('category/add',$data);
+            return;
+        }
+		
+		
+		//none duplicate category
 	    $this->category_model->add();
 	    redirect('admin/category');
 	}

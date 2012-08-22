@@ -92,6 +92,25 @@ class Category_model extends CI_Model
 	    return $query->row();
 	}
 	
+	function get_by_name($cat_name_th = FALSE, $cat_name_en = FALSE)
+	{
+		if ($cat_name_th === FALSE) 
+		{
+			$query = $this->db->get_where('categories_parent',array('cat_name_en' => $cat_name_en));
+			return $query->result();
+	    }
+		if ($cat_name_en === FALSE) 
+		{
+			$query = $this->db->get_where('categories_parent',array('cat_name_th' => $cat_name_th));
+			return $query->result();
+	    }
+				
+	    $this->db->where('cat_name_th',$cat_name_th);
+		$this->db->or_where('cat_name_en',$cat_name_en); 
+		$query = $this->db->get('categories_parent');
+	    return $query->row();
+	}
+	
 	function filter($parent, $name)
 	{
 		$where = "";
