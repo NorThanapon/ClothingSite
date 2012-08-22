@@ -83,20 +83,28 @@ class Category extends CI_Controller
 	    {
 			return;            
 	    }
+		$data['dup_message_th']="";
+		$data['dup_message_en']="";
 	    if($cat_id===FALSE)
 	    {
 			redirect('admin/category');
 	    }
 	    $this->load->model('category_model');
+		$data['allCat'] = $this->category_model->get();
 	    if (!$this->input->post('submit')) 
 	    {
 			$data['categories'] =  $this->category_model->get($cat_id);
-			$data['allCat'] = $this->category_model->get();
 			$this->load->view('category/edit',$data);
 			return;
 	    }
-	    //form submitted
-		$data['form_cat_name_en'] = $this->input->post('cat_name_en');        
+	    //form submitted 
+		$data['form_cat_name_th'] = $this->input->post('cat_name_th');
+        $data['form_cat_name_en'] = $this->input->post('cat_name_en');
+		$data['form_description_th'] = $this->input->post('description_th');
+        $data['form_description_en'] = $this->input->post('description_en');
+		$data['form_cat_parent'] = $this->input->post('cat_parent');
+
+		
         $this->load->model('category_model');
         $data['category'] =  $this->category_model->get($this->input->post($cat_id));
 		
@@ -106,24 +114,32 @@ class Category extends CI_Controller
 		
 		 if ($this->form_validation->run() == FALSE)
         {
-            $data['error_message'] = 'Please fill in the requirement information.';
+            $data['error_message'] = 'Please fill in the category name.';
 			$data['categories'] =  $this->category_model->get($cat_id);
 			$this->load->view('category/edit', $data);
             return;
     	}
 		//form validated
-        if(($this->category_model->select('SELECT * FROM categories WHERE cat_name_en=\''.$this->input->post('cat_name_en').'\' ')!=FALSE &&
-		    $this->category_model->get($cat_id)->cat_name_en!= $this->input->post('cat_name_en') )||
-			(($this->category_model->select('SELECT * FROM categories WHERE cat_name_th=\''.$this->input->post('cat_name_th').'\' ')!=FALSE )&&
+		if(($this->category_model->select('SELECT * FROM categories WHERE cat_name_th=\''.$this->input->post('cat_name_th').'\' ')!=FALSE )&&
 		    $this->category_model->get($cat_id)->cat_name_th!=$this->input->post('cat_name_th'))
-     	  )
-        {
+		{
             $data['error_message'] = 'Duplicate brand name. The category name you entered is already existed in the database.';
+			$data['dup_message_th'] = "This field is already existed in the database.";
 			$data['categories'] =  $this->category_model->get($cat_id);
 			$this->load->view('category/edit', $data);
             return;
 			
         }
+        if($this->category_model->select('SELECT * FROM categories WHERE cat_name_en=\''.$this->input->post('cat_name_en').'\' ')!=FALSE &&
+		    $this->category_model->get($cat_id)->cat_name_en!= $this->input->post('cat_name_en') )
+		{
+			$data['error_message'] = 'Duplicate brand name. The category name you entered is already existed in the database.';
+			$data['dup_message_en'] = "This field is already existed in the database.";
+			$data['categories'] =  $this->category_model->get($cat_id);
+			$this->load->view('category/edit', $data);
+            return;
+		}
+		
 		//none duplicate category name			
 		$this->category_model->edit($this->input->post('cat_id'));
 		$data['categories'] =  $this->category_model->get($cat_id);
