@@ -151,5 +151,18 @@ class Brand extends CI_Controller
         redirect('admin/brand');		
         return;		
     }
+	
+	public function search($keyword=FALSE)
+	{
+		if(!check_authen('staff',TRUE)) 
+	    {		
+			return;            
+	    }
+		$this->load->model('brand_model');
+		$data['page_title'] = 'Admin: Brand Management';
+		$data['brand_list'] = $this->brand_model->search($keyword);
+		$data['keyword'] = $keyword;
+		$this->load->view('brand/list',$data);
+	}
 }
 ?>

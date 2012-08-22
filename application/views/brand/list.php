@@ -17,8 +17,8 @@
 			<fieldset>
 				<legend>Search Options</legend>
 				<label>Keyword:</label>
-				<input type = "text" />
-				<input type = "button" value = "Search" />
+				<input id="txt_keyword" type="text" name="keyword" value="<?php if(isset($keyword)) echo $keyword;  ?>" />
+				<input id="btn_search" type = "button" value = "Search" />
 			</fieldset>
 		</div>
 	   	<div class="report-items">
@@ -87,6 +87,15 @@
 			    confirm('Confirm for deletion','Do you want to delete this brand.',this.href, 'Delete'); 
 				return false;
 			    });
+				
+			//add confirm event for search button 
+			$('#btn_search').click(function() {
+		    var url = document.URL;
+		    url = url.substring(0, url.indexOf('/brand') + 6);
+		    url = url + '/search/' + $('#txt_keyword').val();
+		    window.location = url;
+		});
+				
 		    });
 		</script>
     </body>

@@ -57,5 +57,17 @@ class Brand_model extends CI_Model
 	    return FALSE;
 	}
 	
+	function search($keyword)
+	{		
+		$where = "";
+		if ($keyword != "" && $keyword != " " && $keyword != FALSE)
+		{
+			 $where = $where."(brand_name LIKE '%".$keyword."%' OR description LIKE '%".$keyword."%')";
+			 $query = $this->db->get_where('brands',$where);
+			 return $query->result();	
+		}
+		$query = $this->db->get('brands');
+		return $query->result();
+	}
 }
 ?>
