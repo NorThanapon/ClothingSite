@@ -504,3 +504,56 @@ div.report-action fieldset legend {
 }
 /* end report action */
 /* end report */
+
+/* form */
+div.form-input {
+	margin-bottom:10px;
+}
+div.form-input fieldset {
+	border: solid 1px silver;
+	border-left: none;
+	border-right: none;
+	border-bottom:none;
+}
+div.form-input fieldset legend {
+	text-align:left;
+	color:#555;
+	font-size:85%;
+	margin-left:20px;
+}
+div.form-input label{
+	display:inline-block;
+	line-height:200%;
+	vertical-align:top;
+	width:30%;
+	text-align:right;
+	font-size:90%;
+	vertical-align:top;
+	margin-right:10px;
+}
+div.form-input input {
+	display:inline-block;
+	width:200px;
+	margin-top:5px;
+	margin-bottom:5px;
+	height:20px;
+	line-height:200%;
+}
+
+div.form-input textarea {
+	width:300px;
+	height:100px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+div.form-input select {
+	min-width:100px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+div.form-action {
+	border-top: solid 1px silver;
+	margin-top:5px;
+	padding:10px;
+}
+/* end form */
