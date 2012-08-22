@@ -28,9 +28,16 @@ class Brand extends CI_Controller
             return;
         }
         //form submitted
-        $data['form_band_name'] = $this->input->post('brand_name');
+        $data['form_brand_name'] = $this->input->post('brand_name');
         $data['form_description'] = $this->input->post('description');
-        $this->load->helper(array('form', 'url'));
+        $this->load->model('brand_model');
+        if($this->brand_model->get($data['form_brand_name'])!=FALSE) {
+            $data['error_message'] = 'Duplicate brand name. The brand name you entered is already existed in the database.';
+            $this->load->view('brand/add',$data);
+            return;
+        }
+        
+        //none duplicate brand name
         $this->load->library('form_validation');
         $this->form_validation->set_rules('brand_name', 'Brand name', 'trim|required');
 	if ($this->form_validation->run() == FALSE)
@@ -49,7 +56,6 @@ class Brand extends CI_Controller
             return;
         }
         //no file error
-        $this->load->model('brand_model');
         $this->brand_model->add($result_logo['file_name']);
         redirect('admin/brand');
     }
