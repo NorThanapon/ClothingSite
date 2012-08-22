@@ -66,6 +66,7 @@ class Category_model extends CI_Model
 					'cat_name_en' => $this->input->post('cat_name_en'),
 					'description_th' => $this->input->post('description_th'),
 					'description_en' => $this->input->post('description_en'),
+					'cat_parent' => NULL
 				);
 		}
 		
