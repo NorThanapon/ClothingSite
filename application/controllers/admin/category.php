@@ -77,27 +77,55 @@ class Category extends CI_Controller
 	    $data['page_title'] = 'Admin: Category Management';	
 	    if(!check_authen('staff',TRUE)) 
 	    {
-		return;            
+			return;            
 	    }
 	    if($cat_id===FALSE)
 	    {
-		redirect('admin/category');
+			redirect('admin/category');
 	    }
 	    $this->load->model('category_model');
 	    if (!$this->input->post('submit')) 
 	    {
-		$data['categories'] =  $this->category_model->get($cat_id);
-		$data['allCat'] = $this->category_model->get();
-		$this->load->view('category/edit',$data);
-		return;
+			$data['categories'] =  $this->category_model->get($cat_id);
+			$data['allCat'] = $this->category_model->get();
+			$this->load->view('category/edit',$data);
+			return;
 	    }
-	    else
-	    {
+	    //form submitted
+		$data['form_cat_name_en'] = $this->input->post('cat_name_en');        
+        $this->load->model('category_model');
+        $data['category'] =  $this->category_model->get($this->input->post($cat_id));
+		
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('cat_name_en', 'Name(English)', 'trim|required');
+		$this->form_validation->set_rules('cat_name_th', 'Name(Thai)', 'trim|required');
+		
+		 if ($this->form_validation->run() == FALSE)
+        {
+            $data['error_message'] = 'Please fill in the requirement information.';
+			$data['categories'] =  $this->category_model->get($cat_id);
+			$this->load->view('category/edit', $data);
+            return;
+    	}
+		//form validated
+        if(($this->category_model->select('SELECT * FROM categories WHERE cat_name_en=\''.$this->input->post('cat_name_en').'\' ')!=FALSE &&
+		    $this->category_model->get($cat_id)->cat_name_en!= $this->input->post('cat_name_en') )||
+			(($this->category_model->select('SELECT * FROM categories WHERE cat_name_th=\''.$this->input->post('cat_name_th').'\' ')!=FALSE )&&
+		    $this->category_model->get($cat_id)->cat_name_th!=$this->input->post('cat_name_th'))
+     	  )
+        {
+            $data['error_message'] = 'Duplicate brand name. The category name you entered is already existed in the database.';
+			$data['categories'] =  $this->category_model->get($cat_id);
+			$this->load->view('category/edit', $data);
+            return;
+			
+        }
+		//none duplicate category name			
 		$this->category_model->edit($this->input->post('cat_id'));
 		$data['categories'] =  $this->category_model->get($cat_id);
 		$data['allCat'] = $this->category_model->get();
 		redirect('admin/category');
-	    }
+	    
 	}
 	
 	public function filter($parent, $name=FALSE)

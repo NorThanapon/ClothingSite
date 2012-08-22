@@ -111,6 +111,13 @@ class Category_model extends CI_Model
 	    return $query->row();
 	}
 	
+	function select($query)
+	{
+		$query = $this->db->query($query);
+		return $query->result();
+	
+	}
+	
 	function filter($parent, $name)
 	{
 		$where = "";

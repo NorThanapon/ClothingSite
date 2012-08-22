@@ -11,11 +11,13 @@
 				<input type="hidden" name="cat_id" value="<?php echo $categories->cat_id;?>" />
 				
 				<label for="cat_name_th" >Name (Thai)</label>
-				<input name="cat_name_th" type ="text" value="<?php echo $categories->cat_name_th; ?>" />
+				<input name="cat_name_th" type ="text" value="<?php echo $categories->cat_name_th; ?>" />*
+				<?php echo form_error('cat_name_th', '<span class="form-error-message">', '</span>'); ?>
 				<br />
 		
 				<label for="cat_name_en" >Name (English)</label>
-				<input name ="cat_name_en" type ="text" value="<?php echo $categories->cat_name_en; ?>" />
+				<input name ="cat_name_en" type ="text" value="<?php echo $categories->cat_name_en; ?>" />*
+				<?php echo form_error('cat_name_en', '<span class="form-error-message">', '</span>'); ?>
 				<br />  
 				
 				<label for="description_th" >Description (Thai)</label>
