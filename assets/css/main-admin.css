@@ -551,6 +551,16 @@ div.form-input select {
 	margin-top:5px;
 	margin-bottom:5px;
 }
+div.form-input #img-logo {
+	height:150px;
+	width:auto;
+	max-width:500px;
+}
+div.form-input span.btn-minor-action{
+	width:40%;
+	display:inline-block;
+	text-align:right;
+}
 div.form-action {
 	border-top: solid 1px silver;
 	margin-top:5px;
