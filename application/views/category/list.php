@@ -20,7 +20,7 @@
 		<label for="cat_parent">Under category</textarea>
 		<select name="cat_parent" id="ddl_cat_parent"> 
 		    <option value="0">--Any category--</option>
-		    <?php foreach($categories as $item) {  ?>
+		    <?php foreach($cat_list as $item) {  ?>
 			<option <?php if (isset($filter_parent) && $item->cat_id == $filter_parent) echo 'selected' ?> value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name_en; ?></option>
 		    <?php } ?>
 		</select>
