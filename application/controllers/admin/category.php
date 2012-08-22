@@ -20,6 +20,8 @@ class Category extends CI_Controller
 			return;       
 	    }
 		//authenticated
+		$data['dup_message_th']="";
+		$data['dup_message_en']="";
 	    $data['page_title'] = 'Admin: Category Management';	
 	    $this->load->model('category_model');
 	    $data['categories'] = $this->category_model->get();
@@ -41,8 +43,6 @@ class Category extends CI_Controller
             return;
 	}
 		//validation passed
-		$data['dup_message_th']="";
-		$data['dup_message_en']="";
 		if($this->category_model->get_by_name($data['form_cat_name_th'],FALSE)!=FALSE)
         {
             $data['error_message'] = 'Duplicate category name. The category name you entered is already existed in the database.';
