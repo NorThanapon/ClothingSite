@@ -171,8 +171,13 @@ background: -o-linear-gradient(top,  rgba(72,138,219,1) 49%,rgba(31,102,196,1) 6
 background: -ms-linear-gradient(top,  rgba(72,138,219,1) 49%,rgba(31,102,196,1) 63%,rgba(34,93,170,1) 100%); /* IE10+ */
 background: linear-gradient(to bottom,  rgba(72,138,219,1) 49%,rgba(31,102,196,1) 63%,rgba(34,93,170,1) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#488adb', endColorstr='#225daa',GradientType=0 ); /* IE6-8 */
-
 color:white;
+}
+
+span.btn-minor-action {
+	color:blue;
+	font-size:13px;
+	cursor:pointer;
 }
 
 .left {

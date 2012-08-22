@@ -23,19 +23,17 @@ class Brand_model extends CI_Model
 		$this->db->insert('brands',$this);
 	}
 	
-	function edit($brand_name,$logo_name)
+	function edit($brand_name,$logo_name=FALSE)
 	{	
-		$data = array(						
-						'brand_name' => $this->input->post('brand_name'),
-						'description' => $this->input->post('description')						
-					);
-		if($logo_name)
+	    $data = array(						
+		    'brand_name' => $this->input->post('brand_name'),
+		    'description' => $this->input->post('description')						
+		);
+		if($logo_name !== FALSE)
 		{
 			$data['logo'] = $logo_name;
-		}		
-		
-		
-		$this->db->update('brands', $data,array('brand_name' => $brand_name)); 	
+		}
+		$this->db->update('brands', $data, array('brand_name' => $brand_name)); 	
 	}
 	
 	function delete($brand_name,$logo_name)
