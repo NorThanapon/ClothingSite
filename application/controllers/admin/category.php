@@ -33,6 +33,10 @@ class Category extends CI_Controller
 		//form submitted
 		$data['form_cat_name_th'] = $this->input->post('cat_name_th');
         $data['form_cat_name_en'] = $this->input->post('cat_name_en');
+		$data['form_description_th'] = $this->input->post('description_th');
+        $data['form_description_en'] = $this->input->post('description_en');
+		$data['form_cat_parent'] = $this->input->post('cat_parent');
+		
 		$this->load->library('form_validation');
         $this->form_validation->set_rules('cat_name_th', 'Category name(Thai)', 'trim|required');
 		$this->form_validation->set_rules('cat_name_en', 'Category name(English)', 'trim|required');

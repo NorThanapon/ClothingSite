@@ -21,21 +21,27 @@
 		    <span class='form-error-message'><?php echo $dup_message_en;?></span>
 		    <br />
 		    <label for="description_th">Description (Thai):</label>
-		    <textarea name ="description_th" ><?php if(isset($description_th)) echo $description_th; ?></textarea>
+		    <textarea name ="description_th" ><?php if(isset($form_description_th)) echo $form_description_th; ?></textarea>
 		    <br />
 		    <label for="description_en">Description (English):</label>
-		    <textarea name ="description_en" ><?php if(isset($description_en)) echo $description_en; ?></textarea>
+		    <textarea name ="description_en" ><?php if(isset($form_description_en)) echo $form_description_en; ?></textarea>
 		    <br />
 		    <label for="cat_parent">Under Category:</label>
 		    <select name="cat_parent" > 
-			<option value="">--None--</option>
-			<?php foreach($categories as $item)
-			{  ?>
-			
-				<option value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name_en; ?></option>
-			<?php 
-			}
-			?>
+				<option value="">--None--</option>
+				<?php 
+				foreach($categories as $item)
+				{  
+					if($form_cat_parent == $item->cat_id)
+					{
+						echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+					}
+					else
+					{
+						echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+					}
+				}
+				?>
 		    </select>
 		</fieldset>
 	    </div>
