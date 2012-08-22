@@ -21,8 +21,8 @@
 				<img src="<?php echo asset_url().'db/brands/'.$brand->logo; ?>" />
 				<input name="logo" type ="file"/>
 				<br />							
-				<input class="button" type = "submit" name="submit" value="Save"/>
-				<?php echo anchor('brand','Cancel' ,'Cancel'); ?>
+				<?php echo anchor('admin/brand','Cancel' ,array('class' => 'button')); ?>
+				<input class="button btn-submit" type = "submit" name="submit" value="Save Change"/>	
 				<br />
 				
 			</div>

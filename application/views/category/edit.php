@@ -48,8 +48,8 @@
 				</select>
 				<br />
 				
-				<input class="button" type = "submit" name="submit" value="Save"/>
-				<?php echo anchor('category','Cancel' ,'Cancel'); ?>
+				<?php echo anchor('admin/category','Cancel' ,array('class' => 'button')); ?>
+				<input class="button btn-submit" type = "submit" name="submit" value="Save Change"/>	
 				<br />
 				
 			</div>

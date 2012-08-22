@@ -19,7 +19,7 @@
 			<label for="logo">Logo</textarea>
 			<input name="logo" type ="file"/>
 			<br />
-			<?php echo anchor('brand','Cancel' ,array('class' => 'button')); ?>
+			<?php echo anchor('admin/brand','Cancel' ,array('class' => 'button')); ?>
 			<input class="button btn-submit" type = "submit" name="submit" value="Add this brand"/>	
 		    </form>	
 		</div>
