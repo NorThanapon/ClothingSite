@@ -4,8 +4,10 @@
         <?php $this->load->view('common/head'); ?>
     </head>
     <body>
-        <?php $this->load->view('common/header'); ?>
+        <div class="wrapper">
+            <?php $this->load->view('common/header'); ?>
         
-        <?php $this->load->view('common/footer'); ?>
+            <?php $this->load->view('common/footer'); ?>
+        </div>
     </body>
 </html> 
