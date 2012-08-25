@@ -158,8 +158,9 @@ class Category extends CI_Controller
 	    $data['page_title'] = 'Admin: Category Management';
 	    $data['cat_list'] = $this->category_model->search($parent, $name);
 	    $data['categories'] = $this->category_model->get();
-	    $data['filter_parent'] = $parent;
-	    $data['filter_name'] = $name;
+	    $data['search_parent'] = $parent;
+	    $data['search_name'] = $name;
+	    //echo $name;
 	    $this->load->view('category/list',$data);
 	}
 	

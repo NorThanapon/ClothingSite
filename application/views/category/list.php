@@ -16,7 +16,7 @@
 	    <fieldset>
 		<legend>Search Options</legend>
 		<label>Name:</label>
-		<input id="txt_cat_name" type="text" name="cat_name" value="<?php if(isset($filter_name)) echo $filter_name;  ?>"/>
+		<input id="txt_cat_name" type="text" name="cat_name" value="<?php if(isset($search_name)) echo $search_name;  ?>"/>
 		<label for="cat_parent">Under category</textarea>
 		<select name="cat_parent" id="ddl_cat_parent"> 
 		    <option value="0">--Any category--</option>
