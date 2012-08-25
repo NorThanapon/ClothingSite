@@ -152,16 +152,21 @@ class Category extends CI_Controller
 	{
 	    if(!check_authen('staff',TRUE)) 
 	    {
-			return;
+		return;
 	    }
+	    if($name !== FALSE) {
+		$name =  rawurldecode($name);
+	    }
+	    
+	    
 	    $this->load->model('category_model');
 	    $data['page_title'] = 'Admin: Category Management';
 	    $data['cat_list'] = $this->category_model->search($parent, $name);
 	    $data['categories'] = $this->category_model->get();
 	    $data['search_parent'] = $parent;
 	    $data['search_name'] = $name;
-	    //echo $name;
 	    $this->load->view('category/list',$data);
+	    
 	}
 	
 	public function delete($cat_id=FALSE)
