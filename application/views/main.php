@@ -8,4 +8,4 @@
         
         <?php $this->load->view('common/footer'); ?>
     </body>
-</html>
+</html> 

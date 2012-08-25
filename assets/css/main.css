@@ -1,0 +1,11 @@
+body{
+    line-height: 1;
+    font-weight: 300;
+    font-family: sans-serif;
+    color:#333;
+}
+.wrapper{
+    min-width:780px;
+    margin: 0 auto;
+    padding: 0;
+}
