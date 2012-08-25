@@ -76,7 +76,7 @@ class Brand extends CI_Controller
         //form submitted
         $data['form_brand_name'] = $this->input->post('brand_name');
         $data['form_description'] = $this->input->post('description');
-        $this->load->model('brand_model');
+        
         $data['brand'] =  $this->brand_model->get($this->input->post('brand_name_key'));
         $this->load->library('form_validation');
         $this->form_validation->set_rules('brand_name', 'Brand name', 'trim|required');
