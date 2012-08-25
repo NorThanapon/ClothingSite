@@ -120,7 +120,7 @@ class Category extends CI_Controller
             return;
     	}
 		//form validated
-		if(($this->category_model->select('SELECT * FROM categories WHERE cat_name_th=\''.$this->input->post('cat_name_th').'\' ')!=FALSE )&&
+		if(($this->category_model->get_by_name($data['form_cat_name_th'],FALSE)!=FALSE )&&
 		    $this->category_model->get($cat_id)->cat_name_th!=$this->input->post('cat_name_th'))
 		{
             $data['error_message'] = 'Duplicate brand name. The category name you entered is already existed in the database.';
@@ -130,7 +130,7 @@ class Category extends CI_Controller
             return;
 			
         }
-        if($this->category_model->select('SELECT * FROM categories WHERE cat_name_en=\''.$this->input->post('cat_name_en').'\' ')!=FALSE &&
+        if($this->category_model->get_by_name(FALSE,$data['form_cat_name_en'])!=FALSE &&
 		    $this->category_model->get($cat_id)->cat_name_en!= $this->input->post('cat_name_en') )
 		{
 			$data['error_message'] = 'Duplicate brand name. The category name you entered is already existed in the database.';
