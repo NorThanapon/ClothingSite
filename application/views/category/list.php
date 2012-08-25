@@ -21,10 +21,10 @@
 		<select name="cat_parent" id="ddl_cat_parent"> 
 		    <option value="0">--Any category--</option>
 		    <?php foreach($cat_list as $item) {  ?>
-			<option <?php if (isset($filter_parent) && $item->cat_id == $filter_parent) echo 'selected' ?> value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name_en; ?></option>
+			<option <?php if (isset($search_parent) && $item->cat_id == $search_parent) echo 'selected' ?> value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name_en; ?></option>
 		    <?php } ?>
 		</select>
-		<input id="btn_filter" type="button" value="Filter" />
+		<input id="btn_filter" type="button" value="Search" />
 	    </fieldset>
     </div>
 	<div class="report-items">
@@ -82,7 +82,7 @@
 		$('#btn_filter').click(function() {
 		    var url = document.URL;
 		    url = url.substring(0, url.indexOf('/category') + 9);
-		    url = url + '/filter/' + $('#ddl_cat_parent').val() + '/' + $('#txt_cat_name').val();
+		    url = url + '/search/' + $('#ddl_cat_parent').val() + '/' + $('#txt_cat_name').val();
 		    window.location = url;
 		});
 		        

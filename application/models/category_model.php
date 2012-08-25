@@ -119,7 +119,7 @@ class Category_model extends CI_Model
 	
 	}
 	
-	function filter($parent, $name)
+	function search($parent, $name)
 	{
 		$where = "";
 		if ($parent != "0" && $parent != FALSE) $where = $where . "cat_parent = " . $parent;
