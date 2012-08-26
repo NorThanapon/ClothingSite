@@ -5,7 +5,7 @@
     </head>
     <body>
     <?php $this->load->view('common/admin_header');?>
-	<?php echo form_open('admin/product/add'); ?>
+	<?php echo form_open('admin/product/edit/'.$product->product_id); ?>
 	    <h1>Edit Product</h1> 
 	    <div class="form-input">
 		<fieldset>
@@ -124,7 +124,7 @@
 	    </div>
 	    <div class="content-right form-action">
 		<?php echo anchor('admin/product','Cancel' ,array('class' => 'button')); ?>
-		<input class="button btn-submit" type = "submit" name="submit" value="Add this product"/>
+		<input class="button btn-submit" type = "submit" name="submit" value="Save Change"/>
 	    </div>
 	</form>
 	<?php $this->load->view('common/admin_footer');?>
