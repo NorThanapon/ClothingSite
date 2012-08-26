@@ -7,7 +7,11 @@ class Product extends CI_Controller
         {
             return;
         }
+		$this->load->model('product_model');
+		$this->load->model('category_model');
         $data['page_title'] = 'Admin: Product Management';
+		$data['product_list'] = $this->product_model->get();
+		$data['category_list'] = $this->category_model->get();
         $this->load->view('product/list',$data);
     }
 	

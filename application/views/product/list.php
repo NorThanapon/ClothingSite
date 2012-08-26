@@ -7,7 +7,7 @@
         <?php $this->load->view('common/admin_header');?>
 	<h1>Product Management</h1>
         <div class="page-action">
-            <a href="#" class="button gradient">
+            <a href="product/add" class="button gradient">
 		<img  src="<?php echo asset_url().'img/add-icon.png'?>" />
 		Add New Product
 	    </a>
@@ -58,71 +58,54 @@
 			<th>Brand</th>
 			<th>Category</th>
 			<th>Total Quantity</th>
-			<th>Status</th>
+			<th>Show</th>
 			<th>&nbsp;</th>
 		    </tr>
 		</thead>
 		<tbody>
-		    <tr>
-			<td><input type = "checkbox" /></td>
-			<td>000001</td>
-			<td>IVY LEAVE POLO</td>
-			<td>ELLE</td>
-			<td>POLO</td>
-			<td>10</td>
-			<td>Active</td>
-			<td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
-		    </tr>
-		    <tr>
-			<td><input type = "checkbox" /></td>
-			<td>000002</td>
-			<td>COLD RIVER SHIRT</td>
-			<td>BECKY RUSSEL</td>
-			<td>Shirts</td>
-			<td>10</td>
-			<td>Active</td>
-			<td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
-		    </tr>
-		    <tr>
-			<td><input type = "checkbox" /></td>
-			<td>000003</td>
-			<td>BSC SKINNY PANTS</td>
-			<td>BSC WOMEN</td>
-			<td>Pants</td>
-			<td>0</td>
-			<td>Inactive</td>
-			<td><a href = "#">Detail</a> <a href = "#">Activate</a> <a href = "#">Delete</a></td>
-		    </tr>
-		    <tr>
-			<td><input type = "checkbox" /></td>
-			<td>000004</td>
-			<td>SPRING JACKET</td>
-			<td>BASIC DE NUVO</td>
-			<td>Outerwear</td>
-			<td>0</td>
-			<td>Inactive</td>
-			<td><a href = "#">Detail</a> <a href = "#">Activate</a> <a href = "#">Delete</a></td>
-		    </tr>
-		    <tr>
-			<td><input type = "checkbox" /></td>
-			<td>000005</td>
-			<td>JACKY SHIRT</td>
-			<td>ITOKIN BOUTIQUE</td>
-			<td>Shirts</td>
-			<td>10</td>
-			<td>Active</td>
-			<td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
-		    </tr>
-		    <tr>
-			<td><input type = "checkbox" /></td>
-			<td>000006</td>
-			<td>SUPER SKINNY SHORTS</td>
-			<td>BSC WOMEN</td>
-			<td>Shorts</td>
-			<td>10</td>
-			<td>Active</td>
-			<td><a href = "#">Detail</a> <a href = "#">Deactivate</a> <a href = "#">Delete</a></td>
-		    </tr>
+		
+			<?php 
+				foreach($product_list as $item) 
+				{
+            ?>
+            <tr>
+                <td><input type = "checkbox" /></td>
+				<td><?php echo $item->product_id;?></td>
+                <td><?php echo $item->product_name_en;?> </td>
+				<td><?php echo $item->brand_name;?></td>
+				<td><?php 
+						foreach($category_list as $catItem)
+						{
+							if($item->cat_id == $catItem->cat_id)
+							{
+								echo $catItem->cat_name_th;
+							}
+						}
+					?>
+				</td>
+				
+				<td><?php echo $item->total_quantity?></td>
+				<td>
+					<?php 
+						if($item->isActive == 1)
+						{
+							echo "<input type = 'checkbox' disabled='disabled' checked='checked'  />";
+						}
+						else
+						{
+							echo "<input type = 'checkbox' disabled='disabled'  />";
+						}
+					?>
+				</td>
+				<td><a href = "#">Detail</a>
+					<?php echo anchor('admin/category/edit/'.$item->cat_id, ' ', array('title'=>"Edit Category",'class'=>'edit-button')); ?>
+					<?php echo anchor('admin/category/delete/'.$item->cat_id, ' ', array('title'=>"Delete Category",'class'=>'delete-button')); ?>
+				</td>
+            </tr>
+            <?php
+					
+                }
+			?>
 		</tbody>
 	    </table>
             <?php $this->load->view('common/table_pager');?>
@@ -146,6 +129,7 @@
 		    .tablesorter({
 			headers: {
 			    0:{sorter:false},
+				6:{sorter:false},
 			    7:{sorter:false}
 			}
 		    })

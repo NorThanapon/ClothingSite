@@ -13,6 +13,7 @@ class Product_model extends CI_Model
 	var $description_en = '';
 	var $how_to_wash_th = '';
 	var $how_to_wash_en = '';
+	var $DATE_ADD = '';
 	var $isActive = '';
 	
 	function __construct() 
@@ -35,6 +36,7 @@ class Product_model extends CI_Model
 			'description_en'  => $this->input->post('description_en'),
 			'how_to_wash_th'  => $this->input->post('how_to_wash_th'),
 			'how_to_wash_en'  => $this->input->post('how_to_wash_en'),
+			'DATE_ADD' =>   $date = date("Y-m-d H:i:s"),
 			'isActive' => $this->input->post('isActive')
 		);
 		$this->db->insert('products',$this);
