@@ -59,7 +59,7 @@ class Product extends CI_Controller
         redirect('admin/product');	
 	}
 	
-	public function edit()
+	public function edit($product_id=FALSE)
 	{
 		if(!check_authen('staff',TRUE)) 
 		{	
@@ -67,15 +67,24 @@ class Product extends CI_Controller
 	    }
 		//authenticated
 		$data['page_title'] = 'Admin: Product Management';
+		$data['dup_message_th']="";
+		$data['dup_message_en']="";
 		if($product_id===FALSE)
         {
 			redirect('admin/product');
         }
 		//product input
 		$this->load->model('product_model');
+		$this->load->model('category_model');
+		$this->load->model('brand_model');
+		
+		$data['product'] =  $this->product_model->get($product_id);
+		$data['brand'] = $this->brand_model->get();
+		$data['category'] = $this->category_model->get();
+		
 		if (!$this->input->post('submit')) //not pass submit
     	{			        
-            $data['product'] =  $this->brand_model->get($product_id);
+           
             if ($data['product'] == FALSE)
 			{
 				redirect('admin/product');

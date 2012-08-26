@@ -6,20 +6,20 @@
     <body>
     <?php $this->load->view('common/admin_header');?>
 	<?php echo form_open('admin/product/add'); ?>
-	    <h1>Add Product</h1> 
+	    <h1>Edit Product</h1> 
 	    <div class="form-input">
 		<fieldset>
 		    <legend>Product Information</legend>
 			<label for="product_id">Product ID</label>
-			<input name="product_id" value="<?php if(isset($form_product_id)) echo $form_product_id; ?>" type="text" />*
+			<input name="product_id" value="<?php if(isset($form_product_id)) echo $form_product_id; else echo $product->product_id;?>" type="text" />*
 			<br />
 		    <label for="product_name_th">Name (Thai):</label>
-		    <input name="product_name_th" value="<?php if(isset($form_product_name_th)) echo $form_product_name_th; ?>" type ="text"/>*
+		    <input name="product_name_th" value="<?php if(isset($form_product_name_th)) echo $form_product_name_th; else echo $product->product_name_th;?>" type ="text"/>*
 		    <?php echo form_error('product_name_th', '<span class="form-error-message">', '</span>'); ?>
 		    <span class='form-error-message'><?php echo $dup_message_th;?></span>
 		    <br />
 		    <label for="product_name_en">Name (English):</label>
-		    <input name="product_name_en" value="<?php if(isset($form_product_name_en)) echo $form_product_name_en; ?>" type ="text"/>*
+		    <input name="product_name_en" value="<?php if(isset($form_product_name_en)) echo $form_product_name_en; else echo $product->product_name_en;?>" type ="text"/>*
 		    <?php echo form_error('product_name_en', '<span class="form-error-message">', '</span>'); ?>
 		    <span class='form-error-message'><?php echo $dup_message_en;?></span>
 		    <br />
@@ -27,15 +27,29 @@
 			<select name="brand_name" > 
 				<option value="">--None--</option>
 				<?php 
-				foreach($brands as $item)
+				foreach($brand as $item)
 				{  
-					if($form_brand_name == $item->brand_name)
+					if(isset($form_form_brand_name))
 					{
-						echo "<option value=".$item->brand_name." selected='selected'>".$item->brand_name."</option>";
+						if($form_brand_name == $item->brand_name)
+						{
+							echo "<option value=".$item->brand_name." selected='selected'>".$item->brand_name."</option>";
+						}
+						else
+						{
+							echo "<option value=".$item->brand_name.">".$item->brand_name."</option>";
+						}
 					}
 					else
 					{
-						echo "<option value=".$item->brand_name.">".$item->brand_name."</option>";
+						if($item->brand_name == $product->brand_name)
+						{
+							echo "<option value=".$item->brand_name." selected='selected'>".$item->brand_name."</option>";
+						}
+						else
+						{
+							echo "<option value=".$item->brand_name.">".$item->brand_name."</option>";
+						}
 					}
 				}
 				?>
@@ -45,15 +59,29 @@
 			<select name="cat_id" > 
 				<option value="">--None--</option>
 				<?php 
-				foreach($categories as $item)
+				foreach($category as $item)
 				{  
-					if($form_cat_id == $item->cat_id)
+					if(isset($form_cat_id))
 					{
-						echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+						if($form_cat_id == $item->cat_id)
+						{
+							echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+						}
+						else
+						{
+							echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+						}
 					}
 					else
 					{
-						echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+						if($product->cat_id == $item->cat_id)
+						{
+							echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+						}
+						else
+						{
+							echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+						}
 					}
 				}
 				?>
@@ -63,30 +91,35 @@
 			<input name="total_quantity" type="text" value="0"/>
 			<br />
 			<label for="markup_price">Markup Price</label>
-			<input name="markup_price" value="<?php if(isset($form_markup_price)) echo $form_markup_price; ?>" type="text" />*
+			<input name="markup_price" value="<?php if(isset($form_markup_price)) echo $form_markup_price; else echo $product->markup_price;?>" type="text" />*
 			<br />
 			<label for="markdown_price">Markdown Price</label>
-			<input name="markdown_price" value="<?php if(isset($form_markdown_price)) echo $form_markdown_price; ?>" type="text"  type="text" />
+			<input name="markdown_price" value="<?php if(isset($form_markdown_price)) echo $form_markdown_price; else echo $product->markdown_price; ?>" type="text"  type="text" />
 			<br />
 		    <label for="description_th">Description (Thai):</label>
-		    <textarea name ="description_th" ><?php if(isset($form_description_th)) echo $form_description_th; ?></textarea>
+		    <textarea name ="description_th" ><?php if(isset($form_description_th)) echo $form_description_th; else echo $product->description_th;  ?></textarea>
 		    <br />
 		    <label for="description_en">Description (English):</label>
-		    <textarea name ="description_en" ><?php if(isset($form_description_en)) echo $form_description_en; ?></textarea>
+		    <textarea name ="description_en" ><?php if(isset($form_description_en)) echo $form_description_en; else echo $product->description_en;?></textarea>
 		    <br />
 			<label for="how_to_wash_th">How to Wash (Thai):</label>
-		    <textarea name ="how_to_wash_th" ><?php if(isset($form_how_to_wash_th)) echo $form_how_to_wash_th; ?></textarea>
+		    <textarea name ="how_to_wash_th" ><?php if(isset($form_how_to_wash_th)) echo $form_how_to_wash_th; else echo $product->how_to_wash_th; ?></textarea>
 		    <br />
 			<label for="how_to_wash_en">How to Wash (English):</label>
-		    <textarea name ="how_to_wash_en" ><?php if(isset($form_how_to_wash_en)) echo $form_how_to_wash_en; ?></textarea>
-		    <input type="checkbox" name="isActive" value="1" />
-			<label for="isActive">Show(If not select this product will not show in customers view)</label>
+		    <textarea name ="how_to_wash_en" ><?php if(isset($form_how_to_wash_en)) echo $form_how_to_wash_en; else echo $product->how_to_wash_en; ?></textarea>
+		    <br/>
+			<label for="isActive">Show :</label>
+			<?php
+				if($product->isActive == 1)
+				{
+					echo "<input type = 'checkbox' checked='checked'  />";
+				}
+				else
+				{
+					echo "<input type = 'checkbox' />";
+				}
+			?>
 			<br />
-		    
-			
-			
-			
-		   
 		</fieldset>
 	    </div>
 	    <div class="content-right form-action">
