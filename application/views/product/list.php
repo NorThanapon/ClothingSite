@@ -19,30 +19,30 @@
 		<input type = "text" />
 		
 		<label>Product Category:</label>
-		<select>
-			<option>All Categories</option>
-			<option>Tees</option>
-			<option>Polos</option>
-			<option>Shirts</option>
-			<option>Outerwear</option>
-			<option>Shorts</option>
-			<option>Pants</option>
-			<option>Accessories</option>
+		<select name='product_cat'>
+			<option value="">All Categories</option>
+			<?php
+				foreach($category_list as $item)
+				{
+					echo "<option value='".$item->cat_id."'>".$item->cat_name_en."</option>";
+				}
+			?>
 		</select>
 		<br />
 		<label>Brands:</label>
-		<select>
-			<option>All Brands</option>
-			<option>BASIC DE NUVO</option>
-			<option>BECKY RUSSEL</option>
-			<option>BSC WOMEN</option>
-			<option>ELLE</option>
-			<option>ITOKIN BOUTIQUE</option>
+		<select name="product_brand">
+			<option value="">All Brands</option>
+			<?php
+				foreach($brand_list as $item)
+				{
+					echo "<option value='".$item->brand_name."'>".$item->brand_name."</option>";
+				}
+			?>
 		</select>
 		<label>Product Status:</label>
-		<select>
-			<option>Inactive</option>
-			<option>Active</option>
+		<select name="product_status">
+			<option value="1">Show</option>
+			<option value="0">Hide</option>
 		</select>
 		<input type = "button" value = "Search" />
 	    </fieldset>
@@ -78,7 +78,7 @@
 						{
 							if($item->cat_id == $catItem->cat_id)
 							{
-								echo $catItem->cat_name_th;
+								echo $catItem->cat_name_en;
 							}
 						}
 					?>
@@ -114,9 +114,9 @@
 	    <fieldset>
 		<legend>Update Product Status</legend>
 		<label>Change all selected products to</label>
-		<select>
-		    <option>Inactive</option>
-		    <option>Active</option>
+		<select name="change_status">
+		    <option value="1">Show</option>
+		    <option value="2">Hide</option>
 		</select>
 		<input type = "button" value = "Update" />
 	    </fieldset>
