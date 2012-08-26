@@ -13,6 +13,8 @@ class Product extends CI_Controller
 	
 	public function add() 
 	{
+		$data['dup_message_th']="";
+		$data['dup_message_en']="";
 		if(!check_authen('staff',TRUE)) {	
 			return;       
 	    }

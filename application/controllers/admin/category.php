@@ -173,13 +173,23 @@ class Category extends CI_Controller
 	{
 	    if(!check_authen('staff',TRUE)) 
 	    {		
-		return;            
+			return;            
 	    }
 	    if($cat_id===FALSE)
 	    {
 		    redirect('admin/category');
 	    }
-	    $this->load->model('category_model');
+		$this->load->model('category_model');
+		//redirect('admin/category/a'.$cat_id.'l'. $this->category_model->has_categories_under_category($cat_id));
+		if( $this->category_model->has_products_under_category($cat_id)||$this->category_model->has_categories_under_category($cat_id))//==
+		{
+			$this->load->library('form_validation');
+			$data['error_message'] = 'Can not delete '. $this->category_model->get($cat_id)->cat_name_en.' category. It has products or categories undered it.';		
+			$data['cat_list'] = $this->category_model->get();	
+			$this->load->view('category/list', $data);
+			return;
+		}
+	    
 	    $this->category_model->delete($cat_id);
 	    $data['cat_list'] = $this->category_model->get();
 	    redirect('admin/category');

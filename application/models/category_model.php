@@ -134,15 +134,39 @@ class Category_model extends CI_Model
 		return $query->result();
 	}
 	
-	/*function get_parent()
+	function has_products_under_category($cat_id=false)
 	{
-		$query = $this->db->query("SELECT * FROM `categories` as c1 inner join `categories` as c2 on c1.cat_id = c2.cat_parent");
-		//$query = $this->db->get_where('categories', array('cat_id' => $cat_id));
-	    return $query->row();	
-	}*/
+		if($cat_id !=false)
+		{
+			$query = $this->db->get_where('products',array('cat_id' => $cat_id));
+		}
+		if($query->num_rows()>0)
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
 	
+	}
 	
+	function has_categories_under_category($cat_id=false)
+	{
+		if($cat_id !=false)
+		{
+			$query = $this->db->get_where('categories_parent',array('cat_parent' => $cat_id));
+		}
+		if($query->num_rows()>0)
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
 	
+	}
 	
 }
 ?>
