@@ -9,6 +9,7 @@
 	    <h1>Edit Product</h1> 
 	    <div class="form-input">
 		<fieldset>
+			<input name="product_id_key" type="hidden" value="<?php echo $product->product_id; ?>" />
 		    <legend>Product Information</legend>
 			<label for="product_id">Product ID</label>
 			<input name="product_id" value="<?php if(isset($form_product_id)) echo $form_product_id; else echo $product->product_id;?>" type="text" />*
@@ -29,7 +30,7 @@
 				<?php 
 				foreach($brand as $item)
 				{  
-					if(isset($form_form_brand_name))
+					if(isset($form_brand_name))
 					{
 						if($form_brand_name == $item->brand_name)
 						{
@@ -109,16 +110,15 @@
 		    <textarea name ="how_to_wash_en" ><?php if(isset($form_how_to_wash_en)) echo $form_how_to_wash_en; else echo $product->how_to_wash_en; ?></textarea>
 		    <br/>
 			<label for="isActive">Show :</label>
-			<?php
-				if($product->isActive == 1)
-				{
-					echo "<input type = 'checkbox' checked='checked'  />";
+			<input name='isActive' type = 'checkbox' 
+				<?php
+				if(isset($form_isActive)){ 
+					if($form_isActive==1){echo "checked"; }
 				}
-				else
-				{
-					echo "<input type = 'checkbox' />";
-				}
-			?>
+				else{
+					if($product->isActive==1){ echo "checked";}
+				}?>  />
+		
 			<br />
 		</fieldset>
 	    </div>

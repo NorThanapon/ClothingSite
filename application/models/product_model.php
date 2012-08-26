@@ -44,6 +44,12 @@ class Product_model extends CI_Model
 	
 	function edit($product_id)
 	{
+		$is_active = 0;
+		if($this->input->post('isActive')==true)
+		{
+			$is_active = 1;
+		}
+		
 		$data = array(
 			'product_id' => $this->input->post('product_id'),
 			'product_name_th' => $this->input->post('product_name_th'),
@@ -57,7 +63,7 @@ class Product_model extends CI_Model
 			'description_en'  => $this->input->post('description_en'),
 			'how_to_wash_th'  => $this->input->post('how_to_wash_th'),
 			'how_to_wash_en'  => $this->input->post('how_to_wash_en'),
-			'isActive'   => $this->input->post('isActive')
+			'isActive'   => $is_active
 		);
 		$this->db->update('products',$data,array('product_id'=>$product_id));
 	}
