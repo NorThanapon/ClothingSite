@@ -143,5 +143,22 @@ class Product extends CI_Controller
 		redirect('admin/product');
 	}
 	
+	public function delete($product_id=FALSE)
+	{
+	    if(!check_authen('staff',TRUE)) 
+	    {		
+			return;            
+	    }
+	    if($product_id===FALSE)
+	    {
+		    redirect('admin/product');
+	    }
+		$this->load->model('product_model');
+    
+	    $this->product_model->delete($product_id);
+	    $data['product_list'] = $this->product_model->get();
+	    redirect('admin/product');
+	}
+	
 }
 ?>
