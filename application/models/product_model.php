@@ -91,6 +91,32 @@ class Product_model extends CI_Model
 		return $query->result();
 	
 	}
+	
+	function search($product_cat, $brand, $status, $name)
+	{
+		$where = "";
+		if ($product_cat != "0" && $product_cat != FALSE) $where = $where . "cat_id = " . $product_cat;
+		if ($name != "" && $name != " " && $name != FALSE)
+		{
+			if ($where != "" ) $where = $where . " AND ";
+			$where = $where . "(product_name_th LIKE '%".$name."%' OR product_name_en LIKE '%".$name."%')";
+		}
+		if ($brand != "0" && $brand != FALSE)
+		{
+			if ($where != "" ) $where = $where . " AND ";
+			$where = $where . "brand_name LIKE '%".$brand."%'";
+		}
+		if($status != "2")
+		{
+			if ($where != "" ) $where = $where . " AND ";
+			$where = $where . "isActive = ".$status;
+		}
+		
+		
+		if ($where != "" ) $query = $this->db->get_where('products', $where);
+		else $query = $this->db->get('products');
+		return $query->result();
+	}
 
 }
 ?>

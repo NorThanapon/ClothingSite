@@ -159,6 +159,31 @@ class Product extends CI_Controller
 	    $data['product_list'] = $this->product_model->get();
 	    redirect('admin/product');
 	}
-	
+	public function search($product_cat, $brand=FALSE, $status, $name=FALSE)
+	{
+	    if(!check_authen('staff',TRUE)) 
+	    {
+		return;
+	    }
+	    if($name !== FALSE) {
+		$name =  rawurldecode($name);
+	    }
+	    
+	    
+	    $this->load->model('product_model');
+		$this->load->model('category_model');
+		$this->load->model('brand_model');
+	    $data['page_title'] = 'Admin: Product Management';
+	    $data['product_list'] = $this->product_model->search($product_cat, $brand, $status, $name);
+	    $data['products'] = $this->product_model->get();
+		$data['category_list'] = $this->category_model->get();
+		$data['brand_list'] = $this->brand_model->get();
+	    $data['search_product_cat'] = $product_cat;
+	    $data['search_name'] = $name;
+		$data['search_brand'] = $brand;
+		$data['search_status'] = $status;
+	    $this->load->view('product/list',$data);
+	    
+	}
 }
 ?>

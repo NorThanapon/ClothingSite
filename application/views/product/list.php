@@ -16,11 +16,11 @@
             <fieldset>
 		<legend>Search Options</legend>
 		<label>Product Name:</label>
-		<input type = "text" />
+		<input id="txt_product_name" type = "text" />
 		
 		<label>Product Category:</label>
-		<select name='product_cat'>
-			<option value="">All Categories</option>
+		<select id='ddl_product_cat' name='product_cat'>
+			<option value="0">All Categories</option>
 			<?php
 				foreach($category_list as $item)
 				{
@@ -30,8 +30,8 @@
 		</select>
 		<br />
 		<label>Brands:</label>
-		<select name="product_brand">
-			<option value="">All Brands</option>
+		<select id='ddl_brand' name="product_brand">
+			<option value="0">All Brands</option>
 			<?php
 				foreach($brand_list as $item)
 				{
@@ -40,11 +40,12 @@
 			?>
 		</select>
 		<label>Product Status:</label>
-		<select name="product_status">
+		<select id='ddl_status' name="product_status">
 			<option value="1">Show</option>
 			<option value="0">Hide</option>
+			<option value="2">All</option>
 		</select>
-		<input type = "button" value = "Search" />
+		<input id="btn_filter" type="button" value="Search" />
 	    </fieldset>
         </div>
         <div class="report-items">
@@ -124,6 +125,12 @@
         <?php $this->load->view('common/admin_footer');?>
 	<script type="text/javascript">
 	    $(document).ready(function() {        
+		$('#btn_filter').click(function() {
+		    var url = document.URL;
+		    url = url.substring(0, url.indexOf('/product') + 9);
+		    url = url + '/search/' + $('#ddl_product_cat').val() + '/' + $('#ddl_brand').val()+ '/' + $('#ddl_status').val()+ '/' + $('#txt_product_name').val();
+		    window.location = url;
+		});
 		$(".tablesorter").find("tr:even").addClass("even");
 		$(".tablesorter")
 		    .tablesorter({
