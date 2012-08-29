@@ -69,5 +69,15 @@ class Brand_model extends CI_Model
 		$query = $this->db->get('brands');
 		return $query->result();
 	}
+	
+	function brand_has_product($brand_name)
+	{
+		$query = $this->db->get_where('products', array('brand_name' => $brand_name));
+		if($query->num_rows()>0)
+		{
+			return TRUE;
+		}
+		return FALSE;
+	}
 }
 ?>

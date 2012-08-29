@@ -25,8 +25,11 @@ class Brand extends CI_Controller
         //form submitted
         $data['form_brand_name'] = $this->input->post('brand_name');
         $data['form_description'] = $this->input->post('description');
+		$data['form_isActive'] = $this->input->post('isActive');
+		
         $this->load->library('form_validation');
         $this->form_validation->set_rules('brand_name', 'Brand name', 'trim|required');
+		
 	if ($this->form_validation->run() == FALSE)
         { 
             $data['error_message']='Please fill in the brand name.';
@@ -145,7 +148,15 @@ class Brand extends CI_Controller
         {
             redirect('admin/brand');
         }
-        $this->load->model('brand_model');
+		$this->load->model('brand_model');
+		if($this->brand_model->brand_has_product($brand_name))
+		{
+			$data['error_message'] = "Can not delete ".$brand_name." due to this brand have products";
+			$data['brand_list'] = $this->brand_model->get();			
+			$this->load->view('brand/list', $data);
+			return;
+		}
+        
         $logo = './assets/db/brands/'.$this->brand_model->get($brand_name)->logo;
         $this->brand_model->delete($brand_name,$logo);		
         redirect('admin/brand');		
