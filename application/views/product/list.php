@@ -16,34 +16,28 @@
             <fieldset>
 		<legend>Search Options</legend>
 		<label>Product Name:</label>
-		<input id="txt_product_name" type = "text" />
+		<input id="txt_product_name" type = "text" value="<?php if(isset($search_name)) echo $search_name;  ?>" />
 		
 		<label>Product Category:</label>
 		<select id='ddl_product_cat' name='product_cat'>
 			<option value="0">All Categories</option>
-			<?php
-				foreach($category_list as $item)
-				{
-					echo "<option value='".$item->cat_id."'>".$item->cat_name_en."</option>";
-				}
-			?>
+			<?php foreach($category_list as $item){?>
+				<option <?php if (isset($search_product_cat) && $item->cat_id == $search_product_cat) echo 'selected' ?>  value="<?php echo $item->cat_id;?>" ><?php echo $item->cat_name_en;?></option>
+			<?php } ?>
 		</select>
 		<br />
 		<label>Brands:</label>
 		<select id='ddl_brand' name="product_brand">
 			<option value="0">All Brands</option>
-			<?php
-				foreach($brand_list as $item)
-				{
-					echo "<option value='".$item->brand_name."'>".$item->brand_name."</option>";
-				}
-			?>
+			<?php foreach($brand_list as $item)	{ ?>
+					<option <?php if (isset($search_brand) && $item->brand_name == $search_brand) echo 'selected' ?> value="<?php echo $item->brand_name;?>" ><?php echo $item->brand_name;?></option>
+			<?php }	?>
 		</select>
 		<label>Product Status:</label>
 		<select id='ddl_status' name="product_status">
-			<option value="1">Show</option>
-			<option value="0">Hide</option>
-			<option value="2">All</option>
+			<option value="1" <?php if(isset($search_status) && $search_status == '1') echo 'selected'  ?> >Show</option>
+			<option value="0" <?php if(isset($search_status) && $search_status == '0') echo 'selected'  ?> >Hide</option>
+			<option value="2" <?php if(isset($search_status) && $search_status == '2') echo 'selected'  ?> >All</option>
 		</select>
 		<input id="btn_filter" type="button" value="Search" />
 	    </fieldset>
