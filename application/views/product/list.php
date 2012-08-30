@@ -92,7 +92,7 @@
 						}
 					?>
 				</td>
-				<td><a href = "<?php echo "product/detail/".$item->product_id;?>" >Detail</a>
+				<td><a href ="<?php echo "product/detail/".$item->product_id;?>" >Detail</a>
 					<?php echo anchor('admin/product/edit/'.$item->product_id, ' ', array('title'=>"Edit Product",'class'=>'edit-button')); ?>
 					<?php echo anchor('admin/product/delete/'.$item->product_id, ' ', array('title'=>"Delete Product",'class'=>'delete-button')); ?>
 				</td>
@@ -117,8 +117,14 @@
 	    </fieldset>
 	</div>
         <?php $this->load->view('common/admin_footer');?>
+		<?php $this->load->view('common/confirm_box');?>
 	<script type="text/javascript">
-	    $(document).ready(function() {        
+	    $(document).ready(function() { 
+		//add confirm event for delete button
+		$('a.delete-button').click(function() { 
+		    confirm('Confirm for deletion','Do you want to delete this category.',this.href, 'Delete'); 
+		    return false;
+		});
 		$('#btn_filter').click(function() {
 		    var url = document.URL;
 		    url = url.substring(0, url.indexOf('/product') + 9);
