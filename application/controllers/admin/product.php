@@ -185,5 +185,17 @@ class Product extends CI_Controller
 	    $this->load->view('product/list',$data);
 	    
 	}
+	
+	public function detail($product_id)
+	{
+		if(!check_authen('staff',TRUE)) 
+	    {
+			return;
+	    }
+		$data['page_title'] = 'Admin: Product Management';
+		$this->load->model('product_model');
+		$data['product'] = $this->product_model->get($product_id);
+		$this->load->view('product/detail',$data);
+	}
 }
 ?>
