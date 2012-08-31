@@ -202,6 +202,10 @@ span.btn-minor-action {
 	text-align:left;
 }
 
+.content-center {
+	text-align:center !important;
+}
+
 label {
     text-align: right;
 }

@@ -36,12 +36,12 @@
             <tr>
               
 				
-                <th width="100">Name (English)</th>
+			    <th width="100">Name (English)</th>
 				<th width="100">Name (Thai)</th>
 				<th>Description (English)</th>
 				<th>Description (Thai)</th>
 				<th width="100">Under-category</th>
-				<th>show</th>
+				<th width="64">show/hide</th>
 				<th width="30">&nbsp;</th>
             </tr>
 		</thead>
