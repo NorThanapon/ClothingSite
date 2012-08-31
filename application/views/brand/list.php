@@ -27,7 +27,7 @@
 				<thead>
 					<tr>
 						<th width="200">Logo</th>
-						<th width="100">Name</th>
+						<th width="150">Name</th>
 						<th>Description</th>
 						<th width="64">show/hide</th>
 						<th width="30">&nbsp;</th>
@@ -68,7 +68,8 @@
 						//1:{sorter:false},
 						4:{sorter:false},
 					    //5:{sorter:false},
-				    }
+				    },
+				     sortList: [[3,1]] 
 			    })
 			    .tablesorterPager({
 				    container: $(".table-pager"),
