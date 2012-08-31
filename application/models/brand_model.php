@@ -32,9 +32,15 @@ class Brand_model extends CI_Model
 	
 	function edit($brand_name,$logo_name=FALSE)
 	{	
+		$isAct = 1;
+		if($this->input->post('isActive')==FALSE)
+		{
+			$isAct=0;
+		}
 	    $data = array(						
 		    'brand_name' => $this->input->post('brand_name'),
-		    'description' => $this->input->post('description')						
+		    'description' => $this->input->post('description'),
+			'isActive' => $this->input->post('isActive')
 		);
 		if($logo_name !== FALSE)
 		{

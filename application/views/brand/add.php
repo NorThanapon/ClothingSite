@@ -20,7 +20,7 @@
 		    <label for="logo">Logo:</label>
 		    <input name="logo" type ="file"/>
 			<br />
-			<label for="isActive" >Hide/Show:</label>
+			<label for="isActive" >Show:</label>
 			<input name="isActive" checked type="checkbox"  />			
 		</fieldset>
 	    </div>
