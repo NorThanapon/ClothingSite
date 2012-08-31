@@ -30,7 +30,7 @@
 						<th width="200">Logo</th>
 						<th width="100">Name</th>
 						<th>Description</th>
-						<th>hide/show</th>
+						<th width="64">hide/show</th>
 						<th width="30">&nbsp;</th>
 					</tr>
 				</thead>
@@ -70,7 +70,7 @@
 				    headers: {
 					    //0:{sorter:false},
 						1:{sorter:false},
-					    4:{sorter:false}
+					    5:{sorter:false}
 				    }
 			    })
 			    .tablesorterPager({
