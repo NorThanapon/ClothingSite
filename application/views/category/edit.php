@@ -70,10 +70,10 @@
 			<input name='isActive' type = 'checkbox' 
 				<?php
 				if(isset($form_isActive)){ 
-					if($form_isActive==1){echo "checked"; }
+					if($form_isActive){echo "checked"; }
 				}
 				else{
-					if($categories->isActive==1){ echo "checked";}
+					if($categories->isActive){ echo "checked";}
 				}?>  />
 		
 			<br />

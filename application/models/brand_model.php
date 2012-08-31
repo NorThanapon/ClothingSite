@@ -40,7 +40,7 @@ class Brand_model extends CI_Model
 	    $data = array(						
 		    'brand_name' => $this->input->post('brand_name'),
 		    'description' => $this->input->post('description'),
-			'isActive' => $this->input->post('isActive')
+			'isActive' => $isAct
 		);
 		if($logo_name !== FALSE)
 		{

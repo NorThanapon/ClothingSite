@@ -273,7 +273,7 @@ header nav {
     float: right;
 }
 
-header nav ul, nav ul li {
+header nav ul, header nav ul li {
     margin: 0;
     list-style: none;
     list-style-image: none;
@@ -287,7 +287,7 @@ header nav ul li {
 }
 
 
-header nav ul li a, a:active, a:visited {
+header nav ul li a, header nav ul li a:active, header nav ul li a:visited {
     
     text-align:center;
     display: block;
@@ -417,19 +417,23 @@ div.report-items {
 
 div.report-items  .edit-button,
 div.report-items  .edit-button:active,
+div.report-items  .edit-button:focus,
 div.report-items  .edit-button:hover{
-	width:16px;
-	height:16px;
+	width:16px !important;
+	height:16px !important;
 	background-image:url(../img/edit.png);
+	background-repeat:no-repeat;
 	display:inline-block;
 }
 
 div.report-items  .delete-button,
 div.report-items  .delete-button:active,
+div.report-items  .edit-button:focus,
 div.report-items  .delete-button:hover{
 	width:11px;
 	height:14px;
 	background-image:url(../img/delete.gif);
+	background-repeat:no-repeat;
 	display:inline-block;
 }
 div.report-items table {

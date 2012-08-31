@@ -45,7 +45,7 @@
 		    </select>
 			<br />
 			<label for="isActive" >Show:</label>
-			<input name="isActive" checked type="checkbox"  />		
+			<input name="isActive" <?php if(!isset($form_isActive) || $form_isActive) echo " checked "?> type="checkbox"  />		
 		</fieldset>
 	    </div>
 	    <div class="content-right form-action">

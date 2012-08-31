@@ -30,7 +30,7 @@
 		    <input name="logo" type ="file"/>
 			<br />
 			<label for="isActive" >Hide/Show:</label>
-			<input name="isActive" type="checkbox" <?php if($brand->isActive==1||$brand->isActive!=null){ echo "checked='checked'";} ?>" />
+			<input name="isActive" type="checkbox" <?php if($brand->isActive==1){ echo "checked='checked'";} ?>" />
 		</fieldset>
 	    </div>
 	    <div class="form-action content-right">
