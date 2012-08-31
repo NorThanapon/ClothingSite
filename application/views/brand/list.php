@@ -44,8 +44,8 @@
 						<td><?php echo $item->description;?> </td>
 						<td class="content-center"><?php if($item->isActive == 1) echo "show"; else echo "hide"; ?></td>
 						<td>
-							<?php echo anchor('admin/brand/edit/'.$item->brand_name, ' ', array('title'=>"Edit this brand",'class'=>'edit-button')); ?>
-							<?php echo anchor('admin/brand/delete/'.$item->brand_name, ' ', array('title'=>"Delete this category",'class'=>'delete-button')); ?>
+							<?php echo anchor('admin/brand/edit/'.convert_url($item->brand_name), ' ', array('title'=>"Edit this brand",'class'=>'edit-button')); ?>
+							<?php echo anchor('admin/brand/delete/'.convert_url($item->brand_name), ' ', array('title'=>"Delete this category",'class'=>'delete-button')); ?>
 						</td>
 					</tr>
 					<?php

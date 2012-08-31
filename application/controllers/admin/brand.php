@@ -67,6 +67,7 @@ class Brand extends CI_Controller
         {
 	    redirect('admin/brand');
         }
+        $brand_name = revert_url($brand_name);
         //brand input
 	$this->load->model('brand_model');
 	if (!$this->input->post('submit')) //not pass submit
@@ -150,6 +151,8 @@ class Brand extends CI_Controller
         {
             redirect('admin/brand');
         }
+        
+        $brand_name = revert_url($brand_name);
 		$this->load->model('brand_model');
 		if($this->brand_model->brand_has_product($brand_name))
 		{
