@@ -36,6 +36,7 @@ class Category extends CI_Controller
 		$data['form_description_th'] = $this->input->post('description_th');
         $data['form_description_en'] = $this->input->post('description_en');
 		$data['form_cat_parent'] = $this->input->post('cat_parent');
+		$data['form_isActive'] = $this->input->post('isActive');
 		
 		$this->load->library('form_validation');
         $this->form_validation->set_rules('cat_name_th', 'Category name(Thai)', 'trim|required');
@@ -103,7 +104,7 @@ class Category extends CI_Controller
 		$data['form_description_th'] = $this->input->post('description_th');
         $data['form_description_en'] = $this->input->post('description_en');
 		$data['form_cat_parent'] = $this->input->post('cat_parent');
-
+		$data['form_isActive'] = $this->input->post('isActive');
 		
         $this->load->model('category_model');
         $data['category'] =  $this->category_model->get($this->input->post($cat_id));

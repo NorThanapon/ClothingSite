@@ -43,6 +43,9 @@
 				}
 				?>
 		    </select>
+			<br />
+			<label for="isActive" >Show:</label>
+			<input name="isActive" checked type="checkbox"  />		
 		</fieldset>
 	    </div>
 	    <div class="content-right form-action">

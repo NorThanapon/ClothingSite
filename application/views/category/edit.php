@@ -65,6 +65,18 @@
 			    
 			    ?>
 		    </select>
+			<br />
+			<label for="isActive">Show :</label>
+			<input name='isActive' type = 'checkbox' 
+				<?php
+				if(isset($form_isActive)){ 
+					if($form_isActive==1){echo "checked"; }
+				}
+				else{
+					if($categories->isActive==1){ echo "checked";}
+				}?>  />
+		
+			<br />
 		</fieldset>
 	    </div>
 	    <div class="form-action content-right">

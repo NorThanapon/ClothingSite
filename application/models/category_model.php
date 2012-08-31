@@ -10,6 +10,7 @@ class Category_model extends CI_Model
     var $description_th = '';
     var $description_en = '';
     var $cat_parent = '';
+	var $isActive = '';
 
     function __construct() 
 	{
@@ -22,7 +23,12 @@ class Category_model extends CI_Model
 		$this->cat_name_en = $this->input->post('cat_name_en');
 		$this->description_th = $this->input->post('description_th');
 		$this->description_en = $this->input->post('description_en');
-		$this->cat_parent = $this->input->post('cat_parent');*/			
+		$this->cat_parent = $this->input->post('cat_parent');*/		
+		$isAct = 1;
+		if($this->input->post('isActive')==FALSE)
+		{
+			$isAct = 0;
+		}		
 		if($this->input->post('cat_parent')!="")
 		{
 				$data = array(
@@ -30,7 +36,8 @@ class Category_model extends CI_Model
 					'cat_name_en' => $this->input->post('cat_name_en'),
 					'description_th' => $this->input->post('description_th'),
 					'description_en' => $this->input->post('description_en'),
-				    'cat_parent' => $this->input->post('cat_parent')
+				    'cat_parent' => $this->input->post('cat_parent'),
+					'isActive' => $isAct
 				);
 		}	
 		else
@@ -40,6 +47,7 @@ class Category_model extends CI_Model
 					'cat_name_en' => $this->input->post('cat_name_en'),
 					'description_th' => $this->input->post('description_th'),
 					'description_en' => $this->input->post('description_en'),
+					'isActive' => $isAct
 				);
 		}
 		
@@ -48,15 +56,21 @@ class Category_model extends CI_Model
 	
 	function edit($cat_id)
 	{
-		
+		$isAct = 1;
+		if($this->input->post('isActive')==FALSE)
+		{
+			$isAct=0;
+		}
 	    if($this->input->post('cat_parent')!="")
 		{
+				
 				$data = array(
 					'cat_name_th' => $this->input->post('cat_name_th'),
 					'cat_name_en' => $this->input->post('cat_name_en'),
 					'description_th' => $this->input->post('description_th'),
 					'description_en' => $this->input->post('description_en'),
-				    'cat_parent' => $this->input->post('cat_parent')
+				    'cat_parent' => $this->input->post('cat_parent'),
+					'isActive' => $isAct
 				);
 		}	
 		else
@@ -66,7 +80,8 @@ class Category_model extends CI_Model
 					'cat_name_en' => $this->input->post('cat_name_en'),
 					'description_th' => $this->input->post('description_th'),
 					'description_en' => $this->input->post('description_en'),
-					'cat_parent' => NULL
+					'cat_parent' => NULL,
+					'isActive' => $isAct
 				);
 		}
 		
