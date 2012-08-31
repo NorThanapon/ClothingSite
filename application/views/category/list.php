@@ -37,10 +37,11 @@
               
 				
                 <th width="100">Name (English)</th>
-		<th width="100">Name (Thai)</th>
-		<th>Description (English)</th>
-		<th>Description (Thai)</th>
+				<th width="100">Name (Thai)</th>
+				<th>Description (English)</th>
+				<th>Description (Thai)</th>
 				<th width="100">Under-category</th>
+				<th>show</th>
 				<th width="30">&nbsp;</th>
             </tr>
 		</thead>
@@ -57,7 +58,8 @@
 				<td><?php echo $item->description_en;?></td>
 				<td><?php echo $item->description_th;?></td>
 				
-				<td><?php echo $item->parent_name?></td>
+				<td><?php echo $item->parent_name;?></td>
+				<td><input type = 'checkbox' disabled='disabled' <?php if($item->isActive == 1) echo " checked='checked'"; ?> />
 				<td>
 					 <?php echo anchor('admin/category/edit/'.$item->cat_id, ' ', array('title'=>"Edit Category",'class'=>'edit-button')); ?>
 					 <?php echo anchor('admin/category/delete/'.$item->cat_id, ' ', array('title'=>"Delete Category",'class'=>'delete-button')); ?>
@@ -93,7 +95,8 @@
 		    .tablesorter({
 			headers: {
 				//0:{sorter:false},
-				5:{sorter:false}
+				5:{sorter:false},
+				6:{sorter:false}
 			}
 		    })
 		    .tablesorterPager({

@@ -80,18 +80,7 @@
 				</td>
 				
 				<td><?php echo $item->total_quantity?></td>
-				<td>
-					<?php 
-						if($item->isActive == 1)
-						{
-							echo "<input type = 'checkbox' disabled='disabled' checked='checked'  />";
-						}
-						else
-						{
-							echo "<input type = 'checkbox' disabled='disabled'  />";
-						}
-					?>
-				</td>
+				<td><input type = 'checkbox' disabled='disabled' <?php if($item->isActive == 1) echo " checked='checked'"; ?> /></td>
 				<td><a href ="<?php echo "product/detail/".$item->product_id;?>" >Detail</a>
 					<?php echo anchor('admin/product/edit/'.$item->product_id, ' ', array('title'=>"Edit Product",'class'=>'edit-button')); ?>
 					<?php echo anchor('admin/product/delete/'.$item->product_id, ' ', array('title'=>"Delete Product",'class'=>'delete-button')); ?>

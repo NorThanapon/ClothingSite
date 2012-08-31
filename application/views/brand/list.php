@@ -30,7 +30,7 @@
 						<th width="200">Logo</th>
 						<th width="100">Name</th>
 						<th>Description</th>
-						<th width="64">hide/show</th>
+						<th width="64">show</th>
 						<th width="30">&nbsp;</th>
 					</tr>
 				</thead>
@@ -45,7 +45,7 @@
 						<td><img src="<?php echo asset_url().'db/brands/'.$item->logo;?>" /></td>
 						<td><?php echo $item->brand_name;?> </td>
 						<td><?php echo $item->description;?> </td>
-						<td><?php if($item->isActive==1||$item->isActive!=null){ echo "show"; }else{ echo "hide"; } ?></td>
+						<td><input type = 'checkbox' disabled='disabled' <?php if($item->isActive == 1) echo " checked='checked'"; ?> /></td>
 						<td>
 							<?php echo anchor('admin/brand/edit/'.$item->brand_name, ' ', array('title'=>"Edit this brand",'class'=>'edit-button')); ?>
 							<?php echo anchor('admin/brand/delete/'.$item->brand_name, ' ', array('title'=>"Delete this category",'class'=>'delete-button')); ?>
@@ -70,7 +70,8 @@
 				    headers: {
 					    //0:{sorter:false},
 						1:{sorter:false},
-					    5:{sorter:false}
+						4:{sorter:false},
+					    5:{sorter:false},
 				    }
 			    })
 			    .tablesorterPager({
