@@ -35,12 +35,13 @@
 		<thead>
             <tr>
               
-				<th>Name (Thai)</th>
-                <th>Name (English)</th>
-				<th>Description (Thai)</th>
-				<th>Description (English)</th>
-				<th>Under-category</th>
-				<th>&nbsp;</th>
+				
+                <th width="100">Name (English)</th>
+		<th width="100">Name (Thai)</th>
+		<th>Description (English)</th>
+		<th>Description (Thai)</th>
+				<th width="100">Under-category</th>
+				<th width="30">&nbsp;</th>
             </tr>
 		</thead>
 		<tbody>
@@ -50,11 +51,11 @@
 				{
             ?>
             <tr>
+                <td><?php echo $item->cat_name_en;?> </td>
                 
 				<td><?php echo $item->cat_name_th?></td>
-                <td><?php echo $item->cat_name_en;?> </td>
-				<td><?php echo $item->description_th;?></td>
 				<td><?php echo $item->description_en;?></td>
+				<td><?php echo $item->description_th;?></td>
 				
 				<td><?php echo $item->parent_name?></td>
 				<td>
