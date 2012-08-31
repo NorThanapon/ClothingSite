@@ -21,7 +21,7 @@
 		    <input name="logo" type ="file"/>
 			<br />
 			<label for="isActive" >Hide/Show:</label>
-			<input name="isActive" type="checkbox"  />			
+			<input name="isActive" checked type="checkbox"  />			
 		</fieldset>
 	    </div>
 	    <div class="form-action content-right">

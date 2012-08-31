@@ -8,6 +8,7 @@ class Brand_model extends CI_Model
     var $description = '';
     var $logo = '';
     var $size_chart = '';
+	var $isActive = '';
 
 
     function __construct() 
@@ -20,6 +21,12 @@ class Brand_model extends CI_Model
 		$this->brand_name = $this->input->post('brand_name');
 		$this->description = $this->input->post('description');
 		$this->logo = $logo_name;
+		$isAct = 1;
+		if($this->input->post('isActive') == FALSE)
+		{
+			$isAct = 0;
+		}
+		$this->isActive = $isAct;
 		$this->db->insert('brands',$this);
 	}
 	
