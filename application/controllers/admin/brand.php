@@ -144,6 +144,7 @@ class Brand extends CI_Controller
         {		
             return;            
         }
+        $data['page_title'] = 'Admin: Brand Management';
         if($brand_name===FALSE)
         {
             redirect('admin/brand');

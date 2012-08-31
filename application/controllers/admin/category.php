@@ -175,6 +175,8 @@ class Category extends CI_Controller
 	    {		
 			return;            
 	    }
+	    
+	$data['page_title'] = 'Admin: Category Management';
 	    if($cat_id===FALSE)
 	    {
 		    redirect('admin/category');
