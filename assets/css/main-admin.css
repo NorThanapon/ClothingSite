@@ -22,6 +22,9 @@ a, a:active, a:visited {
     padding: 0;
 }
 
+.clear-float{
+	clear:both;
+}
 
 .box {
     background-color:white;
@@ -338,11 +341,11 @@ a.logo h1{
 	border-radius:.2em;
 }
 .page-action {
-	position:absolute;
+	position:relative;
 	float:right;
-	display:block;
 	right:20px;
-	top:40px;
+	top:-40px;
+	height:0px;
 }
 
 /* end content */

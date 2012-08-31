@@ -11,7 +11,8 @@
 		<img  src="<?php echo asset_url().'img/add-icon.png'?>" />
 		Add New Category
 	    </a>
-    </div>
+	</div>
+	<div class="clear-float"></div>
 	<div class="report-filter">
 	    <fieldset>
 		<legend>Search Options</legend>
@@ -26,7 +27,7 @@
 		</select>
 		<input id="btn_filter" type="button" value="Search" />
 	    </fieldset>
-    </div>
+	</div>
 	<div class="report-items">
 		<?php $this->load->view('common/table_pager');?>
 		<?php echo form_open_multipart('category/list');?>
