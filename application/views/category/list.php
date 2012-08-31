@@ -59,7 +59,7 @@
 				<td><?php echo $item->description_th;?></td>
 				
 				<td><?php echo $item->parent_name;?></td>
-				<td><input type = 'checkbox' disabled='disabled' <?php if($item->isActive == 1) echo " checked='checked'"; ?> />
+				<td><?php if($item->isActive == 1) echo "show"; else echo "hide"; ?></td>
 				<td>
 					 <?php echo anchor('admin/category/edit/'.$item->cat_id, ' ', array('title'=>"Edit Category",'class'=>'edit-button')); ?>
 					 <?php echo anchor('admin/category/delete/'.$item->cat_id, ' ', array('title'=>"Delete Category",'class'=>'delete-button')); ?>
