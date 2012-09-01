@@ -23,6 +23,7 @@ class Product_model extends CI_Model
 
 	function add()
 	{		
+
 		$data = array(
 			'product_id' => $this->input->post('product_id'),
 			'product_name_th' => $this->input->post('product_name_th'),
@@ -39,7 +40,7 @@ class Product_model extends CI_Model
 			'DATE_ADD' =>   $date = date("Y-m-d H:i:s"),
 			'isActive' => $this->input->post('isActive')
 		);
-		$this->db->insert('products',$this);
+		$this->db->insert('products',$data);
 	}
 	
 	function edit($product_id)
