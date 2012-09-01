@@ -51,6 +51,12 @@ class Product extends CI_Controller
 		$data['form_description_en']  = $this->input->post('description_en');
 		$data['form_how_to_wash_th']  = $this->input->post('how_to_wash_th');
 		$data['form_how_to_wash_en']  = $this->input->post('how_to_wash_en');
+		$active=0;
+		if($this->input->post('isActive')==true)
+		{
+			$active = 1;
+		}
+		$data['form_isActive']  = $active;
 		
 		//form validation
 		$this->load->library('form_validation');
@@ -83,7 +89,7 @@ class Product extends CI_Controller
 		
 		if($this->input->post('manage_photo'))
 		{
-			$data['product'] =  $this->product_model->get($product_id);
+			$data['product'] =  $this->product_model->get($this->input->post('product_id'));
 			if ($data['product'] == FALSE)
 			{
 				redirect('admin/product');

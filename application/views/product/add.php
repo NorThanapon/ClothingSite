@@ -89,7 +89,9 @@
 		    <br />
 			<label for="how_to_wash_en">How to Wash (English):</label>
 		    <textarea name ="how_to_wash_en" ><?php if(isset($form_how_to_wash_en)) echo $form_how_to_wash_en; ?></textarea>
-		
+			<br />
+			<label for="isActive" >Show:</label>
+			<input name="isActive" <?php if(!isset($form_isActive) || $form_isActive) echo " checked "?> type="checkbox"  />
 		   
 		</fieldset>
 	    </div>
