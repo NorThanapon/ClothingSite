@@ -33,7 +33,7 @@ class Product extends CI_Controller
 		$data['page_title'] = 'Admin: Product Management';
 		$this->load->model('product_model');
 		$data['products'] = $this->product_model->get();
-		if (!$this->input->post('submit')) 
+		if (!$this->input->post('submit') && !$this->input->post('manage_photo')) 
 	    {    
 			$this->load->view('product/add',$data);
 			return;
@@ -68,8 +68,6 @@ class Product extends CI_Controller
 			$data['brand'] = $this->brand_model->get();
 			$data['category'] = $this->category_model->get();    
 			$this->load->view('product/add', $data);
-			$data['dup_message_th']="eeee";
-		$data['dup_message_en']="eeee";
             return;
     	}
 		$this->load->model('product_model');
@@ -82,6 +80,19 @@ class Product extends CI_Controller
 		//check none duplicate productID
 		
 		$this->product_model->add();
+		
+		if($this->input->post('manage_photo'))
+		{
+			$data['product'] =  $this->product_model->get($product_id);
+			if ($data['product'] == FALSE)
+			{
+				redirect('admin/product');
+			}
+            $this->load->view('product/photo_management',$data);
+            return;
+		}
+		
+		//
 		redirect('admin/product');	
 	}
 	
@@ -104,9 +115,7 @@ class Product extends CI_Controller
 		$this->load->model('category_model');
 		$this->load->model('brand_model');
 		
-		
-		
-		if (!$this->input->post('submit')) //not pass submit
+		if (!$this->input->post('submit') && !$this->input->post('manage_photo')) //not pass submit AND manage_photo
     	{			 
 			$data['product'] =  $this->product_model->get($product_id);
 			$data['brand'] = $this->brand_model->get();
@@ -141,8 +150,13 @@ class Product extends CI_Controller
 		//form validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('product_id', 'Product ID', 'trim|required');
-        $this->form_validation->set_rules('product_name_en', 'Name(English)', 'trim|required');
+		$this->form_validation->set_rules('product_name_en', 'Name(English)', 'trim|required');
 		$this->form_validation->set_rules('product_name_th', 'Name(Thai)', 'trim|required');
+		$this->form_validation->set_rules('brand_name', 'Brand', 'trim|required');
+		$this->form_validation->set_rules('markup_price', 'Markup Price', 'trim|required');
+		$this->form_validation->set_rules('cat_id', 'Category', 'trim|required');
+		$this->form_validation->set_rules('total_quantity', 'Total Quantity', 'trim|required');
+		
 		if ($this->form_validation->run() == FALSE)
         {
             $data['error_message'] = 'Please fill in the category name.';
@@ -166,6 +180,19 @@ class Product extends CI_Controller
 		
         //none duplicate productID
 		$this->product_model->edit($this->input->post('product_id_key'));
+		
+		if($this->input->post('manage_photo'))
+		{
+			$data['product'] =  $this->product_model->get($product_id);
+			if ($data['product'] == FALSE)
+			{
+				redirect('admin/product');
+			}
+            $this->load->view('product/photo_management',$data);
+            return;
+		}
+		
+		//manage photo is not submitted
 		redirect('admin/product');
 	}
 	

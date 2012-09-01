@@ -95,7 +95,8 @@
 	    </div>
 	    <div class="content-right form-action">
 		<?php echo anchor('admin/product','Cancel' ,array('class' => 'button')); ?>
-		<input class="button btn-submit" type = "submit" name="submit" value="Add this product"/>
+		<input class="button btn-submit" type = "submit" name="submit" value="Add and Return"/>
+		<input class="button btn-submit" type = "submit" name="manage_photo" value="Add and Manage photo"/>
 	    </div>
 	</form>
 	<?php $this->load->view('common/admin_footer');?>
