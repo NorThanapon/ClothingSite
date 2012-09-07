@@ -2,6 +2,7 @@
 
 class Main extends CI_Controller {
     public function index() {
-        $this->load->view('main');
+        $data['page_title'] = "Welcome to BfashShop.com";
+        $this->load->view('main',$data);
     }
 }
