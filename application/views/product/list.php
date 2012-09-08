@@ -5,11 +5,11 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
+		
 	<h1>Product Management</h1>
         <div class="page-action">
-            <a href="product/add" class="button gradient">
-		<img  src="<?php echo asset_url().'img/add-icon.png'?>" />
-		Add New Product
+		<?php echo anchor('admin/product/add', '<img src='.asset_url().'img/add-icon.png'.' />Add New Product', 'class="button gradient"'); ?>
+           
 	    </a>
         </div>
         <div class="report-filter">
@@ -42,6 +42,8 @@
 		<input id="btn_filter" type="button" value="Search" />
 	    </fieldset>
         </div>
+		<?php echo form_open('admin/product/update_status'); ?>
+		
         <div class="report-items">
             <?php $this->load->view('common/table_pager');?>
 	    <table class="tablesorter">
@@ -64,8 +66,8 @@
 				{
             ?>
             <tr>
-                <td><input type = "checkbox" /></td>
-				<td><a href ="<?php echo "product/detail/".$item->product_id;?>" ><?php echo $item->product_id;?></a></td>
+                <td><input type = "checkbox" <?php echo "name=\"chb_select_product[]\" value=\"".$item->product_id."\"" ;?>"/></td>
+				<td><!--<a href ="<?php echo "product/detail/".$item->product_id;?>" >--><?php echo $item->product_id;?><!--</a>--></td>
                 <td><?php echo $item->product_name_en;?> </td>
 				<td><?php echo $item->brand_name;?></td>
 				<td><?php 
@@ -81,7 +83,7 @@
 				
 				<td><?php echo $item->total_quantity?></td>
 				<td><?php if($item->isActive == 1) echo "show"; else echo "hide"; ?></td>
-				<td><a href ="<?php echo "product/detail/".$item->product_id;?>" >Detail</a>
+				<td><!--<a href ="<?php echo "product/detail/".$item->product_id;?>" >Detail</a>-->
 					<?php echo anchor('admin/product/edit/'.$item->product_id, ' ', array('title'=>"Edit Product",'class'=>'edit-button')); ?>
 					<?php echo anchor('admin/product/delete/'.$item->product_id, ' ', array('title'=>"Delete Product",'class'=>'delete-button')); ?>
 				</td>
@@ -102,7 +104,8 @@
 		    <option value="1">Show</option>
 		    <option value="2">Hide</option>
 		</select>
-		<input type = "button" value = "Update" />
+		<input type = "submit" value = "Update" />
+		<input type = "submit" value = "Delete" />
 	    </fieldset>
 	</div>
         <?php $this->load->view('common/admin_footer');?>

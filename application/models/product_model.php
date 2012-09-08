@@ -55,6 +55,7 @@ class Product_model extends CI_Model
 			$is_active = 1;
 		}
 		
+		
 		$data = array(
 			'product_id' => $this->input->post('product_id'),
 			'product_name_th' => $this->input->post('product_name_th'),
@@ -121,6 +122,12 @@ class Product_model extends CI_Model
 		if ($where != "" ) $query = $this->db->get_where('products', $where);
 		else $query = $this->db->get('products');
 		return $query->result();
+	}
+	function update_status($product_id,$status)
+	{
+		$data['isActive'] = $status;
+		$this->db->update('products',$data,array('product_id'=>$product_id));
+		
 	}
 
 }

@@ -256,5 +256,42 @@ class Product extends CI_Controller
 		$data['product'] = $this->product_model->get($product_id);
 		$this->load->view('product/detail',$data);
 	}
+	public function update_status()
+	{
+		if(!check_authen('staff',TRUE)) 
+	    {
+			return;
+	    }		
+		$this->load->model('product_model');
+		
+		
+		foreach( $this->input->post('chb_select_product') as $item)
+		{
+			//$temp=$this->product_model->get($item);
+			//if(isset($item)==true)
+			{
+				if($this->input->post('change_status')=="1")
+				{
+					//$temp->is_active=true;
+					$status=1;
+					
+				}
+				else if($this->input->post('change_status')=="2")
+				{
+					//$temp->is_active=false;
+					$status=0;
+				}
+				$this->product_model->update_status($item,$status);
+			}
+		}
+		$this->load->model('category_model');
+		$this->load->model('brand_model');
+		$data['product_list'] = $this->product_model->get();
+		$data['category_list'] = $this->category_model->get();
+		$data['brand_list'] = $this->brand_model->get();
+		redirect('admin/product');
+		
+	
+	}
 }
 ?>
