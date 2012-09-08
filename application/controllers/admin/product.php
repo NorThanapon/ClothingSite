@@ -264,26 +264,26 @@ class Product extends CI_Controller
 	    }		
 		$this->load->model('product_model');
 		
-		
+		$i=0;
+		//$temp['product_id'][0]="";
+		//$temp[0]="";
+		$status=0;
 		foreach( $this->input->post('chb_select_product') as $item)
 		{
-			//$temp=$this->product_model->get($item);
-			//if(isset($item)==true)
+			$temp[$i]['product_id'] = $item;			
+			if($this->input->post('change_status')=="1")
 			{
-				if($this->input->post('change_status')=="1")
-				{
-					//$temp->is_active=true;
-					$status=1;
-					
-				}
-				else if($this->input->post('change_status')=="2")
-				{
-					//$temp->is_active=false;
-					$status=0;
-				}
-				$this->product_model->update_status($item,$status);
+				$temp[$i]['isActive']=1;
 			}
+			else if($this->input->post('change_status')=="2")
+			{
+				$temp[$i]['isActive']=0;
+			}
+			$i++;
+			
 		}
+		//var_dump($temp);
+		$this->product_model->update_status($temp);
 		$this->load->model('category_model');
 		$this->load->model('brand_model');
 		$data['product_list'] = $this->product_model->get();
@@ -291,7 +291,31 @@ class Product extends CI_Controller
 		$data['brand_list'] = $this->brand_model->get();
 		redirect('admin/product');
 		
-	
+	}
+	public function delete_batch()
+	{
+		if(!check_authen('staff',TRUE)) 
+	    {
+			return;
+	    }		
+		$this->load->model('product_model');		
+		$i=0;		
+		$status=0;
+		$temp="";
+		foreach( $this->input->post('chb_select_product') as $item)
+		{
+			$temp = $temp."'".$item."',";			
+			$i++;					
+		}
+		$temp = substr($temp, 0,strlen($temp)-1); 		
+		$this->product_model->delete_batch($temp);
+		$this->load->model('category_model');
+		$this->load->model('brand_model');
+		$data['product_list'] = $this->product_model->get();
+		$data['category_list'] = $this->category_model->get();
+		$data['brand_list'] = $this->brand_model->get();
+		redirect('admin/product');
+		
 	}
 }
 ?>

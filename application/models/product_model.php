@@ -123,12 +123,21 @@ class Product_model extends CI_Model
 		else $query = $this->db->get('products');
 		return $query->result();
 	}
-	function update_status($product_id,$status)
+	function update_status($products)
 	{
-		$data['isActive'] = $status;
-		$this->db->update('products',$data,array('product_id'=>$product_id));
-		
+		$this->db->update_batch('products',$products,'product_id'); 		
 	}
+	function delete_batch($products)
+	{
+		//DELETE FROM `products` WHERE product_id in( '5','i')
+		//$this->db->delete('products', array('id' =>$products )); 
+		//$this->db->where('product_id', $products);
+		//$this->db->delete('products'); 	
+		$sql = "DELETE FROM `products` WHERE product_id in(".$products.")";
+		$this->db->query($sql);		
+	}
+	
+	
 
 }
 ?>
