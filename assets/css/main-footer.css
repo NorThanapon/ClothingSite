@@ -1,0 +1,17 @@
+footer{
+	border-top:2px solid #CDCDCD;
+	max-width:1000px;
+	position:relative;
+	width: 100%;
+	margin: 0 auto;
+	vertical-align:middle;
+	color:#A9A9A9;
+	font-size:13px;
+	text-align:right;
+	padding-top:5px;
+}
+
+.footer-menu{
+
+margin:10px;
+}

@@ -1,0 +1,14 @@
+footer{
+	max-width:1000px;
+	position:relative;
+	width: 100%;
+	margin: 0 auto;
+	vertical-align:middle;
+	color:#A9A9A9
+	font-size:13px;
+}
+
+.footer-menu{
+float:right;
+margin:20px;
+}
