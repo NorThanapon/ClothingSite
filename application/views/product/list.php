@@ -65,7 +65,7 @@
             ?>
             <tr>
                 <td><input type = "checkbox" /></td>
-				<td><?php echo $item->product_id;?></td>
+				<td><a href ="<?php echo "product/detail/".$item->product_id;?>" ><?php echo $item->product_id;?></a></td>
                 <td><?php echo $item->product_name_en;?> </td>
 				<td><?php echo $item->brand_name;?></td>
 				<td><?php 
@@ -80,7 +80,7 @@
 				</td>
 				
 				<td><?php echo $item->total_quantity?></td>
-				<td><input type = 'checkbox' disabled='disabled' <?php if($item->isActive == 1) echo " checked='checked'"; ?> /></td>
+				<td><?php if($item->isActive == 1) echo "show"; else echo "hide"; ?></td>
 				<td><a href ="<?php echo "product/detail/".$item->product_id;?>" >Detail</a>
 					<?php echo anchor('admin/product/edit/'.$item->product_id, ' ', array('title'=>"Edit Product",'class'=>'edit-button')); ?>
 					<?php echo anchor('admin/product/delete/'.$item->product_id, ' ', array('title'=>"Delete Product",'class'=>'delete-button')); ?>
@@ -125,7 +125,6 @@
 		    .tablesorter({
 			headers: {
 			    0:{sorter:false},
-				6:{sorter:false},
 			    7:{sorter:false}
 			}
 		    })
