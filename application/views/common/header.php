@@ -28,4 +28,5 @@
             <?php echo anchor('#','CART <span class="txt-detail"> 0 item(s)</span>', 'class="link-cart"'); ?>
         </span>
     </div><!-- end #header-menu -->
-</header>
+</header>    
+<div class="clear-float"></div>
