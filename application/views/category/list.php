@@ -7,10 +7,7 @@
         <?php $this->load->view('common/admin_header');?>
 	<h1>Category Management</h1>  
 	<div class="page-action">
-	    <a href="category/add" class="button gradient">
-		<img  src="<?php echo asset_url().'img/add-icon.png'?>" />
-		Add New Category
-	    </a>
+	    <?php echo anchor('admin/category/add', '<img  src='.asset_url().'img/add-icon.png'.' />Add New Category', 'class="button gradient"'); ?>
 	</div>
 	<div class="clear-float"></div>
 	<div class="report-filter">

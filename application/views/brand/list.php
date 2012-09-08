@@ -8,10 +8,7 @@
 	  
 		<h1>Brand Management</h1>
 		<div class="page-action">
-			<a href="brand/add" class="button gradient">
-				<img  src="<?php echo asset_url().'img/add-icon.png'?>" />
-				Add New Brand
-			</a>
+		    <?php echo anchor('admin/brand/add', '<img  src='.asset_url().'img/add-icon.png'.' />Add New Brand', 'class="button gradient"'); ?>
 		</div>
 		<div class="report-filter">
 			<fieldset>
