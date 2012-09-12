@@ -21,9 +21,7 @@
                         <?php echo anchor('admin/product', 'Product', 'title="Manage Products"'); ?>
                     </li>
                     <li>
-                        <a href="#">
-                            Inventory
-                        </a>
+                        <?php echo anchor('admin/inventory', 'Inventory', 'title="Manage Inventory"'); ?>
                     </li>
                     <li>
                         <a href="#">
