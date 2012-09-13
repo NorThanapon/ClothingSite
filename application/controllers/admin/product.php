@@ -94,11 +94,10 @@ class Product extends CI_Controller
 			{
 				redirect('admin/product');
 			}
-            $this->load->view('product/photo_management',$data);
+            redirect('admin/product/photo_management/'.$this->input->post('product_id'));
             return;
 		}
 		
-		//
 		redirect('admin/product');	
 	}
 	
@@ -316,6 +315,51 @@ class Product extends CI_Controller
 		$data['brand_list'] = $this->brand_model->get();
 		redirect('admin/product');
 		
+	}
+	function _upload_photo_file($photo_id, $form_name) 
+    {
+        if (!empty($_FILES[$form_name]['name'])) 
+        {
+            $config['upload_path'] = './assets/db/products/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2000';
+            $config['overwrite'] = TRUE;
+            $config['file_name'] = $product_id.'_'.$form_name.'.'.substr(strrchr($_FILES[$form_name]['name'], '.'), 1);
+			echo $config['file_name']."---------------";//----------------------------------------------------------------------------------------
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload($form_name)) 
+            {
+                return $this->upload->data();
+            }
+            return array('error' => $this->upload->display_errors());    
+        }
+		echo "--No-------------";//----------------------------------------------------------------------------------------
+        return FALSE;
+    }
+	public function photo_management($product_id)//addPhoto change Name
+	{
+		 if(!check_authen('staff',TRUE)) return;
+		 $this->load->model('product_model');
+		 $data['product'] = $this->product_model->get($product_id);
+		 $this->load->view('product/photo_management',$data);
+		 //$this->product
+	}
+	public function add_photo()
+	{
+	
+		if(!check_authen('staff',TRUE)) return;
+		 
+		$this->load->library('upload');
+        $result_photo = $this->_upload_photo_file($this->input->post('product_id'),'photo');
+		$this->load->model('product_model');
+			$data['product'] =  $this->product_model->get($this->input->post('product_id'));
+			if ($data['product'] == FALSE)
+			{
+				redirect('admin/product');
+			}
+		$this->product_model->upload_photo($result_photo['file_name'] );
+       //$this->load->view('product/photo_management',$data);
 	}
 }
 ?>

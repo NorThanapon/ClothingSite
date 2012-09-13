@@ -136,7 +136,17 @@ class Product_model extends CI_Model
 		$sql = "DELETE FROM `products` WHERE product_id in(".$products.")";
 		$this->db->query($sql);		
 	}
-	
+	function add_photo()
+	{
+		
+		//echo ">>6666".$photo_id;
+		//$data['photo_id']= $photo_id;
+		
+		$data['product_id']= $this->input->post('product_id');
+		$data['color']=1;
+		//$this->$color = $this->input->post('color');
+		$this->db->insert('photos_product',$this);
+	}
 	
 
 }
