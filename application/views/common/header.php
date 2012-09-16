@@ -1,6 +1,6 @@
 <header>
     <div id="header-topmenu">
-        <?php echo anchor('#','Sign in', 'title="Sign in"'); ?>
+        <?php echo anchor('#','Sign in', 'title="Sign in"'); ?><!-- first,where link ,word,-->
         <?php echo anchor('#','Join us', 'title="Register"'); ?>
         <input type="text" placeholder="Enter product name or code" name="product_search"/>
         <input type="button" value="GO"/>
