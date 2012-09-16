@@ -435,7 +435,21 @@ div.report-items  .delete-button:hover{
 	background-image:url(../img/delete.gif);
 	background-repeat:no-repeat;
 	display:inline-block;
+	margin-left:3px;
 }
+
+div.report-items  .save-button,
+div.report-items  .save-button:active,
+div.report-items  .edit-button:focus,
+div.report-items  .save-button:hover{
+	width:13px;
+	height:14px;
+	background-image:url(../img/save_icon.jpg);
+	background-repeat:no-repeat;
+	display:inline-block;
+	margin-left:3px;
+}
+
 div.report-items table {
 	border-width: 1px;
 	border-spacing: 0px;
@@ -579,3 +593,47 @@ div.form-action {
 	padding:10px;
 }
 /* end form */
+
+#add-photo{
+margin-top:10px;
+margin-bottom:5px;
+}
+
+#add-photo label{
+display:inline-block;
+line-height: 120%;
+width:5%; 
+margin-top:5px;
+}
+
+#add-photo input{
+display:inline-block;
+margin-top: 0px;
+margin-bottom: 0px;
+height:23px;
+}
+
+#select-color{
+display:inline-block;
+}
+
+#btn-add-photo{
+margin-left:80px;
+}
+
+.photo-item img{
+	width:200px;
+	
+}
+
+.photo-item{
+margin-top:10px;
+margin-right:5px;
+margin-left:5px;
+float:left;
+vertical-align:bottom;
+}
+
+.photo-item select{
+	margin-top:5px;
+}
