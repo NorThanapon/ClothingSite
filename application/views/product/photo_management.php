@@ -27,19 +27,32 @@
 					<label for="color_name"> <?php echo $item->color_name; ?> </label>
 					<br />
 					 Select color:
-                        <select class="color_picker" name="color_image" id="ddl-delete-color">
+                        <select class="color_picker" name="color_<?php echo $item->image_id ; ?>" id="ddl-color-<?php echo $item->image_id ; ?>" >
                             <option value="">-- Select a color --</option>
                             <?php
-                                foreach ($all_colors as $color) {
+                                foreach ($all_colors as $color) 
+								{ 
+									if($color->color_id == $item->color_id)
+									{
+							?>
+										<option selected="selected" value="<?php echo $color->color_id; ?>" title="<?php echo asset_url().'db/colors/'.$color->file_name; ?>">
+											<?php echo $color->color_name; ?>
+										</option>
+							<?php
+									}
+									else
+									{
                             ?>
-                                <option value="<?php echo $color->color_id; ?>" title="<?php echo asset_url().'db/colors/'.$color->file_name; ?>">
-                                    <?php echo $color->color_name; ?>
-                                </option>
+										<option value="<?php echo $color->color_id; ?>" title="<?php echo asset_url().'db/colors/'.$color->file_name; ?>">
+											<?php echo $color->color_name; ?>
+										</option>
                             <?php
+									}
                                 }
                             ?>
                         </select>
-					<!--<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>-->
+					<?php echo anchor('admin/product/save_color/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Save Color",'class'=>'save-button')); ?>
+					<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>
 					<br />
 					
 				</div>
@@ -57,10 +70,8 @@
 			<label for="color">Color:</label>			
 			<?php $this->load->view('common/color/color_picker');?>
 			<br />
-			
 			<input type="hidden" name="product_id" value="<?php echo $product->product_id; ?>" />
-			<input type = "submit" name="submit" value="Add photo" />	
-					
+			<input type = "submit" name="submit" value="Add photo" />					
 			
 		</div>
 		
@@ -73,4 +84,16 @@
 	<?php $this->load->view('common/confirm_box');?>
 	<?php $this->load->view('common/color/color_box');?>	
     </body>
+	<script type="text/javascript">
+	<?php
+		foreach($photos as $item)
+		{
+	?>
+			$("#ddl-color-<?php echo $item->image_id ; ?>").msDropDown();
+	<?php
+		}
+		
+	?>
+	
+	</script>
 </html>
