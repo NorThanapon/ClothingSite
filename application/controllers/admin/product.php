@@ -212,8 +212,15 @@ class Product extends CI_Controller
 		    redirect('admin/product');
 	    }
 		$this->load->model('product_model');
-    
-	    $this->product_model->delete($product_id);
+		if(has_items_under_product($product_id))// check has items of this product or not
+		{
+			$this->load->library('form_validation');
+			$data['error_message'] = 'Can not delete '.$product->product_name_en.'. It has items undered it.';		
+			$data['product_list'] = $this->product_model->get();
+			$this->load->view('product/photo/'.$product_id, $data);
+			return;
+		}
+		$this->product_model->delete($product_id);	   
 	    $data['product_list'] = $this->product_model->get();
 	    redirect('admin/product');
 	}
@@ -221,10 +228,10 @@ class Product extends CI_Controller
 	{
 	    if(!check_authen('staff',TRUE)) 
 	    {
-		return;
+			return;
 	    }
 	    if($name !== FALSE) {
-		$name =  rawurldecode($name);
+			$name =  rawurldecode($name);
 	    }
 	    
 	    
@@ -303,8 +310,24 @@ class Product extends CI_Controller
 		$temp="";
 		foreach( $this->input->post('chb_select_product') as $item)
 		{
-			$temp = $temp."'".$item."',";			
-			$i++;					
+			if(!has_items_under_product($this->input->post('chb_select_product')))
+			{
+				$temp = $temp."'".$item."',";			
+				
+			}
+			else
+			{
+				$i++;
+			}
+								
+		}
+		if($i>0)
+		{
+			$this->load->library('form_validation');
+			$data['error_message'] = 'Can not delete some products. They have items undered it.';		
+			$data['product_list'] = $this->product_model->get();
+			$this->load->view('product/photo/'.$product_id, $data);
+			return;
 		}
 		$temp = substr($temp, 0,strlen($temp)-1); 		
 		$this->product_model->delete_batch($temp);
@@ -387,6 +410,16 @@ class Product extends CI_Controller
 		$data['photos'] = $this->product_model->get_photos($product_id);
 		redirect('admin/product/photo/'.$this->input->post('product_id'));
 	   
+	}
+	public function edit_color($photo_id,$product_id,$color_id)
+	{
+		if(!check_authen('staff',TRUE)) return;
+		$this->load->model('product_model');
+        $this->product_model->edit_color($photo_id,$color_id);
+		$data['product'] = $this->product_model->get($this->input->post('product_id'));
+		$data['photos'] = $this->product_model->get_photos($product_id);
+		redirect('admin/product/photo/'.$product_id);
+		
 	}
 }
 ?>

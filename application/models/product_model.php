@@ -175,8 +175,8 @@ class Product_model extends CI_Model
 	}
 	function get_latest()
     {
-	$this->db->order_by('image_id', 'desc');
-	$this->db->limit(1);
+		$this->db->order_by('image_id', 'desc');
+		$this->db->limit(1);
         $query = $this->db->get('images');	
 		//echo "in DB ".$query->row();
         return $query->row();
@@ -199,7 +199,28 @@ class Product_model extends CI_Model
             return $query->result();
         //return FALSE;
     }
-	
+	function edit_color($photo_id,$color_id)
+	{
+		$data = array(
+			'color_id' => $color_id,			
+			);
+		$this->db->update('products_colors',$data,array('photo_id'=>$product_id));
+	}
+	function has_items_under_product($product_id)
+	{
+		if($cat_id !=false)
+		{
+			$query = $this->db->get_where('items',array('product_id' => $product_id));
+		}
+		if($query->num_rows()>0)
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
 
 }
 ?>
