@@ -49,8 +49,8 @@ class Color extends CI_Controller
                 $config2['source_image'] = './assets/db/colors/'.$config['file_name'];
                 $config2['create_thumb'] = FALSE;
                 $config2['maintain_ratio'] = FALSE;
-                $config2['width']	 = 14;
-                $config2['height']	= 14;
+                $config2['width']	 = 30;
+                $config2['height']	= 30;
                 $this->load->library('image_lib', $config2); 
                 $this->image_lib->resize();
                 return $this->upload->data();
