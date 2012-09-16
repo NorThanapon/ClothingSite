@@ -17,7 +17,7 @@ class Product_model extends CI_Model
 	var $isActive = '';
 	
 	function __construct() 
-	{
+ 	{
         parent::__construct();
     }
 

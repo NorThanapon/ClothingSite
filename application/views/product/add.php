@@ -33,11 +33,11 @@
 				{  
 					if(isset($form_brand_name)&&$form_brand_name==$item->brand_name)
 					{
-						echo "<option value=".$item->brand_name." selected='selected'>".$item->brand_name."</option>";
+						echo '<option value="'.$item->brand_name.'" selected="selected">'.$item->brand_name.'</option>';
 					}
 					else
 					{
-						echo "<option value=".$item->brand_name.">".$item->brand_name."</option>";
+						echo '<option value="'.$item->brand_name.'">'.$item->brand_name.'</option>"';
 					}
 				}
 				?>
@@ -53,11 +53,11 @@
 				{  
 					if(isset($form_cat_id)&&$form_cat_id==$item->cat_id)
 					{
-						echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+						echo '<option value="'.$item->cat_id.'" selected="selected">'.$item->cat_name_en.'</option>';
 					}
 					else
 					{
-						echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+						echo '<option value="'.$item->cat_id.'">'.$item->cat_name_en.'</option>';
 					}
 				}
 				?>
@@ -65,17 +65,12 @@
 			<?php echo form_error('cat_id', '<span class="form-error-message">', '</span>'); ?>
 		    
 			<br />
-			<label for="total_quantity">Total Quantity</label>
-			<input name="total_quantity" type="text" value="<?php if(isset($form_total_quantity)) echo $form_total_quantity; else echo'0'; ?>" type="text" type="text"/>*
-			<?php echo form_error('total_quantity', '<span class="form-error-message">', '</span>'); ?>
-		    
-			<br />
-			<label for="markup_price">Markup Price</label>
+			<label for="markup_price">Price</label>
 			<input name="markup_price" value="<?php if(isset($form_markup_price)) echo $form_markup_price; ?>" type="text" />*
 			<?php echo form_error('markup_price', '<span class="form-error-message">', '</span>'); ?>
 		    
 			<br />
-			<label for="markdown_price">Markdown Price</label>
+			<label for="markdown_price">Sale Price</label>
 			<input name="markdown_price" value="<?php if(isset($form_markdown_price)) echo $form_markdown_price; ?>" type="text"  type="text" />
 			<br />
 		    <label for="description_th">Description (Thai):</label>

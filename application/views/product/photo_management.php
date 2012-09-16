@@ -26,7 +26,20 @@
 					<img src="<?php echo asset_url().'db/colors/'.$item->color_file_name."";?> " />		
 					<label for="color_name"> <?php echo $item->color_name; ?> </label>
 					<br />
-					<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>
+					 Select color:
+                        <select class="color_picker" name="color_image" id="ddl-delete-color">
+                            <option value="">-- Select a color --</option>
+                            <?php
+                                foreach ($all_colors as $color) {
+                            ?>
+                                <option value="<?php echo $color->color_id; ?>" title="<?php echo asset_url().'db/colors/'.$color->file_name; ?>">
+                                    <?php echo $color->color_name; ?>
+                                </option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+					<!--<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>-->
 					<br />
 					
 				</div>

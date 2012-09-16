@@ -44,7 +44,7 @@ class Product extends CI_Controller
 		$data['form_product_name_en'] = $this->input->post('product_name_en');
 		$data['form_brand_name'] = $this->input->post('brand_name');
 		$data['form_cat_id'] = $this->input->post('cat_id');
-		$data['form_total_quantity'] = $this->input->post('total_quantity');
+		$data['form_total_quantity'] =0;
 		$data['form_markup_price']  = $this->input->post('markup_price');
 		$data['form_markdown_price']  = $this->input->post('markdown_price');
 		$data['form_description_th']  = $this->input->post('description_th');
@@ -66,7 +66,7 @@ class Product extends CI_Controller
 		$this->form_validation->set_rules('brand_name', 'Brand', 'trim|required');
 		$this->form_validation->set_rules('markup_price', 'Markup Price', 'trim|required');
 		$this->form_validation->set_rules('cat_id', 'Category', 'trim|required');
-		$this->form_validation->set_rules('total_quantity', 'Total Quantity', 'trim|required');
+		//$this->form_validation->set_rules('total_quantity', 'Total Quantity', 'trim|required');
 		
 		if ($this->form_validation->run() == FALSE)
         {
@@ -94,7 +94,7 @@ class Product extends CI_Controller
 			{
 				redirect('admin/product');
 			}
-            redirect('admin/product/photo_management/'.$this->input->post('product_id'));
+            redirect('admin/product/photo/'.$this->input->post('product_id'));
             return;
 		}
 		
@@ -138,7 +138,7 @@ class Product extends CI_Controller
 		$data['form_product_name_en'] = $this->input->post('product_name_en');
 		$data['form_brand_name'] = $this->input->post('brand_name');
 		$data['form_cat_id'] = $this->input->post('cat_id');
-		$data['form_total_quantity'] = $this->input->post('total_quantity');
+		//$data['form_total_quantity'] = $this->input->post('total_quantity');
 		$data['form_markup_price']  = $this->input->post('markup_price');
 		$data['form_markdown_price']  = $this->input->post('markdown_price');
 		$data['form_description_th']  = $this->input->post('description_th');
