@@ -51,7 +51,8 @@
                                 }
                             ?>
                         </select>
-					<?php echo anchor('admin/product/save_color/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Save Color",'class'=>'save-button')); ?>
+					<!--<?php echo anchor('admin/product/save_color/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Save Color",'class'=>'save-button')); ?>-->
+					save
 					<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>
 					<br />
 					
