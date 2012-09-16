@@ -206,12 +206,15 @@ class Product_model extends CI_Model
 			);
 		$this->db->update('products_colors',$data,array('photo_id'=>$product_id));
 	}
-	function has_items_under_product($product_id)
+	function has_items_under_products($product_ids)
 	{
-		if($cat_id !=false)
-		{
-			$query = $this->db->get_where('items',array('product_id' => $product_id));
-		}
+		
+		
+		//$query = $this->db->get_where('items',array('product_id' => $product_id));
+		$this->db->where_in('product_id',$product_ids);	
+		$query = $this->db->get('items');
+			
+		
 		if($query->num_rows()>0)
 		{
 			return TRUE;
@@ -221,6 +224,7 @@ class Product_model extends CI_Model
 			return FALSE;
 		}
 	}
+	
 
 }
 ?>

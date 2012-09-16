@@ -193,7 +193,7 @@ class Product extends CI_Controller
 			{
 				redirect('admin/product');
 			}
-            $this->load->view('product/photo_management',$data);
+            redirect('admin/product/photo/'.$product_id);
             return;
 		}
 		
@@ -212,12 +212,17 @@ class Product extends CI_Controller
 		    redirect('admin/product');
 	    }
 		$this->load->model('product_model');
-		if(has_items_under_product($product_id))// check has items of this product or not
+		$this->load->model('category_model');
+		$this->load->model('brand_model');
+		if($this->product_model->has_items_under_products(array($product_id)))// check has items of this product or not
 		{
+			$product=$this->product_model->get($product_id);
 			$this->load->library('form_validation');
 			$data['error_message'] = 'Can not delete '.$product->product_name_en.'. It has items undered it.';		
 			$data['product_list'] = $this->product_model->get();
-			$this->load->view('product/photo/'.$product_id, $data);
+			$data['category_list'] = $this->category_model->get();
+			$data['brand_list'] = $this->brand_model->get();
+			$this->load->view('product/list', $data);
 			return;
 		}
 		$this->product_model->delete($product_id);	   
@@ -304,35 +309,45 @@ class Product extends CI_Controller
 	    {
 			return;
 	    }		
-		$this->load->model('product_model');		
+		$this->load->model('product_model');	
+		$this->load->model('category_model');
+		$this->load->model('brand_model');
+		if($this->input->post('chb_select_product')==null)
+		{
+			$this->load->library('form_validation');
+			$data['error_message'] = 'Please select products.';		
+			$data['product_list'] = $this->product_model->get();
+			$data['category_list'] = $this->category_model->get();
+			$data['brand_list'] = $this->brand_model->get();
+			$this->load->view('product/list', $data);
+			
+			return;
+		}
+			
 		$i=0;		
 		$status=0;
 		$temp="";
 		foreach( $this->input->post('chb_select_product') as $item)
 		{
-			if(!has_items_under_product($this->input->post('chb_select_product')))
-			{
-				$temp = $temp."'".$item."',";			
-				
-			}
-			else
-			{
+			
+				$temp = $temp."'".$item."',";	
 				$i++;
-			}
-								
+							
 		}
-		if($i>0)
+		if($this->product_model->has_items_under_products($this->input->post('chb_select_product')))
 		{
 			$this->load->library('form_validation');
 			$data['error_message'] = 'Can not delete some products. They have items undered it.';		
-			$data['product_list'] = $this->product_model->get();
-			$this->load->view('product/photo/'.$product_id, $data);
+			$data['product_list'] = $this->product_model->get();			
+			$data['category_list'] = $this->category_model->get();
+			$data['brand_list'] = $this->brand_model->get();
+			$this->load->view('product/list', $data);
 			return;
 		}
+		
 		$temp = substr($temp, 0,strlen($temp)-1); 		
 		$this->product_model->delete_batch($temp);
-		$this->load->model('category_model');
-		$this->load->model('brand_model');
+		
 		$data['product_list'] = $this->product_model->get();
 		$data['category_list'] = $this->category_model->get();
 		$data['brand_list'] = $this->brand_model->get();

@@ -76,10 +76,11 @@
                 //$('#msg-adding-color').hide();
                 console.log(data);
                 option = jQuery.parseJSON(data);
-                $("#<?php echo $picker_control_id; ?> option[value='"+option.color_id+"']").remove();
-                $("#ddl-delete-color option[value='"+option.color_id+"']").remove();
-                $("#ddl-delete-color").msDropDown();
-                $("#<?php echo $picker_control_id; ?>").msDropDown();
+                $("option[value='"+option.color_id+"']").remove();
+                //$("#ddl-delete-color option[value='"+option.color_id+"']").remove();
+                $(".color_picker").msDropDown();
+				
+                //$("#<?php echo $picker_control_id; ?>").msDropDown();
                 
             },
             error: function(e) {console.log(e);},
@@ -106,20 +107,36 @@
             //Ajax events
             beforeSend: function () {$('#msg-adding-color').show(); },
             success: function(data, textStatus, jqXHR) {
+				//console.log(data);
                 $('#msg-adding-color').hide();
                 option = jQuery.parseJSON(data);
                 html_option = "<option value='"+option.color_id+"' title='<?php echo asset_url()."db/colors/"; ?>"+option.file_name+"'>";
                 html_option += option.color_name + "</option>";
-                $("#ddl-delete-color").append(html_option);
+				
+				$('.color_picker').each(function(index,element){
+					if($(element).find('option[value="-1"]').length>0)
+					{
+						$(html_option).insertBefore($(element).find('option[value="-1"]'));
+					}
+					else
+					{
+						$(element).append(html_option);
+					}
+					$(element).msDropDown();
+				});
+				
+                /*$("#ddl-delete-color").append(html_option);//
                 $("#ddl-delete-color").msDropDown();
+				
                 if($("#<?php echo $picker_control_id; ?> option[value='-1']").length > 0){
                     $(html_option).insertBefore("#<?php echo $picker_control_id; ?> option[value='-1']");
                 }
                 else {
                     $("#<?php echo $picker_control_id; ?>").append(html_option);   
-                }
+                }*/
                 $("#<?php echo $picker_control_id; ?>").val(option.color_id);
                 $("#<?php echo $picker_control_id; ?>").msDropDown();
+				
                 var fld = document.getElementById("form-add-color");
                 fld.reset();
                 $('#color-modal').jqmHide();

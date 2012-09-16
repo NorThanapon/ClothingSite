@@ -56,7 +56,8 @@
 			<th>Brand</th>
 			<th>Category</th>
 			<th>Total Quantity</th>
-			<th>Show</th>
+			<th>Date Add</th>
+			<th>Show</th>			
 			<th>&nbsp;</th>
 		    </tr>
 		</thead>
@@ -83,7 +84,8 @@
 				</td>
 				
 				<td><?php echo $item->total_quantity?></td>
-				<td><?php if($item->isActive == 1) echo "show"; else echo "hide"; ?></td>
+				<td><?php echo $item->DATE_ADD; ?></td>
+				<td><?php if($item->isActive == 1) echo "show"; else echo "hide"; ?></td>				
 				<td><!--<a href ="<?php echo "product/detail/".$item->product_id;?>" >Detail</a>-->
 					<?php echo anchor('admin/product/edit/'.$item->product_id, ' ', array('title'=>"Edit Product",'class'=>'edit-button')); ?>
 					<?php echo anchor('admin/product/delete/'.$item->product_id, ' ', array('title'=>"Delete Product",'class'=>'delete-button')); ?>
@@ -129,7 +131,7 @@
 		    .tablesorter({
 			headers: {
 			    0:{sorter:false},
-			    7:{sorter:false}
+			    8:{sorter:false}
 			}
 		    })
 		    .tablesorterPager({

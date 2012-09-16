@@ -81,7 +81,8 @@ class Inventory extends CI_Controller
 		$this->item_model->add();
 		
 		// update total quantity of products
-		$total = $this->item_model->get_total_quantity($this->input->post('product_id'));
+		
+		$total  = $this->product_model->get($this->input->post('product_id'));    
 		$item_quantity = $this->input->post('quantity');
 		$total = $total->total_quantity + $item_quantity;
 		$this->item_model->update_total_quantity($this->input->post('product_id'),$total);

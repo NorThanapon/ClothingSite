@@ -7,10 +7,10 @@
     <?php $this->load->view('common/admin_header');?>
 	
 	
-	    <h1>Photo of <?php echo $product->product_name_en; ?></h1> 
+	    <h1>Photos of <?php echo $product->product_name_en; ?></h1> 
 	    <div class="form-input">
 		<fieldset>
-		    <legend>Add Photos</legend>			
+		    <legend>Add a photo</legend>			
 			<?php echo form_open_multipart('admin/product/add_photo/', 'id="form-add-photo"'); ?>
 		<div id="add-photo">
 			<!--<div id="select-photo">-->
@@ -29,7 +29,7 @@
 		</fieldset>	
 		</form>
 	    <fieldset>
-			<legend>Existing</legend>
+			<legend>Existing photos</legend>
 			<?php 
 			foreach($photos as $item)
 			{
