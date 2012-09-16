@@ -6,6 +6,7 @@ class Tag_model extends CI_Model
     var $tag_name_th = '';
     var $tag_name_en = '';
     var $description_en = '';
+	var $total_quality='';
 	var $isActive = '';
 
     function __construct() 
@@ -26,15 +27,16 @@ class Tag_model extends CI_Model
 			$isAct = 0;
 		}		
 		$data = array(
-			'tag_name_th' => $this->input->post('cat_name_th'),
-			'tag_name_en' => $this->input->post('cat_name_en'),
+			'tag_name_th' => $this->input->post('tag_name_th'),
+			'tag_name_en' => $this->input->post('tag_name_en'),
 			'description_en' => $this->input->post('description_en'),
 			'isActive' => $isAct
+			'total_quantity'  => $this->input->post('total_quantity'),
 			);
 		$this->db->insert('tags', $data); 
 	}
 	
-	function edit($cat_id)
+	function edit($tag_id)
 	{
 		$isAct = 1;
 		if($this->input->post('isActive')==FALSE)
@@ -42,8 +44,8 @@ class Tag_model extends CI_Model
 			$isAct=0;
 		}
 		$data = array(
-			'tag_name_th' => $this->input->post('cat_name_th'),
-			'tag_name_en' => $this->input->post('cat_name_en'),
+			'tag_name_th' => $this->input->post('tag_name_th'),
+			'tag_name_en' => $this->input->post('tag_name_en'),
 			'description_en' => $this->input->post('description_en'),
 			'isActive' => $isAct
 			);
@@ -68,21 +70,26 @@ class Tag_model extends CI_Model
 		
 	    return $query->row();
 	}
+	function get_product_in_tag($tag_id)
+	{
+		$this->db->select('*');
+		$this->db->from('produtcts');
+		$this->db->join('products_tags', 'products.product_id = products_tags.product_id');
+		$this->db->where('tag_id',$tag_id);
+		$query = $this->db->get();
+	    return $query->result();
+	}
 	
-	/*function search($parent, $name)
+	function search($name)
 	{
 		$where = "";
-		if ($parent != "0" && $parent != FALSE) $where = $where . "cat_parent = " . $parent;
 		if ($name != "" && $name != " " && $name != FALSE)
 		{
 			if ($where != "" ) $where = $where . " AND ";
-			$where = $where . "(tag_name_th LIKE '%".$name."%' OR cat_name_en LIKE '%".$name."%')";
+			$where = $where . "(tag_name_th LIKE '%".$name."%' OR tag_name_en LIKE '%".$name."%')";
 		}
-		
-		if ($where != "" ) $query = $this->db->get_where('categories_parent', $where);
-		else $query = $this->db->get('categories_parent');
 		return $query->result();
-	}*/
+	}
 
 }
 ?>
