@@ -1,0 +1,182 @@
+#content{
+    top:-30px;	
+	max-width:1000px;
+	position:relative;
+	width: 100%;
+	margin: 0 auto;
+	vertical-align:middle;	
+	}
+	
+#content-main{ 
+	position:relative;
+	width:79%;
+	float:right;
+	padding-top:5px;
+}
+
+#content-history {
+	position:relative;
+	border-bottom:1px solid #CCCCCC;
+	width:100%;
+	height:15px;
+	font-size:75%;	
+}
+
+
+.history-previous{
+	position:relative;
+	float:left;
+	color:#8C8C8C;	
+	margin-left:5px;
+}
+
+#content-image{
+	
+	position:relative;
+	float:left;
+	width:50%;	
+	margin-top:20px;
+	
+}
+
+#history-current
+{
+	position:relative;
+	float:left;
+	color:#F93;
+	margin-left:5px;
+}
+
+
+.main-image{
+	border:1px solid #ACACAC;
+	width:265px;
+	height:345px;
+	margin-left:100px
+}
+
+.sub-image{
+	border:1px solid #ACACAC;
+	width:80px;
+	height:110px;
+	position:relative;
+	float:left;
+	margin-top:20px;
+	margin-left:10px;
+}
+
+#product-sub{
+	margin-left:90px;
+}
+
+#content-detail{
+	position:relative;
+	float:right;
+	width:45%;	
+	margin-top:20px;
+}
+
+#detail-price {
+font-size:70%
+}
+
+#detail-price h3{
+	text-decoration:line-through;
+	
+}
+#detail-price h2{
+	
+	color:Red;
+	line-height:170%;
+	margin-left:10px;
+}
+
+#detail-product h2{
+	color:#CCCCCC;
+	font-size:75%;
+	line-height:120%;
+}
+
+#product-particular{
+position:relative;
+float:right;
+width:45%;
+border-bottom:2px solid #ACACAC;
+padding-bottom:15px;
+margin-top:20px;
+}
+
+#product-sizecolor{
+position:relative;
+float:right;
+width:45%;
+border-bottom:1px solid #000;
+padding-bottom:15px;
+margin-top:5px;
+}
+
+#detail-size select{
+	width:200px;
+	margin-left:10px;
+}
+
+#detail-size a{
+	text-decoration:underline;
+	font-size:90%;
+	margin-left:20px;
+}
+
+#product-color h2{
+	margin-top:15px;
+	color:#9C9C9C;
+	font-size:70%;
+}
+
+#color-image{
+	margin-left:15px;
+	margin-top:5px;
+}
+
+#product-color a{
+	margin-left:5px;
+}
+
+#product-quantity{
+position:relative;
+float:right;
+width:45%;
+padding-bottom:15px;
+margin-top:5px;
+}
+
+#product-quantity h2{
+	font-size:70%;
+	color:#9C9C9C;
+	
+}
+#product-quantity input{
+	margin-left:3px;
+	width:50px;
+}
+
+#product-quantity a{
+	float:right;
+	margin-top:5px;
+}
+
+#product-add {
+position:relative;
+float:right;
+width:45%;
+background-color:Black;
+color:#FFF;
+text-align:center;
+padding-top:5px;
+padding-bottom:5px;
+}
+
+#product-save{
+	float:right;
+	margin-top:10px;
+}
+

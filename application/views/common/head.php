@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="<?php echo asset_url().'css/main-content.css';?>" />
 <link rel="stylesheet" href="<?php echo asset_url().'css/jqmodal.css';?>" />
 <link rel="stylesheet" href="<?php echo asset_url().'css/main-footer.css';?>" />
+<link rel="stylesheet" href="<?php echo asset_url().'css/productlist-content.css';?>" />
+<link rel="stylesheet" href="<?php echo asset_url().'css/productname-content.css';?>" />
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery-1.7.1.min.js';?>" charset="utf-8"></script>     
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery.jqmodal.js';?>" charset="utf-8"></script>
 <script type="text/javascript" src="<?php echo asset_url().'js/clothing-app.js';?>" charset="utf-8"></script>

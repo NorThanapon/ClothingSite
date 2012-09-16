@@ -76,8 +76,14 @@ a.link-cart {
 #header-topmenu span.lang-link a{
     text-decoration:underline;
     margin-left:0px !important;
-    margin-right:0px !important;
+    margin-right:0px !important;	
 }
+
+#header-topmenu span.lang-link img{
+	
+	margin-top:0px;
+}
+
 /* end header topmenu */
 /* header nav bar */
 div.header-nav-bar {

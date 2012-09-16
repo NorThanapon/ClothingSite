@@ -5,10 +5,9 @@
 	<nav>
 		<section class="side-navbox" id="side-navbox-newarrivals">
 		<h2>NEW ARRIVALS</h2>
-		<a href="###">New In: Clothing</a><br />
-		<a href="###">New In: Shoes & Accs</a><br />
-		<a href="###">New In: Designer</a><br />
-		<a href="###">SALE - Up to 70% Off</a><br />
+		<a href="###">Clothing</a><br />
+		<a href="###">Shoes & Accs</a><br />
+		<a href="###">Designer</a><br />		
 		</section>
 		<section class="side-navbox" id="side-navbox-brand">
 		<h2>BRANDS</h2>
@@ -23,11 +22,11 @@
 		<a href="###">ST.ANDREWS</a><br />
 		<a href="###">ZARANYA</a><br />
 		</section>
-		<section class="side-navbox" id="side-navbox-collection">
+		<!-- <section class="side-navbox" id="side-navbox-collection">
 		<h2>COLLECTION</h2>
 		<a href="###"><-Collection-></a><br />
 		<a href="###"><-Collection-></a><br />
 		<a href="###"><-Collection-></a><br />
-		</section>
+		</section> -->
 	</nav>
 </div><!-- content-side -->

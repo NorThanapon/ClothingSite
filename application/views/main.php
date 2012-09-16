@@ -13,7 +13,7 @@
 					<a href="<?php echo asset_url().'img/main-branner.jpg'; ?>"><img src="<?php echo asset_url().'img/main-branner.jpg'; ?>"></a>
 					</div>
 					<div class="sub-branner">
-					<a href="<?php echo asset_url().'img/sub-branner1.jpg'; ?>"><img src="<?php echo asset_url().'img/sub-branner1.jpg'; ?>"></a>
+					<a href="<?php echo asset_url().'img/product1.jpg'; ?>"><img src="<?php echo asset_url().'img/product1.jpg'; ?>"></a>
 					</div>
 					<div class="sub-branner">
 					<a href="<?php echo asset_url().'img/sub-branner2.jpg'; ?>"><img src="<?php echo asset_url().'img/sub-branner2.jpg'; ?>"></a>

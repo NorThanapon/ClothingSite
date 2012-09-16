@@ -5,7 +5,8 @@
         <input type="text" placeholder="Enter product name or code" name="product_search"/>
         <input type="button" value="GO"/>
         <span class="lang-link">
-            <?php echo anchor('#','TH', array("title"=>"Register")); ?>/<span>EN</span>
+            <?php echo anchor('#','<img src="'.asset_url().'img/Thailandlogo.png" />TH', array("title"=>"Register")); ?>/
+			<span class="lang-link"><a href="###"><img src="<?php echo asset_url().'img/USAlogo.png'; ?>" />EN</a></span>
         </span>
     </div> <!-- end #header-menu -->
     <div id="header-logo">
