@@ -318,16 +318,16 @@ class Product extends CI_Controller
 	}
 	function _upload_photo_file($photo_id, $form_name) 
     {
+		
         if (!empty($_FILES[$form_name]['name'])) 
         {
             $config['upload_path'] = './assets/db/products/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '2000';
-            $config['overwrite'] = TRUE;
-            $config['file_name'] = $product_id.'_'.$form_name.'.'.substr(strrchr($_FILES[$form_name]['name'], '.'), 1);
-			echo $config['file_name']."---------------";//----------------------------------------------------------------------------------------
+            $config['overwrite'] = TRUE;			
+            $config['file_name'] = $photo_id.'_'.$form_name.'.'.substr(strrchr($_FILES[$form_name]['name'], '.'), 1);		
             $this->upload->initialize($config);
-
+		
             if ($this->upload->do_upload($form_name)) 
             {
                 return $this->upload->data();
@@ -337,13 +337,34 @@ class Product extends CI_Controller
 		echo "--No-------------";//----------------------------------------------------------------------------------------
         return FALSE;
     }
-	public function photo_management($product_id)//addPhoto change Name
+	public function photo($product_id)//addPhoto change Name
 	{
-		 if(!check_authen('staff',TRUE)) return;
-		 $this->load->model('product_model');
-		 $data['product'] = $this->product_model->get($product_id);
-		 $this->load->view('product/photo_management',$data);
-		 //$this->product
+		if(!check_authen('staff',TRUE)) return;
+		$this->load->model('product_model');
+		$data['product'] = $this->product_model->get($product_id);
+		$data['photos'] = $this->product_model->get_photos($product_id);
+		$data['page_title']='Manage Photo';
+		$this->load->model('color_model');
+        $data["all_colors"] = $this->color_model->get();
+        $data["colors"] = $data["all_colors"];
+        $data["allow_manage_color"] = TRUE;
+        $data["picker_control_name"] = "color";
+        $data["picker_control_id"] = "ddl-color";
+		
+		
+		$this->load->view('product/photo_management',$data);
+		 
+	}
+	public function delete_photo($photo_id,$product_id)
+	{
+		if(!check_authen('staff',TRUE)) return;
+		$this->load->model('product_model');
+        $photo = $this->product_model->get_photo_file($photo_id);		
+        $this->product_model->delete_photo($photo_id, './assets/db/products/'.$photo->file_name);
+		$data['product'] = $this->product_model->get($this->input->post('product_id'));
+		$data['photos'] = $this->product_model->get_photos($product_id);
+		redirect('admin/product/photo/'.$product_id);
+		
 	}
 	public function add_photo()
 	{
@@ -351,15 +372,21 @@ class Product extends CI_Controller
 		if(!check_authen('staff',TRUE)) return;
 		 
 		$this->load->library('upload');
-        $result_photo = $this->_upload_photo_file($this->input->post('product_id'),'photo');
 		$this->load->model('product_model');
-			$data['product'] =  $this->product_model->get($this->input->post('product_id'));
+		$photo_id = $this->product_model->get_latest()->image_id;
+		$photo_id++;		
+		$color_id = $this->input->post('color');
+        $result_photo = $this->_upload_photo_file($photo_id,'photo');		
+		$data['product'] =  $this->product_model->get($this->input->post('product_id'));
 			if ($data['product'] == FALSE)
 			{
 				redirect('admin/product');
 			}
-		$this->product_model->upload_photo($result_photo['file_name'] );
-       //$this->load->view('product/photo_management',$data);
+		$this->product_model->add_photo($result_photo['file_name'] ,$color_id);
+		$data['product'] = $this->product_model->get($this->input->post('product_id'));
+		$data['photos'] = $this->product_model->get_photos($product_id);
+		redirect('admin/product/photo/'.$this->input->post('product_id'));
+	   
 	}
 }
 ?>

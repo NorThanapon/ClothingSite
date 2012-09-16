@@ -136,17 +136,48 @@ class Product_model extends CI_Model
 		$sql = "DELETE FROM `products` WHERE product_id in(".$products.")";
 		$this->db->query($sql);		
 	}
-	function add_photo()
-	{
-		
-		//echo ">>6666".$photo_id;
-		//$data['photo_id']= $photo_id;
-		
-		$data['product_id']= $this->input->post('product_id');
-		$data['color']=1;
-		//$this->$color = $this->input->post('color');
-		$this->db->insert('photos_product',$this);
+	function add_photo($file_name,$color_id)
+	{		
+		$data = array(
+		    
+		    'product_id' => $this->input->post('product_id'),	
+			'color_id' => $color_id,
+			'file_name'=>$file_name
+			);
+		$this->db->insert('images',$data);
 	}
+	function delete_photo($photo_id,$file_name)
+	{
+		unlink($file_name);
+		$this->db->delete('images',array('image_id' => $photo_id));	
+		
+	}
+	function get_latest()
+    {
+	$this->db->order_by('image_id', 'desc');
+	$this->db->limit(1);
+        $query = $this->db->get('images');	
+		//echo "in DB ".$query->row();
+        return $query->row();
+	
+    }
+	function get_photo_file($image_id)
+	{
+		$query = $this->db->get_where('images', array('image_id' => $image_id));
+		return $query->row();
+	}
+	function get_photos($product_id=false)
+    {
+        if ($product_id === FALSE) 
+        {
+                $query = $this->db->get('products_colors');	
+                return $query->result();
+        }
+        $query = $this->db->get_where('products_colors', array('product_id' => $product_id));
+        //if ($query->num_rows() > 0)
+            return $query->result();
+        //return FALSE;
+    }
 	
 
 }
