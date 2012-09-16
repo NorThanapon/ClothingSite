@@ -3,8 +3,8 @@
     <?php
         foreach ($colors as $color) {
     ?>
-        <option value="<?php echo $color->color_id; ?>" title="<?php echo asset_url().'db/colors/'.$color->file_name; ?>">
-            <?php echo $color->color_name; ?>
+        <option value="<?php echo $color->color_id; ?>"   title="<?php echo asset_url().'db/colors/'.$color->file_name; ?>" <?php if(isset($form_color) && $form_color == $color->color_id || $color->color_id == isset($items->color_id) ) echo 'selected'; ?>>
+            <?php echo $color->color_name; echo $color->color_id; ?>
         </option>
     <?php
         }

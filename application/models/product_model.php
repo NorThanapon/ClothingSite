@@ -91,6 +91,27 @@ class Product_model extends CI_Model
 	    return $query->row();
 	}
 	
+	function get_by_name($product_name = FALSE)
+	{
+	
+	    $where = "";
+		if($product_name === FALSE)
+		{
+			$query = $this->db->get('products');
+			if ($query->num_rows() > 0)
+				return $query->result();
+			return FALSE;
+		}
+		if ($product_name != "" && $product_name != " " && $product_name != FALSE)
+		{
+			if ($where != "" ) $where = $where . " AND ";
+			$where = $where . "(product_name_en LIKE '%".$product_name."%' OR product_name_th LIKE '%".$product_name."%')";
+		}
+		
+	   if ($where != "" ) $query = $this->db->get_where('products', $where);
+			return $query->result();
+	}
+	
 	function select($query)
 	{
 		$query = $this->db->query($query);

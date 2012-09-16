@@ -17,9 +17,10 @@
 	    <fieldset>
 		<legend>Search Options</legend>
 		<label>Product's Name:</label>
-		<input id="txt_product_name" type="text" name="product_name" value="" />
-		<label for="txt_item_amount">Amount:</label>
-		<input type="text" name="item_amount_low" />-<input type="text" name="item_amount_high" />
+		<input id="txt_product_name" type="text" name="product_name" value="<?php if(isset($search_product_name)) echo $search_product_name;?>" />
+		<label for="txt_item_low">Amount:</label>
+		<input type="text" class="amount" id="item_amount_low" value="<?php if(isset($search_item_amount_low)) echo $search_item_amount_low;?>" /> - 
+		<input type="text" class="amount" id="item_amount_high" value="<?php if(isset($search_item_amount_high)) echo $search_item_amount_high;?>" />
 		<input id="btn_filter" type="button" value="Search" />
 	    </fieldset>
 	</div>
@@ -59,8 +60,8 @@
 				<td><?php echo $item->color_id;?></td>
 				<td><?php echo $item->quantity;?></td>
 				<td>
-					 <?php echo anchor('admin/item/edit/'.$item->item_id, ' ', array('title'=>"Edit Item",'class'=>'edit-button')); ?>
-					 <?php echo anchor('admin/item/delete/'.$item->item_id, ' ', array('title'=>"Delete Item",'class'=>'delete-button')); ?>
+					 <?php echo anchor('admin/inventory/edit/'.$item->item_id, ' ', array('title'=>"Edit Item",'class'=>'edit-button')); ?>
+					 <?php echo anchor('admin/inventory/delete/'.$item->item_id, ' ', array('title'=>"Delete Item",'class'=>'delete-button')); ?>
 				</td>
             </tr>
             <?php
@@ -83,8 +84,21 @@
 		});
 		$('#btn_filter').click(function() {
 		    var url = document.URL;
-		    url = url.substring(0, url.indexOf('/category') + 9);
-		    url = url + '/search/' + $('#ddl_cat_parent').val() + '/' + $('#txt_cat_name').val();
+		    url = url.substring(0, url.indexOf('/inventory') + 10);
+			var product_name =  $('#txt_product_name').val();
+			if($('#txt_product_name').val() == "" || $('#txt_product_name').val() ==" " || $('#txt_product_name').val() == false || $('#txt_product_name').val() == "-"){
+				product_name = "-";
+			}
+			var amount_low =  $('#item_amount_low').val();
+			if($('#item_amount_low').val() == "" || $('#item_amount_low').val() ==" " || $('#item_amount_low').val() == false || $('#item_amount_low').val() == "-"){
+				amount_low = "0";
+			}
+			var amount_high = $('#item_amount_high').val()
+			if($('#item_amount_high').val() == "" || $('#item_amount_high').val() ==" " || $('#item_amount_high').val() == false || $('#item_amount_high').val() == "-"){
+				amount_high = "0";
+			}
+			
+		    url = url + '/search/' +  product_name + '/' +amount_low+'/' + amount_high;
 		    window.location = url;
 		});
 		        

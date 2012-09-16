@@ -409,6 +409,10 @@ div.report-filter fieldset legend {
 	color:#555;
 	font-size:85%;
 }
+div.report-filter input[type=text].amount {
+	width:30px;
+}
+
 /* end report filter */
 /*report items*/
 div.report-items {
