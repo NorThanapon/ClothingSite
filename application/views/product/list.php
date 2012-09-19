@@ -58,7 +58,7 @@
 			<th>Total Quantity</th>
 			<th>Date Add</th>
 			<th>Show</th>			
-			<th>&nbsp;</th>
+			<th width="30" >&nbsp;</th>
 		    </tr>
 		</thead>
 		<tbody>

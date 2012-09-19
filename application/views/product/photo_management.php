@@ -12,7 +12,7 @@
 		<fieldset>
 		    <legend>Add a photo</legend>			
 			<?php echo form_open_multipart('admin/product/add_photo/', 'id="form-add-photo"'); ?>
-		<div id="add-photo">
+			<div id="add-photo">
 			<!--<div id="select-photo">-->
 		    <label for="photo">Photo:</label>
 		    <input name="photo" type ="file"/>
@@ -34,14 +34,21 @@
 		<?php 
 			foreach($photos as $item)
 			{
-		?>
-				<div class="report-items photo-item">
-					<!--<img src="<?php echo asset_url().'db/products/'.$item->image_file_name."";?>" />-->
+		?>		
+				
+				
+				
+				
+				<div class="report-items photo-item">	
+				<?php echo form_open('admin/product/edit_color/'.$product->product_id); ?>	
+				
 				<a class="fancybox-button" rel="fancybox-button" href="<?php echo asset_url().'db/products/'.$item->image_file_name.""; ?>" title="<?php echo $item->image_file_name; ?>">
 				<img src="<?php echo asset_url().'db/products/'.$item->image_file_name."";?>" alt="" />
 				</a>
+				<input type="hidden" name="image_id" value="<?php echo $item->image_id ; ?>">
 				<br />
-					    <select class="color_picker" name="color_<?php echo $item->image_id ; ?>" id="ddl-color-<?php echo $item->image_id ; ?>" >
+				
+					    <select class="color_picker" name="color_change" id="ddl-color-<?php echo $item->image_id ; ?>" >
                             <option value="">-- Select a color --</option>
                             <?php
                                 foreach ($all_colors as $color) 
@@ -58,19 +65,18 @@
 									{
                             ?>
 										<option value="<?php echo $color->color_id; ?>" title="<?php echo asset_url().'db/colors/'.$color->file_name; ?>">
-											<?php echo $color->color_name.'---'.$color->color_id; ?>
+											<?php echo $color->color_name; ?>
 										</option>
                             <?php
 									}
                                 }
                             ?>
-                        </select>
-					
-					<?php echo anchor('admin/product/edit_color/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Save Color",'class'=>'save-button')); ?>
+                        </select>			
+					    <input type="submit" name="submit_<?php echo $item->image_id ;?>" value="save" class='save-button' ">
 					
 					<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>
 					<br />
-					
+					</form>
 				</div>
 		<?php		
 			}
