@@ -81,7 +81,7 @@ class Item_model extends CI_Model
 			if ($where != "" ) $where = $where . " AND ";
 			$where = $where . "( quantity BETWEEN ".$item_amount_low." AND ".$item_amount_high.")";
 		}
-		echo $where;
+		//echo $where;
 		if ($where != "" ) $query = $this->db->get_where('products_items', $where);
 		else $query = $this->db->get('items');
 		return $query->result();

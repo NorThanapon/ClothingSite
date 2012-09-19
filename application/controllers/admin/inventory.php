@@ -251,6 +251,12 @@ class Inventory extends CI_Controller
 		$this->load->model('item_model');
 		$this->load->model('product_model');
 		
+		if($item_amount_low!=0 && $item_amount_high==0)
+		{
+			$item_amount_high = $item_amount_low;
+			$item_amount_low = 0;		
+		}
+		
 		$data['search_product_name'] = $product_name;
 	    $data['search_item_amount_low'] = $item_amount_low;
 		$data['search_item_amount_high'] = $item_amount_high;
@@ -266,11 +272,6 @@ class Inventory extends CI_Controller
             return;
     	}
 		
-	    if($item_amount_low!=0 && $item_amount_high==0)
-		{
-			$item_amount_high = $item_amount_low;
-			$item_amount_low = 0;		
-		}
 		
 	    $data['page_title'] = 'Admin: Inventory Management';
 	    $data['item_list'] = $this->item_model->search($product_name, $item_amount_low, $item_amount_high);
