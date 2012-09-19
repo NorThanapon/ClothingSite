@@ -30,7 +30,7 @@ class Tag_model extends CI_Model
 			'tag_name_th' => $this->input->post('tag_name_th'),
 			'tag_name_en' => $this->input->post('tag_name_en'),
 			'description_en' => $this->input->post('description_en'),
-			'isActive' => $isAct
+			'isActive' => $isAct,
 			'total_quantity'  => $this->input->post('total_quantity'),
 			);
 		$this->db->insert('tags', $data); 
