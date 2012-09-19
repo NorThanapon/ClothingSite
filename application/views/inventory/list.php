@@ -89,17 +89,26 @@
 			if($('#txt_product_name').val() == "" || $('#txt_product_name').val() ==" " || $('#txt_product_name').val() == false || $('#txt_product_name').val() == "-"){
 				product_name = "-";
 			}
+			/*
+			if($('#item_amount_low').val() != "" && !$('#item_amount_low').val().match('^(0|[1-9][0-9]*)$'))
+			{
+				//jAlert("Value in the Amount field must be numeric.", "ALERT")
+				jAlert('This is a custom alert box');
+				return false;
+			}*/
 			var amount_low =  $('#item_amount_low').val();
 			if($('#item_amount_low').val() == "" || $('#item_amount_low').val() ==" " || $('#item_amount_low').val() == false || $('#item_amount_low').val() == "-"){
 				amount_low = "0";
 			}
+			
+			
 			var amount_high = $('#item_amount_high').val()
 			if($('#item_amount_high').val() == "" || $('#item_amount_high').val() ==" " || $('#item_amount_high').val() == false || $('#item_amount_high').val() == "-"){
 				amount_high = "0";
 			}
 			
 		    url = url + '/search/' +  product_name + '/' +amount_low+'/' + amount_high;
-		    window.location = url;
+			window.location = url;
 		});
 		        
 		$(".tablesorter").find("tr:even").addClass("even");
