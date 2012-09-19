@@ -251,28 +251,33 @@ class Inventory extends CI_Controller
 		$this->load->model('item_model');
 		$this->load->model('product_model');
 		
-		if($item_amount_low!=0 && $item_amount_high==0)
+		
+		if($product_name== '-' && $item_amount_low == '-' && $item_amount_high == '-')
 		{
-			$item_amount_high = $item_amount_low;
-			$item_amount_low = 0;		
+			$data['page_title'] = 'Admin: Inventory Management';
+			$data['item_list'] = $this->item_model->get();
+			$data['product_list'] = $this->product_model->get();			
+			$this->load->view('inventory/list', $data);
+            return;
 		}
 		
 		$data['search_product_name'] = $product_name;
 	    $data['search_item_amount_low'] = $item_amount_low;
 		$data['search_item_amount_high'] = $item_amount_high;
 		
-		if (!is_numeric($item_amount_low) || !is_numeric($item_amount_high))
-        {
-			
+		
+		if(($item_amount_low == '-' && is_numeric($item_amount_high)) || ($item_amount_high == '-' && is_numeric($item_amount_low)))
+		{
 			$data['page_title'] = 'Admin: Inventory Management';
-            $data['error_message'] = 'Amount field must be numeric.';
-			$data['item_list'] = $this->item_model->get();
-			$data['product_list'] = $this->product_model->get();			
-			$this->load->view('inventory/list', $data);
-            return;
-    	}
+			$data['item_list'] = $this->item_model->search($product_name, $item_amount_low, $item_amount_high);
+			$data['item_list_2'] = $this->item_model->get();
+			$data['product_list'] = $this->product_model->get();
+				
+			$this->load->view('inventory/list',$data);
+			return;
+		}
 		
-		
+			
 	    $data['page_title'] = 'Admin: Inventory Management';
 	    $data['item_list'] = $this->item_model->search($product_name, $item_amount_low, $item_amount_high);
 		$data['item_list_2'] = $this->item_model->get();

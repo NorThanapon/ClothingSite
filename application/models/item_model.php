@@ -76,12 +76,21 @@ class Item_model extends CI_Model
 			if ($where != "" ) $where = $where . " AND ";
 			$where = $where . "( product_name_en  LIKE '%".$product_name."%' OR product_name_th LIKE '%".$product_name."%' )";
 		}
-		if($item_amount_low > 0 || $item_amount_high >0 )
+		if($item_amount_low == '-' && $item_amount_high > 0)
+		{
+			$item_amount_low = 0;
+		}
+		if($item_amount_low > 0 && $item_amount_high == '-')
+		{
+			$item_amount_high = 9999;
+			
+		}		
+		if($item_amount_low != '-' || $item_amount_high != '-' )
 		{
 			if ($where != "" ) $where = $where . " AND ";
-			$where = $where . "( quantity BETWEEN ".$item_amount_low." AND ".$item_amount_high.")";
+			$where = $where . "( quantity >= ".$item_amount_low." AND quantity <= ".$item_amount_high.")";
 		}
-		//echo $where;
+	
 		if ($where != "" ) $query = $this->db->get_where('products_items', $where);
 		else $query = $this->db->get('items');
 		return $query->result();

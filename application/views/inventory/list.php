@@ -98,13 +98,13 @@
 			}*/
 			var amount_low =  $('#item_amount_low').val();
 			if($('#item_amount_low').val() == "" || $('#item_amount_low').val() ==" " || $('#item_amount_low').val() == false || $('#item_amount_low').val() == "-"){
-				amount_low = "0";
+				amount_low = "-";
 			}
 			
 			
 			var amount_high = $('#item_amount_high').val()
 			if($('#item_amount_high').val() == "" || $('#item_amount_high').val() ==" " || $('#item_amount_high').val() == false || $('#item_amount_high').val() == "-"){
-				amount_high = "0";
+				amount_high = "-";
 			}
 			
 		    url = url + '/search/' +  product_name + '/' +amount_low+'/' + amount_high;
