@@ -204,7 +204,7 @@ class Product_model extends CI_Model
 		$data = array(
 			'color_id' => $color_id,			
 			);
-		$this->db->update('products_colors',$data,array('photo_id'=>$product_id));
+		$this->db->update('images',$data,array('image_id'=>$photo_id));
 	}
 	function has_items_under_products($product_ids)
 	{

@@ -426,14 +426,19 @@ class Product extends CI_Controller
 		redirect('admin/product/photo/'.$this->input->post('product_id'));
 	   
 	}
-	public function edit_color($photo_id,$product_id,$color_id)
+	public function edit_color($photo_id,$product_id)
 	{
 		if(!check_authen('staff',TRUE)) return;
 		$this->load->model('product_model');
+		//$color_id=$this->input->post('color_38');
+		$color_id =  'color_'.$photo_id;
+		echo 'color_'.$photo_id.'>>>>>'.$this->input->post($color_id).'................>'.$color_id;
         $this->product_model->edit_color($photo_id,$color_id);
 		$data['product'] = $this->product_model->get($this->input->post('product_id'));
 		$data['photos'] = $this->product_model->get_photos($product_id);
-		redirect('admin/product/photo/'.$product_id);
+		//echo "test 436 :".$photo_id;
+		print_r(">>>>>>".$this->input->post('color'));
+		//redirect('admin/product/photo/'.$product_id);
 		
 	}
 }

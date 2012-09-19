@@ -30,13 +30,17 @@
 		</form>
 	    <fieldset>
 			<legend>Existing photos</legend>
-			<?php 
+			 
+		<?php 
 			foreach($photos as $item)
 			{
 		?>
 				<div class="report-items photo-item">
-					<img src="<?php echo asset_url().'db/products/'.$item->image_file_name."";?>" />		
-					<br />
+					<!--<img src="<?php echo asset_url().'db/products/'.$item->image_file_name."";?>" />-->
+				<a class="fancybox-button" rel="fancybox-button" href="<?php echo asset_url().'db/products/'.$item->image_file_name.""; ?>" title="<?php echo $item->image_file_name; ?>">
+				<img src="<?php echo asset_url().'db/products/'.$item->image_file_name."";?>" alt="" />
+				</a>
+				<br />
 					    <select class="color_picker" name="color_<?php echo $item->image_id ; ?>" id="ddl-color-<?php echo $item->image_id ; ?>" >
                             <option value="">-- Select a color --</option>
                             <?php
@@ -54,7 +58,7 @@
 									{
                             ?>
 										<option value="<?php echo $color->color_id; ?>" title="<?php echo asset_url().'db/colors/'.$color->file_name; ?>">
-											<?php echo $color->color_name; ?>
+											<?php echo $color->color_name.'---'.$color->color_id; ?>
 										</option>
                             <?php
 									}
@@ -62,7 +66,8 @@
                             ?>
                         </select>
 					
-					<?php echo anchor('admin/product/save_color/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Save Color",'class'=>'save-button')); ?>
+					<?php echo anchor('admin/product/edit_color/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Save Color",'class'=>'save-button')); ?>
+					
 					<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>
 					<br />
 					
@@ -83,10 +88,40 @@
 	<?php $this->load->view('common/confirm_box');?>
 	<?php $this->load->view('common/color/color_box');?>	
     </body>
+	
 	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		
+		$('.fancybox-button').fancybox({
+				openEffect  : 'none',
+				closeEffect : 'none',
+				prevEffect : 'none',
+				nextEffect : 'none',
+				closeBtn  : false,
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					buttons	: {}
+				},
+				afterLoad : function() {
+					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+				}
+			});
+
+	});
+	
+	$(document).ready(function() {
+		//add confirm event for delete button
+		$('a.delete-button').click(function() { 
+		    confirm('Confirm for deletion','Do you want to delete this category.',this.href, 'Delete'); 
+		    return false;
+	});
 	$("#btn-add-photo").click(function(){
 		document.getElementById("form-add-photo").submit();
 	});
+		
 	<?php
 		foreach($photos as $item)
 		{
@@ -96,6 +131,6 @@
 		}
 		
 	?>
-	
+	});
 	</script>
 </html>
