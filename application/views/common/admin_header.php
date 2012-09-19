@@ -22,11 +22,11 @@
                     </li>
                     <li>
                         <?php echo anchor('admin/inventory', 'Inventory', 'title="Manage Inventory"'); ?>
-                    </li>                    
-					<li>
-                        <?php echo anchor('admin/inventory', 'Tag', 'title="Manage Tag"'); ?>
                     </li>
 					<li>
+                        <?php echo anchor('admin/tag', 'Tag', 'title="Manage Tag"'); ?>
+                    </li>
+                    <li>
                         <a href="#">
                             Banner
                         </a>
