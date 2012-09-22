@@ -24,6 +24,8 @@ class Product extends CI_Controller
 	{
 		$data['dup_message_th']="";
 		$data['dup_message_en']="";
+		$data['page'] = 'product/add';
+        
 		if(!check_authen('staff',TRUE)) {	
 			return;       
 	    }
@@ -38,7 +40,7 @@ class Product extends CI_Controller
 		$data['products'] = $this->product_model->get();
 		if (!$this->input->post('submit') && !$this->input->post('manage_photo')) 
 	    {    
-			$this->load->view('product/add',$data);
+			$this->load->view('main_admin_page',$data);
 			return;
 	    }
 		//form submitted
@@ -76,14 +78,14 @@ class Product extends CI_Controller
             $data['error_message'] = 'Please fill in the field that is required';
 			$data['brand'] = $this->brand_model->get();
 			$data['category'] = $this->category_model->get();    
-			$this->load->view('product/add', $data);
+			$this->load->view('main_admin_page',$data);
             return;
     	}
 		$this->load->model('product_model');
         if($this->product_model->get($data['form_product_id'])!=FALSE)
         {
             $data['error_message'] = 'Duplicate productID. The productID you entered is already existed in the database.';
-            $this->load->view('product/add',$data);
+            $this->load->view('main_admin_page',$data);
             return;
         }
 		//check none duplicate productID
@@ -96,12 +98,18 @@ class Product extends CI_Controller
 			if ($data['product'] == FALSE)
 			{
 				redirect('admin/product');
+				$data['page'] = 'product/list';
+				$this->load->view('main_admin_page',$data);
 			}
             redirect('admin/product/photo/'.$this->input->post('product_id'));
+			//$data['page'] = 'admin/product/photo/'.$this->input->post('product_id');
+			//$this->load->view('main_admin_page',$data);
             return;
 		}
 		
-		redirect('admin/product');	
+		redirect('admin/product');
+		//$data['page'] = 'product/list';		
+		//$this->load->view('main_admin_page',$data);
 	}
 	
 	public function edit($product_id=FALSE)
@@ -391,9 +399,10 @@ class Product extends CI_Controller
         $data["allow_manage_color"] = TRUE;
         $data["picker_control_name"] = "color";
         $data["picker_control_id"] = "ddl-color";
+		$data['page'] = 'product/photo_management';
+        $this->load->view('main_admin_page',$data);
 		
-		
-		$this->load->view('product/photo_management',$data);
+		//$this->load->view('product/photo_management',$data);
 		 
 	}
 	public function delete_photo($photo_id,$product_id)

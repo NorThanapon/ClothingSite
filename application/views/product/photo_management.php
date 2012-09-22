@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html class="admin">
-    <head>
-        <?php $this->load->view('common/admin_head');?>
-    </head>
-    <body>
-    <?php $this->load->view('common/admin_header');?>
-	
 	
 	    <h1>Photos of <?php echo $product->product_name_en; ?></h1> 
 	    <div class="form-input">
@@ -93,7 +85,7 @@
 	<?php $this->load->view('common/admin_footer');?>
 	<?php $this->load->view('common/confirm_box');?>
 	<?php $this->load->view('common/color/color_box');?>	
-    </body>
+
 	
 	<script type="text/javascript">
 	
@@ -121,7 +113,7 @@
 	$(document).ready(function() {
 		//add confirm event for delete button
 		$('a.delete-button').click(function() { 
-		    confirm('Confirm for deletion','Do you want to delete this category.',this.href, 'Delete'); 
+		    confirm('Confirm for deletion','Do you want to delete this image.',this.href, 'Delete'); 
 		    return false;
 	});
 	$("#btn-add-photo").click(function(){
@@ -139,4 +131,3 @@
 	?>
 	});
 	</script>
-</html>
