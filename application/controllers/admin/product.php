@@ -14,7 +14,10 @@ class Product extends CI_Controller
 		$data['product_list'] = $this->product_model->get();
 		$data['category_list'] = $this->category_model->get();
 		$data['brand_list'] = $this->brand_model->get();
-        $this->load->view('product/list',$data);
+		$data['page'] = 'product/list';
+        $this->load->view('main_admin_page',$data);
+
+       // $this->load->view('product/list',$data);
     }
 	
 	public function add() 

@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html class="admin">
-    <head>
-        <?php $this->load->view('common/admin_head');?>
-    </head>
-    <body>
-        <?php $this->load->view('common/admin_header');?>
+
 		
 	<h1>Product Management</h1>
         <div class="page-action">
@@ -110,8 +104,7 @@
 		<input type = "submit" value = "Update" />
 		<input type = "submit" value = "Delete" />
 	    </fieldset>
-	</div>
-        <?php $this->load->view('common/admin_footer');?>
+	
 		<?php $this->load->view('common/confirm_box');?>
 	<script type="text/javascript">
 	    $(document).ready(function() { 
@@ -146,5 +139,3 @@
 		});
 	    }); 
 	</script>
-    </body>
-</html>
