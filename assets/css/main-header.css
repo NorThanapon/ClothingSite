@@ -106,20 +106,69 @@ div.header-nav-bar {
     display: inline-block;
     border-top-left-radius: .3em;
     border-top-right-radius: .3em;
+	float:left;
 }
+#header-nav span.nav-cat-top .submenu{
+	display:none;
+	min-width:150px;
+	background-color:white;
+	color:#777;
+	border-top:solid 3px #000;
+	text-align:left;
+	padding-top:5px;
+	padding-left:10px;
+	font-weight:normal;
+	border-bottom-left-radius: .2em;
+	border-bottom-right-radius: .2em;
+	 -moz-box-shadow: -2px 0px 4px #888;
+    -webkit-box-shadow: -2px 0px 4px #888;
+    box-shadow: -2px 0px 4px #888;
+}
+
+#header-nav span.nav-cat-top:hover .submenu{
+	display:block;
+	
+}
+
+#header-nav span.nav-cat-top .submenu .left-submenu{
+	width:150px;
+	float:left;
+}
+
+#header-nav span.nav-cat-top .submenu .right-submenu{
+	display:none;
+	width:150px;
+	background-color:white;
+	float:left;
+	padding-left:10px;
+}
+
+#header-nav span.nav-cat-top .submenu a{
+	display:block;
+}
+
+#header-nav span.nav-cat-top .submenu a:hover{
+	color:black;	
+}
+
+#header-nav span.nav-cat-top .submenu .right-submenu .sub-cat{
+	display:none;
+}
+ 
+
 #header-nav span.nav-cat-top:hover {
     background-color:#2D2D2D;
     color:white;
-    -moz-box-shadow: -2px 0px 4px #888;
-    -webkit-box-shadow: -2px 0px 4px #888;
-    box-shadow: -2px 0px 4px #888;
+    -moz-box-shadow: -2px -1px 4px #888;
+    -webkit-box-shadow: -2px -1px 4px #888;
+    box-shadow: -2px -1px 4px #888;
 }
 #header-nav span.nav-cat-top-active {
     background-color:#2D2D2D;
     color:white;
-    -moz-box-shadow: -2px 0px 4px #888;
-    -webkit-box-shadow: -2px 0px 4px #888;
-    box-shadow: -2px 0px 4px #888;
+    -moz-box-shadow: -2px -1px 4px #888;
+    -webkit-box-shadow: -2px -1px 4px #888;
+    box-shadow: -2px -1px 4px #888;
 }
 /* end header nav */
 /* header menu */

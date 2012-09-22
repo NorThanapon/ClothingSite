@@ -16,6 +16,21 @@
     <div id="header-nav" class="header-nav-bar">
         <span class="nav-cat-top">
             <?php echo anchor('#','WOMEN', ''); ?>
+			<div class="submenu">
+				<div class="left-submenu">
+					<?php echo anchor('#','SHIRT', 'cat_id="1"'); ?>
+					<?php echo anchor('#','T-SHIRT', 'cat_id="2"'); ?>
+				</div>
+				<div class="right-submenu">
+					<div class="sub-cat" sup_cat_id="1">
+						test1
+					</div>
+					<div class="sub-cat" sup_cat_id="2">
+						test2
+					</div>
+				</div>
+				<div class="clear-float"></div>
+			</div>
         </span>
         <span class="nav-cat-top">
             <?php echo anchor('#','MEN', ''); ?>
