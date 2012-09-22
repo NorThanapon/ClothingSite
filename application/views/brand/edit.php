@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html class="admin">
-    <head>
-        <?php $this->load->view('common/admin_head');?>
-    </head>
-    <body>
-        <?php $this->load->view('common/admin_header');?>
+
 	<?php echo form_open_multipart('admin/brand/edit/'.$brand->brand_id);?>
 	<h1>Edit Brand</h1> 
 	    <div class="form-input">
@@ -38,7 +32,6 @@
 		<input class="button btn-submit" type = "submit" name="submit" value="Save Change"/>	
 	    </div>
 	</form>
-	<?php $this->load->view('common/admin_footer');?>
 	<script type="text/javascript">
 	    $(document).ready(function() {
 		$('#btn-remove-logo').click(function(){
@@ -48,5 +41,3 @@
 		});
 	    });
 	</script>
-    </body>
-</html>

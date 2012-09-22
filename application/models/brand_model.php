@@ -54,7 +54,7 @@ class Brand_model extends CI_Model
 	function delete($brand_id,$logo_name)
 	{
 		unlink($logo_name);
-		$this->db->delete('brands',array('brand_id' => $brand_name));	
+		$this->db->delete('brands',array('brand_id' => $brand_id));	
 		
 	}
 	
@@ -67,6 +67,20 @@ class Brand_model extends CI_Model
 			return $query->result();
 	    }
 	    $query = $this->db->get_where('brands', array('brand_id' => $brand_id));
+	    if ($query->num_rows() > 0)
+		return $query->row();
+	    return FALSE;
+	}
+	
+	function get_by_name($brand_name = FALSE)
+	{
+	
+	    if ($brand_name === FALSE) 
+		{
+			$query = $this->db->get('brands');	
+			return $query->result();
+	    }
+	    $query = $this->db->get_where('brands', array('brand_name' => $brand_name));
 	    if ($query->num_rows() > 0)
 		return $query->row();
 	    return FALSE;
@@ -85,9 +99,9 @@ class Brand_model extends CI_Model
 		return $query->result();
 	}
 	
-	function brand_has_product($brand_name)
+	function brand_has_product($brand_id)
 	{
-		$query = $this->db->get_where('products', array('brand_name' => $brand_name));
+		$query = $this->db->get_where('products', array('brand_id' => $brand_id));
 		if($query->num_rows()>0)
 		{
 			return TRUE;

@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html class="admin">
-    <head>
-        <?php $this->load->view('common/admin_head');?>
-    </head>
-    <body>
-        <?php $this->load->view('common/admin_header');?>
-	  
 		<h1>Brand Management</h1>
 		<div class="page-action">
 		    <?php echo anchor('admin/brand/add', '<img  src='.asset_url().'img/add-icon.png'.' />Add New Brand', 'class="button gradient"'); ?>
@@ -95,5 +87,3 @@
 				
 		    });
 		</script>
-    </body>
-</html>

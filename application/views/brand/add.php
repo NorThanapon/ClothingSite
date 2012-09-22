@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html class="admin">
-    <head>
-        <?php $this->load->view('common/admin_head');?>
-    </head>
-    <body>
-    <?php $this->load->view('common/admin_header');?>
 	<?php echo form_open_multipart('admin/brand/add');?>
 	<h1>Add brand</h1> 
 	    <div class="form-input">
@@ -29,6 +22,3 @@
 		<input class="button btn-submit" type = "submit" name="submit" value="Add this brand"/>
 	    </div>
 	</form>	
-	<?php $this->load->view('common/admin_footer');?>
-    </body>
-</html>
