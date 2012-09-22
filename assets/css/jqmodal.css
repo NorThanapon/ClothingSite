@@ -129,7 +129,7 @@ input.jqmdX:focus{
 
 div.jqmdBC button, div.jqmdBC input[type="submit"] {
   margin: 8px 10px 4px 10px;
-  color: #777;
+  color: #fff;
   background-color: #fff;
   cursor: pointer;
 }

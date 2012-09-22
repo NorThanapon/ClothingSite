@@ -5,7 +5,7 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-	<?php echo form_open('admin/tag/edit/'.$tags->tag_id); ?>
+	<?php echo form_open('admin/tag/edit/'.$tag->tag_id); ?>
 	    <h1>Edit Tag</h1> 
 	    <div class="form-input">
 		<fieldset>
