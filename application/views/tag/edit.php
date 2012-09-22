@@ -7,6 +7,9 @@
         <?php $this->load->view('common/admin_header');?>
 	<?php echo form_open('admin/tag/edit/'.$tags->tag_id); ?>
 	    <h1>Edit Tag</h1> 
+		<div class="page-action">
+	    <span id="btn-add-tag" class="button gradient"><img  src="<?php echo asset_url().'img/add-icon.png';?>" />Add New Product</span>
+		</div>
 	    <div class="form-input">
 		<fieldset>
 		    <legend>Tag Information</legend>
@@ -26,11 +29,11 @@
 		    <br />
 			
 		<div class="report-items">
-            <?php $this->load->view('common/table_pager');?>
+
 			<table class="tablesorter">
 			<thead>
 				<tr>
-				<th>&nbsp;</th>
+
 				<th>Product ID</th>
 				<th>Product Name</th>
 				<th>Brand</th>
@@ -68,7 +71,7 @@
 			?>
 			</tbody>
 			</table>
-            <?php $this->load->view('common/table_pager');?>
+ 
 		</div>
 			<br />
 			<label for="isActive">Show :</label>

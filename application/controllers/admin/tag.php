@@ -42,6 +42,12 @@ class Tag extends CI_Controller
 	    }
 	    $this->load->model('tag_model');
 		$data['allTag'] = $this->tag_model->get();
+<<<<<<< HEAD
+=======
+		
+		$data['product_in_tag'] = $this->tag_model->get_product_in_tag($tag_id);
+		
+>>>>>>> tag: delete, search
 	    if (!$this->input->post('submit')) 
 	    {
 			$data['tags'] =  $this->tag_model->get($tag_id);
@@ -55,11 +61,19 @@ class Tag extends CI_Controller
 		$data['form_isActive'] = $this->input->post('isActive');
 		
         $this->load->model('tag_model');
+<<<<<<< HEAD
         $data['tags'] =  $this->category_model->get($this->input->post($tag_id));
 		
         $this->load->library('form_validation');
         $this->form_validation->set_rules('cat_name_en', 'Name(English)', 'trim|required');
 		$this->form_validation->set_rules('cat_name_th', 'Name(Thai)', 'trim|required');
+=======
+        $data['tags'] =  $this->tag_model->get($this->input->post($tag_id));
+		
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('tag_name_en', 'Name(English)', 'trim|required');
+		$this->form_validation->set_rules('tag_name_th', 'Name(Thai)', 'trim|required');
+>>>>>>> tag: delete, search
 		
 		 if ($this->form_validation->run() == FALSE)
         {
@@ -96,6 +110,7 @@ class Tag extends CI_Controller
 		$this->tag_model->edit($this->input->post('tag_id'));
 		$data['tags'] =  $this->tag_model->get($tag_id);
 		$data['allTag'] = $this->tag_model->get();
+<<<<<<< HEAD
 		
 		redirect('admin/tag');
 		
@@ -114,6 +129,14 @@ class Tag extends CI_Controller
 		$this->load->model('tag_model');
 		$data['product_in_tag'] = $this->tag_model->get_product_in_tag();
 		$this->load->view('tag/edit',$data);*/
+=======
+		$data['product_in_tag'] = $this->tag_model->get_product_in_tag($tag_id);
+		$this->load->view('tag/edit',$data);
+		redirect('admin/tag');
+		
+
+		
+>>>>>>> tag: delete, search
 	}
 
 	public function delete($tag_id=FALSE)
@@ -179,4 +202,8 @@ class Tag extends CI_Controller
 	}
 	
 }
+<<<<<<< HEAD
 ?>	
+=======
+?>
+>>>>>>> tag: delete, search

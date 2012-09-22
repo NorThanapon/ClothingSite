@@ -7,7 +7,11 @@
         <?php $this->load->view('common/admin_header');?>
 	<h1>Tag Management</h1>  
 	<div class="page-action">
+<<<<<<< HEAD
 	    <span id="btn-add-tag" class="button gradient"><img  src="<?php echo asset_url().'img/add-icon.png';?>" />Add New tag</span>
+=======
+	    <span id="btn-add-tag" class="button gradient"><img  src="<?php echo asset_url().'img/add-icon.png';?>" />Add New Tag</span>
+>>>>>>> tag: delete, search
 	</div>
 	<div class="clear-float"></div>
 	<div class="report-filter">
