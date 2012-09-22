@@ -39,10 +39,10 @@
 						<td><img src="<?php echo asset_url().'db/brands/'.$item->logo;?>" /></td>
 						<td><?php echo $item->brand_name;?> </td>
 						<td><?php echo $item->description;?> </td>
-						<td class="content-center"><?php if($item->isActive == 1) echo "show"; else echo "hide"; ?></td>
+						<td class="content-center"><?php if($item->is_active == 1) echo "show"; else echo "hide"; ?></td>
 						<td>
-							<?php echo anchor('admin/brand/edit/'.convert_url($item->brand_name), ' ', array('title'=>"Edit this brand",'class'=>'edit-button')); ?>
-							<?php echo anchor('admin/brand/delete/'.convert_url($item->brand_name), ' ', array('title'=>"Delete this category",'class'=>'delete-button')); ?>
+							<?php echo anchor('admin/brand/edit/'.convert_url($item->brand_id), ' ', array('title'=>"Edit this brand",'class'=>'edit-button')); ?>
+							<?php echo anchor('admin/brand/delete/'.convert_url($item->brand_id), ' ', array('title'=>"Delete this category",'class'=>'delete-button')); ?>
 						</td>
 					</tr>
 					<?php

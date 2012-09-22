@@ -5,12 +5,12 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-	<?php echo form_open_multipart('admin/brand/edit/'.$brand->brand_name);?>
+	<?php echo form_open_multipart('admin/brand/edit/'.$brand->brand_id);?>
 	<h1>Edit Brand</h1> 
 	    <div class="form-input">
 		<fieldset>
 		    <legend>Brand Information</legend>
-		    <input name="brand_name_key" type="hidden" value="<?php echo $brand->brand_name; ?>" />
+		    <input name="brand_id" type="hidden" value="<?php echo $brand->brand_id; ?>" />
 		    <label for="brand_name" >Brand Name:</label>
 		    <input name="brand_name" type ="text" value="<?php if(isset($form_brand_name)) echo $form_brand_name; else echo $brand->brand_name; ?>" />*
 		    <?php echo form_error('brand_name', '<span class="form-error-message">', '</span>'); ?>
@@ -29,8 +29,8 @@
 		    <label for="logo" >Logo:</label>
 		    <input name="logo" type ="file"/>
 			<br />
-			<label for="isActive" >Hide/Show:</label>
-			<input name="isActive" type="checkbox" <?php if($brand->isActive==1){ echo "checked='checked'";} ?>" />
+			<label for="is_active" >Hide/Show:</label>
+			<input name="is_active" type="checkbox" <?php if($brand->is_active==1){ echo "checked='checked'";} ?>" />
 		</fieldset>
 	    </div>
 	    <div class="form-action content-right">

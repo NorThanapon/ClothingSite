@@ -20,8 +20,8 @@
 		    <label for="logo">Logo:</label>
 		    <input name="logo" type ="file"/>
 			<br />
-			<label for="isActive" >Show:</label>
-			<input name="isActive" checked type="checkbox"  />			
+			<label for="is_active" >Show:</label>
+			<input name="is_active" checked type="checkbox"  />			
 		</fieldset>
 	    </div>
 	    <div class="form-action content-right">
