@@ -9,7 +9,7 @@
 			<div id="content">
 				<?php include('common/contentside.php'); ?>
 				<div id="content-main">
-					<?php include($page,'.php'); ?>
+					<?php include($page.'.php'); ?>
 				</div><!-- content-main -->
 				
 				<div class="clear-float"></div>
