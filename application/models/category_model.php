@@ -10,7 +10,7 @@ class Category_model extends CI_Model
     var $description_th = '';
     var $description_en = '';
     var $cat_parent = '';
-	var $isActive = '';
+	var $is_active = '';
 
     function __construct() 
 	{
@@ -24,10 +24,10 @@ class Category_model extends CI_Model
 		$this->description_th = $this->input->post('description_th');
 		$this->description_en = $this->input->post('description_en');
 		$this->cat_parent = $this->input->post('cat_parent');*/		
-		$isAct = 1;
-		if($this->input->post('isActive')==FALSE)
+		$is_act = 1;
+		if($this->input->post('is_active')==FALSE)
 		{
-			$isAct = 0;
+			$is_act = 0;
 		}		
 		if($this->input->post('cat_parent')!="")
 		{
@@ -37,7 +37,7 @@ class Category_model extends CI_Model
 					'description_th' => $this->input->post('description_th'),
 					'description_en' => $this->input->post('description_en'),
 				    'cat_parent' => $this->input->post('cat_parent'),
-					'isActive' => $isAct
+					'is_active' => $is_act
 				);
 		}	
 		else
@@ -47,7 +47,7 @@ class Category_model extends CI_Model
 					'cat_name_en' => $this->input->post('cat_name_en'),
 					'description_th' => $this->input->post('description_th'),
 					'description_en' => $this->input->post('description_en'),
-					'isActive' => $isAct
+					'is_active' => $is_act
 				);
 		}
 		
@@ -56,10 +56,10 @@ class Category_model extends CI_Model
 	
 	function edit($cat_id)
 	{
-		$isAct = 1;
-		if($this->input->post('isActive')==FALSE)
+		$is_act = 1;
+		if($this->input->post('is_active')==FALSE)
 		{
-			$isAct=0;
+			$is_act=0;
 		}
 	    if($this->input->post('cat_parent')!="")
 		{
@@ -70,7 +70,7 @@ class Category_model extends CI_Model
 					'description_th' => $this->input->post('description_th'),
 					'description_en' => $this->input->post('description_en'),
 				    'cat_parent' => $this->input->post('cat_parent'),
-					'isActive' => $isAct
+					'is_active' => $is_act
 				);
 		}	
 		else
@@ -81,12 +81,11 @@ class Category_model extends CI_Model
 					'description_th' => $this->input->post('description_th'),
 					'description_en' => $this->input->post('description_en'),
 					'cat_parent' => NULL,
-					'isActive' => $isAct
+					'is_active' => $is_act
 				);
 		}
 		
 		$this->db->update('categories',$data,array('cat_id'=>$cat_id));
-		//$this->db->update('categories',$this,array('brand_name' => $this->input->post('brand_name')));
 	}
 	
 	function delete($cat_id)

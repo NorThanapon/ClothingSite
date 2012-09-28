@@ -11,7 +11,8 @@ class Category extends CI_Controller
 	$this->load->model('category_model');
 	$data['page_title'] = 'Admin: Category Management';
 	$data['cat_list'] = $this->category_model->get();		
-	$this->load->view('category/list',$data);
+	$data['page'] = 'category/list';
+	$this->load->view('main_admin_page',$data);
     }
 	
 	public function add() 
@@ -27,7 +28,8 @@ class Category extends CI_Controller
 	    $data['categories'] = $this->category_model->get();
 	    if (!$this->input->post('submit')) 
 	    {    
-			$this->load->view('category/add',$data);
+			$data['page'] = 'category/add';
+			$this->load->view('main_admin_page',$data);
 			return;
 	    }
 		//form submitted
@@ -36,7 +38,7 @@ class Category extends CI_Controller
 		$data['form_description_th'] = $this->input->post('description_th');
         $data['form_description_en'] = $this->input->post('description_en');
 		$data['form_cat_parent'] = $this->input->post('cat_parent');
-		$data['form_isActive'] = $this->input->post('isActive');
+		$data['form_is_active'] = $this->input->post('is_active');
 		
 		$this->load->library('form_validation');
         $this->form_validation->set_rules('cat_name_th', 'Category name(Thai)', 'trim|required');
@@ -44,7 +46,8 @@ class Category extends CI_Controller
 	if ($this->form_validation->run() == FALSE)
     { 
             $data['error_message']='Please fill in the category name.';
-            $this->load->view('category/add', $data);
+			$data['page'] = 'category/add';
+			$this->load->view('main_admin_page',$data);
             return;
 	}
 		//validation passed
@@ -52,14 +55,16 @@ class Category extends CI_Controller
         {
             $data['error_message'] = 'Duplicate category name. The category name you entered is already existed in the database.';
 			$data['dup_message_th'] = "This field is already existed in the database.";
-            $this->load->view('category/add',$data);
+			$data['page'] = 'category/add';
+			$this->load->view('main_admin_page',$data);
             return;
         }
 		if($this->category_model->get_by_name(FALSE,$data['form_cat_name_en'])!=FALSE)
         {
             $data['error_message'] = 'Duplicate category name. The category name you entered is already existed in the database.';
 			$data['dup_message_en'] = "This field is already existed in the database.";
-            $this->load->view('category/add',$data);
+			$data['page'] = 'category/add';
+			$this->load->view('main_admin_page',$data);
             return;
         }
 		if($this->category_model->get_by_name($data['form_cat_name_th'],$data['form_cat_name_en'])!=FALSE)
@@ -67,7 +72,8 @@ class Category extends CI_Controller
             $data['error_message'] = 'Duplicate category name. The category name you entered is already existed in the database.';
 			$data['dup_message_th'] = "This field is already existed in the database.";
 			$data['dup_message_en'] = "This field is already existed in the database.";
-            $this->load->view('category/add',$data);
+			$data['page'] = 'category/add';
+			$this->load->view('main_admin_page',$data);
             return;
         }
 		
@@ -95,7 +101,8 @@ class Category extends CI_Controller
 	    if (!$this->input->post('submit')) 
 	    {
 			$data['categories'] =  $this->category_model->get($cat_id);
-			$this->load->view('category/edit',$data);
+			$data['page'] = 'category/edit';
+			$this->load->view('main_admin_page',$data);
 			return;
 	    }
 	    //form submitted 
@@ -104,7 +111,7 @@ class Category extends CI_Controller
 		$data['form_description_th'] = $this->input->post('description_th');
         $data['form_description_en'] = $this->input->post('description_en');
 		$data['form_cat_parent'] = $this->input->post('cat_parent');
-		$data['form_isActive'] = $this->input->post('isActive');
+		$data['form_is_active'] = $this->input->post('is_active');
 		
         $this->load->model('category_model');
         $data['category'] =  $this->category_model->get($this->input->post($cat_id));
@@ -117,7 +124,8 @@ class Category extends CI_Controller
         {
             $data['error_message'] = 'Please fill in the category name.';
 			$data['categories'] =  $this->category_model->get($cat_id);
-			$this->load->view('category/edit', $data);
+			$data['page'] = 'category/edit';
+			$this->load->view('main_admin_page',$data);
             return;
     	}
 		//form validated
@@ -127,7 +135,8 @@ class Category extends CI_Controller
             $data['error_message'] = 'Duplicate brand name. The category name you entered is already existed in the database.';
 			$data['dup_message_th'] = "This field is already existed in the database.";
 			$data['categories'] =  $this->category_model->get($cat_id);
-			$this->load->view('category/edit', $data);
+			$data['page'] = 'category/edit';
+			$this->load->view('main_admin_page',$data);
             return;
 			
         }
@@ -137,7 +146,8 @@ class Category extends CI_Controller
 			$data['error_message'] = 'Duplicate brand name. The category name you entered is already existed in the database.';
 			$data['dup_message_en'] = "This field is already existed in the database.";
 			$data['categories'] =  $this->category_model->get($cat_id);
-			$this->load->view('category/edit', $data);
+			$data['page'] = 'category/edit';
+			$this->load->view('main_admin_page',$data);
             return;
 		}
 		
@@ -166,7 +176,8 @@ class Category extends CI_Controller
 	    $data['categories'] = $this->category_model->get();
 	    $data['search_parent'] = $parent;
 	    $data['search_name'] = $name;
-	    $this->load->view('category/list',$data);
+		$data['page'] = 'category/list';
+		$this->load->view('main_admin_page',$data);
 	    
 	}
 	
@@ -189,7 +200,8 @@ class Category extends CI_Controller
 			$this->load->library('form_validation');
 			$data['error_message'] = 'Can not delete '. $this->category_model->get($cat_id)->cat_name_en.' category. It has products or categories undered it.';		
 			$data['cat_list'] = $this->category_model->get();	
-			$this->load->view('category/list', $data);
+			$data['page'] = 'category/list';
+			$this->load->view('main_admin_page',$data);
 			return;
 		}
 	    
