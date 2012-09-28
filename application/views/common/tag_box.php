@@ -19,7 +19,7 @@
 <!-- end modal pop up -->
 
 <script type="text/javascript">
-    $('#tag-modal').jqm({modal: true, trigger: false});
+    $('#tag-modal').jqm({modal: true, trigger: false, toTop: true});
 	$('.jqmdX').click(function () {
         document.getElementById("form-add-tag").reset();
         $('#tag-modal').jqmHide();

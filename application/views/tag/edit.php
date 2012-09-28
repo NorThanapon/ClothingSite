@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html class="admin">
-    <head>
-        <?php $this->load->view('common/admin_head');?>
-    </head>
-    <body>
-        <?php $this->load->view('common/admin_header');?>
 	<?php echo form_open('admin/tag/edit/'.$tags->tag_id); ?>
 	    <h1>Edit Tag</h1> 
 		<div class="page-action">
@@ -52,13 +45,14 @@
                 <td><?php echo $item->product_name_en;?> </td>
 				<td><?php echo $item->brand_name;?></td>
 				<td><?php 
-						foreach($category_list as $catItem)
-						{
-							if($item->cat_id == $tagItem->cat_id)
-							{
-								echo $tagItem->cat_name_en;
-							}
-						}
+						echo $item->cat_name_en;
+						//foreach($category_list as $catItem)
+						//{
+						//	if($item->cat_id == $tagItem->cat_id)
+						//	{
+						//		echo $tagItem->cat_name_en;
+						//	}
+						//}
 					?>
 				</td>
 				<td><!--<a href ="<?php echo "product/detail/".$item->product_id;?>" >Detail</a>-->
@@ -74,14 +68,14 @@
  
 		</div>
 			<br />
-			<label for="isActive">Show :</label>
-			<input name='isActive' type = 'checkbox' 
+			<label for="is_active">Show :</label>
+			<input name='is_active' type = 'checkbox' 
 				<?php
-				if(isset($form_isActive)){ 
-					if($form_isActive){echo "checked"; }
+				if(isset($form_is_active)){ 
+					if($form_is_active){echo "checked"; }
 				}
 				else{
-					if($tags->isActive){ echo "checked";}
+					if($tags->is_active){ echo "checked";}
 				}?>  />
 		
 			<br />
@@ -92,6 +86,3 @@
 		<input class="button btn-submit" type = "submit" name="submit" value="Save Change"/>	
 	    </div>
 	</form>
-	<?php $this->load->view('common/admin_footer');?>
-    </body>
-</html>

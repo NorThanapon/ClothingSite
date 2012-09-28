@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html class="admin">
-    <head>
-        <?php $this->load->view('common/admin_head');?>
-    </head>
-    <body>
-        <?php $this->load->view('common/admin_header');?>
 	<h1>Tag Management</h1>  
 	<div class="page-action">
-<<<<<<< HEAD
-	    <span id="btn-add-tag" class="button gradient"><img  src="<?php echo asset_url().'img/add-icon.png';?>" />Add New tag</span>
-=======
+<!-- <<<<<<< HEAD -->
+<!-- ======= -->
 	    <span id="btn-add-tag" class="button gradient"><img  src="<?php echo asset_url().'img/add-icon.png';?>" />Add New Tag</span>
->>>>>>> tag: delete, search
+<!-- >>>>>>> tag: delete, search -->
 	</div>
 	<div class="clear-float"></div>
 	<div class="report-filter">
@@ -44,7 +36,7 @@
 				<td><?php echo $item->tag_name_en;?> </td>              
 				<td><?php echo $item->tag_name_th?></td>				
 				<td><?php echo $item->total_quantity?></td>	
-				<td><?php if($item->isActive == 1) echo "show"; else echo "hide"; ?></td>
+				<td><?php if($item->is_active == 1) echo "show"; else echo "hide"; ?></td>
 				<td>
 					 <?php echo anchor('admin/tag/edit/'.$item->tag_id, ' ', array('title'=>"Edit Tag",'class'=>'edit-button')); ?>
 					 <?php echo anchor('admin/tag/delete/'.$item->tag_id, ' ', array('title'=>"Delete Tag",'class'=>'delete-button')); ?>
@@ -59,10 +51,8 @@
 		<?php $this->load->view('common/table_pager');?>
 	</div>
 	</form>
-	<?php $this->load->view('common/admin_footer');?>
 	<?php $this->load->view('common/confirm_box');?>
 	<?php $this->load->view('common/tag_box');?>
-    </body>
 	<script type="text/javascript">
 		 $(document).ready(function() {
 		//add confirm event for delete button
@@ -101,4 +91,3 @@
 		});
 	    }); 
 	</script>
-</html>

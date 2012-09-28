@@ -15,14 +15,22 @@
             </div>
             
         </div>
+<<<<<<< HEAD
         <input type="image" src="<?php echo asset_url().'img/close_icon.gif'?>" class="jqmdX jqmClose" alt="close" />
+=======
+        <input type="image" src="<?php echo asset_url().'img/close_icon.gif'?>" class="jqmdX jqmClose" />
+>>>>>>> tag: P'Ake style
     </div>
 <!-- end modal pop up -->
 
 <script type="text/javascript">
     $('#confirm-modal').jqm({modal: true, trigger: false, toTop: true});
     function confirm(title, msg, callback, confirm_value) {
+<<<<<<< HEAD
         $('#jqmdTC').html(title);
+=======
+        $('#jqmdTC').html(title)
+>>>>>>> tag: P'Ake style
         $('#confirm-box-yes-button').val(confirm_value);
         if(confirm_value=="Delete"){
             $('#confirm-box-yes-button').addClass('btn-delete');

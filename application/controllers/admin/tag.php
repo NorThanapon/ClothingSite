@@ -1,5 +1,4 @@
 <?php 
-
 class Tag extends CI_Controller 
 {
     public function index() 
@@ -9,9 +8,10 @@ class Tag extends CI_Controller
 			return;
 		}
 		$this->load->model('tag_model');
-		$data['page_title'] = 'Admin: Category Management';
-		$data['tag_list'] = $this->tag_model->get();		
-		$this->load->view('tag/list',$data);
+		$data['page_title'] = 'Admin: Tag Management';
+		$data['tag_list'] = $this->tag_model->get();	
+		$data['page'] = 'tag/list';	
+		$this->load->view('main_admin_page',$data);
     }
 
 	public function add() 
@@ -42,16 +42,17 @@ class Tag extends CI_Controller
 	    }
 	    $this->load->model('tag_model');
 		$data['allTag'] = $this->tag_model->get();
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 		
 		$data['product_in_tag'] = $this->tag_model->get_product_in_tag($tag_id);
 		
->>>>>>> tag: delete, search
+//>>>>>>> tag: delete, search
 	    if (!$this->input->post('submit')) 
 	    {
 			$data['tags'] =  $this->tag_model->get($tag_id);
-			$this->load->view('tag/edit',$data);
+			$data['page'] = 'tag/edit';
+			$this->load->view('main_admin_page',$data);
 			return;
 	    }
 	    //form submitted 
@@ -61,19 +62,19 @@ class Tag extends CI_Controller
 		$data['form_isActive'] = $this->input->post('isActive');
 		
         $this->load->model('tag_model');
-<<<<<<< HEAD
-        $data['tags'] =  $this->category_model->get($this->input->post($tag_id));
+//<<<<<<< HEAD
+        $data['tags'] =  $this->tag_model->get($this->input->post($tag_id));
 		
         $this->load->library('form_validation');
         $this->form_validation->set_rules('cat_name_en', 'Name(English)', 'trim|required');
 		$this->form_validation->set_rules('cat_name_th', 'Name(Thai)', 'trim|required');
-=======
+//=======
         $data['tags'] =  $this->tag_model->get($this->input->post($tag_id));
 		
         $this->load->library('form_validation');
         $this->form_validation->set_rules('tag_name_en', 'Name(English)', 'trim|required');
 		$this->form_validation->set_rules('tag_name_th', 'Name(Thai)', 'trim|required');
->>>>>>> tag: delete, search
+//>>>>>>> tag: delete, search
 		
 		 if ($this->form_validation->run() == FALSE)
         {
@@ -110,7 +111,7 @@ class Tag extends CI_Controller
 		$this->tag_model->edit($this->input->post('tag_id'));
 		$data['tags'] =  $this->tag_model->get($tag_id);
 		$data['allTag'] = $this->tag_model->get();
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		
 		redirect('admin/tag');
 		
@@ -129,14 +130,14 @@ class Tag extends CI_Controller
 		$this->load->model('tag_model');
 		$data['product_in_tag'] = $this->tag_model->get_product_in_tag();
 		$this->load->view('tag/edit',$data);*/
-=======
+//=======
 		$data['product_in_tag'] = $this->tag_model->get_product_in_tag($tag_id);
 		$this->load->view('tag/edit',$data);
 		redirect('admin/tag');
 		
 
 		
->>>>>>> tag: delete, search
+//>>>>>>> tag: delete, search
 	}
 
 	public function delete($tag_id=FALSE)
@@ -202,8 +203,5 @@ class Tag extends CI_Controller
 	}
 	
 }
-<<<<<<< HEAD
-?>	
-=======
+//<<<<<<< HEAD
 ?>
->>>>>>> tag: delete, search
