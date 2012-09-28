@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html class="admin">
-    <head>
-        <?php $this->load->view('common/admin_head');?>
-    </head>
-    <body>
-        <?php $this->load->view('common/admin_header');?>
 	<h1>Category Management</h1>  
 	<div class="page-action">
 	    <?php echo anchor('admin/category/add', '<img  src='.asset_url().'img/add-icon.png'.' />Add New Category', 'class="button gradient"'); ?>
@@ -108,5 +101,3 @@
 	    }); 
 		
 	</script>
-    </body>
-</html>
