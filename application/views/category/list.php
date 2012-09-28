@@ -1,6 +1,6 @@
 	<h1>Category Management</h1>  
 	<div class="page-action">
-	    <?php echo anchor('admin/category/add', '<img  src='.asset_url().'img/add-icon.png'.' />Add New Category', 'class="button gradient"'); ?>
+	    <?php echo anchor('admin/category/add', '<img  src='.asset_url().'img/add-icon.png'.' alt="" />Add New Category', 'class="button gradient"'); ?>
 	</div>
 	<div class="clear-float"></div>
 	<div class="report-filter">
@@ -8,8 +8,8 @@
 		<legend>Search Options</legend>
 		<label>Name:</label>
 		<input id="txt_cat_name" type="text" name="cat_name" value="<?php if(isset($search_name)) echo $search_name;  ?>"/>
-		<label for="cat_parent">Under category</textarea>
-		<select name="cat_parent" id="ddl_cat_parent"> 
+		<label for="cat_parent">Under category</label>
+		<select name="cat_parent" id="cat_parent"> 
 		    <option value="0">--Any category--</option>
 		    <?php foreach($cat_list as $item) {  ?>
 			<option <?php if (isset($search_parent) && $item->cat_id == $search_parent) echo 'selected' ?> value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name_en; ?></option>
@@ -26,13 +26,13 @@
             <tr>
               
 				
-			    <th width="100">Name (English)</th>
-				<th width="100">Name (Thai)</th>
+			    <th style="width: 100px;">Name (English)</th>
+				<th style="width: 100px;">Name (Thai)</th>
 				<th>Description (English)</th>
 				<th>Description (Thai)</th>
-				<th width="100">Under-category</th>
-				<th width="64">show/hide</th>
-				<th width="30">&nbsp;</th>
+				<th style="width: 100px;">Under-category</th>
+				<th style="width: 64px;">show/hide</th>
+				<th style="width: 30px;">&nbsp;</th>
             </tr>
 		</thead>
 		<tbody>
@@ -49,7 +49,7 @@
 				<td><?php echo $item->description_th;?></td>
 				
 				<td><?php echo $item->parent_name;?></td>
-				<td><?php if($item->isActive == 1) echo "show"; else echo "hide"; ?></td>
+				<td><?php if($item->is_active == 1) echo "show"; else echo "hide"; ?></td>
 				<td>
 					 <?php echo anchor('admin/category/edit/'.$item->cat_id, ' ', array('title'=>"Edit Category",'class'=>'edit-button')); ?>
 					 <?php echo anchor('admin/category/delete/'.$item->cat_id, ' ', array('title'=>"Delete Category",'class'=>'delete-button')); ?>
@@ -62,9 +62,8 @@
 		</tbody>
         </table>
 		<?php $this->load->view('common/table_pager');?>
-	</div>
 	</form>
-    <?php $this->load->view('common/admin_footer');?>
+	</div>
 	<?php $this->load->view('common/confirm_box');?>
 	<script type="text/javascript">
 	    $(document).ready(function() {
@@ -76,7 +75,7 @@
 		$('#btn_filter').click(function() {
 		    var url = document.URL;
 		    url = url.substring(0, url.indexOf('/category') + 9);
-		    url = url + '/search/' + $('#ddl_cat_parent').val() + '/' + $('#txt_cat_name').val();
+		    url = url + '/search/' + $('#cat_parent').val() + '/' + $('#txt_cat_name').val();
 		    window.location = url;
 		});
 		        

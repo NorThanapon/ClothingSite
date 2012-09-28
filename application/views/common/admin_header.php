@@ -39,7 +39,6 @@
                 </ul>
             </nav>
             <?php echo anchor('admin', '<h1>BFash Shop: Administration</h1>', array('title'=>"BFash Shop: Administration", 'class'=>'logo')); ?>
-            </a>
         </header>
     </div><!-- #header-wrapper .wrapper -->
 </div>
