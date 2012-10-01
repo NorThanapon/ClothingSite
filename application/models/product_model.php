@@ -112,6 +112,17 @@ class Product_model extends CI_Model
 			return $query->result();
 	}
 	
+	function get_by_brand_id($brand_id = FALSE)
+	{
+	    if ($brand_id === FALSE) 
+		{
+			$query = $this->db->get_where('products_brands_categories');
+			return $query->result();
+	    }
+	    $query = $this->db->get_where('products_brands_categories', array('brand_id' => $brand_id));
+	    return $query->result();
+	}
+	
 	function select($query)
 	{
 		$query = $this->db->query($query);

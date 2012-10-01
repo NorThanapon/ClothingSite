@@ -15,7 +15,8 @@
 		foreach($brand_list as $item)
 		{
 		?>
-			<a href="#"><?php echo $item->brand_name;?></a><br />
+			<?php echo anchor('brand/catalog/'.$item->brand_id, $item->brand_name,'title="'.$item->brand_name.'"'); ?><br />
+			
 		<?php
 		}
 		?>

@@ -1,7 +1,7 @@
 <?php
 
 class ProductList extends CI_Controller {
-    public function index() {
+    public function index($brand_id) {
         $data['page_title'] = "BfashShop.com";
 		$this->load->model('brand_model');
 		$data['brand_list'] = $this->brand_model->get(); 

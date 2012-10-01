@@ -60,7 +60,6 @@ class Brand_model extends CI_Model
 	
 	function get($brand_id = FALSE)
 	{
-	
 	    if ($brand_id === FALSE) 
 		{
 			$query = $this->db->get('brands');	
