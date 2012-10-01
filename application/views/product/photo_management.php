@@ -1,4 +1,3 @@
-	
 	    <h1>Photos of <?php echo $product->product_name_en; ?></h1> 
 	    <div class="form-input">
 		<fieldset>

@@ -1,6 +1,4 @@
-
-		
-	<h1>Product Management</h1>
+		<h1>Product Management</h1>
         <div class="page-action">
 		<?php echo anchor('admin/product/add', '<img src='.asset_url().'img/add-icon.png'.' />Add New Product', 'class="button gradient"'); ?>
            
@@ -36,8 +34,8 @@
 		<input id="btn_filter" type="button" value="Search" />
 	    </fieldset>
         </div>
-		<?php echo form_open('admin/product/delete_batch'); ?>
-		<!--<?php echo form_open('admin/product/update_status'); ?>-->
+		<!--<?php echo form_open('admin/product/delete_batch'); ?>-->
+		<?php echo form_open('admin/product/update_status'); ?>
 		
         <div class="report-items">
             <?php $this->load->view('common/table_pager');?>
@@ -66,20 +64,10 @@
 				<td><!--<a href ="<?php echo "product/detail/".$item->product_id;?>" >--><?php echo $item->product_id;?><!--</a>--></td>
                 <td><?php echo $item->product_name_en;?> </td>
 				<td><?php echo $item->brand_name;?></td>
-				<td><?php 
-						foreach($category_list as $catItem)
-						{
-							if($item->cat_id == $catItem->cat_id)
-							{
-								echo $catItem->cat_name_en;
-							}
-						}
-					?>
-				</td>
-				
+				<td><?php echo $item->cat_name_en;?></td>				
 				<td><?php echo $item->total_quantity?></td>
-				<td><?php echo $item->DATE_ADD; ?></td>
-				<td><?php if($item->isActive == 1) echo "show"; else echo "hide"; ?></td>				
+				<td><?php echo $item->date_add; ?></td>
+				<td><?php if($item->is_active == 1) echo "show"; else echo "hide"; ?></td>				
 				<td><!--<a href ="<?php echo "product/detail/".$item->product_id;?>" >Detail</a>-->
 					<?php echo anchor('admin/product/edit/'.$item->product_id, ' ', array('title'=>"Edit Product",'class'=>'edit-button')); ?>
 					<?php echo anchor('admin/product/delete/'.$item->product_id, ' ', array('title'=>"Delete Product",'class'=>'delete-button')); ?>
@@ -105,8 +93,10 @@
 		<input type = "submit" value = "Delete" />
 	    </fieldset>
 	
-		<?php $this->load->view('common/confirm_box');?>
+
+		
 	<script type="text/javascript">
+		$('#confirm-modal').jqm({modal: true, trigger: false, toTop: true});
 	    $(document).ready(function() { 
 		//add confirm event for delete button
 		$('a.delete-button').click(function() { 

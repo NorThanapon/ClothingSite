@@ -1,4 +1,3 @@
-
 	<?php echo form_open('admin/product/add'); ?>
 	    <h1>Add Product</h1> 
 	    <div class="form-input">
@@ -20,23 +19,23 @@
 		   
 		    <br />
 			<label for="brand_name">Brand:</label>
-			<select name="brand_name" > 
+			<select name="brand_id" > 
 				<option value="">--None--</option>
 				<?php 
 				foreach($brands as $item)
 				{  
 					if(isset($form_brand_name)&&$form_brand_name==$item->brand_name)
 					{
-						echo '<option value="'.$item->brand_name.'" selected="selected">'.$item->brand_name.'</option>';
+						echo '<option value="'.$item->brand_id.'" selected="selected">'.$item->brand_name.'</option>';
 					}
 					else
 					{
-						echo '<option value="'.$item->brand_name.'">'.$item->brand_name.'</option>"';
+						echo '<option value="'.$item->brand_id.'">'.$item->brand_name.'</option>"';
 					}
 				}
 				?>
 		    </select>*
-			<?php echo form_error('brand_name', '<span class="form-error-message">', '</span>'); ?>
+			<?php echo form_error('brand_id', '<span class="form-error-message">', '</span>'); ?>
 		    
 			<br />
 			<label for="cat_id">Category:</label>
@@ -79,8 +78,8 @@
 			<label for="how_to_wash_en">How to Wash (English):</label>
 		    <textarea name ="how_to_wash_en" ><?php if(isset($form_how_to_wash_en)) echo $form_how_to_wash_en; ?></textarea>
 			<br />
-			<label for="isActive" >Show:</label>
-			<input name="isActive" <?php if(!isset($form_isActive) || $form_isActive) echo " checked "?> type="checkbox"  />
+			<label for="is_active" >Show:</label>
+			<input name="is_active" <?php if(!isset($form_is_active) || $form_is_active) echo " checked "?> type="checkbox"  />
 		   
 		</fieldset>
 	    </div>

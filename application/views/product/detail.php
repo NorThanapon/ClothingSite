@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html class="admin">
-    <head>
-        <?php $this->load->view('common/admin_head');?>
-    </head>
-    <body>
-    <?php $this->load->view('common/admin_header');?>
 	<?php echo form_open('admin/product/edit/'.$product->product_id); ?>
 	    <h1>Product's detail</h1> 
 	    <div class="form-input">
@@ -53,6 +46,3 @@
 		<input class="button btn-submit" type = "submit" name="submit_detail" value="Edit this product"/>
 	    </div>
 	</form>
-	<?php $this->load->view('common/admin_footer');?>
-    </body>
-</html>

@@ -13,8 +13,8 @@ class Product_model extends CI_Model
 	var $description_en = '';
 	var $how_to_wash_th = '';
 	var $how_to_wash_en = '';
-	var $DATE_ADD = '';
-	var $isActive = '';
+	var $date_add = '';
+	var $is_active = '';
 	
 	function __construct() 
  	{
@@ -24,7 +24,7 @@ class Product_model extends CI_Model
 	function add()
 	{		
 		$is_active = 0;
-		if($this->input->post('isActive')==true)
+		if($this->input->post('is_active')==true)
 		{
 			$is_active = 1;
 		}
@@ -32,7 +32,7 @@ class Product_model extends CI_Model
 			'product_id' => $this->input->post('product_id'),
 			'product_name_th' => $this->input->post('product_name_th'),
 			'product_name_en' => $this->input->post('product_name_en'),
-			'brand_name' => $this->input->post('brand_name'),
+			'brand_id' => $this->input->post('brand_id'),
 			'cat_id'  => $this->input->post('cat_id'),
 			'total_quantity'  => $this->input->post('total_quantity'),
 			'markup_price' => $this->input->post('markup_price'),
@@ -41,8 +41,8 @@ class Product_model extends CI_Model
 			'description_en'  => $this->input->post('description_en'),
 			'how_to_wash_th'  => $this->input->post('how_to_wash_th'),
 			'how_to_wash_en'  => $this->input->post('how_to_wash_en'),
-			'DATE_ADD' =>   $date = date("Y-m-d H:i:s"),
-			'isActive' => $is_active
+			'date_add' =>   $date = date("Y-m-d H:i:s"),
+			'is_active' => $is_active
 		);
 		$this->db->insert('products',$data);
 	}
@@ -50,7 +50,7 @@ class Product_model extends CI_Model
 	function edit($product_id)
 	{
 		$is_active = 0;
-		if($this->input->post('isActive')==true)
+		if($this->input->post('is_active')==true)
 		{
 			$is_active = 1;
 		}
@@ -60,7 +60,7 @@ class Product_model extends CI_Model
 			'product_id' => $this->input->post('product_id'),
 			'product_name_th' => $this->input->post('product_name_th'),
 			'product_name_en' => $this->input->post('product_name_en'),
-			'brand_name' => $this->input->post('brand_name'),
+			'brand_id' => $this->input->post('brand_id'),
 			'cat_id'  => $this->input->post('cat_id'),
 			'total_quantity'  => $this->input->post('total_quantity'),
 			'markup_price' => $this->input->post('markup_price'),
@@ -69,7 +69,7 @@ class Product_model extends CI_Model
 			'description_en'  => $this->input->post('description_en'),
 			'how_to_wash_th'  => $this->input->post('how_to_wash_th'),
 			'how_to_wash_en'  => $this->input->post('how_to_wash_en'),
-			'isActive'   => $is_active
+			'is_active'   => $is_active
 		);
 		$this->db->update('products',$data,array('product_id'=>$product_id));
 	}
@@ -84,10 +84,10 @@ class Product_model extends CI_Model
 	
 	    if ($product_id === FALSE) 
 		{
-			$query = $this->db->get_where('products');
+			$query = $this->db->get_where('products_brands_categories');
 			return $query->result();
 	    }
-	    $query = $this->db->get_where('products', array('product_id' => $product_id));
+	    $query = $this->db->get_where('products_brands_categories', array('product_id' => $product_id));
 	    return $query->row();
 	}
 	
@@ -136,7 +136,7 @@ class Product_model extends CI_Model
 		if($status != "2")
 		{
 			if ($where != "" ) $where = $where . " AND ";
-			$where = $where . "isActive = ".$status;
+			$where = $where . "is_active = ".$status;
 		}
 		
 		
@@ -191,12 +191,12 @@ class Product_model extends CI_Model
     {
         if ($product_id === FALSE) 
         {
-                $query = $this->db->get('products_colors');	
+                $query = $this->db->get('images_colors');	
                 return $query->result();
         }
-        $query = $this->db->get_where('products_colors', array('product_id' => $product_id));
+        $query = $this->db->get_where('images_colors', array('product_id' => $product_id));
         //if ($query->num_rows() > 0)
-            return $query->result();
+        return $query->result();
         //return FALSE;
     }
 	function edit_color($photo_id,$color_id)

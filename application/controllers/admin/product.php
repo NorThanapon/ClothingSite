@@ -47,7 +47,7 @@ class Product extends CI_Controller
 		$data['form_product_id'] = $this->input->post('product_id');
 		$data['form_product_name_th'] = $this->input->post('product_name_th');
 		$data['form_product_name_en'] = $this->input->post('product_name_en');
-		$data['form_brand_name'] = $this->input->post('brand_name');
+		$data['form_brand_id'] = $this->input->post('brand_id');
 		$data['form_cat_id'] = $this->input->post('cat_id');
 		$data['form_total_quantity'] =0;
 		$data['form_markup_price']  = $this->input->post('markup_price');
@@ -57,18 +57,18 @@ class Product extends CI_Controller
 		$data['form_how_to_wash_th']  = $this->input->post('how_to_wash_th');
 		$data['form_how_to_wash_en']  = $this->input->post('how_to_wash_en');
 		$active=0;
-		if($this->input->post('isActive')==true)
+		if($this->input->post('is_active')==true)
 		{
 			$active = 1;
 		}
-		$data['form_isActive']  = $active;
+		$data['form_is_active']  = $active;
 		
 		//form validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('product_id', 'Product ID', 'trim|required');
 		$this->form_validation->set_rules('product_name_en', 'Name(English)', 'trim|required');
 		$this->form_validation->set_rules('product_name_th', 'Name(Thai)', 'trim|required');
-		$this->form_validation->set_rules('brand_name', 'Brand', 'trim|required');
+		$this->form_validation->set_rules('brand_id', 'Brand', 'trim|required');
 		$this->form_validation->set_rules('markup_price', 'Markup Price', 'trim|required');
 		$this->form_validation->set_rules('cat_id', 'Category', 'trim|required');
 		//$this->form_validation->set_rules('total_quantity', 'Total Quantity', 'trim|required');
@@ -140,7 +140,10 @@ class Product extends CI_Controller
 			{
 				redirect('admin/product');
 			}
-            $this->load->view('product/edit',$data);
+            //$this->load->view('product/edit',$data);
+			$data['page'] = 'product/edit';		
+			$this->load->view('main_admin_page',$data);
+			
             return;
         }
 		//form submitted
@@ -157,29 +160,31 @@ class Product extends CI_Controller
 		$data['form_how_to_wash_th']  = $this->input->post('how_to_wash_th');
 		$data['form_how_to_wash_en']  = $this->input->post('how_to_wash_en');
 		$active=0;
-		if($this->input->post('isActive')==true)
+		if($this->input->post('is_active')==true)
 		{
 			$active = 1;
 		}
-		$data['form_isActive']  = $active;
+		$data['form_is_active']  = $active;
 		
 		//form validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('product_id', 'Product ID', 'trim|required');
 		$this->form_validation->set_rules('product_name_en', 'Name(English)', 'trim|required');
 		$this->form_validation->set_rules('product_name_th', 'Name(Thai)', 'trim|required');
-		$this->form_validation->set_rules('brand_name', 'Brand', 'trim|required');
+		$this->form_validation->set_rules('brand_id', 'Brand', 'trim|required');
 		$this->form_validation->set_rules('markup_price', 'Markup Price', 'trim|required');
 		$this->form_validation->set_rules('cat_id', 'Category', 'trim|required');
 		$this->form_validation->set_rules('total_quantity', 'Total Quantity', 'trim|required');
 		
 		if ($this->form_validation->run() == FALSE)
         {
-            $data['error_message'] = 'Please fill in the category name.';
+            $data['error_message'] = 'Please fill in the field that is required.';
 			$data['brand'] = $this->brand_model->get();
 			$data['category'] = $this->category_model->get();    
 			$data['product'] =  $this->product_model->get($product_id);
-			$this->load->view('product/edit', $data);
+			//$this->load->view('product/edit', $data);
+			$data['page'] = 'product/edit';		
+			$this->load->view('main_admin_page',$data);
             return;
     	}
 		
@@ -190,7 +195,9 @@ class Product extends CI_Controller
 			$data['brand'] = $this->brand_model->get();
 			$data['category'] = $this->category_model->get();    
 			$data['product'] =  $this->product_model->get($product_id);
-            $this->load->view('product/edit', $data);
+           // $this->load->view('product/edit', $data);
+			$data['page'] = 'product/edit';
+			$this->load->view('main_admin_page',$data);
             return;
         }
 		
@@ -233,7 +240,9 @@ class Product extends CI_Controller
 			$data['product_list'] = $this->product_model->get();
 			$data['category_list'] = $this->category_model->get();
 			$data['brand_list'] = $this->brand_model->get();
-			$this->load->view('product/list', $data);
+			//$this->load->view('product/list', $data);
+			$data['page'] = 'product/list';
+			$this->load->view('main_admin_page',$data);
 			return;
 		}
 		$this->product_model->delete($product_id);	   
@@ -263,7 +272,9 @@ class Product extends CI_Controller
 	    $data['search_name'] = $name;
 		$data['search_brand'] = $brand;
 		$data['search_status'] = $status;
-	    $this->load->view('product/list',$data);
+	    //$this->load->view('product/list',$data);
+		$data['page'] = 'product/list';
+        $this->load->view('main_admin_page',$data);
 	    
 	}
 	
@@ -276,7 +287,9 @@ class Product extends CI_Controller
 		$data['page_title'] = 'Admin: Product Management';
 		$this->load->model('product_model');
 		$data['product'] = $this->product_model->get($product_id);
-		$this->load->view('product/detail',$data);
+		//$this->load->view('product/detail',$data);
+		$data['page'] = 'product/detail';
+        $this->load->view('main_admin_page',$data);
 	}
 	public function update_status()
 	{
@@ -295,11 +308,11 @@ class Product extends CI_Controller
 			$temp[$i]['product_id'] = $item;			
 			if($this->input->post('change_status')=="1")
 			{
-				$temp[$i]['isActive']=1;
+				$temp[$i]['is_active']=1;
 			}
 			else if($this->input->post('change_status')=="2")
 			{
-				$temp[$i]['isActive']=0;
+				$temp[$i]['is_active']=0;
 			}
 			$i++;
 			
@@ -330,8 +343,9 @@ class Product extends CI_Controller
 			$data['product_list'] = $this->product_model->get();
 			$data['category_list'] = $this->category_model->get();
 			$data['brand_list'] = $this->brand_model->get();
-			$this->load->view('product/list', $data);
-			
+			//$this->load->view('product/list', $data);
+			$data['page'] = 'product/list';
+			$this->load->view('main_admin_page',$data);
 			return;
 		}
 			
@@ -352,7 +366,9 @@ class Product extends CI_Controller
 			$data['product_list'] = $this->product_model->get();			
 			$data['category_list'] = $this->category_model->get();
 			$data['brand_list'] = $this->brand_model->get();
-			$this->load->view('product/list', $data);
+			//$this->load->view('product/list', $data);
+			$data['page'] = 'product/list';
+			$this->load->view('main_admin_page',$data);
 			return;
 		}
 		
