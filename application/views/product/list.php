@@ -96,13 +96,14 @@
 
 		
 	<script type="text/javascript">
-		$('#confirm-modal').jqm({modal: true, trigger: false, toTop: true});
-	    $(document).ready(function() { 
+		//$('#confirm-modal').jqm({modal: true, trigger: false, toTop: true});
+		$(document).ready(function() {
 		//add confirm event for delete button
 		$('a.delete-button').click(function() { 
-		    confirm('Confirm for deletion','Do you want to delete this category.',this.href, 'Delete'); 
+		    confirm('Confirm for deletion','Do you want to delete this product.',this.href, 'Delete'); 
 		    return false;
 		});
+		
 		$('#btn_filter').click(function() {
 		    var url = document.URL;
 		    url = url.substring(0, url.indexOf('/product') + 9);

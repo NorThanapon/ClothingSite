@@ -97,7 +97,7 @@ class Product extends CI_Controller
 			$data['product'] =  $this->product_model->get($this->input->post('product_id'));
 			if ($data['product'] == FALSE)
 			{
-				redirect('admin/product');
+			//	redirect('admin/product');
 				$data['page'] = 'product/list';
 				$this->load->view('main_admin_page',$data);
 			}
@@ -405,15 +405,16 @@ class Product extends CI_Controller
             }
             return array('error' => $this->upload->display_errors());    
         }
-		echo "--No-------------";//----------------------------------------------------------------------------------------
+		//echo "--No-------------";//----------------------------------------------------------------------------------------
         return FALSE;
     }
 	public function photo($product_id)//addPhoto change Name
 	{
 		if(!check_authen('staff',TRUE)) return;
 		$this->load->model('product_model');
+		$this->load->model('image_model');
 		$data['product'] = $this->product_model->get($product_id);
-		$data['photos'] = $this->product_model->get_photos($product_id);
+		$data['photos'] = $this->image_model->get_photos($product_id);
 		$data['page_title']='Manage Photo';
 		$this->load->model('color_model');
         $data["all_colors"] = $this->color_model->get();
@@ -431,10 +432,11 @@ class Product extends CI_Controller
 	{
 		if(!check_authen('staff',TRUE)) return;
 		$this->load->model('product_model');
-        $photo = $this->product_model->get_photo_file($photo_id);		
-        $this->product_model->delete_photo($photo_id, './assets/db/products/'.$photo->file_name);
+		$this->load->model('image_model');
+        $photo = $this->image_model->get_photo_file($photo_id);		
+        $this->image_model->delete_photo($photo_id, './assets/db/products/'.$photo->file_name);
 		$data['product'] = $this->product_model->get($this->input->post('product_id'));
-		$data['photos'] = $this->product_model->get_photos($product_id);
+		$data['photos'] = $this->image_model->get_photos($product_id);
 		redirect('admin/product/photo/'.$product_id);
 		
 	}
@@ -445,18 +447,34 @@ class Product extends CI_Controller
 		 
 		$this->load->library('upload');
 		$this->load->model('product_model');
-		$photo_id = $this->product_model->get_latest()->image_id;
-		$photo_id++;		
+		$this->load->model('image_model');
 		$color_id = $this->input->post('color');
+		if($this->input->post('photo')==null && $color_id==null)
+		{
+			$this->load->library('form_validation');
+			$data['error_message'] = 'Please select image and color.';
+			$data['product'] = $this->product_model->get($this->input->post('product_id'));
+			$data['photos'] = $this->image_model->get_photos('$product_id');
+			//$data['page'] = 'product/photo_management';
+			$this->load->view('main_admin_page',$data);
+			redirect('admin/product/photo/'.$this->input->post('product_id'),$data);			
+			return;
+		}
+		
+		$photo_id = $this->image_model->get_latest()->image_id;
+		$photo_id++;		
+		
         $result_photo = $this->_upload_photo_file($photo_id,'photo');		
 		$data['product'] =  $this->product_model->get($this->input->post('product_id'));
-			if ($data['product'] == FALSE)
-			{
-				redirect('admin/product');
-			}
-		$this->product_model->add_photo($result_photo['file_name'] ,$color_id);
+		if ($data['product'] == FALSE)
+		{
+			redirect('admin/product');
+			return;
+		}
+		
+		$this->image_model->add_photo($result_photo['file_name'] ,$color_id);
 		$data['product'] = $this->product_model->get($this->input->post('product_id'));
-		$data['photos'] = $this->product_model->get_photos($product_id);
+		$data['photos'] = $this->image_model->get_photos('$product_id');
 		redirect('admin/product/photo/'.$this->input->post('product_id'));
 	   
 	}
@@ -464,13 +482,14 @@ class Product extends CI_Controller
 	{
 		if(!check_authen('staff',TRUE)) return;
 		
-		$this->load->model('product_model');			
+		$this->load->model('product_model');		
+		$this->load->model('image_model');
 		$image_id = $this->input->post('image_id');	
 		$temp = 'color_change';
 		$color_id = $this->input->post($temp);		
-        $this->product_model->edit_color($image_id,$color_id);
+        $this->image_model->edit_color($image_id,$color_id);
 		$data['product'] = $this->product_model->get($this->input->post('product_id'));
-		$data['photos'] = $this->product_model->get_photos($product_id);	
+		$data['photos'] = $this->image_model->get_photos($product_id);	
 		redirect('admin/product/photo/'.$product_id);
 		
 	}
