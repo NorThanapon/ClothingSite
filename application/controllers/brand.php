@@ -16,7 +16,7 @@ class Brand extends CI_Controller {
 		$data['brands'] = $this->brand_model->get_by_name($re_name); 
 		$data['products'] = $this->product_model->get_by_brand_id($data['brands']->brand_id);
 		//$data['images'] = $this->images->
-		$data['page'] = 'brand_list';	
+		$data['page'] = 'font_product\content_main_product_list';	
         $this->load->view('main_page',$data);
     }
 
