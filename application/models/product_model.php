@@ -190,6 +190,16 @@ class Product_model extends CI_Model
 		}
 	}
 	
+	function save_main_image($image_id)
+	{			
+		echo "model>>".$this->input->post('product_id')."...".$image_id;
+		$data = array(
+			'product_id' => $this->input->post('product_id'),
+			'main_image' => $image_id
+		);
+		$this->db->update('products',$data,array('product_id'=>$this->input->post('product_id')));
+	}
+	
 
 }
 ?>

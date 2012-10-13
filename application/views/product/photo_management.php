@@ -1,4 +1,5 @@
 	    <h1>Photos of <?php echo $product->product_name_en; ?></h1> 
+		
 	    <div class="form-input">
 		<fieldset>
 		    <legend>Add a photo</legend>			
@@ -19,24 +20,22 @@
 		</div>
 		</fieldset>	
 		</form>
+		<form>
 	    <fieldset>
 			<legend>Existing photos</legend>
-			 
+		<?php echo form_open('admin/product/save_main_image'); ?>	
 		<?php 
 			foreach($photos as $item)
 			{
 		?>		
 				
-				
-				
-				
 				<div class="report-items photo-item">	
-				<?php echo form_open('admin/product/edit_color/'.$product->product_id); ?>	
+				<!--<?php echo form_open('admin/product/edit_color/'.$product->product_id); ?>	-->
 				
 				<a class="fancybox-button" rel="fancybox-button" href="<?php echo asset_url().'db/products/'.$item->image_file_name.""; ?>" title="<?php echo $item->image_file_name; ?>">
 				<img src="<?php echo asset_url().'db/products/'.$item->image_file_name."";?>" alt="" />
 				</a>
-				<input type="hidden" name="image_id" value="<?php echo $item->image_id ; ?>">
+				<input type="hidden" name="image_id" value="<?php echo $item->image_id ; ?>" />
 				<br />
 				
 					    <select class="color_picker" name="color_change" id="ddl-color-<?php echo $item->image_id ; ?>" >
@@ -63,31 +62,62 @@
                                 }
                             ?>
                         </select>			
-					    <input type="submit" name="submit_<?php echo $item->image_id ;?>" value="save" class='save-button' ">
-					
+					    <input type="button" name="submit_<?php echo $item->image_id ;?> " value="save" class='save-button' onclick="save_color(<?php echo $item->image_id ;?>)" />
+						
 					<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>
 					<br />
-					</form>
+					<div class="main_image_radio">
+					<?php 
+					if($product->main_image == $item->image_id) 
+					{
+					?>
+						<input type="radio"  name="main_image" value="<?php echo $item->image_id ;?> " checked="true" />
+					<?php 
+					} 
+					else 
+					{
+					?>
+						<input type="radio" " name="main_image" value="<?php echo $item->image_id ;?>" />
+					<?php 
+					}
+					?>
+					
+					<div class="label_main_image" for="main_image" >Main Image </div>
+					</div>
+					<!--</form>-->
 				</div>
 		<?php		
 			}
 		?>	
 		</fieldset>
-		</div>
-	
+		</form>
+		</div>	
 		
-		
-	    <div class="content-right form-action">		
+		<input type="hidden" name="product_id" value="<?php echo $product->product_id;?>" id= "product_id" />
 
+	    <div class="content-right form-action">		
+			<input type="submit" name="save_form" value="save" class='save-button' " />
 			<?php echo anchor('admin/product','Done' ,array('class' => 'button')); ?>	
 	    </div>
+		
 	<?php $this->load->view('common/admin_footer');?>
 	<?php $this->load->view('common/confirm_box');?>
 	<?php $this->load->view('common/color/color_box');?>	
-
+	
 	
 	<script type="text/javascript">
-	
+	function save_color(image_id)
+	{
+		var color_id = document.getElementById("ddl-color-"+image_id).value;
+		var product_id = document.getElementById("product_id").value;
+		var url = document.URL;
+		url = url.substring(0, url.indexOf('/product') + 8);
+		url = url + '/edit_color/' + product_id+'/'+image_id+'/'+color_id;
+		window.location = url;
+		//alert(image_id +"color = "+color_id+" >"+url+"<<");
+
+		
+	}
 	$(document).ready(function() {
 		
 		$('.fancybox-button').fancybox({

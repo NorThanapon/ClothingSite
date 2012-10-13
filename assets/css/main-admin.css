@@ -561,13 +561,23 @@ div.form-input label{
 	vertical-align:top;
 	margin-right:10px;
 }
-div.form-input input {
-	display:inline-block;
-	width:200px;
-	margin-top:5px;
-	margin-bottom:5px;
+div .main_image_radio{
+	position:relative;
+	
+	margin-top:2px;
+	margin-bottom:2px;
 	height:20px;
 	line-height:200%;
+
+}
+
+
+
+div .label_main_image{
+	position:relative;
+	width:140px;
+	float:left;
+	font-size:90%;
 }
 
 div.form-input textarea {
@@ -641,3 +651,4 @@ vertical-align:bottom;
 .photo-item select{
 	margin-top:5px;
 }
+

@@ -478,19 +478,30 @@ class Product extends CI_Controller
 		redirect('admin/product/photo/'.$this->input->post('product_id'));
 	   
 	}
-	public function edit_color($product_id)
+	public function edit_color($product_id,$image_id,$color_id)
 	{
 		if(!check_authen('staff',TRUE)) return;
 		
 		$this->load->model('product_model');		
 		$this->load->model('image_model');
-		$image_id = $this->input->post('image_id');	
+		//$image_id = $this->input->post('image_id');	
 		$temp = 'color_change';
-		$color_id = $this->input->post($temp);		
+		//$color_id = $this->input->post($temp);		
         $this->image_model->edit_color($image_id,$color_id);
 		$data['product'] = $this->product_model->get($this->input->post('product_id'));
 		$data['photos'] = $this->image_model->get_photos($product_id);	
 		redirect('admin/product/photo/'.$product_id);
+		
+	}
+	public function save_main_image()
+	{
+		if(!check_authen('staff',TRUE)) return;
+		$this->load->model('product_model');
+		$this->load->model('image_model');
+		$this->product_model->save_main_image($this->input->post('main_image'));
+		$data['product'] = $this->product_model->get($this->input->post('product_id'));
+		$data['photos'] = $this->image_model->get_photos($this->input->post('product_id'));	
+		redirect('admin/product/photo/'.$this->input->post('product_id'));
 		
 	}
 }
