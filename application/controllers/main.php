@@ -1,10 +1,17 @@
-<?php
+﻿<?php
 
 class Main extends CI_Controller {
     public function index() {
         $data['page_title'] = "Welcome to BfashShop.com";
 		$this->load->model('brand_model');
+		$this->load->model('category_model');
 		$data['brand_list'] = $this->brand_model->get(); 
-        $this->load->view('main',$data);
+		//$data['cat_list_women'] = $this->category_model->get_category_by_gender('WOMEN','en');
+		$num = 0;
+		$data['category'] = $this->category_model->get();
+		
+
+		$data['num'] = $num;
+        $this->load->view('index',$data);
     }
 }

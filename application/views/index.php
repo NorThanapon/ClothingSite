@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php $this->load->view('common/head'); ?>
+        <?php include('common/head.php'); ?>
     </head>
     <body>
         <div class="wrapper">
-            <?php $this->load->view('common/header'); ?>
+             <?php include('common/header.php'); ?>
 			<div id="content">
-				<?php $this->load->view('common/contentside')?>
+				<?php include('common/contentside.php'); ?>
 				<div id="content-main">
 					<div class="main-branner">
 					<a href="<?php echo asset_url().'img/main-branner.jpg'; ?>"><img src="<?php echo asset_url().'img/main-branner.jpg'; ?>"></a>
