@@ -81,13 +81,13 @@
 				?>
 		    </select>
 			<br />
-			<label for="total_quantity">Total Quantity</label>
-			<input name="total_quantity" type="text" value="0"/>
+			<label for="total_quantity">Total Quantity :</label>
+			<input name="total_quantity" type="text" value="<?php echo $product->total_quantity; ?>" readonly="true" />
 			<br />
-			<label for="markup_price">Markup Price</label>
+			<label for="markup_price">Price :</label>
 			<input name="markup_price" value="<?php if(isset($form_markup_price)) echo $form_markup_price; else echo $product->markup_price;?>" type="text" />*
 			<br />
-			<label for="markdown_price">Markdown Price</label>
+			<label for="markdown_price">Sale Price :</label>
 			<input name="markdown_price" value="<?php if(isset($form_markdown_price)) echo $form_markdown_price; else echo $product->markdown_price; ?>" type="text"  type="text" />
 			<br />
 		    <label for="description_th">Description (Thai):</label>
