@@ -151,8 +151,8 @@ class Product_model extends CI_Model
 		}
 		
 		
-		if ($where != "" ) $query = $this->db->get_where('products', $where);
-		else $query = $this->db->get('products');
+		if ($where != "" ) $query = $this->db->get_where('products_brands_categories', $where);
+		else $query = $this->db->get('products_brands_categories');
 		return $query->result();
 	}
 	function update_status($products)
@@ -165,8 +165,11 @@ class Product_model extends CI_Model
 		//$this->db->delete('products', array('id' =>$products )); 
 		//$this->db->where('product_id', $products);
 		//$this->db->delete('products'); 	
+		$sql = "DELETE FROM `images` WHERE product_id in(".$products.")";
+		$this->db->query($sql);	
 		$sql = "DELETE FROM `products` WHERE product_id in(".$products.")";
 		$this->db->query($sql);		
+		
 	}
 	function add_photo($file_name,$color_id)
 	{		

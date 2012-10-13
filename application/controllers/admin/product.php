@@ -298,6 +298,12 @@ class Product extends CI_Controller
 			return;
 	    }		
 		$this->load->model('product_model');
+		if(!$this->input->post('btn_update'))
+		{
+			$this->delete_batch();
+			return;
+		}
+		
 		
 		$i=0;
 		//$temp['product_id'][0]="";

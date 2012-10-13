@@ -89,8 +89,8 @@
 		    <option value="1">Show</option>
 		    <option value="2">Hide</option>
 		</select>
-		<input type = "submit" value = "Update" />
-		<input type = "submit" value = "Delete" />
+		<input type = "submit" value = "Update" name="btn_update" />
+		<input type = "submit" value = "Delete" name="btn_delete" />
 	    </fieldset>
 	
 
