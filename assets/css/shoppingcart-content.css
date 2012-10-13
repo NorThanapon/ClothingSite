@@ -1,0 +1,174 @@
+#content{
+    top:-30px;	
+	max-width:1000px;
+	position:relative;
+	width: 100%;
+	margin: 0 auto;
+	vertical-align:middle;	
+	}
+	
+#content-main{ 
+	position:relative;
+	width:79%;
+	float:right;
+	padding-top:5px;
+}
+
+#content-Head_name_page h2{
+	margin-top:15px;
+	font-size:170%;
+	color:#000;
+	font-family:Serif;
+	font-weight:normal;
+}
+
+#content-Head_name_page h5{
+	margin-top:10px;
+	font-size: 70%;
+	color:#00A8DF;
+}
+
+#content-item_bar{
+	margin-top:20px;
+	background-color:#E5E5E5;
+	height:13px;
+	padding:7px;
+	
+}
+
+#content-item_bar span{
+ float:left;
+ font-size:70%; 
+}
+
+#content-item_bar  #option{	
+	margin-left:320px;
+}
+
+#content-item_bar  #price{	
+	margin-left:260px;
+}
+
+#content-wish_list{
+	border-bottom:1px solid #ACACAC;
+	height:120px;
+	margin-bottom:5px;
+	margin-top:5px;
+}
+.product{
+	width:410px;
+	float:left;
+}
+.product-image img{
+	width:80px;
+	height:110px;
+	position:relative;
+	float:left;	
+	margin-right:15px;
+}
+
+.product .product-name h2{
+	font-size:80%;
+	color:#000;	
+	padding-top:5px;	
+	position:relative;
+	margin-bottom:70px;
+}
+
+.product .product-link a{
+	font-size:70%;
+	color:#8C8C8C;
+	font-weight:bold;
+}
+
+.option{
+	float:left;
+	width:300px;
+	height:100px;
+	position:relative;
+	font-size:75%;
+	color:#5C5C5C;
+	line-height:150%;
+	padding-left:5px;
+	padding-top:5px;
+	font-weight:bold;
+	border-left:1px solid #EBEBEB;
+	border-right:1px solid #EBEBEB;
+}
+
+.option .option-color{
+	margin-right:40px;
+}
+
+.option .option-size{
+	margin-right:45px;
+}
+
+.option .option-quantity{
+	margin-right:22px;
+}
+
+.price{
+	width:50px;
+	float:right;
+	text-align:right;
+	margin-right:15px;
+	padding-top:5px;
+	font-size:75%;
+	color:#5C5C5C;
+	font-weight:bold;
+}
+
+.option-button{
+	margin-top:25px;
+}
+
+#content-footer_wish_list {
+float:right;
+width:380px;
+height:500px;
+font-size:80%;
+color:#5C5C5C;
+font-family:Serif;
+line-height:130%;
+margin-top:5px;
+
+}
+
+#footer-calculate{
+border-bottom:1px solid #ACACAC;
+padding-bottom:10px;
+height:30px;
+}
+
+#footer-total{
+margin-top:5px;
+color:#000;
+font-size:110%;
+height:30px;
+}
+span #subtotal{
+	display:block;
+}
+.font-footer{
+	float:left;
+}
+span #delivery-charge{
+	display:block;
+}
+.num-footer{
+float:right;
+}
+
+.total{
+
+float:left;
+}
+
+.total-num{
+float:right;
+}
+
+#footer-button{
+float:right;
+}
