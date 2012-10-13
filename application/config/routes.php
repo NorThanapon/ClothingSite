@@ -42,6 +42,11 @@ $route['default_controller'] = "main";
 $route['admin'] = "admin/order";
 $route['404_override'] = '';
 
+// brand
+$route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)/(:num)'] = 'brand/product/$1/$2/$3';
+$route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'brand/product/$1/$2';
+$route['brand/([-_a-zA-Z0-9]+)'] = 'brand/product/$1';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

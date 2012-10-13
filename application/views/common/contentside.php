@@ -15,7 +15,10 @@
 		foreach($brand_list as $item)
 		{
 		?>
-			<?php echo anchor('brand/catalog/'.$item->brand_id, $item->brand_name,'title="'.$item->brand_name.'"'); ?><br />
+		    
+			<?php 
+			$re_brand_name = str_replace(' ','_',$item->brand_name);
+			echo anchor('brand/'.$re_brand_name, $item->brand_name,'title="'.$item->brand_name.'"'); ?><br />
 			
 		<?php
 		}
