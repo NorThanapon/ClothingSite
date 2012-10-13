@@ -1,9 +1,3 @@
-	<div id="content-history">	
-		<span class="history-previous"><?php echo anchor('#','Home >', 'title="Home"'); ?></span>
-		<span class="history-previous"><?php echo anchor('#','brand >', 'title="Brand"'); ?></span>
-		<?php $re_brand_name = str_replace(' ','_',$brands->brand_name); ?>
-		<span id="history-current"><?php echo anchor('brand/'.$re_brand_name, $brands->brand_name, 'title="'.$brands->brand_name.'"'); ?></span>
-	</div>
 	<div id="content-showing">
 		<h2>Showing Items 0-10 of 10</h2>
 		<?php echo anchor('#','0','') ?>

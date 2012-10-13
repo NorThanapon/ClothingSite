@@ -9,6 +9,9 @@
 			<div id="content">
 				<?php include('common/contentside.php'); ?>
 				<div id="content-main">
+					<div id="content-history">	
+						<?php include($content_history.'.php'); ?>
+					</div><!-- content-main -->
 					<?php include($page.'.php'); ?>
 				</div><!-- content-main -->
 				
