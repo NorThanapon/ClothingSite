@@ -30,9 +30,10 @@
 	    <table  class="tablesorter" >
 		<thead>
             <tr>
-			    <th width="100">Item ID</th>
+				<th width="100">Brand</th>
+			    <th>Item ID</th>
 				<th>Product's Name</th>
-				<th width="100">Size</th>
+				<th>Size</th>
 				<th>Color</th>
 				<th>Quantity</th>
 				<th>&nbsp;</th>	
@@ -45,6 +46,16 @@
 				{
             ?>
             <tr>
+				<td><?php 
+						foreach($product_list as $productItem)
+						{
+							if($item->product_id == $productItem->product_id)
+							{
+								echo $productItem->brand_name;
+							}
+						}
+					?>
+				</td>
                 <td><?php echo $item->item_id;?> </td>
 				<td><?php 
 						foreach($product_list as $productItem)
@@ -116,7 +127,7 @@
 		    .tablesorter({
 			headers: {
 				//0:{sorter:false},
-				5:{sorter:false}
+				6:{sorter:false}
 			}
 		    })
 		    .tablesorterPager({
