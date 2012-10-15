@@ -101,7 +101,10 @@ class Product extends CI_Controller
 				$data['page'] = 'product/list';
 				$this->load->view('main_admin_page',$data);
 			}
-            redirect('admin/product/photo/'.$this->input->post('product_id'));
+			//To Do
+			$product_id = $this->product_model->get_last_id();
+			//To do 
+            redirect('admin/product/photo/'.$product_id->product_id);
 			//$data['page'] = 'admin/product/photo/'.$this->input->post('product_id');
 			//$this->load->view('main_admin_page',$data);
             return;

@@ -199,6 +199,12 @@ class Product_model extends CI_Model
 		);
 		$this->db->update('products',$data,array('product_id'=>$this->input->post('product_id')));
 	}
+	function get_last_id()
+	{		
+		//$query = $this->db->get('products')->order_by("product_id", "desc"); 
+		$query = $this->db->query("SELECT  *  FROM `products` order by product_id desc");
+		return $query->row(0);
+	}
 	
 
 }
