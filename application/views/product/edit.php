@@ -4,9 +4,9 @@
 		<fieldset>
 			<input name="product_id_key" type="hidden" value="<?php echo $product->product_id; ?>" />
 		    <legend>Product Information</legend>
-			<label for="product_id">Product ID</label>
+			<!--<label for="product_id">Product ID</label>
 			<input name="product_id" value="<?php if(isset($form_product_id)) echo $form_product_id; else echo $product->product_id;?>" type="text" />*
-			<br />
+			<br />-->
 		    <label for="product_name_th">Name (Thai):</label>
 		    <input name="product_name_th" value="<?php if(isset($form_product_name_th)) echo $form_product_name_th; else echo $product->product_name_th;?>" type ="text"/>*
 		    <?php echo form_error('product_name_th', '<span class="form-error-message">', '</span>'); ?>

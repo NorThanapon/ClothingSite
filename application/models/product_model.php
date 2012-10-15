@@ -29,7 +29,7 @@ class Product_model extends CI_Model
 			$is_active = 1;
 		}
 		$data = array(
-			'product_id' => $this->input->post('product_id'),
+			//'product_id' => $this->input->post('product_id'),
 			'product_name_th' => $this->input->post('product_name_th'),
 			'product_name_en' => $this->input->post('product_name_en'),
 			'brand_id' => $this->input->post('brand_id'),
@@ -57,7 +57,7 @@ class Product_model extends CI_Model
 		
 		
 		$data = array(
-			'product_id' => $this->input->post('product_id'),
+			//'product_id' => $this->input->post('product_id'),
 			'product_name_th' => $this->input->post('product_name_th'),
 			'product_name_en' => $this->input->post('product_name_en'),
 			'brand_id' => $this->input->post('brand_id'),
@@ -192,7 +192,7 @@ class Product_model extends CI_Model
 	
 	function save_main_image($image_id)
 	{			
-		echo "model>>".$this->input->post('product_id')."...".$image_id;
+		//echo "model>>".$this->input->post('product_id')."...".$image_id;
 		$data = array(
 			'product_id' => $this->input->post('product_id'),
 			'main_image' => $image_id

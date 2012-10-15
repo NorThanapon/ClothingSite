@@ -44,7 +44,7 @@ class Product extends CI_Controller
 			return;
 	    }
 		//form submitted
-		$data['form_product_id'] = $this->input->post('product_id');
+		//$data['form_product_id'] = $this->input->post('product_id');
 		$data['form_product_name_th'] = $this->input->post('product_name_th');
 		$data['form_product_name_en'] = $this->input->post('product_name_en');
 		$data['form_brand_id'] = $this->input->post('brand_id');
@@ -65,7 +65,7 @@ class Product extends CI_Controller
 		
 		//form validation
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('product_id', 'Product ID', 'trim|required');
+		//$this->form_validation->set_rules('product_id', 'Product ID', 'trim|required');
 		$this->form_validation->set_rules('product_name_en', 'Name(English)', 'trim|required');
 		$this->form_validation->set_rules('product_name_th', 'Name(Thai)', 'trim|required');
 		$this->form_validation->set_rules('brand_id', 'Brand', 'trim|required');
@@ -82,12 +82,12 @@ class Product extends CI_Controller
             return;
     	}
 		$this->load->model('product_model');
-        if($this->product_model->get($data['form_product_id'])!=FALSE)
+        /*if($this->product_model->get($data['form_product_id'])!=FALSE)
         {
             $data['error_message'] = 'Duplicate productID. The productID you entered is already existed in the database.';
             $this->load->view('main_admin_page',$data);
             return;
-        }
+        }*/
 		//check none duplicate productID
 		
 		$this->product_model->add();
@@ -147,7 +147,7 @@ class Product extends CI_Controller
             return;
         }
 		//form submitted
-		$data['form_product_id'] = $this->input->post('product_id');
+		//$data['form_product_id'] = $this->input->post('product_id');
 		$data['form_product_name_th'] = $this->input->post('product_name_th');
 		$data['form_product_name_en'] = $this->input->post('product_name_en');
 		$data['form_brand_name'] = $this->input->post('brand_name');
@@ -168,7 +168,7 @@ class Product extends CI_Controller
 		
 		//form validation
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('product_id', 'Product ID', 'trim|required');
+		//$this->form_validation->set_rules('product_id', 'Product ID', 'trim|required');
 		$this->form_validation->set_rules('product_name_en', 'Name(English)', 'trim|required');
 		$this->form_validation->set_rules('product_name_th', 'Name(Thai)', 'trim|required');
 		$this->form_validation->set_rules('brand_id', 'Brand', 'trim|required');
@@ -189,7 +189,7 @@ class Product extends CI_Controller
     	}
 		
 		//check duplicated data
-		if($this->product_model->get($data['form_product_id'])!=FALSE && $this->product_model->get($product_id)->product_id != $data['form_product_id'])
+		/*if($this->product_model->get($data['form_product_id'])!=FALSE && $this->product_model->get($product_id)->product_id != $data['form_product_id'])
         {
             $data['error_message'] = 'Duplicate productID. The productID you entered is already existed in the database.';
 			$data['brand'] = $this->brand_model->get();
@@ -199,7 +199,7 @@ class Product extends CI_Controller
 			$data['page'] = 'product/edit';
 			$this->load->view('main_admin_page',$data);
             return;
-        }
+        }*/
 		
         //none duplicate productID
 		$this->product_model->edit($this->input->post('product_id_key'));

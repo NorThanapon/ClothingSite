@@ -43,7 +43,7 @@
 		<thead>
 		    <tr>
 			<th>&nbsp;</th>
-			<th>Product ID</th>
+			<!--<th>Product ID</th>-->
 			<th>Product Name</th>
 			<th>Brand</th>
 			<th>Category</th>
@@ -60,8 +60,8 @@
 				{
             ?>
             <tr>
-                <td><input type = "checkbox" <?php echo "name=\"chb_select_product[]\" value=\"".$item->product_id."\"" ;?>"/></td>
-				<td><!--<a href ="<?php echo "product/detail/".$item->product_id;?>" >--><?php echo $item->product_id;?><!--</a>--></td>
+                <td><input type = "checkbox" <?php echo "name=\"chb_select_product[]\" value=\"".$item->product_id."\"" ;?> "/></td>
+				
                 <td><?php echo $item->product_name_en;?> </td>
 				<td><?php echo $item->brand_name;?></td>
 				<td><?php echo $item->cat_name_en;?></td>				
@@ -90,20 +90,22 @@
 		    <option value="2">Hide</option>
 		</select>
 		<input type = "submit" value = "Update" name="btn_update" />
-		<input type = "submit" value = "Delete" name="btn_delete" />
+		<input type = "submit" value = "Delete" name="btn_delete" id="btn_delete_button" />
 	    </fieldset>
 	
 
 		
-	<script type="text/javascript">
-		//$('#confirm-modal').jqm({modal: true, trigger: false, toTop: true});
+	<script type="text/javascript">		
 		$(document).ready(function() {
 		//add confirm event for delete button
 		$('a.delete-button').click(function() { 
 		    confirm('Confirm for deletion','Do you want to delete this product.',this.href, 'Delete'); 
 		    return false;
-		});
-		
+		});	
+		$('.btn_delete_button').click(function() { 
+		    confirm('Confirm for deletion','Do you want to delete this product.',this.href, 'Delete'); 
+		    return false;
+		});				
 		$('#btn_filter').click(function() {
 		    var url = document.URL;
 		    url = url.substring(0, url.indexOf('/product') + 9);
@@ -115,7 +117,7 @@
 		    .tablesorter({
 			headers: {
 			    0:{sorter:false},
-			    8:{sorter:false}
+			    7:{sorter:false}
 			}
 		    })
 		    .tablesorterPager({
