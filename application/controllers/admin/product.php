@@ -248,9 +248,18 @@ class Product extends CI_Controller
 			$this->load->view('main_admin_page',$data);
 			return;
 		}
+		$this->load->model('image_model');
+		$image_of_product = $this->image_model->get_photos($product_id);
+		foreach($image_of_product as $item)
+		{
+			//echo ">>>".$item->image_file_name;
+			$this->image_model->delete_photo($item->image_id,'./assets/db/products/'.$item->image_file_name);
+		}
+		
+		
 		$this->product_model->delete($product_id);	   
 	    $data['product_list'] = $this->product_model->get();
-	    redirect('admin/product');
+		redirect('admin/product');
 	}
 	public function search($product_cat, $brand=FALSE, $status, $name=FALSE)
 	{

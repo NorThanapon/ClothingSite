@@ -21,6 +21,10 @@ class Image_model extends CI_Model
 		$this->db->delete('images',array('image_id' => $photo_id));	
 		
 	}
+	function unlink_image($file_name)
+	{
+		unlink($file_name);
+	}
 	function get_latest()
     {
 		$this->db->order_by('image_id', 'desc');

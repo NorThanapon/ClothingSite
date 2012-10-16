@@ -24,7 +24,7 @@
 				<?php 
 				foreach($brands as $item)
 				{  
-					if(isset($form_brand_name)&&$form_brand_name==$item->brand_name)
+					if(isset($form_brand_id)&&$form_brand_id==$item->brand_id)
 					{
 						echo '<option value="'.$item->brand_id.'" selected="selected">'.$item->brand_name.'</option>';
 					}
