@@ -13,6 +13,7 @@
 		{
 		?>
 			<div class="sub-product">
+				
 				<?php echo anchor(asset_url().'\assets\db\products\product1.png',"<img src='".asset_url().'img/product1.png'."' />",'');	?>
 					<h2><?php echo $item->product_name_en;?></h2>
 					<div id="detail-price">

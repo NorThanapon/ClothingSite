@@ -32,13 +32,13 @@
 .side-ad{	
 	border-bottom:1px solid #000;	
 	width:200px;
-	height:	75px;
-	margin-bottom:5px;	
+	height:	130px;
+	margin-bottom:10px;	
 }
 
 .side-ad img{
 	width:200px;
-	height:	75px;		
+	height:	130px;		
 }
 
 .side-navbox{
@@ -76,21 +76,21 @@
 
 .main-branner{
 	border:1px solid #000;
-	width:775px;
+	width:770px;
 	height:360px;
 	margin-bottom:5px;
-	margin-left:5px;
+	margin-left:8px;
 	margin-right:5px;
 }
 
 .main-branner img{
-	width:775px;
+	width:770px;
 	height:360px;
 }
 
 .sub-branner{
-	border:1px solid #000;
-	width:250px;
+	
+	width:253px;
 	height:360px;
 	float:left;
 	margin-left:8px;	

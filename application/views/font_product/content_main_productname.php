@@ -18,6 +18,9 @@
 			<div class="sub-image">
 				<a href="<?php echo asset_url().'img/productname-sub3.jpg'; ?>"><img src="<?php echo asset_url().'img/productname-sub3.jpg'; ?>"></a>
 			</div> 
+			<div class="sub-image">
+				<a href="<?php echo asset_url().'img/productname-sub1.jpg'; ?>"><img src="<?php echo asset_url().'img/productname-sub1.jpg'; ?>"></a>
+			</div> 
 		</div>		
 	</div>
 	<div id="content-product" >

@@ -55,14 +55,24 @@
 	margin-left:100px
 }
 
+.main-image img{
+	width:265px;
+	height:345px;
+}
+
 .sub-image{
 	border:1px solid #ACACAC;
-	width:80px;
-	height:110px;
+	width:57px;
+	height:90px;
 	position:relative;
 	float:left;
 	margin-top:20px;
 	margin-left:10px;
+}
+
+.sub-image img{
+	width:57px;
+	height:90px;
 }
 
 #product-sub{
