@@ -47,6 +47,9 @@ $route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)/(:num)'] = 'brand/product/$1/$2/$3'
 $route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'brand/product/$1/$2';
 $route['brand/([-_a-zA-Z0-9]+)'] = 'brand/product/$1';
 
+$route['brand/(:any)/page/(:num)/(:num)'] = 'brand/product_list/$1/$2/$3';
+$route['brand/(:any)'] = 'brand/product_list/$1';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

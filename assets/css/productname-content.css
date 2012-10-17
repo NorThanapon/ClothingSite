@@ -87,8 +87,10 @@ font-size:70%
 #detail-price h2{
 	
 	color:Red;
+	font-size:85%;
 	line-height:170%;
-	margin-left:10px;
+	margin-left:20px;
+	
 }
 
 #detail-product h2{
