@@ -17,26 +17,52 @@
         <span class="nav-cat-top">
             <?php echo anchor('#','WOMEN', ''); ?>
 			<div class="submenu">
-				<div class="left-submenu">
-					<?php foreach($women_categories as $item)
-						  {
-							echo anchor('#', $item->cat_name_en, 'cat_id="'.$item->cat_id.'"'); 
-						  }
-					?>
-				</div>
-				<div class="right-submenu">
-					<div class="sub-cat" sup_cat_id="1">
-						test1
-					</div>
-					<div class="sub-cat" sup_cat_id="2">
-						test2
-					</div>
-				</div>
+					<table>
+						<?php 
+							$num = ceil(count($women_categories)/2);
+							for($i=0; $i<$num; $i++)
+							{
+						?>      <tr>
+									<td style="width: 200px;"><?php echo anchor('#',$women_categories[$i]->cat_name_en,'title="'.$women_categories[$i]->cat_name_en.'"') ?></td>
+									<?php if($i+$num < count($women_categories))
+										  {
+									?>		
+											<td style="width: 200px;"><?php echo anchor('#',$women_categories[$i+$num]->cat_name_en,'title="'.$women_categories[$i]->cat_name_en.'"') ?></td>
+									<?php
+										  }
+									?>
+								</tr>
+						
+						<?php }
+						?>
+					</table>
 				<div class="clear-float"></div>
 			</div>
         </span>
         <span class="nav-cat-top">
-            <?php echo anchor('#','MEN', ''); ?>
+			<?php echo anchor('#','MEN', ''); ?>
+			<div class="submenu">
+				<table>
+							<?php 
+								$num = ceil(count($men_categories)/2);
+								for($i=0; $i<$num; $i++)
+								{
+							?>      <tr>
+										<td style="width: 200px;"><?php echo anchor('#',$men_categories[$i]->cat_name_en,'title="'.$men_categories[$i]->cat_name_en.'"') ?></td>
+										<?php if($i+$num < count($men_categories))
+											  {
+										?>		
+												<td style="width: 200px;"><?php echo anchor('#',$men_categories[$i+$num]->cat_name_en,'title="'.$men_categories[$i]->cat_name_en.'"') ?></td>
+										<?php
+											  }
+										?>
+									</tr>
+							
+							<?php }
+							?>
+				</table>
+				<div class="clear-float"></div>
+			</div>
         </span>
     </div> <!-- end #header-nav -->
     <div id="header-menu" class="header-nav-bar">
