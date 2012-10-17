@@ -9,7 +9,7 @@ class Category_model extends CI_Model
     var $cat_name_en = '';
     var $description_th = '';
     var $description_en = '';
-    var $cat_parent = '';
+    var $cat_gender = '';
 	var $is_active = '';
 
     function __construct() 
@@ -18,39 +18,21 @@ class Category_model extends CI_Model
     }
 	
 	function add()
-	{
-		/*$this->cat_name_th = $this->input->post('cat_name_th');
-		$this->cat_name_en = $this->input->post('cat_name_en');
-		$this->description_th = $this->input->post('description_th');
-		$this->description_en = $this->input->post('description_en');
-		$this->cat_parent = $this->input->post('cat_parent');*/		
+	{	
 		$is_act = 1;
 		if($this->input->post('is_active')==FALSE)
 		{
 			$is_act = 0;
-		}		
-		if($this->input->post('cat_parent')!="")
-		{
-				$data = array(
-					'cat_name_th' => $this->input->post('cat_name_th'),
-					'cat_name_en' => $this->input->post('cat_name_en'),
-					'description_th' => $this->input->post('description_th'),
-					'description_en' => $this->input->post('description_en'),
-				    'cat_parent' => $this->input->post('cat_parent'),
-					'is_active' => $is_act
-				);
 		}	
-		else
-		{
-			$data = array(
-					'cat_name_th' => $this->input->post('cat_name_th'),
-					'cat_name_en' => $this->input->post('cat_name_en'),
-					'description_th' => $this->input->post('description_th'),
-					'description_en' => $this->input->post('description_en'),
-					'is_active' => $is_act
-				);
-		}
-		
+		$data = array(
+			'cat_name_th' => $this->input->post('cat_name_th'),
+			'cat_name_en' => $this->input->post('cat_name_en'),
+			'description_th' => $this->input->post('description_th'),
+			'description_en' => $this->input->post('description_en'),
+			'cat_gender' => $this->input->post('cat_gender'),
+			'is_active' => $is_act
+		);
+
 		$this->db->insert('categories', $data); 
 	}
 	
@@ -61,29 +43,15 @@ class Category_model extends CI_Model
 		{
 			$is_act=0;
 		}
-	    if($this->input->post('cat_parent')!="")
-		{
-				
-				$data = array(
-					'cat_name_th' => $this->input->post('cat_name_th'),
-					'cat_name_en' => $this->input->post('cat_name_en'),
-					'description_th' => $this->input->post('description_th'),
-					'description_en' => $this->input->post('description_en'),
-				    'cat_parent' => $this->input->post('cat_parent'),
-					'is_active' => $is_act
-				);
-		}	
-		else
-		{
-			$data = array(
-					'cat_name_th' => $this->input->post('cat_name_th'),
-					'cat_name_en' => $this->input->post('cat_name_en'),
-					'description_th' => $this->input->post('description_th'),
-					'description_en' => $this->input->post('description_en'),
-					'cat_parent' => NULL,
-					'is_active' => $is_act
-				);
-		}
+	   
+		$data = array(
+			'cat_name_th' => $this->input->post('cat_name_th'),
+			'cat_name_en' => $this->input->post('cat_name_en'),
+			'description_th' => $this->input->post('description_th'),
+			'description_en' => $this->input->post('description_en'),
+			'cat_gender' => $this->input->post('cat_gender'),
+			'is_active' => $is_act
+		);
 		
 		$this->db->update('categories',$data,array('cat_id'=>$cat_id));
 	}
@@ -98,11 +66,11 @@ class Category_model extends CI_Model
 	
 	    if ($cat_id === FALSE) 
 		{
-			$query = $this->db->get_where('categories_parent');
+			$query = $this->db->get_where('categories');
 			return $query->result();
 	    }
 		//$query = $this->db->query("SELECT *,c1.cat_name_en as parent_name FROM `categories` as c1 inner join `categories` as c2 on c1.cat_id = c2.cat_parent");
-	    $query = $this->db->get_where('categories_parent', array('cat_id' => $cat_id));
+	    $query = $this->db->get_where('categories', array('cat_id' => $cat_id));
 		
 	    return $query->row();
 	}
@@ -111,18 +79,18 @@ class Category_model extends CI_Model
 	{
 		if ($cat_name_th === FALSE) 
 		{
-			$query = $this->db->get_where('categories_parent',array('cat_name_en' => $cat_name_en));
+			$query = $this->db->get_where('categories',array('cat_name_en' => $cat_name_en));
 			return $query->result();
 	    }
 		if ($cat_name_en === FALSE) 
 		{
-			$query = $this->db->get_where('categories_parent',array('cat_name_th' => $cat_name_th));
+			$query = $this->db->get_where('categories',array('cat_name_th' => $cat_name_th));
 			return $query->result();
 	    }
 				
 	    $this->db->where('cat_name_th',$cat_name_th);
 		$this->db->or_where('cat_name_en',$cat_name_en); 
-		$query = $this->db->get('categories_parent');
+		$query = $this->db->get('categories');
 	    return $query->row();
 	}
 	
@@ -136,11 +104,11 @@ class Category_model extends CI_Model
 			$where = $where . "(cat_name_th LIKE '%".$name."%' OR cat_name_en LIKE '%".$name."%')";
 		}
 		
-		if ($where != "" ) $query = $this->db->get_where('categories_parent', $where);
-		else $query = $this->db->get('categories_parent');
+		if ($where != "" ) $query = $this->db->get_where('categories', $where);
+		else $query = $this->db->get('categories');
 		return $query->result();
 	}
-	
+	/*
 	function has_products_under_category($cat_id=false)
 	{
 		if($cat_id !=false)
@@ -174,6 +142,6 @@ class Category_model extends CI_Model
 		}
 	
 	}
-	
+	*/
 }
 ?>
