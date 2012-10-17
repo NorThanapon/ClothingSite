@@ -93,29 +93,28 @@
 			<input type = "submit" value = "Update" name="btn_update" />
 			<input type = "submit" value = "Delete" name="btn_delete" id="btn_delete_button" />
 			</fieldset>
-		
-		<?php $this->load->view('common/confirm_box');?>
 		</form>
+		<?php $this->load->view('common/confirm_box');?>
+		
 	<script type="text/javascript">		
-		$(document).ready(function() {
-		//add confirm event for delete button
-		$('a.delete-button').click(function() { 
-		    confirm('Confirm for deletion','Do you want to delete this product.',this.href, 'Delete'); 
-		    return false;
-		});	
-		$('#btn_delete_button').click(function() { 
-		    confirm('Confirm for deletion','Do you want to delete this product.',this.href, 'Delete'); 
-		    return false;
-		});				
-		$('#btn_filter').click(function() {
+	$(document).ready(function() {
+	$('a.delete-button').click(function() { 
+		confirm('Confirm for deletion','Do you want to delete this product.',this.href, 'Delete'); 
+		return false;
+	});	
+	$('#btn_delete_button').click(function() { 
+		confirm('Confirm for deletion','Do you want to delete products.',this.href, 'Delete'); 
+		return false;
+	});	
+	
+	$('#btn_filter').click(function() {
 		    var url = document.URL;
 		    url = url.substring(0, url.indexOf('/product') + 9);
 		    url = url + '/search/' + $('#ddl_product_cat').val() + '/' + $('#ddl_brand').val()+ '/' + $('#ddl_status').val()+ '/' + $('#txt_product_name').val();
 		    window.location = url;
 		});
 		$(".tablesorter").find("tr:even").addClass("even");
-		$(".tablesorter")
-		    .tablesorter({
+		$(".tablesorter").tablesorter({
 			headers: {
 			    0:{sorter:false},
 			    7:{sorter:false}
@@ -131,5 +130,5 @@
 		    $(".tablesorter").find('tr').removeClass('even');
 		    $(".tablesorter").find("tr:even").addClass("even");
 		});
-	    }); 
+	}); 
 	</script>
