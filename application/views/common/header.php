@@ -18,8 +18,11 @@
             <?php echo anchor('#','WOMEN', ''); ?>
 			<div class="submenu">
 				<div class="left-submenu">
-					<?php echo anchor('#','SHIRT', 'cat_id="1"'); ?>
-					<?php echo anchor('#','T-SHIRT', 'cat_id="2"'); ?>
+					<?php foreach($women_categories as $item)
+						  {
+							echo anchor('#', $item->cat_name_en, 'cat_id="'.$item->cat_id.'"'); 
+						  }
+					?>
 				</div>
 				<div class="right-submenu">
 					<div class="sub-cat" sup_cat_id="1">
@@ -34,9 +37,6 @@
         </span>
         <span class="nav-cat-top">
             <?php echo anchor('#','MEN', ''); ?>
-        </span>
-        <span class="nav-cat-top">
-            <?php echo anchor('#','KIDS', ''); ?>
         </span>
     </div> <!-- end #header-nav -->
     <div id="header-menu" class="header-nav-bar">

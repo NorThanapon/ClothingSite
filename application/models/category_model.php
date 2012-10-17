@@ -75,6 +75,13 @@ class Category_model extends CI_Model
 	    return $query->row();
 	}
 	
+	function get_by_gender($cat_gender)
+	{
+	    $query = $this->db->get_where('categories', array('cat_gender' => $cat_gender , 'is_active' => '1'));
+		
+	    return $query->result();
+	}
+	
 	function get_by_name($cat_name_th = FALSE, $cat_name_en = FALSE)
 	{
 		if ($cat_name_th === FALSE) 

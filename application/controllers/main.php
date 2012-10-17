@@ -8,10 +8,8 @@ class Main extends CI_Controller {
 		$data['brand_list'] = $this->brand_model->get(); 
 		//$data['cat_list_women'] = $this->category_model->get_category_by_gender('WOMEN','en');
 		$num = 0;
-		$data['category'] = $this->category_model->get();
-		
-
-		$data['num'] = $num;
+		$data['women_categories'] = $this->category_model->get_by_gender('WOMEN');
+		$data['men_categories'] = $this->category_model->get_by_gender('WOMEN');
         $this->load->view('index',$data);
     }
 }
