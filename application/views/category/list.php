@@ -30,8 +30,8 @@
 				<th style="width: 100px;">Name (Thai)</th>
 				<th>Description (English)</th>
 				<th>Description (Thai)</th>
-				<th style="width: 100px;">Under-category</th>
-				<th style="width: 64px;">show/hide</th>
+				<th style="width: 100px;">Gender</th>
+				<th style="width: 64px;">Show/Hide</th>
 				<th style="width: 30px;">&nbsp;</th>
             </tr>
 		</thead>
@@ -48,7 +48,7 @@
 				<td><?php echo $item->description_en;?></td>
 				<td><?php echo $item->description_th;?></td>
 				
-				<td><?php echo $item->parent_name;?></td>
+				<td><?php echo $item->cat_gender;?></td>
 				<td><?php if($item->is_active == 1) echo "show"; else echo "hide"; ?></td>
 				<td>
 					 <?php echo anchor('admin/category/edit/'.$item->cat_id, ' ', array('title'=>"Edit Category",'class'=>'edit-button')); ?>

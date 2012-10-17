@@ -19,16 +19,30 @@
 		    <label for="description_en">Description (English):</label>
 		    <textarea id="description_en" name ="description_en" ><?php if(isset($form_description_en)) echo $form_description_en; ?></textarea>
 		    <br />
-		    <label for="cat_parent">Under Category:</label>
-		    <select id="cat_parent" name="cat_parent" > 
+		    <label for="cat_gender">Gender :</label>
+		    <select id="cat_gender" name="cat_gender" > 
 				<option value="">--None--</option>
 				<?php 
-				foreach($categories as $item)
+				$gender[0]='woman';
+				$gender[1]='man';
+				$count=0;
+				foreach($gender as $item)
 				{  
-					echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+					if(isset($form_cat_gender) && $form_cat_gender == $gender[$count] )
+					{
+						echo "<option value=".$gender[$count]." selected='selected' >".$gender[$count]."</option>";
+					}
+					else
+					{
+						echo "<option value=".$gender[$count].">".$gender[$count]."</option>";
+					}
+					
+					$count++;
 				}
 				?>
-		    </select>
+		    </select>*
+			<?php echo form_error('cat_gender', '<span class="form-error-message">', '</span>'); ?>
+			<span class='form-error-message'><?php echo $error_gender;?></span>
 			<br />
 			<label for="is_active" >Show:</label>
 			<input id="is_active" name="is_active" <?php if(!isset($form_is_active) || $form_is_active) echo " checked "?> type="checkbox"  />		

@@ -20,44 +20,29 @@
 		    <label for="description_en" >Description (English):</label>
 		    <textarea id="description_en" name ="description_en" ><?php if(isset($form_description_en)) echo $form_description_en; else echo $categories->description_en; ?></textarea>
 		    <br />
-		    <label for="cat_parent" >Under category:</label>
-		    <select id="cat_parent" name="cat_parent">
-			    <option value="">--None--</option>
-			    <?php 
-				
-				if(isset($form_cat_parent))
-				{
-					foreach($allCat as $item)
-					{  
-						if($form_cat_parent == $item->cat_id)
-						{
-							echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
-						}
-						else
-						{
-							echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
-						}
+		    <label for="cat_gender">Gender :</label>
+		    <select id="cat_gender" name="cat_gender" > 
+				<option value="">--None--</option>
+				<?php 
+				$gender[0]='woman';
+				$gender[1]='man';
+				$count=0;
+				foreach($gender as $item)
+				{  
+					if( $gender[$count] == $categories->cat_gender || (isset($form_cat_gender) && $form_cat_gender == $gender[$count] ))
+					{					
+						echo "<option value=".$gender[$count]." selected='selected' >".$gender[$count]."</option>";
 					}
+					else
+					{
+						echo "<option value=".$gender[$count].">".$gender[$count]."</option>";
+					}
+					$count++;
 				}
-				else
-				{
-					$thisCat = $categories->cat_parent;
-					
-					foreach($allCat as $item)
-					{	
-						if($item->cat_id == $thisCat)
-						{
-							echo "<option value='".$item->cat_id."'  selected='selected'>".$item->cat_name_en."</option>";
-						}
-						if(!($item->cat_id == $categories->cat_id))
-						{
-							echo "<option value='".$item->cat_id."' >".$item->cat_name_en."</option>";
-						}
-					}	
-				}
-			    
-			    ?>
-		    </select>
+				?>
+		    </select>*
+			<?php echo form_error('cat_gender', '<span class="form-error-message">', '</span>'); ?>
+			<span class='form-error-message'><?php echo $error_gender;?></span>
 			<br />
 			<label for="is_active">Show :</label>
 			<input id="is_active" name='is_active' type = 'checkbox' 

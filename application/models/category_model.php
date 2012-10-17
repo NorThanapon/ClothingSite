@@ -115,7 +115,7 @@ class Category_model extends CI_Model
 		else $query = $this->db->get('categories');
 		return $query->result();
 	}
-	/*
+	
 	function has_products_under_category($cat_id=false)
 	{
 		if($cat_id !=false)
@@ -132,7 +132,7 @@ class Category_model extends CI_Model
 		}
 	
 	}
-	
+	/*
 	function has_categories_under_category($cat_id=false)
 	{
 		if($cat_id !=false)
