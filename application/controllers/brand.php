@@ -16,16 +16,17 @@ class Brand extends CI_Controller {
 		$data['re_name'] = str_replace('_',' ',$brand_name);
 		$data['brands'] = $this->brand_model->get_by_name($data['re_name']); 
 		$data['products'] = $this->product_model->get_by_brand_id($data['brands']->brand_id);
+		// TODO check whether image exist
 		$data['images'] = $this->image_model->get_photo_file($data['products']->main_image);
+			if($data['images']!="" || $data['images'] !=null)
+			{	$data['amount_product'] = 2;//set amount of product per page
+				$data['page'] = 'font_product\content_main_product_list';
+				$data['content_history'] ='common\content-history';
+				$data['previous'] = array("Home","brand");
+				$data['current'] = 'brand/'.$brand_name;
+			}
+			$this->load->view('main_page',$data);
 		
-		$data['amount_product'] = 2;//set amount of product per page
-		
-		$data['page'] = 'font_product\content_main_product_list';
-		$data['content_history'] ='common\content-history';
-		$data['previous'] = array("Home","brand");
-		$data['current'] = 'brand/'.$brand_name;
-		
-        $this->load->view('main_page',$data);
     }
 
 	public function product_list( $brand, $page=0, $per_page=0 ) {
