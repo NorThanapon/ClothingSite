@@ -7,7 +7,7 @@ class Category extends CI_Controller {
 		//$data['page'] = 'brand_list';
         $this->load->view('main_page',$data);
     }
-	public function product($cat_gender,$cat_name=FALSE,$product_id=FALSE,){
+	public function product($cat_gender,$cat_name=FALSE,$product_id=FALSE,$item=FALSE){
 		
 	}
 }

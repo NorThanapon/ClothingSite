@@ -2,7 +2,7 @@
 	<div class="page-action">
 <!-- <<<<<<< HEAD -->
 <!-- ======= -->
-	    <span id="btn-add-tag" class="button gradient"><img  src="<?php echo asset_url().'img/add-icon.png';?>" />Add New Tag</span>
+		<?php echo anchor('admin/tag/add', '<img  src='.asset_url().'img/add-icon.png'.' alt="" />Add New Tag', 'class="button gradient"'); ?>
 <!-- >>>>>>> tag: delete, search -->
 	</div>
 	<div class="clear-float"></div>
@@ -76,7 +76,7 @@
 		    .tablesorter({
 			headers: {
 				//0:{sorter:false},
-				6:{sorter:false},
+				4:{sorter:false},
 			}
 		    })
 		    .tablesorterPager({
