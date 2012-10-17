@@ -24,8 +24,8 @@
 		    <select id="cat_gender" name="cat_gender" > 
 				<option value="">--None--</option>
 				<?php 
-				$gender[0]='woman';
-				$gender[1]='man';
+				$gender[0]='Women';
+				$gender[1]='Men';
 				$count=0;
 				foreach($gender as $item)
 				{  
