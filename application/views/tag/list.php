@@ -52,7 +52,6 @@
 	</div>
 	</form>
 	<?php $this->load->view('common/confirm_box');?>
-	<?php $this->load->view('common/tag_box');?>
 	<script type="text/javascript">
 		 $(document).ready(function() {
 		//add confirm event for delete button

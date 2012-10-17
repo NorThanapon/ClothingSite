@@ -94,8 +94,8 @@ class Tag_model extends CI_Model
 	function get_product_in_tag($tag_id=FALSE)
 	{
 		$this->db->select('*');
-		$this->db->from('products');
-		$this->db->join('products_tags', 'products.product_id = products_tags.product_id');
+		$this->db->from('products_brands_categories');
+		$this->db->join('products_tags', 'products_brands_categories.product_id = products_tags.product_id');
 		$this->db->where('tag_id',$tag_id);
 		$query = $this->db->get();
 		
