@@ -13,9 +13,9 @@ class Brand extends CI_Controller {
 		$this->load->model('product_model');
 		$this->load->model('image_model');
 		$data['brand_list'] = $this->brand_model->get(); 
-		$data['re_name'] = str_replace('_',' ',$brand_name);
-		$data['brands'] = $this->brand_model->get_by_name($data['re_name']); 		
-		$data['products'] = $this->product_model->get_product_brand_image($brand_name);		
+		$data['re_name'] = str_replace('-',' ',$brand_name);
+		$data['brands'] = $this->brand_model->get_by_name($data['re_name']); 
+		$data['products'] = $this->product_model->get_product_brand_image($data['re_name']);		
 		$data['page'] = 'font_product\content_main_product_list';
 		$data['content_history'] ='common\content-history';
 		$data['previous'] = array("Home","brand");

@@ -17,7 +17,8 @@
 		?>
 		    
 			<?php 
-			$re_brand_name = str_replace(' ','_',$item->brand_name);
+			//$re_brand_name = str_replace(' ','_',$item->brand_name);
+			$re_brand_name = preg_replace('~[^a-z0-9._]+~i', '-', $item->brand_name);
 			echo anchor('brand/'.$re_brand_name, $item->brand_name,'title="'.$item->brand_name.'"'); ?><br />
 			
 		<?php
