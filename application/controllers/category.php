@@ -10,5 +10,13 @@ class Category extends CI_Controller {
 	public function product($cat_gender,$cat_name=FALSE,$product_id=FALSE,$item=FALSE){
 		
 	}
+	public function product_list($cat_gender,$cat_name=FALSE,$page=0,$per_page=0{
+		if($cat_name === FALSE)
+		{
+			echo "AAA";
+		}
+		echo "ABC";
+		
+	}
 }
 ?>

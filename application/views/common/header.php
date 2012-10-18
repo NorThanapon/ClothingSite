@@ -15,19 +15,22 @@
     </div> <!-- end #header-logo -->
     <div id="header-nav" class="header-nav-bar">
         <span class="nav-cat-top">
-            <?php echo anchor('#','WOMEN', ''); ?>
+            <?php echo anchor('category/women','WOMEN', 'title="Women Category"'); ?>
 			<div class="submenu">
 					<table>
 						<?php 
 							$num = ceil(count($women_categories)/2);
 							for($i=0; $i<$num; $i++)
 							{
+								$re_cat = str_replace('&',' ',$women_categories[$i]->cat_name_en);
+								//echo $re_cat;
+								
 						?>      <tr>
-									<td style="width: 200px;"><?php echo anchor('#',$women_categories[$i]->cat_name_en,'title="'.$women_categories[$i]->cat_name_en.'"') ?></td>
+									<td style="width: 200px;"><?php echo anchor('category/women/'.$re_cat,$women_categories[$i]->cat_name_en,'title="'.$women_categories[$i]->cat_name_en.'"') ?></td>
 									<?php if($i+$num < count($women_categories))
 										  {
 									?>		
-											<td style="width: 200px;"><?php echo anchor('#',$women_categories[$i+$num]->cat_name_en,'title="'.$women_categories[$i]->cat_name_en.'"') ?></td>
+											<td style="width: 200px;"><?php echo anchor('category/women/'.$women_categories[$i+$num]->cat_name_en,$women_categories[$i+$num]->cat_name_en,'title="'.$women_categories[$i]->cat_name_en.'"') ?></td>
 									<?php
 										  }
 									?>
