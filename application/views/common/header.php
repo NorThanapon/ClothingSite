@@ -15,24 +15,44 @@
     </div> <!-- end #header-logo -->
     <div id="header-nav" class="header-nav-bar">
         <span class="nav-cat-top">
-            <?php echo anchor('category/women','WOMEN', 'title="Women Category"'); ?>
+            <?php echo anchor('#','WOMEN', 'title="Women Category"'); ?>
 			<div class="submenu">
 					<table>
 						<?php 
 							$num = ceil(count($women_categories)/2);
 							for($i=0; $i<$num; $i++)
 							{
-								$re_cat = str_replace('&',' ',$women_categories[$i]->cat_name_en);
-								//echo $re_cat;
-								
 						?>      <tr>
-									<td style="width: 200px;"><?php echo anchor('category/women/'.$re_cat,$women_categories[$i]->cat_name_en,'title="'.$women_categories[$i]->cat_name_en.'"') ?></td>
-									<?php if($i+$num < count($women_categories))
-										  {
+									<td style="width: 200px;">
+										<?php
+										$str_cat = $women_categories[$i]->cat_name_en;
+										$start = $str_cat;
+										if(strpos($str_cat," ")>0)
+											$start = substr($str_cat,0,strpos($str_cat," "));
+										$last = strrchr($str_cat, " ");							
+										$last = str_replace(" ","",$last);
+										$cat = $start;
+										if($last != null)
+											$cat = $cat.'-'.$last;
+										echo anchor('category/women/'.$cat, $women_categories[$i]->cat_name_en,'title="'.$women_categories[$i]->cat_name_en.'"'); 
+										?>
+									</td>
+									<?php 										
+										if($i+$num < count($women_categories))
+										{
+											$str_cat = $women_categories[$i+$num]->cat_name_en;
+											$start = $str_cat;
+											if(strpos($str_cat," ")>0)
+												$start = substr($str_cat,0,strpos($str_cat," "));
+											$last = strrchr($str_cat, " ");							
+											$last = str_replace(" ","",$last);
+											$cat = $start;
+											if($last != null)
+												$cat = $cat.'-'.$last;
 									?>		
-											<td style="width: 200px;"><?php echo anchor('category/women/'.$women_categories[$i+$num]->cat_name_en,$women_categories[$i+$num]->cat_name_en,'title="'.$women_categories[$i]->cat_name_en.'"') ?></td>
+											<td style="width: 200px;"><?php echo anchor('category/women/'.$cat, $women_categories[$i+$num]->cat_name_en,'title="'.$women_categories[$i+$num]->cat_name_en.'"');?></td>
 									<?php
-										  }
+										}
 									?>
 								</tr>
 						
@@ -51,11 +71,31 @@
 								for($i=0; $i<$num; $i++)
 								{
 							?>      <tr>
-										<td style="width: 200px;"><?php echo anchor('#',$men_categories[$i]->cat_name_en,'title="'.$men_categories[$i]->cat_name_en.'"') ?></td>
+										<td style="width: 200px;">
+										<?php 
+											$str_cat = $men_categories[$i]->cat_name_en;
+											$start = $str_cat;
+											if(strpos($str_cat," ")>0)
+												$start = substr($str_cat,0,strpos($str_cat," "));
+											$last = strrchr($str_cat, " ");							
+											$last = str_replace(" ","",$last);
+											$cat = $start;
+											if($last != null)
+												$cat = $cat.'-'.$last;
+											echo anchor('category/men/'.$cat,$men_categories[$i]->cat_name_en,'title="'.$men_categories[$i]->cat_name_en.'"') ?></td>
 										<?php if($i+$num < count($men_categories))
 											  {
+												$str_cat = $men_categories[$i+$num]->cat_name_en;
+												$start = $str_cat;
+												if(strpos($str_cat," ")>0)
+													$start = substr($str_cat,0,strpos($str_cat," "));
+												$last = strrchr($str_cat, " ");							
+												$last = str_replace(" ","",$last);
+												$cat = $start;
+												if($last != null)
+													$cat = $cat.'-'.$last;
 										?>		
-												<td style="width: 200px;"><?php echo anchor('#',$men_categories[$i+$num]->cat_name_en,'title="'.$men_categories[$i]->cat_name_en.'"') ?></td>
+												<td style="width: 200px;"><?php echo anchor('category/men/'.$cat,$men_categories[$i+$num]->cat_name_en,'title="'.$men_categories[$i+$num]->cat_name_en.'"') ?></td>
 										<?php
 											  }
 										?>
