@@ -18,7 +18,7 @@
 		?>
 			<div class="sub-product">
 			
-				<a  href="<?php echo asset_url().'db/products/'.$item->image_file_name.""; ?>" title="<?php echo $item->image_file_name; ?>">
+				<a  href="<?php echo $current."/".$item->product_id;?>" title="<?php echo $item->image_file_name; ?>">
 				<img src="<?php echo asset_url().'db/products/'.$item->image_file_name."";?>" alt="" />
 				</a>				
 					<h2><?php echo $item->product_name_en;?></h2>
