@@ -205,6 +205,17 @@ class Product_model extends CI_Model
 		$query = $this->db->query("SELECT  *  FROM `products` order by product_id desc");
 		return $query->row(0);
 	}
+	function get_product_brand_image($brand_name = FALSE)
+	{
+		if ($brand_name === FALSE) 
+		{
+			$query = $this->db->get_where('products_brands_images');			
+			return $query->result();
+	    }
+	    $query = $this->db->get_where('products_brands_images', array('brand_name' => $brand_name));
+		
+	    return $query->result();
+	}
 	
 
 }

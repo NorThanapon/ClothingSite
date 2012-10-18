@@ -1,4 +1,3 @@
-
 	<div id="content-showing">
 		<h2>Showing Items 0-10 of 10</h2>
 		<?php //echo anchor('#','0','') ?>
@@ -12,26 +11,34 @@
 	<div id="product-list">
 		
 		<?php 
-		$num = 0;
+		
 		foreach($products as $item)
 		{	
-			if($num==$amount_product)
-			{
-				break;
-			}
+			
 		?>
 			<div class="sub-product">
 			
-				<img src='<?php echo asset_url().$images;?>' />
-				<?php //echo anchor(asset_url().'/'.$products->main_image,"<img src='".asset_url().$products->main_image."' />",'');?>
+				<a  href="<?php echo asset_url().'db/products/'.$item->image_file_name.""; ?>" title="<?php echo $item->image_file_name; ?>">
+				<img src="<?php echo asset_url().'db/products/'.$item->image_file_name."";?>" alt="" />
+				</a>				
 					<h2><?php echo $item->product_name_en;?></h2>
 					<div id="detail-price">
-						<h3><?php echo "was ".$item->markup_price." THB"?></h3>
-						<h2><?php echo $item->markup_price." THB"?></h2>
+					<?php 
+						if($item->markdown_price!="0")
+						{
+							echo "<h3> was ".$item->markup_price." THB</h3>";
+							echo "<h2>".$item->markdown_price." THB</h2>";
+						}
+						else
+						{
+							echo "<h1>".$item->markup_price." THB</h1>";
+						}
+					?>
+						
 					</div>
 			</div>
 		<?php 
-		$num++;
+		
 		}
 		?>
 	</div><!-- product-list -->
