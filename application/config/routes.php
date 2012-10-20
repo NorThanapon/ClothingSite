@@ -43,18 +43,19 @@ $route['admin'] = "admin/order";
 $route['404_override'] = '';
 
 // brand
-$route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)/(:num)'] = 'brand/product/$1/$2/$3';
-$route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'brand/product/$1/$2';
+$route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'brand/product/$1/$2/$3';
+$route['brand/([-_a-zA-Z0-9]+)/(:num)'] = 'brand/product/$1/$2';
 $route['brand/([-_a-zA-Z0-9]+)'] = 'brand/product/$1';
 
 $route['brand/(:any)/page/(:num)/(:num)'] = 'brand/product_list/$1/$2/$3';
 $route['brand/(:any)'] = 'brand/product_list/$1';
 
 //category
+$route['category/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/(:num)/(:num)/(:num)'] = 'category/product/$1/$2/$3/$4/$5';
 $route['category/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'category/product/$1/$2/$3/$4';
 $route['category/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/(:num)'] = 'category/product/$1/$2/$3';
 
-$route['category/(:any)/page/(:num)/(:num)'] = 'category/product_list/$1/$2/$3/$4';
-$route['category/(:any)'] = 'category/product_list/$1/$2';
+$route['category/(:any)/(:num)/page/(:num)/(:num)'] = 'category/product_list/$1/$2/$3/$4/$5';
+$route['category/(:any)/(:num)'] = 'category/product_list/$1/$2';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
