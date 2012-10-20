@@ -25,6 +25,7 @@ class Product extends CI_Controller
 		$data['dup_message_th']="";
 		$data['dup_message_en']="";
 		$data['page'] = 'product/add';
+		$data['form_on_sale']=0;
         
 		if(!check_authen('staff',TRUE)) {	
 			return;       
@@ -56,12 +57,20 @@ class Product extends CI_Controller
 		$data['form_description_en']  = $this->input->post('description_en');
 		$data['form_how_to_wash_th']  = $this->input->post('how_to_wash_th');
 		$data['form_how_to_wash_en']  = $this->input->post('how_to_wash_en');
+		$data['form_on_sale']  = $this->input->post('on_sale');
 		$active=0;
 		if($this->input->post('is_active')==true)
 		{
 			$active = 1;
 		}
 		$data['form_is_active']  = $active;
+		$on_sale=0;
+		if($this->input->post('on_sale')==true)
+		{
+			$on_sale = 1;
+		}		
+		$data['form_on_sale']  = $on_sale;
+	
 		
 		//form validation
 		$this->load->library('form_validation');
@@ -162,12 +171,19 @@ class Product extends CI_Controller
 		$data['form_description_en']  = $this->input->post('description_en');
 		$data['form_how_to_wash_th']  = $this->input->post('how_to_wash_th');
 		$data['form_how_to_wash_en']  = $this->input->post('how_to_wash_en');
+		$data['form_on_sale']  = $this->input->post('on_sale');
 		$active=0;
 		if($this->input->post('is_active')==true)
 		{
 			$active = 1;
 		}
 		$data['form_is_active']  = $active;
+		$on_sale=0;
+		if($this->input->post('on_sale')==true)
+		{
+			$on_sale = 1;
+		}		
+		$data['form_on_sale']  = $on_sale;
 		
 		//form validation
 		$this->load->library('form_validation');
@@ -191,20 +207,6 @@ class Product extends CI_Controller
             return;
     	}
 		
-		//check duplicated data
-		/*if($this->product_model->get($data['form_product_id'])!=FALSE && $this->product_model->get($product_id)->product_id != $data['form_product_id'])
-        {
-            $data['error_message'] = 'Duplicate productID. The productID you entered is already existed in the database.';
-			$data['brand'] = $this->brand_model->get();
-			$data['category'] = $this->category_model->get();    
-			$data['product'] =  $this->product_model->get($product_id);
-           // $this->load->view('product/edit', $data);
-			$data['page'] = 'product/edit';
-			$this->load->view('main_admin_page',$data);
-            return;
-        }*/
-		
-        //none duplicate productID
 		$this->product_model->edit($this->input->post('product_id_key'));
 		
 		if($this->input->post('manage_photo'))
@@ -331,6 +333,14 @@ class Product extends CI_Controller
 			else if($this->input->post('change_status')=="2")
 			{
 				$temp[$i]['is_active']=0;
+			}
+			else if($this->input->post('change_status')=="3")
+			{
+				$temp[$i]['on_sale']=1;
+			}
+			else if($this->input->post('change_status')=="4")
+			{
+				$temp[$i]['on_sale']=0;
 			}
 			$i++;
 			

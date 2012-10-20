@@ -50,6 +50,7 @@
 			<th>Category</th>
 			<th>Total Quantity</th>
 			<th>Date Add</th>
+			<th>On Sale</th>
 			<th>Show</th>			
 			<th width="30" >&nbsp;</th>
 		    </tr>
@@ -68,7 +69,8 @@
 				<td><?php echo $item->cat_name_en;?></td>				
 				<td><?php echo $item->total_quantity?></td>
 				<td><?php echo $item->date_add; ?></td>
-				<td><?php if($item->is_active == 1) echo "show"; else echo "hide"; ?></td>				
+				<td><?php if($item->on_sale == 1) echo "yes"; else echo "no"; ?></td>	
+				<td><?php if($item->product_is_active == 1) echo "show"; else echo "hide"; ?></td>				
 				<td><!--<a href ="<?php echo "product/detail/".$item->product_id;?>" >Detail</a>-->
 					<?php echo anchor('admin/product/edit/'.$item->product_id, ' ', array('title'=>"Edit Product",'class'=>'edit-button')); ?>
 					<?php echo anchor('admin/product/delete/'.$item->product_id, ' ', array('title'=>"Delete Product",'class'=>'delete-button')); ?>
@@ -89,6 +91,8 @@
 			<select name="change_status">
 				<option value="1">Show</option>
 				<option value="2">Hide</option>
+				<option value="3">Sale</option>
+				<option value="4">Normal</option>
 			</select>
 			<input type = "submit" value = "Update" name="btn_update" />
 			<input type = "submit" value = "Delete" name="btn_delete" id="btn_delete_button" />
@@ -117,7 +121,7 @@
 		$(".tablesorter").tablesorter({
 			headers: {
 			    0:{sorter:false},
-			    7:{sorter:false}
+			    8:{sorter:false}
 			}
 		    })
 		    .tablesorterPager({

@@ -24,7 +24,7 @@
 					<h2><?php echo $item->product_name_en;?></h2>
 					<div id="detail-price">
 					<?php 
-						if($item->markdown_price!="0")
+						if($item->on_sale==true)
 						{
 							echo "<h3> was ".$item->markup_price." THB</h3>";
 							echo "<h2>".$item->markdown_price." THB</h2>";

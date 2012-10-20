@@ -78,8 +78,12 @@
 			<label for="how_to_wash_en">How to Wash (English):</label>
 		    <textarea name ="how_to_wash_en" ><?php if(isset($form_how_to_wash_en)) echo $form_how_to_wash_en; ?></textarea>
 			<br />
+			<label for="on_sale" >Sale:</label>
+			<input name="on_sale" <?php if($form_on_sale==1 ) echo " checked "?> type="checkbox"  />
+			<br />
 			<label for="is_active" >Show:</label>
 			<input name="is_active" <?php if(!isset($form_is_active) || $form_is_active) echo " checked "?> type="checkbox"  />
+			
 		   
 		</fieldset>
 	    </div>

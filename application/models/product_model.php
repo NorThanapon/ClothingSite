@@ -28,6 +28,11 @@ class Product_model extends CI_Model
 		{
 			$is_active = 1;
 		}
+		$on_sale = 0;		
+		if($this->input->post('on_sale')==true)
+		{			
+			$on_sale = 1;
+		}
 		$data = array(
 			//'product_id' => $this->input->post('product_id'),
 			'product_name_th' => $this->input->post('product_name_th'),
@@ -42,6 +47,7 @@ class Product_model extends CI_Model
 			'how_to_wash_th'  => $this->input->post('how_to_wash_th'),
 			'how_to_wash_en'  => $this->input->post('how_to_wash_en'),
 			'date_add' =>   $date = date("Y-m-d H:i:s"),
+			'on_sale'   => $on_sale,
 			'is_active' => $is_active
 		);
 		$this->db->insert('products',$data);
@@ -53,6 +59,11 @@ class Product_model extends CI_Model
 		if($this->input->post('is_active')==true)
 		{
 			$is_active = 1;
+		}
+		$on_sale = 0;		
+		if($this->input->post('on_sale')==true)
+		{			
+			$on_sale = 1;
 		}
 		
 		
@@ -69,6 +80,7 @@ class Product_model extends CI_Model
 			'description_en'  => $this->input->post('description_en'),
 			'how_to_wash_th'  => $this->input->post('how_to_wash_th'),
 			'how_to_wash_en'  => $this->input->post('how_to_wash_en'),
+			'on_sale'   => $on_sale,
 			'is_active'   => $is_active
 		);
 		$this->db->update('products',$data,array('product_id'=>$product_id));
@@ -205,14 +217,13 @@ class Product_model extends CI_Model
 		$query = $this->db->query("SELECT  *  FROM `products` order by product_id desc");
 		return $query->row(0);
 	}
-	function get_product_brand_image($brand_name = FALSE)
+	function get_product_brand_image($brand_name)
 	{
-		if ($brand_name === FALSE) 
-		{
-			$query = $this->db->get_where('products_brands_images');			
-			return $query->result();
-	    }
-	    $query = $this->db->get_where('products_brands_images', array('brand_name' => $brand_name));
+	
+		//$this->db->distinct('product_id');
+	    $query =  $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where brand_name='".$brand_name."'and image_id = main_image ");
+	    //$query = $this->db->get_where('products_brands_items_images_colors', array('brand_name' => $brand_name , 'image_id' => 'main_image' ));
+		
 		
 	    return $query->result();
 	}

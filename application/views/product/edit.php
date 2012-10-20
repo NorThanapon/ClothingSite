@@ -102,14 +102,25 @@
 			<label for="how_to_wash_en">How to Wash (English):</label>
 		    <textarea name ="how_to_wash_en" ><?php if(isset($form_how_to_wash_en)) echo $form_how_to_wash_en; else echo $product->how_to_wash_en; ?></textarea>
 		    <br/>
-			<label for="isActive">Show :</label>
+			<label for="on_sale">Sale :</label>
+			<input name='on_sale' type = 'checkbox' 
+				<?php
+				if(isset($form_on_sale)){ 
+					if($form_on_sale==1){echo "checked"; }
+				}
+				else{
+					if($product->on_sale==1){ echo "checked";}
+				}?>  />
+		
+			<br />
+			<label for="is_active">Show :</label>
 			<input name='is_active' type = 'checkbox' 
 				<?php
 				if(isset($form_is_active)){ 
 					if($form_is_active==1){echo "checked"; }
 				}
 				else{
-					if($product->is_active==1){ echo "checked";}
+					if($product->product_is_active==1){ echo "checked";}
 				}?>  />
 		
 			<br />
