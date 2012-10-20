@@ -10,16 +10,28 @@
 				<?php include('common/contentside.php'); ?>
 				<div id="content-main">
 					<div class="main-branner">
-					<a href="<?php echo asset_url().'img/main-branner.jpg'; ?>"><img src="<?php echo asset_url().'img/main-branner.jpg'; ?>"></a>
+					<section id="jms-slideshow" class="jms-slideshow">
+						<div class="step" data-x="3000">					
+							<a href="<?php echo asset_url().'img/770X360-ellegirl-1.jpg'; ?>"><img src="<?php echo asset_url().'img/770X360-ellegirl-1.jpg'; ?>" /></a>
+						</div>
+						<div class="step"data-x="3000">				
+							<a href="<?php echo asset_url().'img/770X360-ELLEhomme-1.jpg'; ?>"><img src="<?php echo asset_url().'img/770X360-ELLEhomme-1.jpg'; ?>"  /></a>
+						</div>
+						<div class="step"  data-x="3000">					
+							<a href="<?php echo asset_url().'img/770X360-SALE.jpg'; ?>"><img src="<?php echo asset_url().'img/770X360-SALE.jpg'; ?>"  /></a>
+						</div>
+										
+					</section>
+					<!-- <a href="<?php //echo asset_url().'img/main-branner.jpg'; ?>"><img src="<?php //echo asset_url().'img/main-branner.jpg'; ?>"></a> -->
 					</div>
 					<div class="sub-branner">
-					<a href="<?php echo asset_url().'img/product1.jpg'; ?>"><img src="<?php echo asset_url().'img/product1.jpg'; ?>"></a>
+					<a href="<?php echo asset_url().'img/253x360-Becky.jpg'; ?>"><img src="<?php echo asset_url().'img/253x360-Becky.jpg'; ?>"></a>
 					</div>
 					<div class="sub-branner">
-					<a href="<?php echo asset_url().'img/sub-branner2.jpg'; ?>"><img src="<?php echo asset_url().'img/sub-branner2.jpg'; ?>"></a>
+					<a href="<?php echo asset_url().'img/253x360-ELLEgirl-W.jpg'; ?>"><img src="<?php echo asset_url().'img/253x360-ELLEgirl-W.jpg'; ?>"></a>
 					</div>
 					<div class="sub-branner">
-					<a href="<?php echo asset_url().'img/sub-branner3.jpg'; ?>"><img src="<?php echo asset_url().'img/sub-branner3.jpg'; ?>"></a>
+					<a href="<?php echo asset_url().'img/253x360-ITOKIN.jpg'; ?>"><img src="<?php echo asset_url().'img/253x360-ITOKIN.jpg'; ?>"></a>
 					</div>
 				</div><!-- content-main -->
 				<div class="clear-float"></div>
@@ -27,5 +39,20 @@
 			
             <?php $this->load->view('common/footer'); ?>
         </div>
+		<script type="text/javascript">
+			$(function() {
+				
+				var jmpressOpts	= {
+					animation		: { transitionDuration : '0.8s' }
+				};
+				
+				$( '#jms-slideshow' ).jmslideshow( $.extend( true, { jmpressOpts : jmpressOpts }, {
+					autoplay	: true,
+					bgColorSpeed: '0.8s',
+					arrows		: false
+				}));
+				
+			});
+		</script>
     </body>
 </html> 

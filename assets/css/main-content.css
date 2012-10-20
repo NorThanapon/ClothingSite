@@ -8,6 +8,15 @@
 	font-size:85%;
 	color:#6C6C6C;
 	font-weight:normal;
+	
+}
+.side-navbox img{
+	
+	width:32px;
+	height:16px;
+	margin-left:3px;
+	margin-bottom:3px;
+	display:inline-block;
 }
 #content{
     top:-30px;	
@@ -75,7 +84,8 @@
 }
 
 .main-branner{
-	border:1px solid #000;
+	position:relative;
+	
 	width:770px;
 	height:360px;
 	margin-bottom:5px;

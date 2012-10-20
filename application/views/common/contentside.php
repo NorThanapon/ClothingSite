@@ -4,7 +4,7 @@
 	</div>
 	<nav>
 		<section class="side-navbox" id="side-navbox-newarrivals">
-		<h2>NEW ARRIVALS</h2>
+		<h2>NEW ARRIVALS <img src="<?php echo asset_url().'img/new.gif'; ?>" /> </h2>
 		<a href="###">Clothing</a><br />
 		<a href="###">Shoes & Accs</a><br />
 		<a href="###">Designer</a><br />		
