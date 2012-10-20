@@ -29,7 +29,7 @@ class Category extends CI_Controller {
 			//============ END setting common page
 			
 			//Set product_list
-			//$data['products'] = $this->product_model->get_product_cat_image($cat_id,'WOMEN');
+			$data['products'] = $this->product_model->get_product_cat_image($cat_id);
 			$this->load->view('main_page',$data);
 		}
 		if($cat_gender == "men")
@@ -49,7 +49,7 @@ class Category extends CI_Controller {
 			//============ END setting common page
 			
 			//Set product_list
-			//$data['products'] = $this->product_model->get_product_cat_image($cat_id,'MEN');
+			$data['products'] = $this->product_model->get_product_cat_image($cat_id);
 			$this->load->view('main_page',$data);
 		}
 	}
