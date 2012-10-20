@@ -22,24 +22,22 @@ a.link-cart {
     padding-top:7px;
 }
 /* header logo */
-#header-logo a{
-    width:155px;
-    height:100px;
-    background-image:url(../img/LOGO-bfashshop.png);
-    background-repeat:no-repeat;
-    background-position:10px center;
+#header-logo a{   
+  
     display: inline-block;
     vertical-align:middle;
+
 }
-#header-logo h1 {
-    margin-left:10px;
-    position:relative;
-    top: 5px;
-    display: inline-block;
-    font-family: serif;
-    font-size:26px;
-    font-weight:normal;
+
+#header-logo img{
+	width:400px;
+	height:103px;
+	position:10px center;
+	display: inline-block;
+	vertical-align:middle;
+	
 }
+
 #header-logo a h1 {
     display:none;
 }
