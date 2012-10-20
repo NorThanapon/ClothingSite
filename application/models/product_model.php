@@ -217,15 +217,17 @@ class Product_model extends CI_Model
 		$query = $this->db->query("SELECT  *  FROM `products` order by product_id desc");
 		return $query->row(0);
 	}
+	
 	function get_product_brand_image($brand_name)
 	{
-	
-		//$this->db->distinct('product_id');
 	    $query =  $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where brand_name='".$brand_name."'and image_id = main_image ");
-	    //$query = $this->db->get_where('products_brands_items_images_colors', array('brand_name' => $brand_name , 'image_id' => 'main_image' ));
-		
-		
 	    return $query->result();
+	}
+	
+	function get_product_cat_image($cat_id)
+	{
+	    $query =  $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where cat_id=".$cat_id." and image_id = main_image and product_is_active = '1' and brand_is_active = '1' and total_quantity > 0");
+		return $query->result();
 	}
 	
 
