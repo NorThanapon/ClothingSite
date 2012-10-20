@@ -22,6 +22,10 @@
 	font-size:75%;	
 }
 
+#showing-page {
+	font-size:90%;
+}
+
 .history-previous{
 	position:relative;
 	float:left;
@@ -50,7 +54,8 @@
 	position:relative;
 	color:#757575;
 	float:left;
-	margin-top:1px;
+	margin-top: 3px;
+	font-size: 90%;
 }
 
 #content-showing a{
@@ -58,7 +63,6 @@
 	position:relative;	
 	color:#757575;
 	text-decoration:underline;
-	
 	
 }
 
