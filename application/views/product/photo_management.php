@@ -25,6 +25,7 @@
 		<legend>Existing photos</legend>
 		<?php echo form_open('admin/product/save_main_image'); ?>	
 		<?php 
+			$count =0;//_for_set_default_main_image
 			foreach($photos as $item)
 			{
 		?>		
@@ -66,7 +67,7 @@
 					<br />
 					<div class="main_image_radio">
 					<?php 
-					if($product->main_image == $item->image_id) 
+					if($product->main_image == $item->image_id ||($count==0 && $product->main_image==0 )) 
 					{
 					?>
 						<input type="radio"  name="main_image" value="<?php echo $item->image_id ;?> " checked="true" />
@@ -84,7 +85,8 @@
 					</div>
 					
 				</div>
-		<?php		
+		<?php	
+			$count++;
 			}
 		?>	
 		</fieldset>
