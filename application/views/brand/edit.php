@@ -9,8 +9,11 @@
 		    <input name="brand_name" type ="text" value="<?php if(isset($form_brand_name)) echo $form_brand_name; else echo $brand->brand_name; ?>" />*
 		    <?php echo form_error('brand_name', '<span class="form-error-message">', '</span>'); ?>
 		    <br />
-		    <label for="description" >Description:</label>
-		    <textarea name ="description" ><?php if(isset($form_description)) echo $form_description; else echo $brand->description; ?></textarea>
+			<label for="description_th" >Description (Thai):</label>
+		    <textarea name ="description_th" ><?php if(isset($form_description_th)) echo $form_description_th; else echo $brand->description_th; ?></textarea>
+		    <br />
+		    <label for="description_en" >Description (English):</label>
+		    <textarea name ="description_en" ><?php if(isset($form_description_en)) echo $form_description_en; else echo $brand->description_en; ?></textarea>
 		    <br />
 		    <?php if ($brand->logo) { ?>
 		    <label>Current Logo:</label>

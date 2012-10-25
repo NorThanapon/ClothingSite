@@ -89,7 +89,8 @@ class Brand extends CI_Controller
         }
         //form submitted
         $data['form_brand_name'] = trim($this->input->post('brand_name'));
-        $data['form_description'] = trim($this->input->post('description'));
+        $data['form_description_th'] = trim($this->input->post('description_th'));
+		$data['form_description_en'] = trim($this->input->post('description_en'));
         $data['form_isActive'] = $this->input->post('is_active');
 		
         $data['brand'] =  $this->brand_model->get($this->input->post('brand_id'));
@@ -188,10 +189,11 @@ class Brand extends CI_Controller
 	    {		
 			return;            
 	    }
+		$keyword = trim($keyword); 
 		$this->load->model('brand_model');
 		$data['page_title'] = 'Admin: Brand Management';
 		$data['brand_list'] = $this->brand_model->search($keyword);
-		$data['keyword'] = $keyword;
+		$data['keyword'] = $keyword;		
 		$data['page'] = 'brand/list';
 		$this->load->view('main_admin_page',$data);
 	}

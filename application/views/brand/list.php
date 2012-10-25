@@ -81,7 +81,7 @@
 			$('#btn_search').click(function() {
 		    var url = document.URL;
 		    url = url.substring(0, url.indexOf('/brand') + 6);
-		    url = url + '/search/' + $('#txt_keyword').val();
+		    url = url + '/search/' + $('#txt_keyword').val().trim();
 		    window.location = url;
 		});
 				
