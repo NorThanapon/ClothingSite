@@ -159,7 +159,7 @@ class Product_model extends CI_Model
 		if($status != "2")
 		{
 			if ($where != "" ) $where = $where . " AND ";
-			$where = $where . "is_active = ".$status;
+			$where = $where . "product_is_active = ".$status;
 		}
 		
 		
@@ -169,7 +169,10 @@ class Product_model extends CI_Model
 	}
 	function update_status($products)
 	{
+		
 		$this->db->update_batch('products',$products,'product_id'); 		
+		
+		
 	}
 	function delete_batch($products)
 	{

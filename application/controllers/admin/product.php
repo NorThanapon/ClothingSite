@@ -317,9 +317,22 @@ class Product extends CI_Controller
 			$this->delete_batch();
 			return;
 		}
-		
+		if($this->input->post('chb_select_product')=="") 
+	    {
+			$this->load->model('category_model');
+			$this->load->model('brand_model');
+			$this->load->library('form_validation');
+			$data['error_message'] = 'Please select products.';		
+			$data['product_list'] = $this->product_model->get();
+			$data['category_list'] = $this->category_model->get();
+			$data['brand_list'] = $this->brand_model->get();
+			$data['page'] = 'product/list';
+			$this->load->view('main_admin_page',$data);
+			return;			
+	    }	
 		
 		$i=0;
+		
 		//$temp['product_id'][0]="";
 		//$temp[0]="";
 		$status=0;
@@ -345,8 +358,9 @@ class Product extends CI_Controller
 			$i++;
 			
 		}
-		//var_dump($temp);
-		$this->product_model->update_status($temp);
+			//var_dump($temp);
+		
+		$this->product_model->update_status($temp);		
 		$this->load->model('category_model');
 		$this->load->model('brand_model');
 		$data['product_list'] = $this->product_model->get();
