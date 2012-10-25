@@ -101,18 +101,18 @@ class Category_model extends CI_Model
 	    return $query->row();
 	}
 	
-	function search($parent, $name)
+	function search($gender, $name)
 	{
 		$where = "";
-		if ($parent != "0" && $parent != FALSE) $where = $where . "cat_parent = " . $parent;
+		if ($gender != "0" && $gender != FALSE) $where = $where . "cat_gender = '" . $gender."'";
 		if ($name != "" && $name != " " && $name != FALSE)
 		{
 			if ($where != "" ) $where = $where . " AND ";
 			$where = $where . "(cat_name_th LIKE '%".$name."%' OR cat_name_en LIKE '%".$name."%')";
-		}
-		
+		}		
 		if ($where != "" ) $query = $this->db->get_where('categories', $where);
 		else $query = $this->db->get('categories');
+		//echo $where;
 		return $query->result();
 	}
 	

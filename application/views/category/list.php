@@ -8,12 +8,11 @@
 		<legend>Search Options</legend>
 		<label>Name:</label>
 		<input id="txt_cat_name" type="text" name="cat_name" value="<?php if(isset($search_name)) echo $search_name;  ?>"/>
-		<label for="cat_parent">Under category</label>
-		<select name="cat_parent" id="cat_parent"> 
-		    <option value="0">--Any category--</option>
-		    <?php foreach($cat_list as $item) {  ?>
-			<option <?php if (isset($search_parent) && $item->cat_id == $search_parent) echo 'selected' ?> value="<?php echo $item->cat_id; ?>"><?php echo $item->cat_name_en; ?></option>
-		    <?php } ?>
+		<label for="cat_gender">Gender</label>
+		<select name="cat_gender" id="cat_gender"> 
+		    <option value="0">--Any Gender--</option>
+			<option value="Women">Women</option>
+			<option value="Men">Men</option>		    
 		</select>
 		<input id="btn_filter" type="button" value="Search" />
 	    </fieldset>
@@ -24,8 +23,6 @@
 	    <table  class="tablesorter" >
 		<thead>
             <tr>
-              
-				
 			    <th style="width: 100px;">Name (English)</th>
 				<th style="width: 100px;">Name (Thai)</th>
 				<th>Description (English)</th>
@@ -75,7 +72,7 @@
 		$('#btn_filter').click(function() {
 		    var url = document.URL;
 		    url = url.substring(0, url.indexOf('/category') + 9);
-		    url = url + '/search/' + $('#cat_parent').val() + '/' + $('#txt_cat_name').val();
+		    url = url + '/search/' + $('#cat_gender').val() + '/' + $('#txt_cat_name').val();
 		    window.location = url;
 		});
 		        

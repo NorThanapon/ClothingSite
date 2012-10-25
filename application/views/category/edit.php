@@ -29,7 +29,11 @@
 				$count=0;
 				foreach($gender as $item)
 				{  
-					if( $gender[$count] == $categories->cat_gender || (isset($form_cat_gender) && $form_cat_gender == $gender[$count] ))
+					if(isset($form_cat_gender) && $form_cat_gender == $gender[$count])
+					{
+						echo "<option value=".$gender[$count]." selected='selected' >".$gender[$count]."</option>";
+					}
+					else if( $gender[$count] == $categories->cat_gender  && !isset($form_cat_gender))
 					{					
 						echo "<option value=".$gender[$count]." selected='selected' >".$gender[$count]."</option>";
 					}

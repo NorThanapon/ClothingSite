@@ -138,7 +138,8 @@ class Category extends CI_Controller
         {
             $data['error_message'] = 'Please fill in the category name.';
 			$data['categories'] =  $this->category_model->get($cat_id);
-			$data['page'] = 'category/edit';			
+			$data['page'] = 'category/edit';		
+			//echo ">..>".$data['form_cat_gender'];			
 			$this->load->view('main_admin_page',$data);
             return;
     	}		
@@ -184,7 +185,7 @@ class Category extends CI_Controller
 	    
 	}
 	
-	public function search($parent, $name=FALSE)
+	public function search($gender, $name=FALSE)
 	{
 	    if(!check_authen('staff',TRUE)) 
 	    {
@@ -192,14 +193,12 @@ class Category extends CI_Controller
 	    }
 	    if($name !== FALSE) {
 		$name =  rawurldecode($name);
-	    }
-	    
-	    
+	    }    
 	    $this->load->model('category_model');
 	    $data['page_title'] = 'Admin: Category Management';
-	    $data['cat_list'] = $this->category_model->search($parent, $name);
+	    $data['cat_list'] = $this->category_model->search($gender, $name);
 	    $data['categories'] = $this->category_model->get();
-	    $data['search_parent'] = $parent;
+	    $data['search_gender'] = $gender;
 	    $data['search_name'] = $name;
 		$data['page'] = 'category/list';
 		$this->load->view('main_admin_page',$data);
