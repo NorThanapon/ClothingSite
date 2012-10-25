@@ -26,7 +26,8 @@ class Brand extends CI_Controller
         }
         //form submitted
         $data['form_brand_name'] = trim($this->input->post('brand_name'));
-        $data['form_description'] = trim($this->input->post('description'));
+        $data['form_description_th'] = trim($this->input->post('description_th'));
+		$data['form_description_en'] = trim($this->input->post('description_en'));
 		$data['form_is_active'] = $this->input->post('is_active');
 		
         $this->load->library('form_validation');

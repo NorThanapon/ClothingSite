@@ -6,7 +6,8 @@ class Brand_model extends CI_Model
 {
 	var $brand_id = '';
     var $brand_name = '';
-    var $description = '';
+    var $description_th = '';
+	var $description_en = '';
     var $logo = '';
     var $size_chart = '';
 	var $is_active = '';
@@ -21,7 +22,9 @@ class Brand_model extends CI_Model
 	{
 		$this->brand_id = $this->input->post('brand_id');
 		$this->brand_name = $this->input->post('brand_name');
-		$this->description = $this->input->post('description');
+		$this->description_th = $this->input->post('description_th');
+		$this->description_en = $this->input->post('description_en');
+		
 		$this->logo = $logo_name;
 		$isAct = 1;
 		if($this->input->post('is_active') == FALSE)
@@ -41,7 +44,8 @@ class Brand_model extends CI_Model
 		}
 	    $data = array(						
 		    'brand_name' => $this->input->post('brand_name'),
-		    'description' => $this->input->post('description'),
+		    'description_th' => $this->input->post('description_th'),
+			'description_en' => $this->input->post('description_en'),
 			'is_active' => $isAct
 		);
 		if($logo_name !== FALSE)
@@ -90,7 +94,7 @@ class Brand_model extends CI_Model
 		$where = "";
 		if ($keyword != "" && $keyword != " " && $keyword != FALSE)
 		{
-			 $where = $where."(brand_name LIKE '%".$keyword."%' OR description LIKE '%".$keyword."%')";
+			 $where = $where."(brand_name LIKE '%".$keyword."%' OR description_en LIKE '%".$keyword."%' OR description_th LIKE '%".$keyword."%')";
 			 $query = $this->db->get_where('brands',$where);
 			 return $query->result();	
 		}
