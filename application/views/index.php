@@ -20,7 +20,9 @@
 						<div class="step"  data-x="3000">					
 							<a href="<?php echo asset_url().'img/770X360-SALE.jpg'; ?>"><img src="<?php echo asset_url().'img/770X360-SALE.jpg'; ?>"  /></a>
 						</div>
-										
+						<div class="step"  data-x="3000">					
+							<a href="<?php echo asset_url().'img/770X360-sale-1.jpg'; ?>"><img src="<?php echo asset_url().'img/770X360-sale-1.jpg'; ?>"  /></a>
+						</div>				
 					</section>
 					<!-- <a href="<?php //echo asset_url().'img/main-branner.jpg'; ?>"><img src="<?php //echo asset_url().'img/main-branner.jpg'; ?>"></a> -->
 					</div>
