@@ -32,6 +32,7 @@
 						else
 						{
 							echo "<h1>".$item->markup_price." THB</h1>";
+							echo "<h2><br /></h2>";
 						}
 					?>
 						
