@@ -39,7 +39,8 @@
 				<td><?php if($item->is_active == 1) echo "show"; else echo "hide"; ?></td>
 				<td>
 					 <?php echo anchor('admin/tag/edit/'.$item->tag_id, ' ', array('title'=>"Edit Tag",'class'=>'edit-button')); ?>
-					 <?php echo anchor('admin/tag/delete/'.$item->tag_id, ' ', array('title'=>"Delete Tag",'class'=>'delete-button')); ?>
+					 <?php echo anchor('admin/tag/edit_product/'.$item->tag_id, ' ', array('title'=>"Edit Product In Tag",'class'=>'product-button')); ?>
+					 <?php echo anchor('admin/tag/delete/'.$item->tag_id, ' ', array('title'=>"Delete Tag",'class'=>'delete-button')); ?>					 
 				</td>
 			</tr>
 			<?php
@@ -66,9 +67,9 @@
 		    window.location = url;
 		});
 
-		$("#btn-add-tag").click(function(){
-			add_tag()
-		});
+		//$("#btn-add-tag").click(function(){
+		//	add_tag()
+		//});
 
 		$(".tablesorter").find("tr:even").addClass("even");
 		$(".tablesorter")

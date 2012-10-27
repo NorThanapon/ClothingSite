@@ -249,10 +249,12 @@ class Inventory extends CI_Controller
 	    if($product_name !== FALSE) {
 			$product_name =  rawurldecode($product_name);
 	    }
-	  
+		
+		$this->load->model('color_model');
 		$this->load->model('item_model');
 		$this->load->model('product_model');
 		
+		$data['colors'] = $this->color_model->get();
 		if($product_name== '-' && $item_amount_low == '-' && $item_amount_high == '-')
 		{
 			$data['page_title'] = 'Admin: Inventory Management';

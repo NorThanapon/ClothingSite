@@ -221,9 +221,9 @@ class Product_model extends CI_Model
 		return $query->row(0);
 	}
 	
-	function get_product_brand_image($brand_name)
+	function get_product_brand_image($brand_id)
 	{
-	    $query =  $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where brand_name='".$brand_name."'and image_id = main_image ");
+	    $query =  $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where brand_id='".$brand_id."'and image_id = main_image ");
 	    return $query->result();
 	}
 	

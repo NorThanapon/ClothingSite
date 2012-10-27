@@ -90,18 +90,14 @@ class Tag extends CI_Controller
 			return;            
 	    }
 		$data['dup_message_th']="";
-		$data['dup_message_en']="";
+		$data['dup_message_en']="";		
 		
-		$this->load->model('product_model');
-		$data['product_list'] = $this->product_model->get();
 	    if($tag_id===FALSE)
 	    {
 			redirect('admin/tag');
 	    }
 	    $this->load->model('tag_model');
-		$data['allTag'] = $this->tag_model->get();
-		
-		$data['product_in_tag'] = $this->tag_model->get_product_in_tag($tag_id);
+		$data['allTag'] = $this->tag_model->get();		
 
 	    if (!$this->input->post('submit')) 
 	    {
@@ -194,7 +190,23 @@ class Tag extends CI_Controller
 		
 	}
 
-
+	public function edit_product($tag_id=FALSE)
+	{
+		$data['page_title'] = 'Admin: Tag Management';
+		if(!check_authen('staff',TRUE)) 
+		{	
+			return;       
+	    }
+		$this->load->model('tag_model');
+		$this->load->model('product_model');
+		$data['product_list'] = $this->product_model->get();
+		$data['tags'] =  $this->tag_model->get($tag_id);		
+		$data['product_in_tag'] = $this->tag_model->get_product_in_tag($tag_id);
+		$data['page'] = 'tag/edit_product';
+		$this->load->view('main_admin_page',$data);		
+	}
+	
+	
 	public function delete_product($tag_id=FALSE,$product_id=FALSE)
 	{
 		$data['page_title'] = 'Admin: Tag Management';
@@ -205,24 +217,8 @@ class Tag extends CI_Controller
 
 		$this->load->model('tag_model');
 		$this->tag_model->delete_product($tag_id,$product_id);
-		
-		//load view
-		$data['dup_message_th']="";
-		$data['dup_message_en']="";
-		//$data['form_tag_name_th'] = $this->input->post('tag_name_th');
-        //$data['form_tag_name_en'] = $this->input->post('tag_name_en');
-        //$data['form_description_en'] = $this->input->post('description_en');
-		//$data['form_is_active'] = $this->input->post('is_active');
-        //$data['tags'] =  $this->tag_model->get($this->input->post($tag_id));
-		
-		//echo $data['form_tag_name_th'];
-		
-		//$data['tags'] =  $this->tag_model->get($tag_id);
-		//$data['product_in_tag'] =  $this->tag_model->get_product_in_tag($tag_id);
-		//$data['page'] = 'tag/edit';
-		//$this->load->view('main_admin_page',$data);		
-		
-		redirect('admin/tag/edit/'.$tag_id);
+					
+		redirect('admin/tag/edit_product/'.$tag_id);
 		
 	}
 
@@ -249,11 +245,6 @@ class Tag extends CI_Controller
 	    
 	}
 
-	/*
-	public function add_product()
-	{
-	}
-	*/
 	public function add_product_in_tag($tag_id=false)
 	{
 		if(!check_authen('staff',TRUE)) {	
@@ -270,29 +261,16 @@ class Tag extends CI_Controller
 			$this->load->library('form_validation');
 			$data['error_message'] = $this->tag_model->get_product_name($this->input->post('product'))->product_name_en.' already existed.';		
 			$data['tags'] =  $this->tag_model->get($tag_id);
-			$data['page'] = 'tag/edit';
+			$data['page'] = 'tag/edit_product';
 			$this->load->view('main_admin_page',$data);
 			return;
 		}
-		
-		
+				
 		//none duplicate product
 		
 	    $this->tag_model->add_product_in_tag($tag_id,$this->input->post('product'));	
-
-		/*****load view
-		$data['form_tag_name_th'] = $this->input->post('tag_name_th');
-        $data['form_tag_name_en'] = $this->input->post('tag_name_en');
-        $data['form_description_en'] = $this->input->post('description_en');
-		$data['form_is_active'] = $this->input->post('is_active');
-        //$data['tags'] =  $this->tag_model->get($this->input->post($tag_id));
 		
-		$data['tags'] =  $this->tag_model->get($tag_id);
-		$data['page'] = 'tag/edit';
-		$this->load->view('main_admin_page',$data);
-		*******/
-		
-		redirect('admin/tag/edit/'.$tag_id);
+		redirect('admin/tag/edit_product/'.$tag_id);
 	}
 }
 ?>
