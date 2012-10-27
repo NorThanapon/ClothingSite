@@ -14,7 +14,27 @@ class Category extends CI_Controller {
 		$this->load->model('category_model');
 		
 		$data = $this->bfash_model->init();
-
+		if($product_id != FALSE)
+		{	
+			$data['page']="";
+			$data['previous'] = array("Home");
+			if($cat_name === FALSE){
+				$data['current'] = '';
+			}
+			$data['current'] = $cat_name;
+			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id.'/'.$product_id;
+			$data['page'] = 'front_product\content_main_product_name';
+			
+			//
+			$data['product_detail'] = $this->product_model->get_main_image($product_id);
+			$data['sub_image'] = $this->product_model->get_sub_image($product_id);
+			$data['logo'] = $this->product_model->get_product_brand_image($data['product_detail']->brand_name);
+			$data['item_detail_size'] = $this->product_model->get_item_detail_size($product_id);
+			$data['item_detail_color'] = $this->product_model->get_item_detail_color($product_id);
+			$this->load->view('main_page',$data);
+			return ;
+		}
+		
 		if($cat_gender == "women")
 		{
 			//set common page
@@ -24,6 +44,7 @@ class Category extends CI_Controller {
 			}
 			$data['current'] = $cat_name;
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
+			$data['page'] = 'front_product\content_main_product_list';
 			//============ END setting common page
 			
 			//Set product_list
@@ -53,6 +74,7 @@ class Category extends CI_Controller {
 			}
 			$data['current'] = $cat_name;
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
+			$data['page'] = 'front_product\content_main_product_list';
 			//============ END setting common page
 			
 			//Set product_list
@@ -81,6 +103,8 @@ class Category extends CI_Controller {
 		$this->load->model('category_model');
 		
 		$data = $this->bfash_model->init();
+		$data['page'] = 'front_product\content_main_product_list';
+		
 		if($cat_gender == "women")
 		{
 			//set common page

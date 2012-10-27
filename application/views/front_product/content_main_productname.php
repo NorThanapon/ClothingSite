@@ -1,25 +1,26 @@
-	<div id="content-history">	
+	<!--<div id="content-history">	
 		<a href="###" class="history-previous">Home > </a>					
 		<a href="###" class="history-previous">Women ></a>
 		<a href="###" class="history-previous">ELLE ></a>
 		<a href="###" id="history-current">Product's Name</a>
-	</div>
+	</div> -->
+<?php echo form_open('shoppingcart'); ?>
 	<div id="content-image">
 		<div class="main-image">
-			<a href="<?php echo asset_url().'img/productname-main.jpg'; ?>"><img src="<?php echo asset_url().'img/productname-main.jpg'; ?>"></a>
+			<a href="<?php echo asset_url().'db/products/129_photo.jpg'; ?>"><img src="<?php echo asset_url().'db/products/129_photo.jpg'; ?>"></a>
 		</div>
 		<div id="product-sub">
 			<div class="sub-image">
-				<a href="<?php echo asset_url().'img/productname-sub1.jpg'; ?>"><img src="<?php echo asset_url().'img/productname-sub1.jpg'; ?>"></a>
+				<a href="<?php echo asset_url().'db/products/129_photo.jpg'; ?>"><img src="<?php echo asset_url().'db/products/129_photo.jpg'; ?>"></a>
 			</div>
 			<div class="sub-image">
-				<a href="<?php echo asset_url().'img/productname-sub2.jpg'; ?>"><img src="<?php echo asset_url().'img/productname-sub2.jpg'; ?>"></a>
+				<a href="<?php echo asset_url().'db/products/130_photo.jpg'; ?>"><img src="<?php echo asset_url().'db/products/130_photo.jpg'; ?>"></a>
 			</div>
 			<div class="sub-image">
-				<a href="<?php echo asset_url().'img/productname-sub3.jpg'; ?>"><img src="<?php echo asset_url().'img/productname-sub3.jpg'; ?>"></a>
+				<a href="<?php echo asset_url().'db/products/131_photo.jpg'; ?>"><img src="<?php echo asset_url().'db/products/131_photo.jpg'; ?>"></a>
 			</div> 
 			<div class="sub-image">
-				<a href="<?php echo asset_url().'img/productname-sub1.jpg'; ?>"><img src="<?php echo asset_url().'img/productname-sub1.jpg'; ?>"></a>
+				<a href="<?php echo asset_url().'db/products/132_photo.jpg'; ?>"><img src="<?php echo asset_url().'db/products/132_photo.jpg'; ?>"></a>
 			</div> 
 		</div>		
 	</div>
@@ -29,8 +30,8 @@
 				<a href="<?php echo asset_url().'img/productname-brandname.jpg'; ?>"><img src="<?php echo asset_url().'img/productname-brandname.jpg'; ?>"></a>
 			</div>
 			<div id="detail-price">
-				<h3>19,999 THB</h3>
-				<h2>5,999 THB</h2>
+				<h3>2,500 THB</h3>
+				<h2>1,300 THB</h2>
 			</div>
 			<div id="detail-product">
 				<h2>ELLE targets confident, modern, career-minded women.<br />
@@ -69,12 +70,10 @@
 			</h2>
 		</div>
 		<div id="product-add">
-			<a href="<?php echo asset_url().'img/addtobagbut.jpg'; ?>"><img src="<?php echo asset_url().'img/addtobagbut.jpg'; ?>"></a>
-			<!-- <input type="image" src="<?php // echo asset_url().'img/addtobagbut.jpg'; ?>" value="Add to bag" /> -->
+			<input type="image" src="<?php echo asset_url().'img/addtobagbut.jpg'; ?>" value="Add to bag" />
 		</div>
 		<div id="product-save">
-			<a href="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>"><img src="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>"></a>
-			<!-- <input type="image" src="<?php //echo asset_url().'img/savetowishlistbut.jpg'; ?>" value="Save to Wishist" /> -->
+			<input type="image" src="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>" value="Save to Wishist" />
 		</div>
 	</div>
-				
+</form>

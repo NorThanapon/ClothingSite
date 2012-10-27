@@ -62,13 +62,14 @@
 							?>      <tr>
 										<td style="width: 200px;">
 										<?php 
-											$str_cat = $men_categories[$i]->$cat_name;
+																	
+											$str_cat = $men_categories[$i]->cat_name_en;
 											$str_cat = preg_replace('~[^a-z0-9]+~i', '-', $str_cat);
 											
 											echo anchor('category/men/'.$str_cat.'/'.$men_categories[$i]->cat_id,$men_categories[$i]->$cat_name,'title="'.$men_categories[$i]->$cat_name.'"') ?></td>
 										<?php if($i+$num < count($men_categories))
 											  {
-												$str_cat = $men_categories[$i+$num]->$cat_name;
+												$str_cat = $men_categories[$i+$num]->cat_name_en;
 												$str_cat = preg_replace('~[^a-z0-9]+~i', '-', $str_cat);
 										?>		
 												<td style="width: 200px;"><?php echo anchor('category/men/'.$str_cat.'/'.$men_categories[$i+$num]->cat_id,$men_categories[$i+$num]->$cat_name,'title="'.$men_categories[$i+$num]->$cat_name.'"') ?></td>

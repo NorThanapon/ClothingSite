@@ -118,6 +118,11 @@ padding-bottom:15px;
 margin-top:20px;
 }
 
+#detail-name img{
+	width:200px;
+	height:100px;
+}
+
 #product-sizecolor{
 position:relative;
 float:right;

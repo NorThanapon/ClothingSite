@@ -232,7 +232,26 @@ class Product_model extends CI_Model
 	    $query =  $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where cat_id=".$cat_id." and image_id = main_image and product_is_active = '1' and brand_is_active = '1' and total_quantity > 0");
 		return $query->result();
 	}
-	
+	function get_main_image($product_id)
+	{
+		$query =  $this->db->query("SELECT * FROM `products_brands_items_images_colors` where product_id=".$product_id." and image_id = main_image");
+	    return $query->row();
+	}
+	function get_sub_image($product_id)
+	{
+		$query =  $this->db->query("SELECT distinct(brand_id),main_image,image_id,image_file_name FROM `products_brands_items_images_colors` WHERE product_id=".$product_id." ORDER BY image_id DESC");
+		return $query->result();
+	}
+	function get_item_detail_size($product_id)
+	{
+		$query = $this->db->query("SELECT distinct item_id,size FROM `products_brands_items_images_colors` WHERE product_id=".$product_id."");
+		return $query->result();
+	}
+	function get_item_detail_color($product_id)
+	{
+		$query = $this->db->query("SELECT distinct color_name,product_id,item_id,color_file_name,color_id,image_id,brand_id,main_image,image_file_name FROM `products_brands_items_images_colors` WHERE product_id=".$product_id."");
+		return $query->result();
+	}
 
 }
 ?>

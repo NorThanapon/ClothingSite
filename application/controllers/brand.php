@@ -16,15 +16,18 @@ class Brand extends CI_Controller {
 		$this->load->model('category_model');
 		
 		$data = $this->bfash_model->init();
-		$data['re_name'] = str_replace('-',' ',$brand_name);
-		$data['brands'] = $this->brand_model->get_by_name($brand_id); 
-		$data['previous'] = array("Home");
-		$data['current'] =  $brand_name;
-		$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
-		$data['products'] = $this->product_model->get_product_brand_image($brand_id);	
+		
 		
 		if($product_id===FALSE)
 		{
+			$data['re_name'] = str_replace('-',' ',$brand_name);
+			$data['brands'] = $this->brand_model->get_by_name($brand_id); 
+			$data['previous'] = array("Home");
+			$data['current'] =  $brand_name;
+			$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
+			$data['products'] = $this->product_model->get_product_brand_image($brand_id);	
+			$data['page'] = 'front_product\content_main_product_list';
+			
 			//set product
 			$data['num_item'] = count($data['products']);
 			$data['show_start'] = 1;
@@ -45,7 +48,6 @@ class Brand extends CI_Controller {
 		}
 		else if($product_id!=FALSE)
 		{
-		
 			$data['product_detail'] = $this->product_model->get_main_image($product_id);
 			$data['sub_image'] = $this->product_model->get_sub_image($product_id);
 			$data['logo'] = $this->product_model->get_product_brand_image($brand_name);
@@ -58,10 +60,10 @@ class Brand extends CI_Controller {
 			//$data['products'] = $this->product_model->get_product_brand_image($data['re_name']);		
 			//$data['page'] = 'front_product\content_main_product_name';
 			//$data['content_history'] ='common\content-history';
-			
+			$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
 			$data['previous'] = array("Home",$brand_name);
-			$data['current'] = "Product's Name";
-			//$data['current_url'] = $brand_name.'/'.$product_id;
+			$data['current'] = $data['product_detail']->product_name_en;
+			$data['page'] = 'front_product\content_main_product_name';
 			$this->load->view('main_page',$data);
 		}
     }
