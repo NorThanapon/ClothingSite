@@ -1,17 +1,49 @@
 footer{
+	background:#363636;
 	border-top:2px solid #CDCDCD;
 	max-width:1000px;
+	min-height:150px;
 	position:relative;
 	width: 100%;
+	
 	margin: 0 auto;
 	vertical-align:middle;
 	color:#A9A9A9;
 	font-size:13px;
-	text-align:right;
-	padding-top:5px;
+	
+	/*text-align:right;*/
+	padding-top:35px;
+}
+
+.footer-logo{
+	margin-left:70px;
+	float:left;
+}
+
+.footer-logo img{
+	width:87px;
+	height:55.2px;
 }
 
 .footer-menu{
+	float:left;
+	
+}
 
-margin:10px;
+.footer-menu a{
+	vertical-align:top;
+	margin-left:110px;
+	display:block;
+	line-height:150%;
+}
+
+.footer-menu img{
+	width:16px;
+	height:16px;
+	margin-right:3px;
+}
+
+.footer-text{
+	font-size:65%;
+	margin-top:5px;
 }

@@ -26,6 +26,9 @@
 					</section>
 					<!-- <a href="<?php //echo asset_url().'img/main-branner.jpg'; ?>"><img src="<?php //echo asset_url().'img/main-branner.jpg'; ?>"></a> -->
 					</div>
+					<div class="text-branner">
+						<a href="<?php echo asset_url().'img/####' ?>">text</a>
+					</div>
 					<div class="sub-branner">
 					<a href="<?php echo asset_url().'img/253x360-Becky.jpg'; ?>"><img src="<?php echo asset_url().'img/253x360-Becky.jpg'; ?>"></a>
 					</div>

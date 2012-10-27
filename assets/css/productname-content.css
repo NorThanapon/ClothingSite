@@ -52,7 +52,7 @@
 	border:1px solid #ACACAC;
 	width:265px;
 	height:345px;
-	margin-left:100px
+	margin-left:70px
 }
 
 .main-image img{
@@ -63,7 +63,7 @@
 .sub-image{
 	border:1px solid #ACACAC;
 	width:57px;
-	height:90px;
+	height:74px;
 	position:relative;
 	float:left;
 	margin-top:20px;
@@ -72,11 +72,11 @@
 
 .sub-image img{
 	width:57px;
-	height:90px;
+	height:74px;
 }
 
 #product-sub{
-	margin-left:90px;
+	margin-left:60px;
 }
 
 #content-detail{
