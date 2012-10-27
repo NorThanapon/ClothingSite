@@ -69,10 +69,12 @@
 			</h2>
 		</div>
 		<div id="product-add">
-			<input type="image" src="<?php echo asset_url().'img/addtobagbut.jpg'; ?>" value="Add to bag" />
+			<a href="<?php echo asset_url().'img/addtobagbut.jpg'; ?>"><img src="<?php echo asset_url().'img/addtobagbut.jpg'; ?>"></a>
+			<!-- <input type="image" src="<?php // echo asset_url().'img/addtobagbut.jpg'; ?>" value="Add to bag" /> -->
 		</div>
 		<div id="product-save">
-			<input type="image" src="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>" value="Save to Wishist" />
+			<a href="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>"><img src="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>"></a>
+			<!-- <input type="image" src="<?php //echo asset_url().'img/savetowishlistbut.jpg'; ?>" value="Save to Wishist" /> -->
 		</div>
 	</div>
 				

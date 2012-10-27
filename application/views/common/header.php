@@ -10,7 +10,7 @@
         </span>
     </div> <!-- end #header-menu -->
     <div id="header-logo">
-        <a href="main" alt="BfashShop" ><img src="<?php echo asset_url().'img/bfashshop.jpg'; ?>" /></a> 
+        <a href="index" alt="BfashShop" ><img src="<?php echo asset_url().'img/bfashshop.jpg'; ?>" /></a> 
     </div> <!-- end #header-logo -->
     <div id="header-nav" class="header-nav-bar">
         <span class="nav-cat-top">
