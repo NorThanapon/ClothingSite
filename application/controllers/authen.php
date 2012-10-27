@@ -71,7 +71,7 @@ class Authen extends CI_Controller {
 		$this->load->view('member/login');	
 	}
 	
-	 public function login_member()
+	public function login_member()
 	{				
 		if (!$this->input->post('username')) 
 		{ //no authen

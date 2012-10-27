@@ -14,15 +14,14 @@ class Member_model extends CI_Model
 		$this->load->library('encrypt');
 		$data = array(
 			'e_mail' => $this->input->post('e_mail'),
-			'username' => $this->input->post('username'),
-			'password' => $this->encrypt->encode($this->input->post('password')),
-			'e_mail' => $this->input->post('e_mail')
+			'password' => $this->encrypt->encode($this->input->post('password'))
+			
 		);
 		$this->db->insert('members',$data);
 	}
-	function get($username)
+	function get($e_mail)
 	{
-		$query = $this->db->get_where('members', array('username' => $username));
+		$query = $this->db->get_where('members', array('e_mail' => $e_mail));
         return $query->row();
 	}
 }

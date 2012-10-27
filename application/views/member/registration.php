@@ -14,3 +14,4 @@
 <br />
 <input class="button btn-submit" type = "submit" name="submit" value="submit"/>
 </form>
+<?php echo "error:".$error;?>
