@@ -4,7 +4,7 @@
 	?>
 	
     <div id="header-topmenu">
-        <?php echo anchor('#','Sign in', 'title="Sign in"'); ?><!-- first,where link ,word,attribute -->
+        <?php echo anchor($sign_in_link, $sign_in , 'title="Sign in"'); ?><!-- first,where link ,word,attribute -->
         <?php echo anchor('#','Join us', 'title="Register"'); ?>
         <input type="text" placeholder="Enter product name or code" name="product_search"/>
         <input type="button" value="GO"/>
@@ -14,7 +14,7 @@
         </span>
     </div> <!-- end #header-menu -->
     <div id="header-logo">
-        <a href="#" alt="BfashShop" ><img src="<?php echo asset_url().'img/bfashshop.jpg'; ?>" /></a> 
+		<?php echo anchor(base_url(), '<img src='.asset_url().'img/bfashshop.jpg />', 'title="BfashShop"'); ?>
     </div> <!-- end #header-logo -->
     <div id="header-nav" class="header-nav-bar">
         <span class="nav-cat-top">

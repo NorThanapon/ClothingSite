@@ -44,12 +44,7 @@
 			//echo $i.":".$num_item;
 		?>
 			<div class="sub-product">
-				<?php echo anchor('productname', '<img src='.asset_url().'db/products/'.$products[$i]->image_file_name.' />', 'title="'.$products[$i]->image_file_name.'"'); ?>
-				
-				<!--<a  href="<?php //echo $current."/".$item->product_id;?>" title="<?php //echo $item->image_file_name; ?>">
-				<img src="<?php //echo asset_url().'db/products/'.$item->image_file_name."";?>" alt="" />
-				</a>	
-				-->
+				<?php echo anchor($base_url.'/'.$products[$i]->product_id, '<img src='.asset_url().'db/products/'.$products[$i]->image_file_name.' />', 'title="'.$products[$i]->image_file_name.'"'); ?>
 					<h2><?php echo $products[$i]->product_name_en;?></h2>
 					<div id="detail-price">
 					<?php 

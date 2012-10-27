@@ -1,6 +1,6 @@
 <footer>
-		<span class="footer-logo">					
-			<a href="<?php echo asset_url().'img/LOGO-bfashshop1.png'; ?>"><img src="<?php echo asset_url().'img/LOGO-bfashshop1.png'; ?>" /></a>
+		<span class="footer-logo">		
+			<?php echo anchor(base_url(), '<img src='.asset_url().'img/LOGO-bfashshop1.png />', 'title="BfashShop"'); ?>
 			<div class="footer-text">&copy 2012 ICC INTERNATIONAL PUBLIC COMPANY LIMITED</div>
 			<div class="footer-text">All rights reserved</div>
 		</span>

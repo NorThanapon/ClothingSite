@@ -8,39 +8,21 @@ class Category extends CI_Controller {
     }
 	public function product($cat_gender,$cat_name=FALSE,$cat_id=FALSE,$product_id=FALSE,$item=FALSE){
 		
-		//language
-		$this->load->model('language_model');
-		if($this->language_model->is_empty())
-		{
-			$this->language_model->add('en');
-		}
-		$this->load->helper('language');  
-		$this->lang->load('contentside', $this->language_model->get());
-		$this->lang->load('header', $this->language_model->get());
-		
-		$data['lang'] = $this->language_model->get();
-		
-		echo $data['lang']; 
-		
-        $data['page_title'] = "Welcome to BfashShop.com";
-		
-		$this->load->model('brand_model');
-		$this->load->model('category_model');
+		$this->load->model('bfash_model');
 		$this->load->model('product_model');
+		$this->load->model('image_model');
+		$this->load->model('category_model');
+		
+		$data = $this->bfash_model->init();
+
 		if($cat_gender == "women")
 		{
 			//set common page
-			$data['page_title'] = "Welcome to BfashShop.com";
-			$data['page'] = 'font_product\content_main_product_list';
 			$data['previous'] = array("Home");
 			if($cat_name === FALSE){
 				$data['current'] = '';
 			}
 			$data['current'] = $cat_name;
-			$data['content_history'] ='common\content-history';
-			$data['brand_list'] = $this->brand_model->get();
-			$data['women_categories'] = $this->category_model->get_by_gender('WOMEN');
-			$data['men_categories'] = $this->category_model->get_by_gender('MEN');
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
 			//============ END setting common page
 			
@@ -65,17 +47,11 @@ class Category extends CI_Controller {
 		if($cat_gender == "men")
 		{
 			//set common page
-			$data['page_title'] = "Welcome to BfashShop.com";
-			$data['page'] = 'font_product\content_main_product_list';
 			$data['previous'] = array("Home");
 			if($cat_name === FALSE){
 				$data['current'] = '';
 			}
 			$data['current'] = $cat_name;
-			$data['content_history'] ='common\content-history';
-			$data['brand_list'] = $this->brand_model->get();
-			$data['women_categories'] = $this->category_model->get_by_gender('WOMEN');
-			$data['men_categories'] = $this->category_model->get_by_gender('MEN');
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
 			//============ END setting common page
 			
@@ -99,23 +75,20 @@ class Category extends CI_Controller {
 		}
 	}
 	public function product_list($cat_gender,$cat_name=FALSE,$cat_id=FALSE,$page=0,$per_page=0){
-		$this->load->model('brand_model');
-		$this->load->model('category_model');
+		$this->load->model('bfash_model');
 		$this->load->model('product_model');
+		$this->load->model('image_model');
+		$this->load->model('category_model');
+		
+		$data = $this->bfash_model->init();
 		if($cat_gender == "women")
 		{
 			//set common page
-			$data['page_title'] = "Welcome to BfashShop.com";
-			$data['page'] = 'font_product\content_main_product_list';
 			$data['previous'] = array("Home");
 			if($cat_name === FALSE){
 				$data['current'] = '';
 			}
 			$data['current'] = $cat_name;
-			$data['content_history'] ='common\content-history';
-			$data['brand_list'] = $this->brand_model->get();
-			$data['women_categories'] = $this->category_model->get_by_gender('WOMEN');
-			$data['men_categories'] = $this->category_model->get_by_gender('MEN');
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
 			//============ END setting common page
 		
@@ -154,17 +127,11 @@ class Category extends CI_Controller {
 		else if($cat_gender == "men")
 		{
 			//set common page
-			$data['page_title'] = "Welcome to BfashShop.com";
-			$data['page'] = 'font_product\content_main_product_list';
 			$data['previous'] = array("Home");
 			if($cat_name === FALSE){
 				$data['current'] = '';
 			}
 			$data['current'] = $cat_name;
-			$data['content_history'] ='common\content-history';
-			$data['brand_list'] = $this->brand_model->get();
-			$data['women_categories'] = $this->category_model->get_by_gender('WOMEN');
-			$data['men_categories'] = $this->category_model->get_by_gender('MEN');
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
 			//END 
 			

@@ -14,13 +14,13 @@ class Bfash_model extends CI_Model
 		// Check Authen
 		if(check_authen('member',TRUE)) 
         {
-			$data['sign_in_link']="authen/logout";
-			$data['sign_in']="sign out";
+			$data['sign_in_link'] = "authen/logout";
+			$data['sign_in'] = "Sign out";
         }
 		else
 		{
-			$data['sign_in_link']="authen/login";
-			$data['sign_in']="sign in";
+			$data['sign_in_link'] = "authen/login";
+			$data['sign_in'] = "Sign in";
 		}	
 		
 		// Check lang
