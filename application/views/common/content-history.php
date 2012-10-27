@@ -14,7 +14,7 @@
 		<?php	
 			}
 		?>
-		<span id="history-current"><?php echo anchor(current_url(), $current, 'title="'.$current.'"'); ?></span>
+		<span id="history-current"><?php echo anchor($base_url, $current, 'title="'.$current.'"'); ?></span>
 		
 		
 		
