@@ -18,7 +18,19 @@ if (!function_exists('check_authen')) {
         }
         else if($is_redirect){
             $CI->session->set_flashdata('redirect_url', current_url());
-            redirect('authen/login_'.$role, 'refresh');
+			//=========================================================
+			if($role=="member")//for $role = member
+			{
+				//redirect('', 'refresh');
+			}
+			else if($role=="staff")
+			{
+			//========================================================= (P' nor coding)
+				redirect('authen/login_'.$role, 'refresh');
+			//========================================================= (P' nor coding)
+			}
+			
+            
         }
         else {
             return false;

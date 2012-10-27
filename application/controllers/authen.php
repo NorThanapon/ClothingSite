@@ -65,4 +65,60 @@ class Authen extends CI_Controller {
         delete_cookie("role");
         redirect();
     }
+	//member authen
+	public function login()
+	{
+		$this->load->view('member/login');	
+	}
+	
+	 public function login_member()
+	{				
+		if (!$this->input->post('username')) 
+		{ //no authen
+			redirect('authen_member');
+            return;
+        }
+		$this->load->library('encrypt');
+		$this->load->model('member_model');
+		$member = $this->member_model->get($this->input->post('username'));
+		if($member==null)// incorrect username
+		{
+			$this->load->view('member/login');			
+            return;
+		}	
+		$password = $member->password;			
+		// check password			
+		if($this->encrypt->decode($member->password)!=$this->input->post('password'))
+		{
+			$this->load->view('member/login');			
+            return;
+		}
+		echo "Yes".$this->encrypt->decode($member->password);	
+		//session
+		$data = array(
+           'username'   => $member->username,
+           'logged_in'  => TRUE,
+           'role'       => 'member'
+        );
+        $this->session->set_userdata($data);
+		//cookie
+        if($this->input->post('remember-password') == 'on') {
+			
+            $cookie_user = array(
+                'name'   => 'username',
+                'value'  => $this->encrypt->encode($member->username),
+                'expire' => '2592000'
+            );
+            $cookie_role = array(
+                'name'   => 'role',
+                'value'  => $this->encrypt->encode('member'),
+                'expire' => '2592000'
+            );
+            $this->input->set_cookie($cookie_user);
+            $this->input->set_cookie($cookie_role);
+			echo "on";
+        }        
+        //SUCCESS!
+        redirect($this->session->flashdata('redirect_url'));		
+    }
 }

@@ -2,6 +2,18 @@
 
 class Main extends CI_Controller {
     public function index() {
+		
+		echo "check_au__".check_authen('member',TRUE) ;
+		if(check_authen('member',TRUE)) 
+        {
+			$data['sign_in_link']="authen/logout";
+			$data['sign_in']="sign out";
+        }
+		else
+		{
+			$data['sign_in_link']="authen/login";
+			$data['sign_in']="sign in";
+		}		
         $data['page_title'] = "Welcome to BfashShop.com";
 		$this->load->model('brand_model');
 		$this->load->model('category_model');
