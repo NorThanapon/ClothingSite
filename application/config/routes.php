@@ -48,6 +48,7 @@ $route['brand/([-_a-zA-Z0-9]+)/(:num)'] = 'brand/product/$1/$2';
 $route['brand/([-_a-zA-Z0-9]+)'] = 'brand/product/$1';
 
 $route['brand/(:any)/page/(:num)/(:num)'] = 'brand/product_list/$1/$2/$3';
+$route['brand/(:any)/page/(:num)'] = 'brand/product_list/$1/$2';
 $route['brand/(:any)'] = 'brand/product_list/$1';
 
 //category
