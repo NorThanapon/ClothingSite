@@ -1,23 +1,28 @@
 <?php
 class Category extends CI_Controller {
-	public function index($brand_id) {
-        $data['page_title'] = "Welcome to BfashShop.com";
+	public function index($brand_id) {		
 		//$this->load->model('c_model');
 		//$data['brand_list'] = $this->brand_model->get(); 				
 		//$data['page'] = 'brand_list';
         $this->load->view('main_page',$data);
     }
 	public function product($cat_gender,$cat_name=FALSE,$cat_id=FALSE,$product_id=FALSE,$item=FALSE){
-		if(check_authen('member',TRUE)) 
-        {
-			$data['sign_in_link']="authen/logout";
-			$data['sign_in']="sign out";
-        }
-		else
+		
+		//language
+		$this->load->model('language_model');
+		if($this->language_model->is_empty())
 		{
-			$data['sign_in_link']="authen/login";
-			$data['sign_in']="sign in";
-		}	
+			$this->language_model->add('en');
+		}
+		$this->load->helper('language');  
+		$this->lang->load('contentside', $this->language_model->get());
+		$this->lang->load('header', $this->language_model->get());
+		
+		$data['lang'] = $this->language_model->get();
+		
+		echo $data['lang']; 
+		
+        $data['page_title'] = "Welcome to BfashShop.com";
 		
 		$this->load->model('brand_model');
 		$this->load->model('category_model');
@@ -94,16 +99,6 @@ class Category extends CI_Controller {
 		}
 	}
 	public function product_list($cat_gender,$cat_name=FALSE,$cat_id=FALSE,$page=0,$per_page=0){
-		if(check_authen('member',TRUE)) 
-        {
-			$data['sign_in_link']="authen/logout";
-			$data['sign_in']="sign out";
-        }
-		else
-		{
-			$data['sign_in_link']="authen/login";
-			$data['sign_in']="sign in";
-		}	
 		$this->load->model('brand_model');
 		$this->load->model('category_model');
 		$this->load->model('product_model');
@@ -205,6 +200,23 @@ class Category extends CI_Controller {
 			$data['current_page'] = $page;
 			$this->load->view('main_page',$data);
 			
+		}
+	}
+	
+	public function change_language() {
+		if (!$this->input->post('lang'))
+		{		
+			product($cat_gender,$cat_name=FALSE,$cat_id=FALSE,$product_id=FALSE,$item=FALSE);			
+			//redirect(current_url());
+		}
+		else
+		{
+			$this->load->model('language_model');
+			$this->language_model->add($this->input->post('lang'));
+			product($cat_gender,$cat_name=FALSE,$cat_id=FALSE,$product_id=FALSE,$item=FALSE);
+			
+			
+			//redirect(current_url());
 		}
 	}
 }
