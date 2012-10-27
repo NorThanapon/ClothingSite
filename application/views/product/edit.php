@@ -53,28 +53,62 @@
 			<select name="cat_id" > 
 				<option value="">--None--</option>
 				<?php 
+				echo '<option value="" disabled >###### Women ######</option>';
 				foreach($category as $item)
 				{  
-					if(isset($form_cat_id))
+					if($item->cat_gender == "Women")
 					{
-						if($form_cat_id == $item->cat_id)
+						if(isset($form_cat_id))
 						{
-							echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+							if($form_cat_id == $item->cat_id)
+							{
+								echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+							}
+							else
+							{
+								echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+							}
 						}
 						else
 						{
-							echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+							if($product->cat_id == $item->cat_id)
+							{
+								echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+							}
+							else
+							{
+								echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+							}
 						}
 					}
-					else
+				}
+				echo '<option value="" disabled ></option>';
+				echo '<option value=""  disabled >######## Men ########</option>';
+				foreach($category as $item)
+				{  
+					if($item->cat_gender == "Men")
 					{
-						if($product->cat_id == $item->cat_id)
+						if(isset($form_cat_id))
 						{
-							echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+							if($form_cat_id == $item->cat_id)
+							{
+								echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+							}
+							else
+							{
+								echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+							}
 						}
 						else
 						{
-							echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+							if($product->cat_id == $item->cat_id)
+							{
+								echo "<option value=".$item->cat_id." selected='selected'>".$item->cat_name_en."</option>";
+							}
+							else
+							{
+								echo "<option value=".$item->cat_id.">".$item->cat_name_en."</option>";
+							}
 						}
 					}
 				}
