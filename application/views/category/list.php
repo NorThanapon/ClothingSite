@@ -11,8 +11,8 @@
 		<label for="cat_gender">Gender</label>
 		<select name="cat_gender" id="cat_gender"> 
 		    <option value="0">--Any Gender--</option>
-			<option value="Women">Women</option>
-			<option value="Men">Men</option>		    
+			<option value="Women" <?php if(isset($search_gender) && $search_gender == "Women") echo "selected"; ?> >Women</option>
+			<option value="Men" <?php if(isset($search_gender) && $search_gender == "Men") echo "selected";?> >Men</option>		    
 		</select>
 		<input id="btn_filter" type="button" value="Search" />
 	    </fieldset>

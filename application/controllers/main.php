@@ -3,7 +3,6 @@
 class Main extends CI_Controller {
     public function index() {
 		
-		echo "check_au__".check_authen('member',TRUE) ;
 		if(check_authen('member',TRUE)) 
         {
 			$data['sign_in_link']="authen/logout";

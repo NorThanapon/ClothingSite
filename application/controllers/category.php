@@ -8,6 +8,16 @@ class Category extends CI_Controller {
         $this->load->view('main_page',$data);
     }
 	public function product($cat_gender,$cat_name=FALSE,$cat_id=FALSE,$product_id=FALSE,$item=FALSE){
+		if(check_authen('member',TRUE)) 
+        {
+			$data['sign_in_link']="authen/logout";
+			$data['sign_in']="sign out";
+        }
+		else
+		{
+			$data['sign_in_link']="authen/login";
+			$data['sign_in']="sign in";
+		}	
 		
 		$this->load->model('brand_model');
 		$this->load->model('category_model');
@@ -84,6 +94,16 @@ class Category extends CI_Controller {
 		}
 	}
 	public function product_list($cat_gender,$cat_name=FALSE,$cat_id=FALSE,$page=0,$per_page=0){
+		if(check_authen('member',TRUE)) 
+        {
+			$data['sign_in_link']="authen/logout";
+			$data['sign_in']="sign out";
+        }
+		else
+		{
+			$data['sign_in_link']="authen/login";
+			$data['sign_in']="sign in";
+		}	
 		$this->load->model('brand_model');
 		$this->load->model('category_model');
 		$this->load->model('product_model');
