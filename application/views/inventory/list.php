@@ -68,7 +68,15 @@
 					?>
 				</td>
 				<td><?php echo $item->size;?></td>
-				<td><?php echo $item->color_id;?></td>
+				<?php foreach($colors as $color_item)
+					  {
+						if($color_item->color_id == $item->color_id)
+						{
+							echo "<td>".$color_item->color_name."</td>";
+						}
+					  }
+				?>
+				
 				<td><?php echo $item->quantity;?></td>
 				<td>
 					 <?php echo anchor('admin/inventory/edit/'.$item->item_id, ' ', array('title'=>"Edit Item",'class'=>'edit-button')); ?>

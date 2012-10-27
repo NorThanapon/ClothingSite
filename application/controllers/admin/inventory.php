@@ -9,9 +9,11 @@ class Inventory extends CI_Controller
         }
 		$this->load->model('product_model');
 		$this->load->model('item_model');
+		$this->load->model('color_model');
         $data['page_title'] = 'Admin: Inventory Management';
 		$data['product_list'] = $this->product_model->get();
 		$data['item_list'] = $this->item_model->get();
+		$data['colors'] = $this->color_model->get();
         $this->load->view('inventory/list',$data);
     }
 	
