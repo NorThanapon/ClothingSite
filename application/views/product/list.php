@@ -95,7 +95,7 @@
 				<option value="4">Normal</option>
 			</select>
 			<input type = "submit" value = "Update" name="btn_update" />
-			<input type = "submit" value = "Delete" name="btn_delete" id="btn_delete_button" />
+			<!--<input type = "submit" value = "Delete" name="btn_delete" id="btn_delete_button" />-->
 			</fieldset>
 		</form>
 		<?php $this->load->view('common/confirm_box');?>

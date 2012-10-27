@@ -1,11 +1,11 @@
 <?php echo form_open('member/add'); ?>
 <h1>Registration</h1> 
-<label for="name">E-mail</label>
-<input type="text" name="e_mail" >
+<label for="e_mail">E-mail</label>
+<input type="text" name="e_mail" value="<?php if(isset($form_e_mail)) echo $form_e_mail; ?>" >
 <br />
-<label for="username">Username</label>
+<!--<label for="username">Username</label>
 <input type="text" name="username" >
-<br />
+<br />-->
 <label for="password">Password</label>
 <input type="password" name="password" >
 <br />

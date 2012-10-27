@@ -52,7 +52,7 @@
 		</fieldset>
 	    </div>
 	    <div class="content-right form-action">
-		<?php echo anchor('admin/item','Cancel' ,array('class' => 'button')); ?>
+		<?php echo anchor('admin/inventory','Cancel' ,array('class' => 'button')); ?>
 		<input class="button btn-submit" type = "submit" name="submit" value="Add this item"/>
 	    </div>
 	</form>

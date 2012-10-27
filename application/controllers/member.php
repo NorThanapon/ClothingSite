@@ -5,11 +5,12 @@ class Member extends CI_Controller {
        
     }
 	public function registration() {
-         $this->load->view('font_product/content_main_registration'); 
+		$data['page_title'] = 'Registration';
+        $this->load->view('member/registration',$data); 
     }
 	public function add() 
 	{
-		echo "password>>in>>".$this->input->post('password') ;
+		$data['form_e_mail'] = $this->input->post('e_mail');		
         $this->load->model('member_model');		
 		$result = $this->member_model->get($this->input->post('username'));		
 		if($result!=null)
