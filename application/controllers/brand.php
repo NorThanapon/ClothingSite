@@ -17,12 +17,14 @@ class Brand extends CI_Controller {
 		
 		$data = $this->bfash_model->init();
 		
+		$this->lang->load('content-history', $this->language_model->get());
+		$this->lang->load('content_main_product_list', $this->language_model->get());
 		
 		if($product_id===FALSE)
 		{
 			$data['re_name'] = str_replace('-',' ',$brand_name);
 			$data['brands'] = $this->brand_model->get_by_name($brand_id); 
-			$data['previous'] = array("Home");
+			$data['previous'] = array($this->lang->line('Home'));
 			$data['current'] =  $brand_name;
 			$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
 			$data['products'] = $this->product_model->get_product_brand_image($brand_id);	
@@ -76,10 +78,12 @@ class Brand extends CI_Controller {
 		
 		$data = $this->bfash_model->init();
 		
+		$this->lang->load('content-history', $this->language_model->get());
+		$this->lang->load('content_main_product_list', $this->language_model->get());
 		
 		$data['re_name'] = str_replace('-',' ',$brand_name);
 		$data['brands'] = $this->brand_model->get_by_name($brand_id); 
-		$data['previous'] = array("Home");
+		$data['previous'] = array($this->lang->line('Home'));
 		$data['current'] =  $brand_name;
 		$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
 		$data['products'] = $this->product_model->get_product_brand_image($brand_id);	

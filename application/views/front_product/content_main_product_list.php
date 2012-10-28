@@ -1,9 +1,12 @@
 	<div id="content-showing">
+		<?php
+			$product_name = 'product_name_'.$lang;
+		?>
 		<?php 
 			  if($num_page == 0)
 			  {
 		?>
-				<h2>Showing Items 0-0 of 0 </h2>
+				<h2><?php echo $this->lang->line('Showing Items')?> 0-0 <?php echo $this->lang->line('of')?> 0 </h2>
 		<?php
 			  }
 			  for($i=1; $i<=$num_page; $i++)
@@ -11,8 +14,8 @@
 				if($i == 1)
 				{
 				?>
-					<h2><?php echo "Showing Items ".$show_start."-".$show_end." of ".$num_item; ?></h2>
-				<?php
+					<h2><?php echo $this->lang->line('Showing Items')." ".$show_start."-".$show_end." ".$this->lang->line('of')." ".$num_item; ?></h2>
+				<?php 
 				}
 				if($current_page == $i)
 				{
@@ -45,17 +48,17 @@
 		?>
 			<div class="sub-product">
 				<?php echo anchor($base_url.'/'.$products[$i]->product_id, '<img src='.asset_url().'db/products/'.$products[$i]->image_file_name.' />', 'title="'.$products[$i]->image_file_name.'"'); ?>
-					<h2><?php echo $products[$i]->product_name_en;?></h2>
+					<h2><?php echo $products[$i]->$product_name;?></h2>
 					<div id="detail-price">
 					<?php 
 						if($products[$i]->on_sale==true)
 						{
-							echo "<h3> was ".$products[$i]->markup_price." THB</h3>";
-							echo "<h2>".$products[$i]->markdown_price." THB</h2>";
+							echo "<h3> ".$this->lang->line('was')." ".$products[$i]->markup_price." ".$this->lang->line('THB')."</h3>";
+							echo "<h2>".$products[$i]->markdown_price." ".$this->lang->line('THB')."</h2>";
 						}
 						else
 						{
-							echo "<h1>".$products[$i]->markup_price." THB</h1>";
+							echo "<h1>".$products[$i]->markup_price." ".$this->lang->line('THB')."</h1>";
 							echo "<h2><br /></h2>";
 						}
 					?>

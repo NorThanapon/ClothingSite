@@ -4,10 +4,11 @@
 	?>
 	
     <div id="header-topmenu">
+		<?php echo anchor('#',$this->lang->line('Join'), 'title="Register"'); ?>
         <?php echo anchor($sign_in_link, $sign_in , 'title="Sign in"'); ?><!-- first,where link ,word,attribute -->
-        <?php echo anchor('#','Join us', 'title="Register"'); ?>
-        <input type="text" placeholder="Enter product name or code" name="product_search"/>
-        <input type="button" value="GO"/>
+        
+        <input type="text" placeholder="<?php echo $this->lang->line('Enter product name or code');?>" name="product_search"/>
+        <input type="button" value="<?php echo $this->lang->line('Go');?>"/>
         <span class="lang-link">
             <a href="javascript:void(0)" class="language-th" title="Thai">TH</a>
 			<a href="javascript:void(0)" class="language-en" title="English">EN</a>
@@ -101,7 +102,7 @@
 				url: "<?php echo base_url('main/change_language');?>",
 				data: "lang=th",
 				success: function( data ) {
-				window.location.reload();
+					window.location.reload();
 				}});
 			});
 		$('a.language-en').click(function() {
@@ -110,7 +111,7 @@
 				url: "<?php echo base_url('main/change_language');?>",
 				data: "lang=en",
 				success: function( data ) {
-				window.location.reload();
+					window.location.reload();
 			}});
 		});			
 	});

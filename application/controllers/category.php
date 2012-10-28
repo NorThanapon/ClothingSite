@@ -14,19 +14,28 @@ class Category extends CI_Controller {
 		$this->load->model('category_model');
 		
 		$data = $this->bfash_model->init();
+		
+		$this->lang->load('content-history', $this->language_model->get());
+		$this->lang->load('content_main_product_list', $this->language_model->get());
+		
+		$cat_name_att = 'cat_name_'.$data['lang'];
+		$cat_name_lang = $this->category_model->get($cat_id)->$cat_name_att;
+		
 		if($product_id != FALSE)
 		{	
 			$data['page']="";
-			$data['previous'] = array("Home");
+			$data['previous'] = array($this->lang->line('Home'),$cat_name_lang);
 			if($cat_name === FALSE){
 				$data['current'] = '';
 			}
-			$data['current'] = $cat_name;
+			
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id.'/'.$product_id;
 			$data['page'] = 'front_product\content_main_product_name';
 			
 			//
 			$data['product_detail'] = $this->product_model->get_main_image($product_id);
+			
+			$data['current'] = $data['product_detail']->product_name_en;
 			$data['sub_image'] = $this->product_model->get_sub_image($product_id);
 			$data['logo'] = $this->product_model->get_product_brand_image($data['product_detail']->brand_name);
 			$data['item_detail_size'] = $this->product_model->get_item_detail_size($product_id);
@@ -38,11 +47,11 @@ class Category extends CI_Controller {
 		if($cat_gender == "women")
 		{
 			//set common page
-			$data['previous'] = array("Home");
+			$data['previous'] = array($this->lang->line('Home'));
 			if($cat_name === FALSE){
 				$data['current'] = '';
 			}
-			$data['current'] = $cat_name;
+			$data['current'] = $cat_name_lang;
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
 			$data['page'] = 'front_product\content_main_product_list';
 			//============ END setting common page
@@ -68,11 +77,11 @@ class Category extends CI_Controller {
 		if($cat_gender == "men")
 		{
 			//set common page
-			$data['previous'] = array("Home");
+			$data['previous'] = array($this->lang->line('Home'));
 			if($cat_name === FALSE){
 				$data['current'] = '';
 			}
-			$data['current'] = $cat_name;
+			$data['current'] = $cat_name_lang;
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
 			$data['page'] = 'front_product\content_main_product_list';
 			//============ END setting common page
@@ -105,14 +114,20 @@ class Category extends CI_Controller {
 		$data = $this->bfash_model->init();
 		$data['page'] = 'front_product\content_main_product_list';
 		
+		$this->lang->load('content-history', $this->language_model->get());
+		$this->lang->load('content_main_product_list', $this->language_model->get());
+		
+		$cat_name_att = 'cat_name_'.$data['lang'];
+		$cat_name_lang = $this->category_model->get($cat_id)->$cat_name_att;
+		
 		if($cat_gender == "women")
 		{
 			//set common page
-			$data['previous'] = array("Home");
+			$data['previous'] = array($this->lang->line('Home'));
 			if($cat_name === FALSE){
 				$data['current'] = '';
 			}
-			$data['current'] = $cat_name;
+			$data['current'] = $cat_name_lang;
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
 			//============ END setting common page
 		
@@ -151,11 +166,11 @@ class Category extends CI_Controller {
 		else if($cat_gender == "men")
 		{
 			//set common page
-			$data['previous'] = array("Home");
+			$data['previous'] = array($this->lang->line('Home'));
 			if($cat_name === FALSE){
 				$data['current'] = '';
 			}
-			$data['current'] = $cat_name;
+			$data['current'] = $cat_name_lang;
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
 			//END 
 			
@@ -193,7 +208,7 @@ class Category extends CI_Controller {
 			
 		}
 	}
-	
+	/*
 	public function change_language() {
 		if (!$this->input->post('lang'))
 		{		
@@ -204,11 +219,9 @@ class Category extends CI_Controller {
 		{
 			$this->load->model('language_model');
 			$this->language_model->add($this->input->post('lang'));
-			product($cat_gender,$cat_name=FALSE,$cat_id=FALSE,$product_id=FALSE,$item=FALSE);
-			
-			
+			product($cat_gender,$cat_name=FALSE,$cat_id=FALSE,$product_id=FALSE,$item=FALSE);			
 			//redirect(current_url());
 		}
-	}
+	}*/
 }
 ?>

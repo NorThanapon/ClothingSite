@@ -11,17 +11,6 @@ class Bfash_model extends CI_Model
 		$this->load->model('product_model');
 		$this->load->model('image_model');
 		$this->load->model('category_model');
-		// Check Authen
-		if(check_authen('member',TRUE)) 
-        {
-			$data['sign_in_link'] = "authen/logout";
-			$data['sign_in'] = "Sign out";
-        }
-		else
-		{
-			$data['sign_in_link'] = "authen/login";
-			$data['sign_in'] = "Sign in";
-		}	
 		
 		// Check lang
 		//language
@@ -37,6 +26,18 @@ class Bfash_model extends CI_Model
 		$data['lang'] = $this->language_model->get();
 		
 		
+		// Check Authen
+		if(check_authen('member',TRUE)) 
+        {
+			$data['sign_in_link'] = "authen/logout";
+			$data['sign_in'] = $this->lang->line('Sign out');
+        }
+		else
+		{
+			$data['sign_in_link'] = "authen/login";
+			$data['sign_in'] = $this->lang->line('Sign in');
+		}	
+				
 		//set common page
 			$data['page_title'] = "Welcome to BfashShop.com";
 			$data['brand_list'] = $this->brand_model->get(); 

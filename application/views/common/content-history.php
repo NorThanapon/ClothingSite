@@ -3,7 +3,7 @@
 			foreach($previous as $item)
 			{
 				if(strtolower($item) == "home"){
-					//$path = site_url();
+					$path = site_url();
 				}
 				else
 				{
