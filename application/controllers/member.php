@@ -85,11 +85,26 @@ class Member extends CI_Controller {
 	public function forget_password()
 	{
 		//echo "send email";
-		$this->load->model('member_model');
-		$result = $this->member_model->get($this->input->post('e_mail_send_password'));
-		//if($result==null)
+		
+		$from ="";
+		$from_name="";
+		$to = $this->input->post("e_mail_send_password");
+		$data['form_e_mail_send_password']=$this->input->post("e_mail_send_password");
+		if($to=="")
 		{
-		//	return;
+			$data['show_message'] = 'Please fill your Email for send new password';
+			$data['page'] = 'member/login';
+			$this->load->view('registration_page',$data);
+			return;
+		}
+		$this->load->model('member_model');
+		$result = $this->member_model->get($to);
+		if($result==null)
+		{
+			$data['show_message'] = 'Please fill your Email for send new password';
+			$data['page'] = 'member/login';
+			$this->load->view('registration_page',$data);
+			return;
 		}
 		$config = array();
         $config['useragent']           = "CodeIgniter";
@@ -101,15 +116,19 @@ class Member extends CI_Controller {
         $config['charset']  = 'utf-8';
         $config['newline']  = "\r\n";
         $config['wordwrap'] = TRUE;
-
+		
         $this->load->library('email');
-        $this->email->initialize($config);
-        $this->email->from("o_oluck@hotmail.com", "from_name");
-        $this->email->to("o_oluck@hotmail.com");
-        $this->email->subject('Test Send mail');
-        $this->email->message("ABC");
+		$this->email->initialize($config);
+        
+        $this->email->from($from, $from_name);
+        $this->email->to($to);
+        $this->email->subject($subject);
+        $this->email->message($message);
         $this->email->send();
-		echo "Mail Sent.";
+		$data['show_message']="Thank You. Your password has been sent to the email address specified.";
+		//echo "Mail Sent.";
+		//
+		//
 		
 	}
 	

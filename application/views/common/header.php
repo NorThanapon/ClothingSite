@@ -4,7 +4,7 @@
 	?>
 	
     <div id="header-topmenu">
-		<?php echo anchor('#',$this->lang->line('Join'), 'title="Register"'); ?>
+		<?php echo anchor($join_link,$join_name, 'title="Register"'); ?>
         <?php echo anchor($sign_in_link, $sign_in , 'title="Sign in"'); ?><!-- first,where link ,word,attribute -->
         
         <input type="text" placeholder="<?php echo $this->lang->line('Enter product name or code');?>" name="product_search"/>

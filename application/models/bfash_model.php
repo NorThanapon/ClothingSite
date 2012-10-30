@@ -31,11 +31,15 @@ class Bfash_model extends CI_Model
         {
 			$data['sign_in_link'] = "authen/logout";
 			$data['sign_in'] = $this->lang->line('Sign out');
+			$data['join_link'] = "";
+			$data['join_name'] = $this->lang->line('Hello').$this->encrypt->decode($this->input->cookie('e_mail'));
         }
 		else
 		{
 			$data['sign_in_link'] = "authen/login";
 			$data['sign_in'] = $this->lang->line('Sign in');
+			$data['join_link'] = "authen/login";
+			$data['join_name'] = $this->lang->line('Join');
 		}	
 				
 		//set common page

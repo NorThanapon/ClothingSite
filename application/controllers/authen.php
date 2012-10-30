@@ -80,29 +80,42 @@ class Authen extends CI_Controller {
 	
 	public function login_member()
 	{				
+		$data['form_e_mail']=$this->input->post("e_mail");
 		if (!$this->input->post('e_mail')) 
 		{ //no authen
-			redirect('authen/login');
+			$data['show_message_login'] = 'Please enter Email address';
+			$data['page'] = 'member/login';
+			$this->load->view('registration_page',$data);
+            return;
+        }
+		if (!$this->input->post('password')) 
+		{ //no authen
+			$data['show_message_login'] = 'Please enter password';
+			$data['page'] = 'member/login';
+			$this->load->view('registration_page',$data);
             return;
         }
 		$this->load->library('encrypt');
-		$this->load->model('member_model');	
-		$this->load->library('form_validation');
-		$member = $this->member_model->get($this->input->post('e_mail'));
+		$this->load->model('member_model');			
+		$member = $this->member_model->get($this->input->post('e_mail'));		
 		if($member==null)// incorrect username
 		{
 		
-			$data['error_message'] = 'The following errors have occurred:
+			$data['show_message_login'] = 'The following errors have occurred:
 									 Please check your email address and password are correct and submit your details again.';
            
-			$this->load->view('member/login');
-			 return;
+			$data['page'] = 'member/login';
+			$this->load->view('registration_page',$data);
+			return;
 		}	
 		$password = $member->password;			
 		// check password			
-		if($this->encrypt->decode($member->password)!=$this->input->post('password'))
+		if($this->encrypt->decode($member->password)!=$this->input->post('password'))//password incorrect
 		{
-			$this->load->view('member/login');			
+			$data['show_message_login'] = 'The following errors have occurred:
+									 Please check your email address and password are correct and submit your details again.';
+			$data['page'] = 'member/login';
+			$this->load->view('registration_page',$data);			
             return;
 		}
 		echo "Yes".$this->encrypt->decode($member->password);	
@@ -128,7 +141,7 @@ class Authen extends CI_Controller {
             );
             $this->input->set_cookie($cookie_user);
             $this->input->set_cookie($cookie_role);
-			echo "on";
+			//echo "on".$this->encrypt->decode($this->input->cookie('e_mail'));
         }        
         //SUCCESS!
         redirect($this->session->flashdata('redirect_url'));		
