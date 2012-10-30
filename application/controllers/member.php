@@ -6,8 +6,14 @@ class Member extends CI_Controller {
     }
 	public function registration() {
 		$data['page_title'] = 'Registration';
+<<<<<<< HEAD
 		$data['error'] = "No";
         $this->load->view('member/registration',$data); 
+=======
+		$data['page'] = 'font_product/registration';
+        $this->load->view('registration_page',$data);
+        //$this->load->view('registration',$data); 
+>>>>>>> CSS Register
     }
 	public function add() 
 	{
