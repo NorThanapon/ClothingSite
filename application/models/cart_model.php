@@ -22,4 +22,12 @@ class Cart_model extends CI_Model
 		}
 	
 	}
+	
+	function get_where($where){
+		$query = $this->db->get_where('items',$where);
+		if($query->num_rows() > 1){
+			return $query->result();
+		}
+		return $query->row();
+	}
 }

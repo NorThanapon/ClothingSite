@@ -11,7 +11,9 @@
 
 <!-- ---------------------should be loop of product-------------------- -->
 <div id="content-wish_list">
-	<?php echo $cookie_name; ?>
+	<?php foreach($items as $data)
+		  {
+	?>
 	<div class="product">
 		<div class="product-image">
 			<?php echo anchor(asset_url().'img/product3.jpg',"<img src='".asset_url().'img/product3.jpg'."' />",'');	?>
@@ -25,7 +27,7 @@
 	<div class="option">
 		<div>
 		<span class="option-color">Color:</span>
-		<span>Antique gold</span>
+		<span><?php $item->color_id; ?></span>
 		</div>
 		<div>
 		<span class="option-size">Size:</span>
@@ -42,6 +44,7 @@
 	<div class="price">
 		<div class="price-product">180$</div>
 	</div>
+	<?php } ?>
 </div>
 
 <!-- ------------------------------------------------------------------- -->
