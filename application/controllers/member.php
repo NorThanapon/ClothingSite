@@ -9,7 +9,7 @@ class Member extends CI_Controller {
 
 		$data['error'] = "No";
      
-		$data['page'] = 'font_product/registration';
+		$data['page'] = 'member/registration';
         $this->load->view('registration_page',$data);
         //$this->load->view('registration',$data); 
 
@@ -21,7 +21,8 @@ class Member extends CI_Controller {
 		{
 			$data['page_title'] = 'Registration';
 			$data['error'] = "@ email";
-			$this->load->view('member/registration',$data); 
+			$data['page'] = 'member/registration';
+			$this->load->view('registration_page',$data);
 			return;
 		}		
         $this->load->model('member_model');		
@@ -32,28 +33,30 @@ class Member extends CI_Controller {
 			//echo $result->username;
 			$data['page_title'] = 'Registration';
 			$data['error'] = "username dup";
-			$this->load->view('member/registration',$data); 
+			$data['page'] = 'member/registration';
+			$this->load->view('registration_page',$data);
 			return;
 		}		
 		if($this->input->post('password')!=$this->input->post('confirm_password'))//confirm_password fail
 		{
 			$data['page_title'] = 'Registration';
 			$data['error'] = "confirm password";
-			$this->load->view('member/registration',$data); 
+			$data['page'] = 'member/registration';
+			$this->load->view('registration_page',$data);
 			return;
 		}
 		if(strlen($this->input->post('password'))<6||strlen($this->input->post('password'))>6||$this->input->post('password')=="")//password lenght fail
 		{
 			$data['error'] = "lenght";
-			$data['page_title'] = 'Registration';
-			$this->load->view('member/registration',$data); 
+			$data['page'] = 'member/registration';
+			$this->load->view('registration_page',$data);
 			return;
 		}
 		if($this->_check_password($this->input->post('password'))!="")//password fail
 		{
 			$data['error'] = "password".$this->_check_password($this->input->post('password'));
-			$data['page_title'] = 'Registration';
-			$this->load->view('member/registration',$data); 
+			$data['page'] = 'member/registration';
+			$this->load->view('registration_page',$data);
 			return;
 		}
 		

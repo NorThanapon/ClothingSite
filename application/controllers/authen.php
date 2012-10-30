@@ -74,7 +74,8 @@ class Authen extends CI_Controller {
 	//member authen
 	public function login()
 	{
-		$this->load->view('member/login');	
+		$data['page'] = 'member/login';
+		$this->load->view('registration_page',$data);
 	}
 	
 	public function login_member()
