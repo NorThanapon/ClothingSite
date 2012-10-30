@@ -15,7 +15,6 @@ class Member_model extends CI_Model
 		$data = array(
 			'e_mail' => $this->input->post('e_mail'),
 			'password' => $this->encrypt->encode($this->input->post('password'))
-			
 		);
 		$this->db->insert('members',$data);
 	}

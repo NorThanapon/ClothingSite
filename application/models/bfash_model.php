@@ -38,7 +38,7 @@ class Bfash_model extends CI_Model
 		{
 			$data['sign_in_link'] = "authen/login";
 			$data['sign_in'] = $this->lang->line('Sign in');
-			$data['join_link'] = "authen/login";
+			$data['join_link'] = "member/registration";
 			$data['join_name'] = $this->lang->line('Join');
 		}	
 				

@@ -74,12 +74,14 @@ class Authen extends CI_Controller {
 	//member authen
 	public function login()
 	{
+		$data['page_title'] = "Sign in | BfashShop.com";
 		$data['page'] = 'member/login';
 		$this->load->view('sub_page',$data);
 	}
 	
 	public function login_member()
 	{				
+		$data['page_title'] = "Sign in | BfashShop.com";
 		$data['form_e_mail']=$this->input->post("e_mail");
 		if (!$this->input->post('e_mail')) 
 		{ //no authen

@@ -10,17 +10,33 @@ class Member extends CI_Controller {
 		$data['error'] = "No";
      
 		$data['page'] = 'member/registration';
+		$data['show_message_password'] = 'Please enter password,<br /> 6 characters or longer with at least 1 number';
         $this->load->view('sub_page',$data);
         //$this->load->view('registration',$data); 
 
     }
 	public function add() 
 	{
+		$data['page_title'] = "Registration | BfashShop.com";
 		$data['form_e_mail'] = $this->input->post('e_mail');
+		if (!$this->input->post('e_mail')) 
+		{ //no authen
+			$data['show_message_e_mail'] = 'Please enter Email address';//
+			$data['page'] = 'member/registration';
+			$this->load->view('sub_page',$data);
+            return;
+        }
+		if (!$this->input->post('password')) 
+		{ //no authen
+			$data['show_message_password'] = 'Please enter password,<br />6 characters or longer with at least 1 number';
+			$data['page'] = 'member/registration';
+			$this->load->view('sub_page',$data);
+            return;
+        }
 		if( strchr($this->input->post('e_mail'),"@")=="")//incorrect e_mail
 		{
 			$data['page_title'] = 'Registration';
-			$data['error'] = "@ email";
+			$data['show_message_e_mail']="Email address is either in an invalid format or contains invalid characters";
 			$data['page'] = 'member/registration';
 			$this->load->view('sub_page',$data);
 			return;
@@ -30,31 +46,31 @@ class Member extends CI_Controller {
 		
 		if($result!=null)//e_mail fail
 		{
-			//echo $result->username;
 			$data['page_title'] = 'Registration';
-			$data['error'] = "username dup";
 			$data['page'] = 'member/registration';
+			$data['show_message_e_mail'] = 'A customer account with this email address already exists,<br /> please use a different email address';
 			$this->load->view('sub_page',$data);
 			return;
 		}		
 		if($this->input->post('password')!=$this->input->post('confirm_password'))//confirm_password fail
 		{
 			$data['page_title'] = 'Registration';
-			$data['error'] = "confirm password";
-			$data['page'] = 'member/registration';
+			$data['show_message_password'] = 'Please enter password,<br />6 characters or longer with at least 1 number';
+			$data['page'] = 'member/registration';			
 			$this->load->view('sub_page',$data);
 			return;
 		}
+		echo "password".$this->input->post('password');
 		if(strlen($this->input->post('password'))<6||strlen($this->input->post('password'))>6||$this->input->post('password')=="")//password lenght fail
 		{
-			$data['error'] = "lenght";
+			$data['show_message_password'] = 'Please enter password,<br />6 characters or longer with at least 1 number';
 			$data['page'] = 'member/registration';
 			$this->load->view('sub_page',$data);
 			return;
 		}
 		if($this->_check_password($this->input->post('password'))!="")//password fail
 		{
-			$data['error'] = "password".$this->_check_password($this->input->post('password'));
+			$data['show_message_password'] = 'Please enter password,<br />6 characters or longer with at least 1 number';
 			$data['page'] = 'member/registration';
 			$this->load->view('sub_page',$data);
 			return;
@@ -66,26 +82,35 @@ class Member extends CI_Controller {
     }
 	public function _check_password($password)
 	{
+		$count_cha=0;
+		$count_int=0;
 		for($i=0;$i<6;$i++)
-		{	
-			if($password[$i]<48 && $password[$i]>122)
+		{				
+			if(ord($password[$i])>=48 && ord($password[$i])<=57)
 			{
-				return$password[$i];
+				$count_int++;
 			}
-			if($password[$i]>57 && $password[$i]<65)
+			else if(ord($password[$i])>=65 && ord($password[$i])<=90)
+			{
+				$count_cha++;
+			}
+			else if(ord($password[$i])>=90 && ord($password[$i])<=122)
+			{
+				$count_cha++;
+			}
+			else
 			{
 				return $password[$i];
 			}
-			if($password[$i]>90 && $password[$i]<97)
-			{
-				return $password[$i];
-			}
-		}
+		}		
+		if($count_int<=0)return "false";
+		if($count_cha<=0)return "false";
+		
 	}
 	public function forget_password()
 	{
 		//echo "send email";
-		
+		$data['page_title'] = "Sign in | BfashShop.com";
 		$from ="";
 		$from_name="";
 		$to = $this->input->post("e_mail_send_password");
