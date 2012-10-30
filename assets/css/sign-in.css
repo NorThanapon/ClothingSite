@@ -80,6 +80,7 @@
 	width:60px;
 	margin-left:2px;
 	margin-right:4px;
+	display:inline-block;
 }
 
 #main-signin input[type="submit"]:hover{
@@ -87,3 +88,47 @@
 	
 }
 
+#main-signin input[type="checkbox"]{
+	display:inline;
+	float:left;
+	margin-left:2px;
+}
+
+.remember-password{
+	font-size:70%;
+	vertical-align:bottom;
+}
+
+
+.forget_password {
+	font-size:70%;
+	vertical-align:bottom;
+	float:left;
+	margin-top:17px;
+}
+
+#forget_password_view{
+	margin-bottom:30px;
+	display:none;
+}
+
+#forget_password_view label{
+	margin-top:50px;
+	font-size:80%;
+}
+
+#forget_password_view input[type="submit"]{
+	float:right;
+	width:100px;
+	margin-top:5px;
+}
+
+#forget_password_view h1{
+	font-size:70%;
+	float:left;
+	margin-top:10px;
+	width:110%;
+	padding-bottom:20px;
+}
+
+ 
