@@ -29,7 +29,7 @@ class Bfash_model extends CI_Model
 		// Check Authen
 		if(check_authen('member',TRUE)) 
         {
-			$data['sign_in_link'] = "authen/logout";
+			$data['sign_in_link'] = "authen/logout_member";
 			$data['sign_in'] = $this->lang->line('Sign out');
 			$data['join_link'] = "";
 			$data['join_name'] = $this->lang->line('Hello').$this->encrypt->decode($this->input->cookie('e_mail'));
