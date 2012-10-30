@@ -10,7 +10,7 @@ class Member extends CI_Controller {
 		$data['error'] = "No";
      
 		$data['page'] = 'member/registration';
-        $this->load->view('registration_page',$data);
+        $this->load->view('sub_page',$data);
         //$this->load->view('registration',$data); 
 
     }
@@ -22,7 +22,7 @@ class Member extends CI_Controller {
 			$data['page_title'] = 'Registration';
 			$data['error'] = "@ email";
 			$data['page'] = 'member/registration';
-			$this->load->view('registration_page',$data);
+			$this->load->view('sub_page',$data);
 			return;
 		}		
         $this->load->model('member_model');		
