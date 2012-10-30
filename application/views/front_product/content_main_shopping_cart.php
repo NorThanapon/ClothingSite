@@ -1,5 +1,5 @@
 <div id="content-Head_name_page">
-<h2>MY SHOPPING BAG</h2>
+<h2>MY SHOPPING CART</h2>
 <h5>Stock reserved for 60 minutes only</h5>
 </div>
 
@@ -11,6 +11,7 @@
 
 <!-- ---------------------should be loop of product-------------------- -->
 <div id="content-wish_list">
+	<?php echo $cookie_name; ?>
 	<div class="product">
 		<div class="product-image">
 			<?php echo anchor(asset_url().'img/product3.jpg',"<img src='".asset_url().'img/product3.jpg'."' />",'');	?>
