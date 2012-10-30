@@ -34,7 +34,7 @@ class Member extends CI_Controller {
 			$data['page_title'] = 'Registration';
 			$data['error'] = "username dup";
 			$data['page'] = 'member/registration';
-			$this->load->view('registration_page',$data);
+			$this->load->view('sub_page',$data);
 			return;
 		}		
 		if($this->input->post('password')!=$this->input->post('confirm_password'))//confirm_password fail
@@ -42,21 +42,21 @@ class Member extends CI_Controller {
 			$data['page_title'] = 'Registration';
 			$data['error'] = "confirm password";
 			$data['page'] = 'member/registration';
-			$this->load->view('registration_page',$data);
+			$this->load->view('sub_page',$data);
 			return;
 		}
 		if(strlen($this->input->post('password'))<6||strlen($this->input->post('password'))>6||$this->input->post('password')=="")//password lenght fail
 		{
 			$data['error'] = "lenght";
 			$data['page'] = 'member/registration';
-			$this->load->view('registration_page',$data);
+			$this->load->view('sub_page',$data);
 			return;
 		}
 		if($this->_check_password($this->input->post('password'))!="")//password fail
 		{
 			$data['error'] = "password".$this->_check_password($this->input->post('password'));
 			$data['page'] = 'member/registration';
-			$this->load->view('registration_page',$data);
+			$this->load->view('sub_page',$data);
 			return;
 		}
 		
@@ -94,7 +94,7 @@ class Member extends CI_Controller {
 		{
 			$data['show_message'] = 'Please fill your Email for send new password';
 			$data['page'] = 'member/login';
-			$this->load->view('registration_page',$data);
+			$this->load->view('sub_page',$data);
 			return;
 		}
 		$this->load->model('member_model');
@@ -103,7 +103,7 @@ class Member extends CI_Controller {
 		{
 			$data['show_message'] = 'Please fill your Email for send new password';
 			$data['page'] = 'member/login';
-			$this->load->view('registration_page',$data);
+			$this->load->view('sub_page',$data);
 			return;
 		}
 		$config = array();

@@ -75,7 +75,7 @@ class Authen extends CI_Controller {
 	public function login()
 	{
 		$data['page'] = 'member/login';
-		$this->load->view('registration_page',$data);
+		$this->load->view('sub_page',$data);
 	}
 	
 	public function login_member()
@@ -85,14 +85,14 @@ class Authen extends CI_Controller {
 		{ //no authen
 			$data['show_message_login'] = 'Please enter Email address';
 			$data['page'] = 'member/login';
-			$this->load->view('registration_page',$data);
+			$this->load->view('sub_page',$data);
             return;
         }
 		if (!$this->input->post('password')) 
 		{ //no authen
 			$data['show_message_login'] = 'Please enter password';
 			$data['page'] = 'member/login';
-			$this->load->view('registration_page',$data);
+			$this->load->view('sub_page',$data);
             return;
         }
 		$this->load->library('encrypt');
@@ -105,7 +105,7 @@ class Authen extends CI_Controller {
 									 Please check your email address and password are correct and submit your details again.';
            
 			$data['page'] = 'member/login';
-			$this->load->view('registration_page',$data);
+			$this->load->view('sub_page',$data);
 			return;
 		}	
 		$password = $member->password;			
@@ -115,7 +115,7 @@ class Authen extends CI_Controller {
 			$data['show_message_login'] = 'The following errors have occurred:
 									 Please check your email address and password are correct and submit your details again.';
 			$data['page'] = 'member/login';
-			$this->load->view('registration_page',$data);			
+			$this->load->view('sub_page',$data);			
             return;
 		}
 		echo "Yes".$this->encrypt->decode($member->password);	
