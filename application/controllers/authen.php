@@ -65,6 +65,12 @@ class Authen extends CI_Controller {
         delete_cookie("role");
         redirect();
     }
+	public function logout_member()    {
+        $this->session->sess_destroy();
+        delete_cookie("e_mail");
+        delete_cookie("role");
+        redirect();
+    }
 	//member authen
 	public function login()
 	{
@@ -73,18 +79,23 @@ class Authen extends CI_Controller {
 	
 	public function login_member()
 	{				
-		if (!$this->input->post('username')) 
+		if (!$this->input->post('e_mail')) 
 		{ //no authen
-			redirect('authen_member');
+			redirect('authen/login');
             return;
         }
 		$this->load->library('encrypt');
-		$this->load->model('member_model');
-		$member = $this->member_model->get($this->input->post('username'));
+		$this->load->model('member_model');	
+		$this->load->library('form_validation');
+		$member = $this->member_model->get($this->input->post('e_mail'));
 		if($member==null)// incorrect username
 		{
-			$this->load->view('member/login');			
-            return;
+		
+			$data['error_message'] = 'The following errors have occurred:
+									 Please check your email address and password are correct and submit your details again.';
+           
+			$this->load->view('member/login');
+			 return;
 		}	
 		$password = $member->password;			
 		// check password			
@@ -96,7 +107,7 @@ class Authen extends CI_Controller {
 		echo "Yes".$this->encrypt->decode($member->password);	
 		//session
 		$data = array(
-           'username'   => $member->username,
+           'e_mail'   => $member->e_mail,
            'logged_in'  => TRUE,
            'role'       => 'member'
         );
@@ -105,8 +116,8 @@ class Authen extends CI_Controller {
         if($this->input->post('remember-password') == 'on') {
 			
             $cookie_user = array(
-                'name'   => 'username',
-                'value'  => $this->encrypt->encode($member->username),
+                'name'   => 'e_mail',
+                'value'  => $this->encrypt->encode($member->e_mail),
                 'expire' => '2592000'
             );
             $cookie_role = array(
