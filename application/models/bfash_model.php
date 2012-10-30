@@ -32,11 +32,11 @@ class Bfash_model extends CI_Model
 			$data['sign_in_link'] = "authen/logout_member";
 			$data['sign_in'] = $this->lang->line('Sign out');
 			$data['join_link'] = "";
-			$data['join_name'] = $this->lang->line('Hello').$this->encrypt->decode($this->input->cookie('e_mail'));
+			$data['join_name'] = $this->lang->line('Hello').$this->session->userdata('e_mail') ;
         }
 		else
 		{
-			$data['sign_in_link'] = "authen/login";
+			$data['sign_in_link'] = "authen/login_member";
 			$data['sign_in'] = $this->lang->line('Sign in');
 			$data['join_link'] = "member/registration";
 			$data['join_name'] = $this->lang->line('Join');

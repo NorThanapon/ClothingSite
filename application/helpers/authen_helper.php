@@ -6,11 +6,6 @@ if (!function_exists('check_authen')) {
         if($CI->session->userdata('logged_in') && $CI->session->userdata('role') == $role) {
             return true;
         }
-		// check member
-		else if($CI->session->userdata('logged_in') && $CI->session->userdata('role_mrmber') == $role) {
-            return true;
-        }
-		//======================================================
         else if( $CI->encrypt->decode($CI->input->cookie('username'))
                 &&  $CI->encrypt->decode($CI->input->cookie('role'))==$role){
             $data = array(
@@ -21,18 +16,6 @@ if (!function_exists('check_authen')) {
             $CI->session->set_userdata($data);
             return true;
         }
-		// for set member cookie
-		else if( $CI->encrypt->decode($CI->input->cookie('e_mail'))
-                &&  $CI->encrypt->decode($CI->input->cookie('role_member'))==$role){
-            $data = array(
-               'e_mail'   => $CI->input->cookie('username'),
-               'logged_in'  => TRUE,
-               'role_member'       => $CI->input->cookie('role')
-            );
-            $CI->session->set_userdata($data);
-            return true;
-        }
-		// for set member cookie
         else if($is_redirect){
             $CI->session->set_flashdata('redirect_url', current_url());
 			//=========================================================

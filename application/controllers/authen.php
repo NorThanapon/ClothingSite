@@ -68,7 +68,7 @@ class Authen extends CI_Controller {
 	public function logout_member()    {
         $this->session->sess_destroy();
         delete_cookie("e_mail");
-        delete_cookie("role_member");
+        delete_cookie("role");
         redirect();
     }
 	//member authen
@@ -125,7 +125,7 @@ class Authen extends CI_Controller {
 		$data = array(
            'e_mail'   => $member->e_mail,
            'logged_in'  => TRUE,
-           'role_member'       => 'member'
+           'role'       => 'member'
         );
         $this->session->set_userdata($data);
 		//cookie
@@ -137,7 +137,7 @@ class Authen extends CI_Controller {
                 'expire' => '2592000'
             );
             $cookie_role = array(
-                'name'   => 'role_member',
+                'name'   => 'role',
                 'value'  => $this->encrypt->encode('member'),
                 'expire' => '2592000'
             );
