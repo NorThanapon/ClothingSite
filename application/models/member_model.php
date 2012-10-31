@@ -18,6 +18,18 @@ class Member_model extends CI_Model
 		);
 		$this->db->insert('members',$data);
 	}
+	function update_member_profile()
+	{		
+		$data = array(
+			'first_name' => $this->input->post('first_name'),
+			'last_name' => $this->input->post('last_name'),
+			'telephone	' => $this->input->post('telephone'),
+			'mobile' => $this->input->post('mobile'),
+			'address' => $this->input->post('address'),
+			'postcode' => $this->input->post('postcode')
+		);
+		$this->db->update('members',$data,array('e_mail'=>$this->input->post('e_mail')));
+	}
 	function get($e_mail)
 	{
 		$query = $this->db->get_where('members', array('e_mail' => $e_mail));
@@ -31,6 +43,7 @@ class Member_model extends CI_Model
 		);
 		$this->db->update('members',$data,array('e_mail'=>$e_mail));
 	}
+	
 	
 }
 ?>

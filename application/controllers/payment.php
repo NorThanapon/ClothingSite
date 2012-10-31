@@ -2,10 +2,8 @@
 class Payment extends CI_Controller {
 	public function index() 
 	{
-       $data['page_title'] = 'Registration';
-
-		$data['error'] = "No";
-     
+		$data['page_title'] = 'Payment | BfashShop';
+		$data['error'] = "No";     
 		$data['page'] = 'Payment/payment';
         $this->load->view('sub_page',$data);
     }
@@ -121,7 +119,16 @@ class Payment extends CI_Controller {
     }
 	public function step_2()
 	{
+		$this->load->model('member_model');
+		$this->member_model->update_member_profile();		
 		
+		echo "true";
+	}
+	public function step_3()
+	{
+		
+		
+		echo "true";
 	}
 	
 

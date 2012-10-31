@@ -62,31 +62,31 @@
 					<table>
 						<tr>
 							<td><label>First name</label></td>
-							<td><input type="text" /></td>							
+							<td><input type="text" value="<?php echo $first_name ;?>"/></td>							
 						</tr>
 						<tr>
 							<td><label>Last name</label></td>
-							<td><input type="text" /></td>							
+							<td><input type="text" value="<?php echo $last_name ;?>" /></td>							
 						</tr>
 						<tr>
 							<td><label>Telephone</label></td>
-							<td><input type="text" /></td>							
+							<td><input type="text" value="<?php echo $telephone ;?>" /></td>							
 						</tr>
 						<tr>
 							<td><label>Mobile</label></td>
-							<td><input type="text" /></td>							
+							<td><input type="text" value="<?php echo $mobile ;?>" /></td>							
 						</tr>
 						<tr>
 							<td><label>Address</label></td>
-							<td><textarea  type="text" ></textarea></td>							
+							<td><textarea  type="text" value="<?php echo $address ;?>" ></textarea></td>							
 						</tr>
 						<tr>
 							<td><label>Postal code</label></td>
-							<td><input type="text" class="post-code-txt" /></td>							
+							<td><input type="text" class="post-code-txt" value="<?php echo $postal_code ;?>" /></td>							
 						</tr>
 					</table>
 					<input type="submit" id="submit-step2" name="submit-step2" value="Submit" />
-					<input type="submit" class="back-button"   value="Back" />
+					<input type="submit" id="back-step2"   value="Back" />
 				</div>
 			</fieldset>
 			
@@ -106,12 +106,12 @@
 							</div>
 							<div id="customer-detail">
 								<label > &nbsp </label>
-								<label class="sub-head">Test1</label>
-								<label class="sub-head">Test2</label>
-								<label class="sub-head">00000000</label>
-								<label class="sub-head">00000000</label>
-								<label class="sub-head">22 fsfsdfsdf</label>
-								<label class="sub-head">0000</label>
+								<label class="sub-head"><?php echo $first_name ;?></label>
+								<label class="sub-head"><?php echo $last_name ;?></label>
+								<label class="sub-head"><?php echo $telephone ;?></label>
+								<label class="sub-head"><?php echo $mobile ;?></label>
+								<label class="sub-head"><?php echo $address ;?></label>
+								<label class="sub-head"><?php echo $postal_code ;?></label>
 							</div>
 						</div>
 						<div id="order-info">
@@ -122,7 +122,7 @@
 							</div>
 							<div id="order-detail">
 								<label> &nbsp </label>
-								<label class="sub-head">111111</label>
+								<label class="sub-head"><?php echo $order_number ;?></label>
 								<label class="sub-head">ground</label>
 							</div>
 						</div>					
@@ -160,7 +160,7 @@
 							<label >635 THB</label>
 						</div>
 						<input type="submit" id="submit-step3" name="submit-step3" value="Confirm" />
-						<input type="submit" class="back-button"  value="Back" />
+						<input type="submit" id="back-step3"  value="Back" />
 					</div>
 					
 				</div>
@@ -182,12 +182,12 @@
 							</div>
 							<div id="customer-detail">
 								<label > &nbsp </label>
-								<label class="sub-head">Test1</label>
-								<label class="sub-head">Test2</label>
-								<label class="sub-head">00000000</label>
-								<label class="sub-head">00000000</label>
-								<label class="sub-head">22 fsfsdfsdf</label>
-								<label class="sub-head">0000</label>
+								<label class="sub-head"><?php echo $first_name ;?></label>
+								<label class="sub-head"><?php echo $last_name ;?></label>
+								<label class="sub-head"><?php echo $telephone ;?></label>
+								<label class="sub-head"><?php echo $mobile ;?></label>
+								<label class="sub-head"><?php echo $address ;?></label>
+								<label class="sub-head"><?php echo $postal_code ;?></label>
 							</div>
 						</div>
 						<div id="order-info">
@@ -199,8 +199,8 @@
 							</div>
 							<div id="order-detail">
 								<label> &nbsp </label>
-								<label class="sub-head">111111</label>
-								<label class="sub-head">21/12/12</label>
+								<label class="sub-head"><?php echo $order_number ;?></label>
+								<label class="sub-head"><?php echo $order_date ;?></label>
 								<label class="sub-head">ground</label>
 							</div>
 						</div>					
@@ -215,13 +215,20 @@
 								<th>Unit Price (THB)</th>
 								<th>Price (THB)</th>
 							</tr>
-							<tr>
-								<td>1</td>
-								<td>shirt (size S, color black)</td>
-								<td>3</td>
-								<td>200</td>
-								<td>600</td>
-							</tr>
+							<?php 
+							foreach($product_order as $item)
+							{
+							
+							echo "<tr>";
+							echo "<td>".$item->item_id."</td>";
+							echo "<td>".$item->product_descrption_en."</td>";
+							echo "<td>".$item->quantiity."</td>";
+							echo "<td>".$item->unit_price."</td>";
+							echo "<td>".$item->total_price."</td>";
+							echo "</tr>";
+							
+							}
+							?>
 						</table>
 					</div>
 					<div id="pay-attention">
@@ -235,17 +242,17 @@
 						<div id="price-head">
 							<label >Subtotal :</label>
 							<label >Shipping :</label>
-							<label >Tax :</label>
+							<label >VAT :</label>
 							<label >Total :</label>					
 						</div>
 						<div id="price-detial">
-							<label >600 THB</label>
-							<label >30 THB</label>
-							<label >5 THB</label>
-							<label >635 THB</label>
+							<label ><?php echo $subtotal ;?>THB</label>
+							<label ><?php echo $shipping ;?> THB</label>
+							<label ><?php echo $vat ;?> THB</label>
+							<label ><?php echo $total ;?> THB</label>
 						</div>
 						<input type="submit" id="submit-step4" name="submit-step4" value="Confirm" />
-						<input type="submit" class="back-button"   value="Back" />
+						<input type="submit" id="back-step4"   value="Back" />
 					</div>
 					
 				</div>
@@ -294,6 +301,46 @@
 					$('.head-step2').css('color','#A0A0A0');
 					$('.head-step3').css('color','#A0A0A0');
 					$('.head-step4').css('color','#353535');
+				});
+				
+				$('#back-step2').click(function(event){
+					event.preventDefault();
+					$('#step1').css('display','block');
+					$('#step2').css('display','none');
+					$('#step3').css('display','none');
+					$('#step4').css('display','none');
+					
+					$('.head-step1').css('color','#353535');
+					$('.head-step2').css('color','#A0A0A0');
+					$('.head-step3').css('color','#A0A0A0');
+					$('.head-step4').css('color','#A0A0A0');					
+					
+				});
+				
+				$('#back-step3').click(function(event){
+					event.preventDefault();
+					$('#step1').css('display','none');
+					$('#step2').css('display','block');
+					$('#step3').css('display','none');
+					$('#step4').css('display','none');
+					
+					$('.head-step1').css('color','#A0A0A0');
+					$('.head-step2').css('color','#353535');
+					$('.head-step3').css('color','#A0A0A0');
+					$('.head-step4').css('color','#A0A0A0');
+				});
+				
+				$('#back-step4').click(function(event){
+					event.preventDefault();
+					$('#step1').css('display','none');
+					$('#step2').css('display','none');
+					$('#step3').css('display','block');
+					$('#step4').css('display','none');
+					
+					$('.head-step1').css('color','#A0A0A0');
+					$('.head-step2').css('color','#A0A0A0');
+					$('.head-step3').css('color','#353535');
+					$('.head-step4').css('color','#A0A0A0');
 				});
 				
 				$('.back-button').click(function(e){				
