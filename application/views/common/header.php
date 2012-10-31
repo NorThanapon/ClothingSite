@@ -4,14 +4,15 @@
 	?>
 	
     <div id="header-topmenu">
+		<td><?php echo $this->lang->line('Welcome to');?> BFashShop&nbsp </td>
 		<?php echo anchor($join_link,$join_name, 'title="Register"'); ?>
         <?php echo anchor($sign_in_link, $sign_in , 'title="Sign in"'); ?><!-- first,where link ,word,attribute -->
         
         <input type="text" placeholder="<?php echo $this->lang->line('Enter product name or code');?>" name="product_search"/>
         <input type="button" value="<?php echo $this->lang->line('Go');?>"/>
-        <span class="lang-link">
-            <a href="javascript:void(0)" class="language-th" title="Thai">TH</a>
+        <span class="lang-link">           
 			<a href="javascript:void(0)" class="language-en" title="English">EN</a>
+			<a href="javascript:void(0)" class="language-th" title="Thai">TH</a>
         </span>
     </div> <!-- end #header-menu -->
     <div id="header-logo">
