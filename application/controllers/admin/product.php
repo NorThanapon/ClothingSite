@@ -430,20 +430,34 @@ class Product extends CI_Controller
         {
             $config['upload_path'] = './assets/db/products/';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '2000';
-            $config['overwrite'] = TRUE;			
-            $config['file_name'] = $photo_id.'_'.$form_name.'.'.substr(strrchr($_FILES[$form_name]['name'], '.'), 1);		
+            $config['max_size'] = '2000';				
+            $config['overwrite'] = TRUE;		
+            $config['file_name'] = $photo_id.'_'.$form_name.'.'.substr(strrchr($_FILES[$form_name]['name'], '.'), 1);
+			
             $this->upload->initialize($config);
-		
+			
             if ($this->upload->do_upload($form_name)) 
-            {
-                return $this->upload->data();
+            {		
+				
+				$this->_upload_resize_photo(1325,1725,$config['file_name'],'l');
+				$this->_upload_resize_photo(265,345,$config['file_name'],'m');
+				$this->_upload_resize_photo(57,74,$config['file_name'],'s');	
+                return $this->upload->data();				 
             }
-            return array('error' => $this->upload->display_errors());    
+			echo "error".$this->upload->display_errors();
+           // return array('error' => $this->upload->display_errors());    
         }
 		//echo "--No-------------";//----------------------------------------------------------------------------------------
         return FALSE;
     }
+	public function _upload_resize_photo($width,$height,$file_name,$size_name)
+	{				
+		$this->load->library('image_moo');
+		$this->image_moo->load('./assets/db/products/'.$file_name);
+		$this->image_moo->resize($width,$height);		      
+		$this->image_moo->save('./assets/db/products/'.$size_name.'_'.$file_name);
+		//if ($this->image_moo->error) echo $this->image_moo->display_errors(); 
+	}
 	public function photo($product_id)//addPhoto change Name
 	{
 		if(!check_authen('staff',TRUE)) return;
@@ -471,6 +485,9 @@ class Product extends CI_Controller
 		$this->load->model('image_model');
         $photo = $this->image_model->get_photo_file($photo_id);		
         $this->image_model->delete_photo($photo_id, './assets/db/products/'.$photo->file_name);
+		$this->image_model->unlink_image('./assets/db/products/s_'.$photo->file_name);
+		$this->image_model->unlink_image('./assets/db/products/m_'.$photo->file_name);
+		$this->image_model->unlink_image('./assets/db/products/l_'.$photo->file_name);
 		$data['product'] = $this->product_model->get($this->input->post('product_id'));
 		$data['photos'] = $this->image_model->get_photos($product_id);
 		redirect('admin/product/photo/'.$product_id);

@@ -17,13 +17,14 @@ class Image_model extends CI_Model
 	}
 	function delete_photo($photo_id,$file_name)
 	{
-		unlink($file_name);
+		unlink($file_name);		
 		$this->db->delete('images',array('image_id' => $photo_id));	
 		
 	}
 	function unlink_image($file_name)
 	{
 		unlink($file_name);
+		//echo "$file_name>".$file_name;
 	}
 	function get_latest()
     {
