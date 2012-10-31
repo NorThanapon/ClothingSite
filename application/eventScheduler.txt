@@ -1,0 +1,7 @@
+CREATE 
+	EVENT update_payment_status
+	ON SCHEDULE EVERY 1 DAY
+	DO BEGIN
+		UPDATE order
+		SET status = "expired"
+		WHERE status = "unpaid" AND TIMESTAMP >= date_exp;
