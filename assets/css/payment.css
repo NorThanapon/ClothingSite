@@ -6,23 +6,80 @@
 	vertical-align:middle;	
 }
 
-.head-step{
+.head-step1{
 	display:inline-block;
 	font-family:Sans-serif;	
 	padding-right:30px;
-	
+	color:#353535;
 	margin-bottom:10px;
 }
 
-.head-step h1{
+.head-step1 h1{
 	line-height:180%;	
 	font-size:180%;
-	color:#A0A0A0;
+	
 	}
 	
-.head-step h5{
+.head-step1 h5{
 	font-size:100%;
+	
+}
+
+.head-step2{
+	display:inline-block;
+	font-family:Sans-serif;	
+	padding-right:30px;
 	color:#A0A0A0;
+	margin-bottom:10px;
+}
+
+.head-step2 h1{
+	line-height:180%;	
+	font-size:180%;
+	
+	}
+	
+.head-step2 h5{
+	font-size:100%;
+	
+}
+
+.head-step3{
+	display:inline-block;
+	font-family:Sans-serif;	
+	padding-right:30px;
+	color:#A0A0A0;
+	margin-bottom:10px;
+}
+
+.head-step3 h1{
+	line-height:180%;	
+	font-size:180%;
+	
+	}
+	
+.head-step3 h5{
+	font-size:100%;
+
+}
+
+.head-step4{
+	display:inline-block;
+	font-family:Sans-serif;	
+	padding-right:30px;
+	color:#A0A0A0;
+	margin-bottom:10px;
+}
+
+.head-step4 h1{
+	line-height:180%;	
+	font-size:180%;
+	
+	}
+	
+.head-step4 h5{
+	font-size:100%;
+	
 }
 
 fieldset{

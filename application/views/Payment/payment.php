@@ -1,19 +1,19 @@
 	
 		<form>
 			<div id="payment-head">
-			<span class="head-step">
+			<span class="head-step1">
 				<h1>Step 1</h1>
 				<h5>Sign In</h5>
 			</span>
-			<span class="head-step">
+			<span class="head-step2">
 				<h1>Step 2</h1>
 				<h5>Shipping</h5>
 			</span>
-			<span class="head-step">
+			<span class="head-step3">
 				<h1>Step 3</h1>
 				<h5>Payment</h5>
 			</span>
-			<span class="head-step">
+			<span class="head-step4">
 				<h1>Step 4</h1>
 				<h5>confirmation</h5>
 			</span>
@@ -225,6 +225,11 @@
 					$('#step2').css('display','block');
 					$('#step3').css('display','none');
 					$('#step4').css('display','none');
+					
+					$('.head-step1').css('color','#A0A0A0');
+					$('.head-step2').css('color','#353535');
+					$('.head-step3').css('color','#A0A0A0');
+					$('.head-step4').css('color','#A0A0A0');
 				});
 				
 				$('#submit-step2').click(function(event){
@@ -233,6 +238,11 @@
 					$('#step2').css('display','none');
 					$('#step3').css('display','block');
 					$('#step4').css('display','none');
+					
+					$('.head-step1').css('color','#A0A0A0');
+					$('.head-step2').css('color','#A0A0A0');
+					$('.head-step3').css('color','#353535');
+					$('.head-step4').css('color','#A0A0A0');
 				});
 				
 				$('#submit-step3').click(function(event){
@@ -241,6 +251,11 @@
 					$('#step2').css('display','none');
 					$('#step3').css('display','none');
 					$('#step4').css('display','block');
+					
+					$('.head-step1').css('color','#A0A0A0');
+					$('.head-step2').css('color','#A0A0A0');
+					$('.head-step3').css('color','#A0A0A0');
+					$('.head-step4').css('color','#353535');
 				});
 			});
 		</script>
