@@ -1,5 +1,4 @@
 <?php
-
 class ProductList extends CI_Controller {
     public function index($brand_id) {
         $data['page_title'] = "BfashShop.com";
@@ -9,3 +8,4 @@ class ProductList extends CI_Controller {
         $this->load->view('main_page',$data);
     }
 }
+?>

@@ -1,5 +1,4 @@
 <?php
-
 class Payment extends CI_Controller {
 	public function index() 
 	{

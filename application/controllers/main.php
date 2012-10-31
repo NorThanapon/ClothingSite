@@ -1,5 +1,4 @@
 ﻿<?php
-
 class Main extends CI_Controller {
     public function index() {
 		
@@ -21,3 +20,4 @@ class Main extends CI_Controller {
 		}
 	}
 }
+?>

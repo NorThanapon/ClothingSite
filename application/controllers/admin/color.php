@@ -1,5 +1,4 @@
 <?php
-
 class Color extends CI_Controller 
 {
     public function index() 
@@ -60,3 +59,4 @@ class Color extends CI_Controller
         return FALSE;
     }
 }
+?>

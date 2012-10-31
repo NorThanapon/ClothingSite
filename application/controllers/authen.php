@@ -1,5 +1,4 @@
 <?php
-
 class Authen extends CI_Controller {
     public function index() {
          redirect();   
@@ -149,3 +148,4 @@ class Authen extends CI_Controller {
         redirect($this->session->flashdata('redirect_url'));		
     }
 }
+?>
