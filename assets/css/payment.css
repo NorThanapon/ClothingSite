@@ -176,7 +176,7 @@ legend{
 #main-step2{
 	margin:0 auto;
 	position:relative;
-	width:40%;
+	width:34%;
 	vertical-align:middle;	
 	padding-top:5px;
 	margin-top:10px;
@@ -236,8 +236,8 @@ legend{
 	height:24px;
 	width:70px;
 	margin-top:10px;
-	margin-left:25px;
-	margin-right:73px;
+	margin-left:6px;
+	margin-right:2px;
 	display:inline-block;
 }
 
@@ -368,7 +368,7 @@ background: #EFEFEF;
 
 #main-step3 #total-price{
 	float:right;
-	width:20%;
+	width:23%;
 	margin-top:10px;
 	line-height:120%;
 	text-align:right;
@@ -395,8 +395,6 @@ background: #EFEFEF;
 	float:right;
 	text-align:right;	
 }
-
-
 
 #main-step3 input[type="submit"]{
 	border: none;
@@ -551,7 +549,7 @@ background: #EFEFEF;
 
 #main-step4 #total-price{
 	float:right;
-	width:20%;
+	width:23%;
 	margin-top:10px;
 	line-height:120%;
 	text-align:right;

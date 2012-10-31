@@ -86,6 +86,7 @@
 						</tr>
 					</table>
 					<input type="submit" id="submit-step2" name="submit-step2" value="Submit" />
+					<input type="submit" class="back-button"   value="Back" />
 				</div>
 			</fieldset>
 			
@@ -159,6 +160,7 @@
 							<label >635 THB</label>
 						</div>
 						<input type="submit" id="submit-step3" name="submit-step3" value="Confirm" />
+						<input type="submit" class="back-button"  value="Back" />
 					</div>
 					
 				</div>
@@ -243,6 +245,7 @@
 							<label >635 THB</label>
 						</div>
 						<input type="submit" id="submit-step4" name="submit-step4" value="Confirm" />
+						<input type="submit" class="back-button"   value="Back" />
 					</div>
 					
 				</div>
@@ -291,6 +294,10 @@
 					$('.head-step2').css('color','#A0A0A0');
 					$('.head-step3').css('color','#A0A0A0');
 					$('.head-step4').css('color','#353535');
+				});
+				
+				$('.back-button').click(function(e){				
+					history.back();
 				});
 			});
 		</script>
