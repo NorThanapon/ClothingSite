@@ -231,13 +231,6 @@ class Product_model extends CI_Model
 	    $query =  $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where cat_id=".$cat_id." and image_id = main_image and product_is_active = '1' and brand_is_active = '1' and total_quantity > 0");
 		return $query->result();
 	}
-	
-	function get_product_tag_image($tag_id)
-	{
-	    $query =  $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where tag_id=".$tag_id." and image_id = main_image and product_is_active = '1' and brand_is_active = '1' and total_quantity > 0");
-		return $query->result();
-	}
-	
 	function get_main_image($product_id)
 	{
 		$query =  $this->db->query("SELECT * FROM `products_brands_items_images_colors` where product_id=".$product_id." and image_id = main_image");
@@ -250,7 +243,7 @@ class Product_model extends CI_Model
 	}
 	function get_item_detail_size($product_id)
 	{
-		$query = $this->db->query("SELECT distinct item_id,size FROM `products_brands_items_images_colors` WHERE product_id=".$product_id."");
+		$query = $this->db->query("SELECT distinct size FROM `products_items_colors` WHERE product_id=".$product_id." ORDER BY size ASC");
 		return $query->result();
 	}
 	function get_item_detail_color($product_id)
@@ -260,16 +253,20 @@ class Product_model extends CI_Model
 	}
 	function get_default_size($product_id)
 	{
-		$query = $this->db->query("SELECT distinct item_id,size FROM `products_brands_items_images_colors` WHERE product_id=".$product_id."");
+		$query = $this->db->query("SELECT distinct item_id,size FROM `products_brands_items_images_colors` WHERE product_id=".$product_id." ORDER BY size ASC");
 		return $query->row();
 	}
 	function get_color_in_size($product_id,$size)
 	{
-		//if($size == FALSE)
-		
-		$query = $this->db->query("SELECT distinct color_file_name FROM products_items_colors WHERE product_id=".$product_id." AND size='".$size."'");
+		//if($size == FALSE)	
+		$query = $this->db->query("SELECT distinct color_file_name,color_id FROM products_items_colors WHERE product_id=".$product_id." AND size='".$size."'");
 		//echo $size;
 		return $query->result();
+	}
+	function get_item($product_id,$size,$color_id)
+	{
+		$query = $this->db->query("SELECT item_id FROM products_items_colors WHERE product_id=".$product_id." AND size='".$size."' AND color_id=".$color_id."");
+		return $query->row();
 	}
 	
 

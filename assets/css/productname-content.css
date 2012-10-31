@@ -66,8 +66,15 @@
 	height:74px;
 	position:relative;
 	float:left;
+	display:inline-block;
 	margin-top:20px;
 	margin-left:10px;
+}
+
+.sub-image li{
+
+	float:left;
+	
 }
 
 .sub-image img{
@@ -152,6 +159,14 @@ margin-top:5px;
 #color-image{
 	margin-left:15px;
 	margin-top:5px;
+}
+
+#color-image div{
+	display:inline;
+	float:left;
+	margin-right:2px;
+	width:10%;
+	position:relative;
 }
 
 #product-color a{
