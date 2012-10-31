@@ -67,14 +67,16 @@
 				<a href="###" >Size Chart</a>
 			</div>
 			<div id="product-color">
-			    <input type="hidden" id="color_id" value="<?php echo $color_in_size[0]->color_id; ?>" />
+			   
 				<h2>Color:</h2>
 				<div id="color-image">
 					<?php
 					
 					if($color_in_size != NULL)
 					{
-						foreach($color_in_size as $item)
+					?>
+						<input type="hidden" id="color_id" value="<?php echo $color_in_size[0]->color_id; ?>" />
+					<?php foreach($color_in_size as $item)
 						{
 						?>
 							<div id="<?php echo $item->color_file_name;?>">
@@ -94,10 +96,10 @@
 			</h2>
 		</div>
 		<div id="product-add">
-			<input type="image" src="<?php echo asset_url().'img/addtobagbut.jpg'; ?>" value="Add to bag" />
+			<input type="image" src="<?php echo asset_url().'img/addtobagbut.jpg'; ?>" value="Add to bag" id="add-to-cart" />
 		</div>
 		<div id="product-save">
-			<input type="image" src="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>" value="Save to Wishist" />
+			<input type="image" src="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>" value="Save to Wishist" id="add-to-wishlist" />
 		</div>
 	</div>
 	
