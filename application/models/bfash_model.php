@@ -22,12 +22,13 @@ class Bfash_model extends CI_Model
 		$this->load->helper('language');  
 		$this->lang->load('contentside', $this->language_model->get());
 		$this->lang->load('header', $this->language_model->get());
+		$this->lang->load('footer', $this->language_model->get());
 		
 		$data['lang'] = $this->language_model->get();
 		
 		
 		// Check Authen
-		if(check_authen('member',TRUE)) 
+		if(check_authen('member',FALSE)) 
         {
 			$data['sign_in_link'] = "authen/logout_member";
 			$data['sign_in'] = $this->lang->line('Sign out');
