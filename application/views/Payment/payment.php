@@ -261,6 +261,10 @@
 					$('.head-step2').css('color','#353535');
 					$('.head-step3').css('color','#A0A0A0');
 					$('.head-step4').css('color','#A0A0A0');
+					
+					
+					
+					
 				});
 				
 				$('#submit-step2').click(function(event){

@@ -9,6 +9,11 @@ class Payment extends CI_Controller {
 		$data['page'] = 'Payment/payment';
         $this->load->view('sub_page',$data);
     }
+	public function stept_1() 
+	{
+		$this->load->member()
+	}
+
 
 }
 ?>
