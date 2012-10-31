@@ -1,4 +1,5 @@
 	<div id="content-image">
+	<?php $color_in_size; ?>
 		<div class="main-image">
 			<a href="<?php echo asset_url().'db/products/'.$product_detail->image_file_name; ?>"><img src="<?php echo asset_url().'db/products/'.$product_detail->image_file_name; ?>"></a>
 		</div>
@@ -25,7 +26,8 @@
 				<a href="<?php echo asset_url().'db/brands/'.$product_detail->logo; ?>"><img src="<?php echo asset_url().'db/brands/'.$product_detail->logo; ?>"></a>
 				<br />
 				<h1> <?php echo $product_detail->product_name_en ?> </h1>
-				 ItemID: <?php echo $product_detail->item_id ?> 
+				 <input type="hidden" id="item_id" value="<?php echo $product_detail->item_id; ?>" />
+				 ItemID: <?php echo $product_detail->item_id; ?> 
 				<br />
 			</div>
 			
@@ -51,8 +53,7 @@
 		</div>
 		<div id="product-sizecolor">
 			<div id="detail-size">
-				<select name="ddl-size">
-					<option value="Select Size">Select Size</option>
+				<select id="ddl-detail-size">
 					<?php 
 					foreach($item_detail_size as $item)
 					{
@@ -66,40 +67,60 @@
 				<a href="###" >Size Chart</a>
 			</div>
 			<div id="product-color">
+			    <input type="hidden" id="color_id" value="<?php echo $color_in_size[0]->color_id; ?>" />
 				<h2>Color:</h2>
-				<div id="color-image" >
-					<input type="hidden" id="color_id" value="32"  />
+				<div id="color-image">
 					<?php
-					foreach($item_detail_color as $item)
+					
+					if($color_in_size != NULL)
 					{
-					?>	
-						<div id="<?php echo $item->color_file_name;?>">
-						<a href="<?php echo asset_url().'db/colors/'.$item->color_file_name; ?>"><img src="<?php echo asset_url().'db/colors/'.$item->color_file_name; ?>"></a>
-						</div>
-					<?php
-					}
-					?>
+						foreach($color_in_size as $item)
+						{
+						?>
+							<div id="<?php echo $item->color_file_name;?>">
+							<a href="<?php echo asset_url().'db/colors/'.$item->color_file_name; ?>"><img src="<?php echo asset_url().'db/colors/'.$item->color_file_name; ?>"></a>
+							</div>
+						<?php
+						} }
+						?>
+					
 				</div>
 			</div>
 		</div>
 		<div id="product-quantity">
 			<h2>
-			Quantity:<input type="textbox" id="quantity"  />
+			Quantity:<input type="textbox" id="quantity" />
 				<a href="<?php echo asset_url().'img/facebook.jpg'; ?>"><img src="<?php echo asset_url().'img/facebook.jpg'; ?>"></a>
 			</h2>
 		</div>
 		<div id="product-add">
-			<input type="image" src="<?php echo asset_url().'img/addtobagbut.jpg'; ?>" value="Add to bag" id="add-to-cart" />
+			<input type="image" src="<?php echo asset_url().'img/addtobagbut.jpg'; ?>" value="Add to bag" />
 		</div>
 		<div id="product-save">
-			<input type="image" src="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>" value="Save to Wishist" id="add-to-wishlist" />
+			<input type="image" src="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>" value="Save to Wishist" />
 		</div>
-		<input type="hidden" id="item_id" value="<?php echo $product_detail->item_id;?>" />
 	</div>
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
+		$('#ddl-detail-size').change(function() {
+			$.ajax({
+			type: 'POST',
+			url: "<?php echo base_url('ajax/product_ajax/'.$product_detail->product_id);?>",
+			data: "size=" + $('#ddl-detail-size').val(),
+			success: function( data ) {
+				if(data == '1')
+					alert("1");
+				else if(data == $('#ddl-detail-size').val())
+					alert("size" + $('#ddl-detail-size').val());
+				else
+					alert(data);
+			//window.location.reload();
+			//alert($('#ddl-detail-size').val());
+			}});
+		});
 		$('#add-to-cart').click(function() {
-			if($('input[name=ddl-size]').val() == "" ){
+			if($('#ddl-detail-size').val() == "" ){
 				alert("Please select size");
 			}
 			else if($('#color_id').val() == ""){
