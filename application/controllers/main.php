@@ -4,6 +4,8 @@ class Main extends CI_Controller {
 		
 		$this->load->model('bfash_model');
 		$data = $this->bfash_model->init();
+		//set page history
+		$this->session->set_userdata('redirect',current_url());
         $this->load->view('index',$data);
     }
 

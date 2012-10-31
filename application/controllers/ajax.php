@@ -8,24 +8,26 @@ class Ajax extends CI_Controller
 		$this->load->model('image_model');
 		$this->load->model('category_model');
 		$data = $this->bfash_model->init();
-		//echo "ss";
-
+		$this->lang->load('content-history', $this->language_model->get());
+		//$this->lang->load('content_main_product_name', $this->language_model->get());
+		$data['re_name'] = str_replace('-',' ',$brand_name);
 		$data['product_detail'] = $this->product_model->get_main_image($product_id);
 		$data['sub_image'] = $this->product_model->get_sub_image($product_id);	
 		
 		$default_size = $this->product_model->get_default_size($product_id);	
 		
-		//$action = $this->input->post('action');
-		//if($action!="change")
-		//{
-			//echo "not change";
-			$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$default_size->size);
-		//}
+		$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$default_size->size);
+		
 		$data['item_detail_size'] = $this->product_model->get_item_detail_size($product_id);
 
-		$data['previous'] = array("Home");
-		$data['current'] =  $brand_name;
-		$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
+		$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id.'/'.$product_id;
+		
+		//breadcrumbs
+		$data['breadcrumbs'] = array($this->lang->line('Home'), $data['re_name'], $data['product_detail']->product_name_en);
+		$data['link'] = array(site_url(), site_url().'brand/'.$brand_name.'/'.$brand_id, $data['base_url']);
+		
+		//set page history
+		$this->session->set_userdata('redirect',current_url());
 		
 		$data['page'] = 'front_product/content_main_product_name';
 		$this->load->view('main_page',$data);
