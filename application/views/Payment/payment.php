@@ -1,32 +1,36 @@
-	
+		
 		<form>
 			<div id="payment-head">
-			<span class="head-step1">
-				<h1>Step 1</h1>
-				<h5>Sign In</h5>
-			</span>
-			<span class="head-step2">
-				<h1>Step 2</h1>
-				<h5>Shipping</h5>
+			 <div id="header-logo">
+				<?php echo anchor(base_url(), '<img src='.asset_url().'img/bfashshop.jpg />', 'title="BfashShop"'); ?>
+			</div>
+			<span class="head-step4">
+				<h1>Step 4</h1>
+				<h5>confirmation</h5>
 			</span>
 			<span class="head-step3">
 				<h1>Step 3</h1>
 				<h5>Payment</h5>
 			</span>
-			<span class="head-step4">
-				<h1>Step 4</h1>
-				<h5>confirmation</h5>
+			<span class="head-step2">
+				<h1>Step 2</h1>
+				<h5>Shipping</h5>
+			</span>
+			
+			<span class="head-step1">
+				<h1>Step 1</h1>
+				<h5>Sign In</h5>
 			</span>
 			</div>
 						
 			<fieldset id="step1">
 				<legend>Sign In</legend>
 				<div id="main-step1">
-				<label>E-mail:</label> 
+				<label>E-mail</label> 
 				<input name="email" type="text" />
-				<label>Password:</label> 
+				<label>Password</label> 
 				<input name="password" type="password" />
-				<label>Confirm Password:</label> 
+				<label>Confirm Password</label> 
 				<input name="con-password" type="password" />	
 				<input type="submit" id="sign-in" name="signin" value="Sign In" />
 				<input type="submit" id="register" name="register" value="Register" />			
@@ -36,7 +40,7 @@
 			<fieldset id="step2">
 				<legend>Shipping</legend>
 				<div id="main-step2">
-					<div class="head-step2">
+					<!-- <div class="head-step2">
 						<label>First name</label>
 						<label>Last name</label>
 						<label>Telephone</label>
@@ -53,7 +57,34 @@
 				
 						<input type="text" class="post-code-txt" />
 					</div>
+					-->
 					
+					<table>
+						<tr>
+							<td><label>First name</label></td>
+							<td><input type="text" /></td>							
+						</tr>
+						<tr>
+							<td><label>Last name</label></td>
+							<td><input type="text" /></td>							
+						</tr>
+						<tr>
+							<td><label>Telephone</label></td>
+							<td><input type="text" /></td>							
+						</tr>
+						<tr>
+							<td><label>Mobile</label></td>
+							<td><input type="text" /></td>							
+						</tr>
+						<tr>
+							<td><label>Address</label></td>
+							<td><textarea  type="text" ></textarea></td>							
+						</tr>
+						<tr>
+							<td><label>Postal code</label></td>
+							<td><input type="text" class="post-code-txt" /></td>							
+						</tr>
+					</table>
 					<input type="submit" id="submit-step2" name="submit-step2" value="Submit" />
 				</div>
 			</fieldset>
@@ -85,18 +116,18 @@
 						<div id="order-info">
 							<div id="order-head">
 								<label class="head">Order Info.</label>
-								<label class="sub-head">Purchase ID :</label>
+								<label class="sub-head">Order Number :</label>
 								<label class="sub-head">Ship by :</label>
 							</div>
 							<div id="order-detail">
 								<label> &nbsp </label>
 								<label class="sub-head">111111</label>
-								<label class="sub-head">track</label>
+								<label class="sub-head">ground</label>
 							</div>
 						</div>					
 					</div>				
 					<div id="product-detail">
-						<label class="head">Products detail</label>
+						
 						<table id="product-detail-table">
 							<tr>
 								<th>Product ID</th>
@@ -107,7 +138,7 @@
 							</tr>
 							<tr>
 								<td>1</td>
-								<td>shirst size s color black</td>
+								<td>shirt (size S, color black)</td>
 								<td>3</td>
 								<td>200</td>
 								<td>600</td>
@@ -160,7 +191,7 @@
 						<div id="order-info">
 							<div id="order-head">
 								<label class="head">Order Info.</label>
-								<label class="sub-head">Purchase ID :</label>
+								<label class="sub-head">Order Number :</label>
 								<label class="sub-head">Order date :</label>
 								<label class="sub-head">Ship by :</label>
 							</div>
@@ -168,23 +199,23 @@
 								<label> &nbsp </label>
 								<label class="sub-head">111111</label>
 								<label class="sub-head">21/12/12</label>
-								<label class="sub-head">track</label>
+								<label class="sub-head">ground</label>
 							</div>
 						</div>					
 					</div>				
 					<div id="product-detail">
-						<label class="head">Products detail</label>
+						
 						<table id="product-detail-table">
 							<tr>
 								<th>Product ID</th>
 								<th>Product Description</th>
 								<th>Quantity</th>
-								<th>Unit Price (TBH)</th>
-								<th>Price (TBH)</th>
+								<th>Unit Price (THB)</th>
+								<th>Price (THB)</th>
 							</tr>
 							<tr>
 								<td>1</td>
-								<td>shirst size s color black</td>
+								<td>shirt (size S, color black)</td>
 								<td>3</td>
 								<td>200</td>
 								<td>600</td>
@@ -192,12 +223,12 @@
 						</table>
 					</div>
 					<div id="pay-attention">
-						<label>* Please  transfer the total amount to Account Number ..................... <br />
+						<label>Please  transfer the total amount to Account Number ..................... <br />
 						ICC International Public Company Limited, .... Bank.<br />
 						<br />
 						After the transfer, please upload your pay-in-slip<br /> 
-						at ‘confirm payment ’ page or fax to 02-123-4567</label>
-						</div>
+						at &lsquo;confirm payment &rsquo; page or fax to 02-123-4567</label>
+					</div>
 					<div id="total-price">
 						<div id="price-head">
 							<label >Subtotal :</label>
