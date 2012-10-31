@@ -23,11 +23,22 @@ class Cart_model extends CI_Model
 	
 	}
 	
-	function get_where($where){
+	function get_item($where){
 		$query = $this->db->get_where('items',$where);
 		if($query->num_rows() > 1){
 			return $query->result();
 		}
 		return $query->row();
+	}
+	
+	function get_item_detail($where)
+	{
+		$query = $this->db->query("SELECT DISTINCT item_id, product_name_en, product_name_th, markup_price, markdown_price, image_id, image_file_name,
+												   color_id, on_sale, color_name, size, quantity
+									FROM products_brands_items_images_colors
+									WHERE item_id IN (".$where.")
+									AND main_image = image_id
+									ORDER BY product_name_en ASC");
+		return $query->result();
 	}
 }

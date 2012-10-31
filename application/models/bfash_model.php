@@ -43,6 +43,9 @@ class Bfash_model extends CI_Model
 			$data['join_name'] = $this->lang->line('Join');
 		}	
 				
+		//load number of cookie
+		$data['cookie_amount'] = $this->input->cookie('amount');		
+		
 		//set common page
 			$data['page_title'] = "Welcome to BfashShop.com";
 			$data['brand_list'] = $this->brand_model->get(); 

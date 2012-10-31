@@ -89,7 +89,11 @@
     </div> <!-- end #header-nav -->
     <div id="header-menu" class="header-nav-bar">
         <span class="menu-item">
-            <?php echo anchor('#','CART <span class="txt-detail"> 0 item(s)</span>', 'class="link-cart"'); ?>
+            <?php 
+				$num = 0;
+			    if(isset($cookie_amount) && $cookie_amount != null )
+					$num = $cookie_amount;
+				echo anchor('/cart','CART <span class="txt-detail">'.$num.' item(s)</span>', 'class="link-cart"'); ?>
         </span>
     </div><!-- end #header-menu -->
 </header>    

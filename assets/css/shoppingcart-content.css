@@ -55,13 +55,18 @@
 	margin-bottom:5px;
 	margin-top:5px;
 }
+
+.empty  span{
+	color:#8C8C8C;
+	font-size:90%;
+}
 .product{
 	width:410px;
 	float:left;
 }
 .product-image img{
-	width:80px;
-	height:110px;
+	width:90px;
+	height:auto;
 	position:relative;
 	float:left;	
 	margin-right:15px;
@@ -112,15 +117,28 @@
 	width:50px;
 	float:right;
 	text-align:right;
-	margin-right:15px;
+	margin-right:0px;
 	padding-top:5px;
 	font-size:75%;
 	color:#5C5C5C;
 	font-weight:bold;
 }
 
-.option-button{
-	margin-top:25px;
+.option-button input[type="submit"]{
+	border:none;
+	margin-top:30px;
+	border-radius:.2em;
+	background:url('../img/change-detail.png');
+	cursor:pointer;
+	display:inline-block;
+	width:109px;
+	height:20px;
+}
+
+.option-button input[type="submit"]:hover{	
+	
+	background:url('../img/change-detail2.png');
+	
 }
 
 #content-footer_wish_list {
@@ -152,12 +170,14 @@ span #subtotal{
 }
 .font-footer{
 	float:left;
+	font-size:110%;
 }
 span #delivery-charge{
 	display:block;
 }
 .num-footer{
 float:right;
+font-size:110%;
 }
 
 .total{
@@ -169,6 +189,37 @@ float:left;
 float:right;
 }
 
-#footer-button{
-float:right;
+.footer-button input[type="submit"]{
+	float:right;
+	border:none;
+	margin-top:10px;
+	border-radius:.2em;
+	background:url('../img/paynow.png');
+	cursor:pointer;
+	display:inline-block;
+	width:119px;
+	height:23px;
+}
+
+.footer-button input[type="submit"]:hover{	
+	
+	background:url('../img/paynow2.png');
+	
+}
+.footer-continue-button input[type="submit"]{
+	float:left;
+	border:none;
+	margin-top:10px;
+	border-radius:.2em;
+	background:url('../img/continueshopping.png');
+	cursor:pointer;
+	display:inline-block;
+	width:170px;
+	height:23px;
+}
+
+.footer-continue-button input[type="submit"]:hover{	
+	
+	background:url('../img/continueshopping2.png');
+	
 }
