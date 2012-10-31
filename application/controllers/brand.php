@@ -26,7 +26,7 @@ class Brand extends CI_Controller {
 			$data['current'] =  $brand_name;
 			$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
 			$data['products'] = $this->product_model->get_product_brand_image($brand_id);	
-			$data['page'] = 'front_product\content_main_product_list';
+			$data['page'] = 'front_product/content_main_product_list';
 			
 			//set product
 			$data['num_item'] = count($data['products']);

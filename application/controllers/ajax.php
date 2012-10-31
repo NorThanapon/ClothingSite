@@ -19,7 +19,7 @@ class Ajax extends CI_Controller
 		$data['current'] =  $brand_name;
 		$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
 		
-		$data['page'] = 'front_product\content_main_product_name';
+		$data['page'] = 'front_product/content_main_product_name';
 		$this->load->view('main_page',$data);
     }
 	public function product_ajax($product_id=FALSE)
@@ -35,7 +35,7 @@ class Ajax extends CI_Controller
 		$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$this->input->post('size'));
 		echo $data['color_in_size'];
 		
-			$data['page'] = 'front_product\content_main_product_name';
+			$data['page'] = 'front_product/content_main_product_name';
 			$this->load->view('main_page',$data);
 			
 			
@@ -68,7 +68,7 @@ class Ajax extends CI_Controller
 			$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
 			$data['previous'] = array("Home",$brand_name);
 			$data['current'] = $data['product_detail']->product_name_en;
-			$data['page'] = 'front_product\content_main_product_name';
+			$data['page'] = 'front_product/content_main_product_name';
 			$this->load->view('main_page',$data);
 			
 	}

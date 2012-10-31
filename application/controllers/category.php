@@ -30,7 +30,7 @@ class Category extends CI_Controller {
 			}
 			
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id.'/'.$product_id;
-			$data['page'] = 'front_product\content_main_product_name';
+			$data['page'] = 'front_product/content_main_product_name';
 			
 			//
 			$data['product_detail'] = $this->product_model->get_main_image($product_id);
@@ -53,7 +53,7 @@ class Category extends CI_Controller {
 			}
 			$data['current'] = $cat_name_lang;
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
-			$data['page'] = 'front_product\content_main_product_list';
+			$data['page'] = 'front_product/content_main_product_list';
 			//============ END setting common page
 			
 			//Set product_list
@@ -83,7 +83,7 @@ class Category extends CI_Controller {
 			}
 			$data['current'] = $cat_name_lang;
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
-			$data['page'] = 'front_product\content_main_product_list';
+			$data['page'] = 'front_product/content_main_product_list';
 			//============ END setting common page
 			
 			//Set product_list
@@ -112,7 +112,7 @@ class Category extends CI_Controller {
 		$this->load->model('category_model');
 		
 		$data = $this->bfash_model->init();
-		$data['page'] = 'front_product\content_main_product_list';
+		$data['page'] = 'front_product/content_main_product_list';
 		
 		$this->lang->load('content-history', $this->language_model->get());
 		$this->lang->load('content_main_product_list', $this->language_model->get());
