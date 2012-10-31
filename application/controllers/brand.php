@@ -31,6 +31,9 @@ class Brand extends CI_Controller {
 		$data['products'] = $this->product_model->get_product_brand_image($brand_id);	
 		$data['page'] = 'front_product/content_main_product_list';
 			
+		//set page history
+		$this->session->set_userdata('redirect',current_url());
+		
 		//set product
 		$data['num_item'] = count($data['products']);
 		$data['show_start'] = 1;

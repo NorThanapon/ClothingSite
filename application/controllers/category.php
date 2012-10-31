@@ -21,7 +21,7 @@ class Category extends CI_Controller {
 		// set lang
 		$cat_name_att = 'cat_name_'.$data['lang'];
 		$cat_name_lang = $this->category_model->get($cat_id)->$cat_name_att;
-						
+					
 		if($product_id != FALSE)
 		{	
 			//set lang
@@ -34,6 +34,9 @@ class Category extends CI_Controller {
 			$data['breadcrumbs'] = array($this->lang->line('Home'), $cat_name_lang,$product_name_lang);
 			$data['link'] = array(site_url(), base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id, $data['base_url'], );
 			
+			//set page history
+			$this->session->set_userdata('redirect',current_url());
+		
 			$data['product_detail'] = $this->product_model->get_main_image($product_id);		
 			$data['sub_image'] = $this->product_model->get_sub_image($product_id);
 			$data['logo'] = $this->product_model->get_product_brand_image($data['product_detail']->brand_name);
@@ -49,6 +52,10 @@ class Category extends CI_Controller {
 		//breadcrumbs
 		$data['breadcrumbs'] = array($this->lang->line('Home'), $cat_name_lang);
 		$data['link'] = array(site_url(), $data['base_url']);
+		
+		//set page history
+		$this->session->set_userdata('redirect',current_url());
+		
 		if($cat_gender == "women")
 		{
 			

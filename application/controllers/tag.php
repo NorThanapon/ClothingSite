@@ -18,9 +18,11 @@ class Tag extends CI_Controller
 		
 		//breadcrumbs
 		$data['breadcrumbs'] = array($this->lang->line('Home'), $tag_name);
-		
 		$data['link'] = array(site_url(), site_url().'tag/'.$tag_name.'/'.$tag_id);
 		
+		//set page history
+		$this->session->set_userdata('redirect',current_url());
+			
 		$data['products'] = $this->product_model->get_product_tag_image($tag_id);	
 		
 		//set product
@@ -61,9 +63,10 @@ class Tag extends CI_Controller
 		
 		//breadcrumbs
 		$data['breadcrumbs'] = array($this->lang->line('Home'), $tag_name, $data['product_detail']->product_name_en);
-		
 		$data['link'] = array(site_url(), site_url().'tag/'.$tag_name.'/'.$tag_id, site_url().'tag/'.$tag_name.'/'.$tag_id.'/'.$data['product_detail']->product_name_en);
 		
+		//set page history
+		$this->session->set_userdata('redirect',current_url());
 		
 		$data['page'] = 'front_product/content_main_product_name';
 		$this->load->view('main_page',$data);

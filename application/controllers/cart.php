@@ -15,7 +15,6 @@ class Cart extends CI_Controller {
 		$data['breadcrumbs'] = array($this->lang->line('Home'), $this->lang->line('Shopping Cart'));
 		$data['link'] = array(site_url(), site_url().'cart');
 			
-		
 		//$data['products'] = $this->product_model->get_product_brand_image($brand_id);
 		//$data['cookie_name'] = $this->input->get_cookie('item_id');
 		$data['items'] = FALSE;
@@ -103,12 +102,20 @@ class Cart extends CI_Controller {
 		$cookie_value = $this->input->cookie('cart');
 		$cookie_num_value = $this->input->cookie('amount');
 		
-		if($cookie_num < 1){ // amount == 0
+		if($cookie_num_value < 1){ // amount == 0
 			delete_cookie("cart");
 			delete_cookie("amount");
 		}
 		else{
+			//select qty
+			$where = 'item_id = '.$item_id;
+			$detail = $this->cart_model->get_item_detail($where);
+		    $detail = explode(';',$cookie_value);
+			foreach($detail as $item){
+				
+			}
 			$cookie_num_value -= 1;
+			
 			$cookie_num = array(
 				'name' => 'amount',
 				'value' => $cookie_num_value,
@@ -121,7 +128,13 @@ class Cart extends CI_Controller {
 			for($i=0; $i<count($detail)-1; $i++){
 				$new = $new.''.$detail[$i];
 			}
+			$cookie_cart = array(
+				'name' =>  'cart',
+				'value' =>   $new,
+				'expire' => '2592000'
+			);  
 		}	
+		//redirect(site_url().'cart');
 	}
 	public function destroy_cookie($item_id=FALSE){
 		delete_cookie("cart");

@@ -1,13 +1,13 @@
 <?php echo form_open('cart/check_path'); ?>
 <div id="content-Head_name_page">
 <h2>MY SHOPPING CART</h2>
-<h5>Stock reserved for 60 minutes only</h5>
+<!--<h5>Stock reserved for 60 minutes only</h5>-->
 </div>
 
 <div id="content-item_bar">
-	<span>ITEM DESCRIPTION</span>
-	<span id="option">YOUR OPTION</span>
-	<span id="price">PRICE</span>
+	<span><b>ITEM DESCRIPTION</b></span>
+	<span id="option"><b>YOUR OPTION</b></span>
+	<span id="price"><b>PRICE</b></span>
 </div>
 
 <!-- ---------------------should be loop of product-------------------- -->
@@ -31,7 +31,7 @@
 				</div>
 				<div class="product-name"><h2><?php echo $items[$i]->product_name_en; ?></h2></div>
 				<div class="product-link">
-					<?php echo anchor('#','SAVE FOR LATER |', 'title="save_for_later"'); ?>
+					<?php //echo anchor('#','SAVE FOR LATER |', 'title="save_for_later"'); ?>
 					<?php echo anchor('cart/remove_item/'.$items[$i]->item_id.'','REMOVE', array('title' => "Remove this item",'class' => "remove") ); ?>
 				</div>
 			</div>

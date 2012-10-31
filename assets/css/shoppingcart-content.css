@@ -46,7 +46,7 @@
 }
 
 #content-item_bar  #price{	
-	margin-left:260px;
+	margin-left:240px;
 }
 
 #content-wish_list{
@@ -83,6 +83,12 @@
 .product .product-link a{
 	font-size:70%;
 	color:#8C8C8C;
+	font-weight:bold;
+}
+
+.product .product-link a:hover{
+	font-size:70%;
+	color:#f39663;
 	font-weight:bold;
 }
 
