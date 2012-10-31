@@ -95,10 +95,36 @@ class Cart extends CI_Controller {
 		echo 'true';
 	}
 	
-	public function destroy_cookie($item_id=FALSE){
-		if($item_id === FALSE){
-			//TODO: delete by id
+	
+	public function remove_item($item_id){
+		$cookie_value = $this->input->cookie('cart');
+		$cookie_num_value = $this->input->cookie('amount');
+		
+		if($cookie_num < 1){ // amount == 0
+			delete_cookie("cart");
+			delete_cookie("amount");
 		}
+		else{
+			$cookie_num_value -= 1;
+			$cookie_num = array(
+				'name' => 'amount',
+				'value' => $cookie_num_value,
+				'expire' => '2592000'
+			);	
+			
+			$detail = explode(';',$cookie_value);
+			//$amount = count($detail);
+			$new = "";
+			for($i=0; $i<count($detail)-1; $i++){
+				$new = $new.''.$detail[$i];
+			}
+		}
+		
+		
+		
+		
+	}
+	public function destroy_cookie($item_id=FALSE){
 		delete_cookie("cart");
 		delete_cookie("amount");
 		redirect();

@@ -31,7 +31,7 @@
 				<div class="product-name"><h2><?php echo $items[$i]->product_name_en; ?></h2></div>
 				<div class="product-link">
 					<?php echo anchor('#','SAVE FOR LATER |', 'title="save_for_later"'); ?>
-					<?php echo anchor('#','REMOVE', 'title="save_for_later"'); ?>
+					<?php echo anchor('cart/remove_item/'.$items[$i]->item_id.'','REMOVE', array('title' => "Remove this item",'class' => "remove") ); ?>
 				</div>
 			</div>
 			<div class="option">
@@ -111,3 +111,8 @@
 		<input type="submit" value="" />
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+	});
+</script>
