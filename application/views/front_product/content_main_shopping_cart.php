@@ -1,3 +1,4 @@
+<?php echo form_open('cart/check_path'); ?>
 <div id="content-Head_name_page">
 <h2>MY SHOPPING CART</h2>
 <h5>Stock reserved for 60 minutes only</h5>
@@ -105,14 +106,15 @@
 	<div class="total-num"><?php echo number_format($total_price,2, '.', ','); ?></div>
 	</div>
 	<div class="footer-continue-button">
-		<input type="submit" value="" />
+		<input type="submit" value=" " name="continue" />
 	</div>
 	<div class="footer-button">
-		<input type="submit" value="" />
+		<input type="submit" value=" " name="pay" />
 	</div>
 </div>
+</form>
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+	
 	});
 </script>

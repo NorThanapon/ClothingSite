@@ -18,24 +18,23 @@ class Category extends CI_Controller {
 		$this->lang->load('content-history', $this->language_model->get());
 		$this->lang->load('content_main_product_list', $this->language_model->get());
 		
+		// set lang
 		$cat_name_att = 'cat_name_'.$data['lang'];
 		$cat_name_lang = $this->category_model->get($cat_id)->$cat_name_att;
-		
+						
 		if($product_id != FALSE)
 		{	
-			$data['page']="";
-			$data['previous'] = array($this->lang->line('Home'),$cat_name_lang);
-			if($cat_name === FALSE){
-				$data['current'] = '';
-			}
-			
-			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id.'/'.$product_id;
+			//set lang
+			$product_name_att = 'product_name_'.$data['lang'];
+			$product_name_lang = $this->product_model->get_main_image($product_id)->$product_name_att;
+		
 			$data['page'] = 'front_product/content_main_product_name';
+			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id.'/'.$product_id;
+			//breadcrumbs
+			$data['breadcrumbs'] = array($this->lang->line('Home'), $cat_name_lang,$product_name_lang);
+			$data['link'] = array(site_url(), base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id, $data['base_url'], );
 			
-			//
-			$data['product_detail'] = $this->product_model->get_main_image($product_id);
-			
-			$data['current'] = $data['product_detail']->product_name_en;
+			$data['product_detail'] = $this->product_model->get_main_image($product_id);		
 			$data['sub_image'] = $this->product_model->get_sub_image($product_id);
 			$data['logo'] = $this->product_model->get_product_brand_image($data['product_detail']->brand_name);
 			$data['item_detail_size'] = $this->product_model->get_item_detail_size($product_id);
@@ -44,17 +43,14 @@ class Category extends CI_Controller {
 			return ;
 		}
 		
+		//set common page
+		$data['page'] = 'front_product/content_main_product_list';
+		$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
+		//breadcrumbs
+		$data['breadcrumbs'] = array($this->lang->line('Home'), $cat_name_lang);
+		$data['link'] = array(site_url(), $data['base_url']);
 		if($cat_gender == "women")
 		{
-			//set common page
-			$data['previous'] = array($this->lang->line('Home'));
-			if($cat_name === FALSE){
-				$data['current'] = '';
-			}
-			$data['current'] = $cat_name_lang;
-			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
-			$data['page'] = 'front_product/content_main_product_list';
-			//============ END setting common page
 			
 			//Set product_list
 			$data['products'] = $this->product_model->get_product_cat_image($cat_id);
@@ -76,15 +72,6 @@ class Category extends CI_Controller {
 		}
 		if($cat_gender == "men")
 		{
-			//set common page
-			$data['previous'] = array($this->lang->line('Home'));
-			if($cat_name === FALSE){
-				$data['current'] = '';
-			}
-			$data['current'] = $cat_name_lang;
-			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id;
-			$data['page'] = 'front_product/content_main_product_list';
-			//============ END setting common page
 			
 			//Set product_list
 			$data['products'] = $this->product_model->get_product_cat_image($cat_id);

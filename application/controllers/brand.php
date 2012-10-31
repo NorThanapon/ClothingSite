@@ -9,7 +9,6 @@ class Brand extends CI_Controller {
     }
 	public function product($brand_name=FALSE,$brand_id=FALSE) 
 	{
-		
 		$this->load->model('bfash_model');
 		$this->load->model('product_model');
 		$this->load->model('image_model');
@@ -19,37 +18,36 @@ class Brand extends CI_Controller {
 		
 		$this->lang->load('content-history', $this->language_model->get());
 		$this->lang->load('content_main_product_list', $this->language_model->get());
+	
+		$data['re_name'] = str_replace('-',' ',$brand_name);
+		$data['brands'] = $this->brand_model->get_by_name($brand_id); 
 		
+		$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
 		
-		//if($product_id===FALSE)
-		//{
-			$data['re_name'] = str_replace('-',' ',$brand_name);
-			$data['brands'] = $this->brand_model->get_by_name($brand_id); 
-			$data['previous'] = array($this->lang->line('Home'));
-			$data['current'] =  $brand_name;
-			$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
-			$data['products'] = $this->product_model->get_product_brand_image($brand_id);	
-			$data['page'] = 'front_product/content_main_product_list';
+		//breadcrumbs
+		$data['breadcrumbs'] = array($this->lang->line('Home'), $data['re_name']);
+		$data['link'] = array(site_url(), site_url().'brand/'.$brand_name.'/'.$brand_id);
+		
+		$data['products'] = $this->product_model->get_product_brand_image($brand_id);	
+		$data['page'] = 'front_product/content_main_product_list';
 			
-			//set product
-			$data['num_item'] = count($data['products']);
-			$data['show_start'] = 1;
-			$data['show_end'] = 20;
-			if($data['show_end']>$data['num_item'])
-			{
-				$data['show_end'] = $data['num_item'];
-			}
-			$data['per_page'] = 20;
-			if($data['show_end']==0)
-			{
-				$data['show_end'] = 1;
-			}
-			$data['num_page'] = ceil($data['num_item']/$data['show_end']); // CHANGE to 20
-			$data['current_page'] = 1;
-			
-			$this->load->view('main_page',$data);
-		//}
+		//set product
+		$data['num_item'] = count($data['products']);
+		$data['show_start'] = 1;
+		$data['show_end'] = 20;
+		if($data['show_end']>$data['num_item'])
+		{
+			$data['show_end'] = $data['num_item'];
+		}
+		$data['per_page'] = 20;
+		if($data['show_end']==0)
+		{
+			$data['show_end'] = 1;
+		}
+		$data['num_page'] = ceil($data['num_item']/$data['show_end']); // CHANGE to 20
+		$data['current_page'] = 1;
 		
+		$this->load->view('main_page',$data);
     }
 
 	
@@ -61,15 +59,18 @@ class Brand extends CI_Controller {
 		$this->load->model('category_model');
 		
 		$data = $this->bfash_model->init();
-		
+		$this->lang->load('content-history', $this->language_model->get());
+		$this->lang->load('content_main_product_list', $this->language_model->get());
 		
 		$data['re_name'] = str_replace('-',' ',$brand_name);
 		$data['brands'] = $this->brand_model->get_by_name($brand_id); 
-		$data['previous'] = array($this->lang->line('Home'));
-		$data['current'] =  $brand_name;
-		$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
-		$data['products'] = $this->product_model->get_product_brand_image($brand_id);	
-		
+		$data['products'] = $this->product_model->get_product_brand_image($brand_id);
+
+		$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id.'/page/'.$page.'/'.$per_page;
+		//breadcrumbs
+		$data['breadcrumbs'] = array($this->lang->line('Home'), $data['re_name']);
+		$data['link'] = array(site_url(), site_url().'brand/'.$brand_name.'/'.$brand_id.'/page/'.$page.'/'.$per_page);
+		$data['page'] = 'front_product/content_main_product_list';
 		
 		$data['num_item'] = count($data['products']);
 			if($per_page == 0)

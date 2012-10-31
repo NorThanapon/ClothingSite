@@ -9,9 +9,12 @@ class Cart extends CI_Controller {
 		$this->load->library('encrypt');
 		
 		$data = $this->bfash_model->init();
-		$data['previous'] = array("Home");
-		$data['current'] =  "Shopping cart";
-		$data['base_url'] = base_url().'cart';
+		$this->lang->load('content-history', $this->language_model->get());
+		
+		//breadcrumbs
+		$data['breadcrumbs'] = array($this->lang->line('Home'), $this->lang->line('Shopping Cart'));
+		$data['link'] = array(site_url(), site_url().'cart');
+			
 		
 		//$data['products'] = $this->product_model->get_product_brand_image($brand_id);
 		//$data['cookie_name'] = $this->input->get_cookie('item_id');
@@ -118,16 +121,26 @@ class Cart extends CI_Controller {
 			for($i=0; $i<count($detail)-1; $i++){
 				$new = $new.''.$detail[$i];
 			}
-		}
-		
-		
-		
-		
+		}	
 	}
 	public function destroy_cookie($item_id=FALSE){
 		delete_cookie("cart");
 		delete_cookie("amount");
+		delete_cookie("redirect");
 		redirect();
+	}
+	
+	public function check_path(){
+
+		if($this->input->post('continue')){
+			//echo $this->session->flashdata('redirect_url');
+			redirect( $this->session->userdata('redirect'));
+		}
+		if($this->input->post('pay')){
+		
+			redirect('payment');
+		}
+	
 	}
 }
 ?>
