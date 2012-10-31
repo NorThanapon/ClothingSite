@@ -107,13 +107,11 @@ class Member extends CI_Controller {
 		
 	}
 	public function forget_password()
-	{
-		//echo "send email";
-		$data['page_title'] = "Sign in | BfashShop.com";
-		$from ="";
-		$from_name="";
+	{		
+		$data['page_title'] = "Sign in | BfashShop.com";		
 		$to = $this->input->post("e_mail_send_password");
 		$data['form_e_mail_send_password']=$this->input->post("e_mail_send_password");
+		
 		if($to=="")
 		{
 			$data['show_message'] = 'Please fill your Email for send new password';
@@ -125,7 +123,7 @@ class Member extends CI_Controller {
 		$result = $this->member_model->get($to);
 		if($result==null)
 		{
-			$data['show_message'] = 'Please fill your Email for send new password';
+			$data['show_message'] = 'Please fill your Email for send new password, no in database';
 			$data['page'] = 'member/login';
 			$this->load->view('sub_page',$data);
 			return;
@@ -143,17 +141,38 @@ class Member extends CI_Controller {
 		
         $this->load->library('email');
 		$this->email->initialize($config);
-        
+		$from = "";
+		$from_name = "";
+		$password = $this->_generate_password($this->input->post("e_mail_send_password"));
+		$subject = "Password Reminder";
+		$message = "Dear Customer,You have requested that we email your password to ".$to."
+					<br /><br />
+					Your password is:".$password."
+					<br /><br />
+					Click here to return to BfashShop.com
+					<br /><br />
+				    BfashShop Customer Care";
+		
         $this->email->from($from, $from_name);
         $this->email->to($to);
         $this->email->subject($subject);
         $this->email->message($message);
-        $this->email->send();
+       // $this->email->send();
 		$data['show_message']="Thank You. Your password has been sent to the email address specified.";
 		//echo "Mail Sent.";
 		//
 		//
 		
+	}
+	public function _generate_password($e_mail)
+	{
+		do
+		{
+			$password = random_string('alnum', 6);
+		}while($this->_check_password($password)!="");		
+		$this->load->model('member_model');
+		$this->member_model->change_password($e_mail,$password);
+		//echo "new password".$password;
 	}
 	
     

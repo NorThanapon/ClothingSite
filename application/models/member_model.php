@@ -23,5 +23,14 @@ class Member_model extends CI_Model
 		$query = $this->db->get_where('members', array('e_mail' => $e_mail));
         return $query->row();
 	}
+	function change_password($e_mail,$password)
+	{
+		$this->load->library('encrypt');
+		$data = array(
+			'password' => $this->encrypt->encode($password)
+		);
+		$this->db->update('members',$data,array('e_mail'=>$e_mail));
+	}
+	
 }
 ?>
