@@ -1,0 +1,546 @@
+#payment-head{
+	max-width:1000px;
+	position:relative;
+	width: 100%;
+	margin: 0 auto;
+	vertical-align:middle;	
+}
+
+.head-step{
+	display:inline-block;
+	font-family:Sans-serif;	
+	padding-right:30px;
+	
+	margin-bottom:10px;
+}
+
+.head-step h1{
+	line-height:180%;	
+	font-size:180%;
+	color:#A0A0A0;
+	}
+	
+.head-step h5{
+	font-size:100%;
+	color:#A0A0A0;
+}
+
+fieldset{
+	max-width:1000px;
+	position:relative;
+	width: 100%;
+	margin: 0 auto;
+	vertical-align:middle;	
+	padding-top:30px;
+	padding-bottom:60px;
+}
+
+#step1{
+	display:block;
+}
+
+#step2{
+	display:none;
+}
+
+#step3{
+	display:none;
+}
+
+#step4{
+	display:none;
+}
+
+#main-step1{
+	margin:0 auto;
+	position:relative;
+	width:23%;
+	vertical-align:middle;	
+	padding-top:5px;
+	margin-top:10px;
+	padding-bottom:30px;
+	
+}
+
+#main-step1 label{
+	display:block;
+	margin-top:5px;
+	margin-bottom:5px;
+	font-family:Sans-serif;
+	color:#282828;
+	font-size:100%;
+	
+}
+
+#main-step1 input{
+	width:230px;
+	border:1px solid #bdbbbb;
+	height:25px;
+}
+
+legend{
+	font-size:100%;
+	color:797878;
+}
+
+#main-step1 input[type="submit"]{
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	width:70px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:2px;
+	display:inline-block;
+}
+
+#main-step1 input[type="submit"]:hover{
+	background:#4F4F4F;
+	
+}
+
+#main-step2{
+	margin:0 auto;
+	position:relative;
+	width:40%;
+	vertical-align:middle;	
+	padding-top:5px;
+	margin-top:10px;
+	padding-bottom:30px;
+}
+
+#main-step2 label{
+	display:block;
+	margin-top:10px;
+	margin-bottom:5px;
+	font-family:Sans-serif;
+	color:#282828;
+	font-size:100%;
+}	
+
+#main-step2 input{
+	display:block;
+	width:230px;
+	border:1px solid #bdbbbb;
+	height:25px;
+	float:right;
+	margin-top:7px;
+}
+
+#main-step2 .head-step2{
+	display:inline-block;
+	float:left;
+}
+
+#main-step2 .input-step2{
+	display:inline-block;
+	float:left;
+	width:70%;
+
+}
+
+#postal-code{
+	padding-top:125px;
+}
+
+#main-step2 textarea{
+	margin-top:7px;
+	display:inline-block;
+	float:right;
+	width:230px;
+	height:100px;
+	border:1px solid #bdbbbb;
+}
+
+#address-block{
+	height:110px;
+}
+
+#main-step2 input[type="submit"]{
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	width:70px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:37px;
+	display:inline-block;
+}
+
+#main-step2 input[type="submit"]:hover{
+	background:#4F4F4F;
+	
+}
+
+#main-step3{
+	margin:0 auto;
+	position:relative;
+	width:90%;
+	vertical-align:middle;	
+	padding-top:5px;
+	margin-top:10px;
+	padding-bottom:30px;
+}
+
+#main-step3 #customer-info{
+	display:block;
+	float:left;
+	width:70%;
+}
+
+#main-step3 #customer-head{
+	display:inline-block;
+	float:left;
+}
+
+#main-step3 #customer-detail{
+	margin-top:5px;
+	display:inline-block;
+	float:left;
+}
+
+#customer-info .head{
+	font-size:100%;
+	font-family:Sans-serif;
+	text-decoration:underline;
+	padding-bottom:5px;
+}
+
+#customer-info .sub-head{
+	padding-left:15px;
+	font-size:80%;
+	font-family:Sans-serif;
+	line-height:150%;
+}
+
+#main-step3 #customer-info label{
+	display:block;
+}
+
+#main-step3 #order-info{
+	display:block;
+	float:left;
+	width:30%;
+}
+
+#main-step3 #order-info label{
+	display:block;
+}
+
+#order-info #order-head{
+	display:inline-block;
+	float:left;
+}
+
+#order-info #order-detail{
+	margin-top:5px;
+	display:inline-block;
+	float:left;
+}  
+
+#order-info .head{
+	font-size:100%;
+	font-family:Sans-serif;
+	text-decoration:underline;
+	padding-bottom:5px;
+}
+
+#order-info .sub-head{
+	padding-left:15px;
+	font-size:80%;
+	font-family:Sans-serif;
+	line-height:150%;
+}
+
+#top-main-step3{
+	display:block;
+	max-width:1000px;
+	margin:0 auto;
+	position:relative;
+	padding-bottom:180px;
+}
+
+#main-step3 #product-detail{
+	display:block;
+}
+
+#product-detail .head{
+	font-size:100%;
+	font-family:Sans-serif;
+	text-decoration:underline;
+	padding-bottom:5px;
+}
+
+#product-detail-table{
+	margin-top:10px;
+	margin-bottom:10px;
+	border-collapse: collapse;
+	width:100%;
+	text-align:center;
+	
+	font-family:Sans-serif;
+}
+
+#product-detail-table th{
+	font-size:100%;
+	border-bottom: 2px solid #ccc;
+}
+
+#product-detail-table td{
+font-size:90%;
+border-bottom: 1px solid #ccc;
+color: #666;
+background: #fff;
+padding: 5px;
+}
+
+#product-detail-table tbody tr:hover td{
+color: #222;
+background: #EFEFEF;
+}
+
+#main-step3 #total-price{
+	float:right;
+	width:20%;
+	margin-top:10px;
+	line-height:120%;
+	text-align:right;
+	margin-right:30px;
+}
+
+#main-step3 #total-price label{
+	display:block;
+	font-size:95%;
+	font-family:Sans-serif;
+	font-weight:bold;
+}
+
+#total-price #price-head{
+	display:inline-block;
+	float:left;
+	margin-right:20px;
+	margin-left:10px;
+}
+
+#total-price #price-detail{
+	display:inline-block;
+	float:right;
+	text-align:right;	
+}
+
+
+
+#main-step3 input[type="submit"]{
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	width:90px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:2px;
+	display:block;
+}
+
+#main-step3 input[type="submit"]:hover{
+	background:#4F4F4F;
+	
+}
+
+
+#main-step4{
+	margin:0 auto;
+	position:relative;
+	width:90%;
+	vertical-align:middle;	
+	padding-top:5px;
+	margin-top:10px;
+	padding-bottom:30px;
+}
+
+#main-step4 #customer-info{
+	display:block;
+	float:left;
+	width:70%;
+}
+
+#main-step4 #customer-head{
+	display:inline-block;
+	float:left;
+}
+
+#main-step4 #customer-detail{
+	margin-top:5px;
+	display:inline-block;
+	float:left;
+}
+
+#main-step4 #customer-info .head{
+	font-size:100%;
+	font-family:Sans-serif;
+	text-decoration:underline;
+	padding-bottom:5px;
+}
+
+#main-step4 #customer-info .sub-head{
+	padding-left:15px;
+	font-size:80%;
+	font-family:Sans-serif;
+	line-height:150%;
+}
+
+#main-step4 #customer-info label{
+	display:block;
+}
+
+#main-step4 #order-info{
+	display:block;
+	float:left;
+	width:30%;
+}
+
+#main-step4 #order-info label{
+	display:block;
+}
+
+#main-step4 #order-info #order-head{
+	display:inline-block;
+	float:left;
+}
+
+#main-step4 #order-info #order-detail{
+	margin-top:5px;
+	display:inline-block;
+	float:left;
+}  
+
+#main-step4 #order-info .head{
+	font-size:100%;
+	font-family:Sans-serif;
+	text-decoration:underline;
+	padding-bottom:5px;
+}
+
+#main-step4 #order-info .sub-head{
+	padding-left:15px;
+	font-size:80%;
+	font-family:Sans-serif;
+	line-height:150%;
+}
+
+#top-main-step4{
+	display:block;
+	max-width:1000px;
+	margin:0 auto;
+	position:relative;
+	padding-bottom:180px;
+}
+
+#main-step4 #product-detail{
+	display:block;
+}
+
+#main-step4 #product-detail .head{
+	font-size:100%;
+	font-family:Sans-serif;
+	text-decoration:underline;
+	padding-bottom:5px;
+}
+
+#main-step4 #product-detail-table{
+	margin-top:10px;
+	margin-bottom:10px;
+	border-collapse: collapse;
+	width:100%;
+	text-align:center;
+	
+	font-family:Sans-serif;
+}
+
+#main-step4 #product-detail-table th{
+	font-size:100%;
+	border-bottom: 2px solid #ccc;
+}
+
+#main-step4 #product-detail-table td{
+font-size:90%;
+border-bottom: 1px solid #ccc;
+color: #666;
+background: #fff;
+padding: 5px;
+}
+
+#main-step4 #product-detail-table tbody tr:hover td{
+color: #222;
+background: #EFEFEF;
+}
+
+#main-step4 #pay-attention{
+	color:Red;
+	display:inline-block;
+	margin-top:10px;
+}
+
+#main-step4 #total-price{
+	float:right;
+	width:20%;
+	margin-top:10px;
+	line-height:120%;
+	text-align:right;
+	margin-right:30px;
+}
+
+#main-step4 #total-price label{
+	display:block;
+	font-size:95%;
+	font-family:Sans-serif;
+	font-weight:bold;
+}
+
+#main-step4 #total-price #price-head{
+	display:inline-block;
+	float:left;
+	margin-right:20px;
+	margin-left:10px;
+}
+
+#main-step4 #total-price #price-detail{
+	display:inline-block;
+	float:right;
+	text-align:right;	
+}
+
+#main-step4 input[type="submit"]{
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	width:90px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:2px;
+	display:block;
+}
+
+#main-step4 input[type="submit"]:hover{
+	background:#4F4F4F;
+	
+}
