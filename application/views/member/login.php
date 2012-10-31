@@ -20,7 +20,7 @@
 			<input type="submit" value="Log In" class="button"/>
 			</div>
 		  
-			<?php if(isset($show_message_login))echo "<h1>".$show_message_login."</h1>";?>
+			
 </form>
 	 
 		
@@ -29,17 +29,15 @@
 <!--<?php //echo form_open('member/forget_password') ?>	-->	
 		<div id="forget_password_view" >
 			<label for="e_mail" >Email</label>
-		    <input type = "text" name = "e_mail_send_password" class="input-text" 
+		    <input type = "text" name = "e_mail_send_password" class="input-text" id="e_mail_send_password"
 			value="<?php if(isset($form_e_mail_send_password))echo $form_e_mail_send_password;?>" />
 		    <input type="submit" value="Send Password" class="button" id="send_email"/>
-			<div ><?php if(isset($show_message))echo "<h1>".$show_message."</h1>";?></div>  
 			</div>
 		</div>
 </div>
 <!--</form>-->
-</div>
-		 
-<?php $this->load->view('common/admin_footer');?>
+<?php $this->load->view('common/confirm_box');?>		 
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		//add confirm event for delete button
@@ -50,26 +48,16 @@
 			$.ajax({
 					type: 'POST',
 					url: "<?php echo base_url('member/forget_password');?>",//controller path; go function
-					data:  { item_id: $('#item_id').val(), // set data variable and assign value from body
-							 quantity: $('#quantity').val(),
-							 size: $('input[name=ddl-size]').val(),
-							 color: $('#color-image').val() 
+					data:  { e_mail_send_password: $('#e_mail_send_password').val(), // set data variable and assign value from body
 						   },
 					success: function( data ) { // if succes do something ;data is returned
-						alert(data);
-						if(data == 'true')	{
-							window.location.href = "<?php echo base_url('cart');?>";
-							
-						}
-						else if(data == 'false'){
-							alert(data);
-							//window.location.href = "<?php echo base_url();?>";
-						}
-						//return false;
-					}
-					
-				});	 			
+						alert(data);						
+						confirm('Confirm for deletion','Do you want to delete products.',this.href, 'Delete'); 
+						return false;							
+					}				
+				});	
 		});
-			
+		
+		
 	});
 </script>

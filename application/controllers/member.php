@@ -114,18 +114,19 @@ class Member extends CI_Controller {
 		
 		if($to=="")
 		{
-			$data['show_message'] = 'Please fill your Email for send new password';
-			$data['page'] = 'member/login';
-			$this->load->view('sub_page',$data);
+			//$data['show_message'] = 'Please fill your Email for send new password';
+			echo 'Please fill your Email for send new password';
+			
 			return;
 		}
 		$this->load->model('member_model');
 		$result = $this->member_model->get($to);
 		if($result==null)
 		{
-			$data['show_message'] = 'Please fill your Email for send new password, no in database';
-			$data['page'] = 'member/login';
-			$this->load->view('sub_page',$data);
+			//$data['show_message'] = 'Please fill your Email for send new password, no in database';
+			//$data['page'] = 'member/login';
+			//$this->load->view('sub_page',$data);
+			echo 'Please fill your Email for send new password';
 			return;
 		}
 		$config = array();
@@ -158,7 +159,8 @@ class Member extends CI_Controller {
         $this->email->subject($subject);
         $this->email->message($message);
        // $this->email->send();
-		$data['show_message']="Thank You. Your password has been sent to the email address specified.";
+		//$data['show_message']="Thank You. Your password has been sent to the email address specified.";
+		echo 'Thank You. Your password has been sent to the email address specified.';
 		//echo "Mail Sent.";
 		//
 		//
