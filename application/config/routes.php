@@ -43,7 +43,7 @@ $route['admin'] = "admin/order";
 $route['404_override'] = '';
 
 // brand
-$route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'brand/product/$1/$2/$3';
+$route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'ajax/index/$1/$2/$3';
 $route['brand/([-_a-zA-Z0-9]+)/(:num)'] = 'brand/product/$1/$2';
 $route['brand/([-_a-zA-Z0-9]+)'] = 'brand/product/$1';
 
@@ -60,4 +60,4 @@ $route['category/(:any)/(:any)/(:num)/page/(:num)/(:num)'] = 'category/product_l
 $route['category/(:any)/(:any)/(:num)/page/(:num)'] = 'category/product_list/$1/$2/$3/$4';
 $route['category/(:any)/(:any)/(:num)'] = 'category/product_list/$1/$2/$3';
 /* End of file routes.php */
-/* Location: ./application/config/routes.php */
+/* Location: ./application/config/routes.php */?>

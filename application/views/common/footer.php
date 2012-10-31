@@ -5,16 +5,16 @@
 			<div class="footer-text">All rights reserved</div>
 		</span>
 		<span class="footer-menu">
-			<a href="###">Support</a>
-			<a href="###">Delivery & returns</a>
-			<a href="###">About us</a>
-			<a href="###">Contact us</a>
+			<a href="###"><?php echo $this->lang->line('FAQ'); ?></a>
+			<a href="###"><?php echo $this->lang->line('Delivery & returns'); ?></a>
+			<a href="###"><?php echo $this->lang->line('About us'); ?></a>
+			<a href="###"><?php echo $this->lang->line('Contact us'); ?></a>
 		</span>
 		<span class="footer-menu">
-			<a href="###">Your Feedback</a>
-			<a href="###">Terms & conditions</a>
-			<a href="###">Return instructions</a>
-			<a href="###">Payment Channel</a>
+			<a href="###"><?php echo $this->lang->line('Your Feedback'); ?></a>
+			<a href="###"><?php echo $this->lang->line('Terms & conditions'); ?></a>
+			<a href="###"><?php echo $this->lang->line('Return instructions'); ?></a>
+			<a href="###"><?php echo $this->lang->line('Payment Channel'); ?></a>
 		</span>
 		<span class="footer-menu">
 			<a href="http://www.b-fash.com/bfash/index.php">B-fash.com</a>

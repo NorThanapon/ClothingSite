@@ -7,7 +7,7 @@
 				}
 				else
 				{
-					$path = $path.'/'.$item;
+					$path = $path;
 				}
 		?>
 				<span class="history-previous"><?php echo anchor($path, $item.' >', 'title="'.$item.'"'); ?></span>

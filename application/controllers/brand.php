@@ -7,7 +7,7 @@ class Brand extends CI_Controller {
 		$data['page'] = 'brand_list';
         $this->load->view('main_page',$data);
     }
-	public function product($brand_name,$brand_id,$product_id=FALSE,$item=0) 
+	public function product($brand_name=FALSE,$brand_id=FALSE) 
 	{
 		
 		$this->load->model('bfash_model');
@@ -17,14 +17,12 @@ class Brand extends CI_Controller {
 		
 		$data = $this->bfash_model->init();
 		
-		$this->lang->load('content-history', $this->language_model->get());
-		$this->lang->load('content_main_product_list', $this->language_model->get());
 		
-		if($product_id===FALSE)
-		{
+		//if($product_id===FALSE)
+		//{
 			$data['re_name'] = str_replace('-',' ',$brand_name);
 			$data['brands'] = $this->brand_model->get_by_name($brand_id); 
-			$data['previous'] = array($this->lang->line('Home'));
+			$data['previous'] = array("Home");
 			$data['current'] =  $brand_name;
 			$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
 			$data['products'] = $this->product_model->get_product_brand_image($brand_id);	
@@ -47,28 +45,11 @@ class Brand extends CI_Controller {
 			$data['current_page'] = 1;
 			
 			$this->load->view('main_page',$data);
-		}
-		else if($product_id!=FALSE)
-		{
-			$data['product_detail'] = $this->product_model->get_main_image($product_id);
-			$data['sub_image'] = $this->product_model->get_sub_image($product_id);
-			$data['logo'] = $this->product_model->get_product_brand_image($brand_name);
-			$data['item_detail_size'] = $this->product_model->get_item_detail_size($product_id);
-			$data['item_detail_color'] = $this->product_model->get_item_detail_color($product_id);
-			
-			//$data['brand_list'] = $this->brand_model->get(); 
-			//$data['re_name'] = str_replace('-',' ',$brand_name);
-			//$data['brands'] = $this->brand_model->get_by_name($data['re_name']); 
-			//$data['products'] = $this->product_model->get_product_brand_image($data['re_name']);		
-			//$data['page'] = 'front_product\content_main_product_name';
-			//$data['content_history'] ='common\content-history';
-			$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
-			$data['previous'] = array("Home",$brand_name);
-			$data['current'] = $data['product_detail']->product_name_en;
-			$data['page'] = 'front_product\content_main_product_name';
-			$this->load->view('main_page',$data);
-		}
+		//}
+		
     }
+
+	
 
 	public function product_list( $brand_name,$brand_id, $page=0, $per_page=0 ) {
 		$this->load->model('bfash_model');
@@ -78,12 +59,10 @@ class Brand extends CI_Controller {
 		
 		$data = $this->bfash_model->init();
 		
-		$this->lang->load('content-history', $this->language_model->get());
-		$this->lang->load('content_main_product_list', $this->language_model->get());
 		
 		$data['re_name'] = str_replace('-',' ',$brand_name);
 		$data['brands'] = $this->brand_model->get_by_name($brand_id); 
-		$data['previous'] = array($this->lang->line('Home'));
+		$data['previous'] = array("Home");
 		$data['current'] =  $brand_name;
 		$data['base_url'] = base_url().'brand/'.$brand_name.'/'.$brand_id;
 		$data['products'] = $this->product_model->get_product_brand_image($brand_id);	

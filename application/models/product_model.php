@@ -189,7 +189,6 @@ class Product_model extends CI_Model
 	function has_items_under_products($product_ids)
 	{
 		
-		
 		//$query = $this->db->get_where('items',array('product_id' => $product_id));
 		$this->db->where_in('product_id',$product_ids);	
 		$query = $this->db->get('items');
@@ -249,9 +248,23 @@ class Product_model extends CI_Model
 	}
 	function get_item_detail_color($product_id)
 	{
-		$query = $this->db->query("SELECT distinct color_name,product_id,item_id,color_file_name,color_id,image_id,brand_id,main_image,image_file_name FROM `products_brands_items_images_colors` WHERE product_id=".$product_id."");
+		$query = $this->db->query("SELECT distinct color_file_name FROM products_brands_items_images_colors WHERE product_id=".$product_id."");
 		return $query->result();
 	}
+	function get_default_size($product_id)
+	{
+		$query = $this->db->query("SELECT distinct item_id,size FROM `products_brands_items_images_colors` WHERE product_id=".$product_id."");
+		return $query->row();
+	}
+	function get_color_in_size($product_id,$size)
+	{
+		//if($size == FALSE)
+		
+		$query = $this->db->query("SELECT distinct * FROM products_brands_items_images_colors WHERE product_id=".$product_id." AND size='".$size."'");
+		//echo $size;
+		return $query->result();
+	}
+	
 
 }
 ?>
