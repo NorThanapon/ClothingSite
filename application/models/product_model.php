@@ -260,7 +260,7 @@ class Product_model extends CI_Model
 	{
 		//if($size == FALSE)
 		
-		$query = $this->db->query("SELECT distinct * FROM products_brands_items_images_colors WHERE product_id=".$product_id." AND size='".$size."'");
+		$query = $this->db->query("SELECT distinct color_file_name FROM products_items_colors WHERE product_id=".$product_id." AND size='".$size."'");
 		//echo $size;
 		return $query->result();
 	}
