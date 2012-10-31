@@ -1,6 +1,6 @@
 <div id="content-side" >
 	<div class="side-ad">
-	<a href="<?php echo asset_url().'img/ad.jpg'; ?>"><img src="<?php echo asset_url().'img/ad.jpg'; ?>"></a>
+	<a href="<?php echo base_url().'tag/UpTo70/4'; ?>" class="ad" ><img src="<?php echo asset_url().'img/ad.jpg'; ?>"></a>
 	</div>
 	<nav>
 		<section class="side-navbox" id="side-navbox-newarrivals">
@@ -33,3 +33,10 @@
 		</section> -->
 	</nav>
 </div><!-- content-side -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('a.ad').click(function() { 
+		
+		});
+	});
+</script>

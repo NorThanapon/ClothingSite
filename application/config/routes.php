@@ -59,5 +59,10 @@ $route['category/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/(:num)'] = 'category/product/
 $route['category/(:any)/(:any)/(:num)/page/(:num)/(:num)'] = 'category/product_list/$1/$2/$3/$4/$5';
 $route['category/(:any)/(:any)/(:num)/page/(:num)'] = 'category/product_list/$1/$2/$3/$4';
 $route['category/(:any)/(:any)/(:num)'] = 'category/product_list/$1/$2/$3';
+
+//tag
+$route['tag/([-_a-zA-Z0-9]+)/(:num)'] = 'tag/index/$1/$2';
+$route['tag/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'tag/product_detail/$1/$2/$3';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */?>

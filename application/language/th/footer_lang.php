@@ -1,10 +1,10 @@
 ﻿<?php
 $lang['FAQ'] = "คำถามที่พบบ่อย";
-$lang['Delivery & returns'] = "Delivery & returns";
+$lang['Confirm Payment'] = "ยืนยันการชำระเงิน";
 $lang['About us'] = "เกี่ยวกับเรา";
 $lang['Contact us'] = "ติดต่อเรา";
 $lang['Your Feedback'] = "ติดต่อสอบถาม";
-$lang['Terms & conditions'] = "ข้อกำหนดและเงื่อนไข";
-$lang['Return instructions'] = "นโยบายการคืนสินค้า";
+$lang['Terms & Conditions'] = "ข้อกำหนดและเงื่อนไข";
+$lang['Return Instructions'] = "นโยบายการคืนสินค้า";
 $lang['Payment Channel'] = "ช่องทางการชำระเงิน";
 ?>
