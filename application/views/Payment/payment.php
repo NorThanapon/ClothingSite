@@ -127,7 +127,7 @@
 						</div>					
 					</div>				
 					<div id="product-detail">
-						<?php echo"test 131"; print_r($items_order); ?>
+						
 						<table id="product-detail-table">
 							<tr>
 								<th>Product ID</th>
@@ -137,15 +137,15 @@
 								<th>Price (THB)</th>
 							</tr>
 							<?php 
-							for($i=0;$i<count($items_order);$i++)
+							//for($i=0;$i<count($items_order);$i++)
 							{
 							
 							echo "<tr>";
-							echo "<td id='item_id_3_".$i."'></td>";
-							echo "<td>".$items_order[$i]->product_descrption_en."</td>";
-							echo "<td>".$items_order[$i]->quantiity."</td>";
-							echo "<td>".$items_order[$i]->unit_price."</td>";
-							echo "<td>".$items_order[$i]->total_price."</td>";
+							//echo "<td id='item_id_3_".$i."'></td>";
+							//echo "<td>".$items_order[$i]->product_descrption_en."</td>";
+							//echo "<td>".$items_order[$i]->quantiity."</td>";
+							//echo "<td>".$items_order[$i]->unit_price."</td>";
+							//echo "<td>".$items_order[$i]->total_price."</td>";
 							echo "</tr>";
 							
 							}
@@ -160,10 +160,10 @@
 							<label >Total :</label>					
 						</div>
 						<div id="price-detial">
-							<label ><?php echo $subtotal ;?>THB</label>
-							<label ><?php echo $shipping ;?> THB</label>
-							<label ><?php echo $vat ;?> THB</label>
-							<label ><?php echo $total ;?> THB</label>
+							<label ><?php// echo $subtotal ;?>THB</label>
+							<label ><?php// echo $shipping ;?> THB</label>
+							<label ><?php// echo $vat ;?> THB</label>
+							<label ><?php// echo $total ;?> THB</label>
 						</div>
 						<input type="submit" id="submit-step3" name="submit-step3" value="Confirm" />
 						<input type="submit" id="back-step3"  value="Back" />
@@ -224,20 +224,20 @@
 							<?php 
 							if(isset($items_order))
 							{
-							foreach($items_order as $item)
+							//foreach($items_order as $item)
 							{
 							
 								echo "<tr>";
-								echo "<td>".$item->item_id."</td>";
-								echo "<td>".$item->product_descrption_en."</td>";
-								echo "<td>";
-								foreach($cookie_cart as $cart)
+							//	echo "<td>".$item->item_id."</td>";
+							//	echo "<td>".$item->product_descrption_en."</td>";
+							//	echo "<td>";
+							//	foreach($cookie_cart as $cart)
 								{
-									if($cart[0] == $item->item_id )echo $cart[1];
+									//if($cart[0] == $item->item_id )echo $cart[1];
 								}
-								echo "</td>";
-								echo "<td>".$item->unit_price."</td>";
-								echo "<td>".$item->total_price."</td>";
+							//	echo "</td>";
+							//	echo "<td>".$item->unit_price."</td>";
+							//	echo "<td>".$item->total_price."</td>";
 								echo "</tr>";
 							
 							}
@@ -260,10 +260,10 @@
 							<label >Total :</label>					
 						</div>
 						<div id="price-detial">
-							<label ><?php echo $subtotal ;?>THB</label>
-							<label ><?php echo $shipping ;?> THB</label>
-							<label ><?php echo $vat ;?> THB</label>
-							<label ><?php echo $total ;?> THB</label>
+							<label ><?php //echo $subtotal ;?>THB</label>
+							<label ><?php //echo $shipping ;?> THB</label>
+							<label ><?php// echo $vat ;?> THB</label>
+							<label ><?php// echo $total ;?> THB</label>
 						</div>
 						<input type="submit" id="submit-step4" name="submit-step4" value="Confirm" />
 						<input type="submit" id="back-step4"   value="Back" />
