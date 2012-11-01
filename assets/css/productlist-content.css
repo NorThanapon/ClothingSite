@@ -78,6 +78,7 @@ margin-top:10px;
  margin-right:30px;
  display:inline-block;
  width:140px;
+ vertical-align: top;
 }
 
 .sub-product img{
@@ -91,6 +92,7 @@ height:230px;
 	font-size:70%;
 	color:#8C8C8C;	
 	width:180px;
+	padding-top: 5px;
 }
 
 

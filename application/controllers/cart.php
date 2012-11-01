@@ -72,7 +72,7 @@ class Cart extends CI_Controller {
 			);
 			$cookie_num = array(
 				'name' => 'amount',
-				'value' => 1,
+				'value' => $quantity,
 				'expire' => '2592000'
 			);
 			$this->input->set_cookie($cookie_cart);			
@@ -109,37 +109,45 @@ class Cart extends CI_Controller {
 		}
 		else{
 			//select qty
-			$where = 'item_id = '.$item_id;
+			$where = "'".$item_id."'";
 			$detail = $this->cart_model->get_item_detail($where);
-		    $detail = explode(';',$cookie_value);
-			foreach($detail as $item){
-				
+
+			//echo $cookie_value."<br />";
+			$detail = explode(';',$cookie_value);
+		
+			//set new value to cookie
+			$new = "";
+			for($i=0; $i<count($detail)-1; $i++){
+				$item = explode(',',$detail[$i]);
+				if($item[0] == $item_id){
+					$cookie_num_value -= $item[1];
+				}
+				else{
+					if($i == 0){
+						$new = $detail[$i];
+					}
+					else{
+						$new = $new.';'.$detail[$i];
+					}
+				}
 			}
-			$cookie_num_value -= 1;
+			//echo $new.'+'.$cookie_num_value ;
 			
+			$cookie_cart = array(
+				'name' =>  'cart',
+				'value' =>   $new,
+				'expire' => '2592000'
+			);
 			$cookie_num = array(
 				'name' => 'amount',
 				'value' => $cookie_num_value,
 				'expire' => '2592000'
 			);	
 			
-			$detail = explode(';',$cookie_value);
-			//$amount = count($detail);
-			$new = "";
-			for($i=0; $i<count($detail)-1; $i++){
-				$new = $new.''.$detail[$i];
-			}
-			
-			echo $new;
-			/*
-			$cookie_cart = array(
-				'name' =>  'cart',
-				'value' =>   $new,
-				'expire' => '2592000'
-			);
-			*/			
+			$this->input->set_cookie($cookie_cart);
+			$this->input->set_cookie($cookie_num);
 		}	
-		//redirect(site_url().'cart');
+		redirect(site_url().'cart');
 	}
 	public function destroy_cookie($item_id=FALSE){
 		delete_cookie("cart");
