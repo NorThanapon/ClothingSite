@@ -12,8 +12,7 @@
 		<div class="sub-image">
 		 
 		<ul id="thumblist" class="clearfix" >
-			<li><a class="zoomThumbActive" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?php echo asset_url().'db/products/'.$product_detail->image_file_name; ?>',largeimage: '<?php echo asset_url().'db/products/'.$product_detail->image_file_name; ?>"><img src='<?php echo asset_url().'db/products/'.$product_detail->image_file_name; ?>'  style="width:57px;height:74px;"></a></li>
-		
+			
 		<?php
 		foreach($sub_image as $item)
 		{	
@@ -38,7 +37,7 @@
 				<h1> <?php echo $product_detail->product_name_en ?> </h1>
 				 <input type="hidden" id="item_id" value="<?php echo $product_detail->item_id; ?>" />
 					<div id="item-detail" value="item-detail">
-					
+
 					</div>
 				<br />
 			</div>
@@ -138,7 +137,7 @@
 				$("#color-image").html("");
 				for(i = 0; i<data.length;i++) {
 					color = data[i];
-					alert(data);
+					//alert(data);
 					$("#color-image")
 						.append($('<div></div>').attr('id',"div"+color.color_id)
 							.append($('<img></img>')
@@ -151,36 +150,16 @@
 					$("#"+color.color_id).click(function() {
 						$("#select-color").val(this.id)
 						var color_id = this.id;
-					$.ajax({
-						type: 'POST',
-						url: "<?php echo base_url('ajax/item_ajax'); ?>",
-						data: "product_id=" + <?php echo $product_detail->product_id; ?> + "&size=" + size + "&color_id="+ color_id,
-						
-						success: function( data ) {
-						alert(data);
-						$("#item-detail").html(data);
-						
-			//window.location.reload();
-			//alert($('#ddl-detail-size').val());
-			
-					}});
-						
-					});
-					/*
-					var div = document.createElement("div");
-					div.setAttribute('id', color.color_id);
 					
-					$('#'+color.color_id).click(function() {
-						alert(color.color_id);
+					var url_2 = "<?php echo base_url('ajax/item_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
+					//alert(url_2);
+					$.getJSON(url_2, function(data){
+						$("#item-detail").html("ItemId: "+data.item_id);
 					});
 					
-					var img = document.createElement("img");
-					img.setAttribute('src', "<?php echo asset_url().'db/colors/'; ?>"+color.color_file_name);
+						
+					});
 					
-					div.appendChild(img);
-					color_div.appendChild(div);
-					*/
-					//display it somehow
 				}
 			});
 		}).change();
