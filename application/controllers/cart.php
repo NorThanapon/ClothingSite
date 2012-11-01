@@ -28,15 +28,21 @@ class Cart extends CI_Controller {
 			$where = "";
 			for($i=0; $i<count($detail); $i++){
 			    //echo $detail[$i]."<br />";
+				//echo $i.' '.(count($detail)-2);
 				$item = explode(',',$detail[$i]);
-				if($i == (count($detail)-2)){
+				if(count($detail) <= 2){
+					$where = $where." '".$item[0]."' ";
+				}
+				else if($i == (count($detail)-2)){
 					$where = $where." '".$item[0]."' ";
 					break;
 				}
-				$where = $where." '".$item[0]."',";
+				else{
+					$where = $where." '".$item[0]."', ";
+				}
 				
 			}
-			//echo $where;
+			//echo $where."::";
 			$data['detail'] = $detail;
 			$data['items'] = $this->cart_model->get_item_detail($where);
 		}
@@ -109,7 +115,9 @@ class Cart extends CI_Controller {
 		}
 		else{
 			//select qty
+			
 			$where = "'".$item_id."'";
+			//echo $where;
 			$detail = $this->cart_model->get_item_detail($where);
 
 			//echo $cookie_value."<br />";
@@ -131,7 +139,7 @@ class Cart extends CI_Controller {
 					}
 				}
 			}
-			//echo $new.'+'.$cookie_num_value ;
+			echo $new.'+'.$cookie_num_value ;
 			
 			$cookie_cart = array(
 				'name' =>  'cart',
