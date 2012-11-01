@@ -274,4 +274,3 @@ class Tag extends CI_Controller
 	}
 }
 ?>
-?>

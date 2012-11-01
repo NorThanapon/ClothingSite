@@ -1,9 +1,6 @@
 	<h1>Tag Management</h1>  
 	<div class="page-action">
-<!-- <<<<<<< HEAD -->
-<!-- ======= -->
 		<?php echo anchor('admin/tag/add', '<img  src='.asset_url().'img/add-icon.png'.' alt="" />Add New Tag', 'class="button gradient"'); ?>
-<!-- >>>>>>> tag: delete, search -->
 	</div>
 	<div class="clear-float"></div>
 	<div class="report-filter">
