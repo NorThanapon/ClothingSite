@@ -17,8 +17,7 @@ class Payment extends CI_Controller {
 		$data['order_number'] = $this->payment_model->get_order_number();
 		$this->load->helper('date');
 		$dateString = "%d/%m/%Y";
-		$data['order_date'] =   mdate($dateString, "");
-		
+		$data['order_date'] =   mdate($dateString, "");		
 		
         $this->load->view('sub_page',$data);
 			

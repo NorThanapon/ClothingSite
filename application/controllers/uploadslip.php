@@ -4,7 +4,7 @@ class UploadSlip extends CI_Controller {
 	{
 		$data['page_title'] = 'Upload Slip | BfashShop';
 		$data['error'] = "No";     
-		$data['page'] = 'Payment/Upload-Slip';
+		$data['page'] = 'Payment/upload-slip';
         $this->load->view('sub_page',$data);
 	}
 }
