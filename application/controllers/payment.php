@@ -5,7 +5,23 @@ class Payment extends CI_Controller {
 		$data['page_title'] = 'Payment | BfashShop';
 		$data['error'] = "No";     
 		$data['page'] = 'Payment/payment';
+		$this->load->model('member_model');
+		$member = $this->member_model->get($this->input->post('e_mail'));
+		$data['first_name'] = $member->first_name;
+		$data['last_name'] = $member->first_name;
+		$data['telephone'] = $member->telephone;
+		$data['mobile'] = $member->mobile;
+		$data['address'] = $member->address;
+		$data['postcode'] = $member->postcode;
+		$this->load->model('payment_model');
+		$data['order_number'] = $this->payment_model->get_order_number();
+		$this->load->helper('date');
+		$dateString = "%d/%m/%Y";
+		$data['order_date'] =   mdate($dateString, "");
+		
+		
         $this->load->view('sub_page',$data);
+			
     }
 	public function register() 
 	{		
@@ -17,7 +33,7 @@ class Payment extends CI_Controller {
 		if (!$this->input->post('password')) 
 		{ //no authen
 			echo 'Please enter password,
-			<br />6 characters or longer with at least 1 number';
+			6 characters or longer with at least 1 number';
             return;
         }
 		if( strchr($this->input->post('e_mail'),"@")=="")//incorrect e_mail
@@ -31,25 +47,25 @@ class Payment extends CI_Controller {
 		if($result!=null)//e_mail fail
 		{
 			echo "A customer account with this email address already exists,
-				<br /> please use a different email address";
+				 please use a different email address";
 			return;
 		}		
 		if($this->input->post('password')!=$this->input->post('confirm_password'))//confirm_password fail
 		{
 			echo "Please enter password,
-			<br />6 characters or longer with at least 1 number";
+			6 characters or longer with at least 1 number";
 			return;
 		}		
 		if(strlen($this->input->post('password'))<6||strlen($this->input->post('password'))>6||$this->input->post('password')=="")//password lenght fail
 		{
 			echo "Please enter password,
-			<br />6 characters or longer with at least 1 number";
+			6 characters or longer with at least 1 number";
 			return;
 		}
 		if($this->_check_password($this->input->post('password'))!="")//password fail
 		{
 			echo "Please enter password,
-			<br />6 characters or longer with at least 1 number";		
+			6 characters or longer with at least 1 number";		
 			return;
 		}
 		echo "true";
@@ -101,7 +117,7 @@ class Payment extends CI_Controller {
 		if($member==null)// incorrect username
 		{
 			echo 'The following errors have occurred:
-			<br />Please check your email address and password are correct and submit your details again.';
+			Please check your email address and password are correct and submit your details again.';
            
 			return;
 		}	
@@ -110,18 +126,26 @@ class Payment extends CI_Controller {
 		if($this->encrypt->decode($member->password)!=$this->input->post('password'))//password incorrect
 		{
 			echo 'The following errors have occurred:
-			<br />Please check your email address and password are correct and submit your details again.';
+			Please check your email address and password are correct and submit your details again.';
 				
             return;
 		}
-		echo "true";
+		echo 'true';
 			
     }
 	public function step_2()
 	{
 		$this->load->model('member_model');
-		$this->member_model->update_member_profile();		
+		$this->member_model->update_member_profile();
+		$this->load->model('member_model');
+		$member = $this->member_model->get($this->input->post('e_mail'));		
 		
+		$data['first_name'] = $member->first_name;
+		$data['last_name'] = $member->first_name;
+		$data['telephone'] = $member->telephone;
+		$data['mobile'] = $member->mobile;
+		$data['address'] = $member->address;
+		$data['postcode'] = $member->postcode;
 		echo "true";
 	}
 	public function step_3()
