@@ -455,7 +455,7 @@ class Product extends CI_Controller
 		$this->load->library('image_moo');
 		$this->image_moo->load('./assets/db/products/'.$file_name);
 		$this->image_moo->resize($width,$height);	
-		$this->image_moo->set_jpeg_quality(90);
+		$this->image_moo->set_jpeg_quality(150);
 		$this->image_moo->save('./assets/db/products/'.$size_name.'_'.$file_name);
 		//if ($this->image_moo->error) echo $this->image_moo->display_errors(); 
 	}

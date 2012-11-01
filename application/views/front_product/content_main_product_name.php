@@ -18,7 +18,7 @@
 		{	
 			
 		?>		
-			<li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?php echo asset_url().'db/products/'.$item->image_file_name; ?>',largeimage: '<?php echo asset_url().'db/products/'.$item->image_file_name; ?>'}"><img src='<?php echo asset_url().'db/products/'.$item->image_file_name; ?>'></a></li>
+			<li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?php echo asset_url().'db/products/m_'.$item->image_file_name; ?>',largeimage: '<?php echo asset_url().'db/products/l_'.$item->image_file_name; ?>'}"><img src='<?php echo asset_url().'db/products/s_'.$item->image_file_name; ?>'></a></li>
 			
 		<?php
 		}
@@ -112,7 +112,14 @@
 	  <?php } ?>
 			</select>
 			
-				<a href="<?php echo asset_url().'img/facebook.jpg'; ?>"><img src="<?php echo asset_url().'img/facebook.jpg'; ?>"></a>
+			<!-- AddThis Button BEGIN -->
+			<div class="addthis_toolbox addthis_default_style ">
+			<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+			<a class="addthis_button_tweet"></a>
+			</div>
+			<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+			<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fcdc647303bdb9e"></script>
+			<!-- AddThis Button END -->
 			</h2>
 		</div>
 		<div id="product-add">
