@@ -53,12 +53,12 @@
 					<?php 
 						if($products[$i]->on_sale==true)
 						{
-							echo "<h3> ".$this->lang->line('was')." ".$products[$i]->markup_price." ".$this->lang->line('THB')."</h3>";
-							echo "<h2>".$products[$i]->markdown_price." ".$this->lang->line('THB')."</h2>";
+							echo "<h3> ".$this->lang->line('was')." ".number_format($products[$i]->markup_price)." ".$this->lang->line('THB')."</h3>";
+							echo "<h2>".number_format($products[$i]->markdown_price)." ".$this->lang->line('THB')."</h2>";
 						}
 						else
 						{
-							echo "<h1>".$products[$i]->markup_price." ".$this->lang->line('THB')."</h1>";
+							echo "<h1>".number_format($products[$i]->markup_price)." ".$this->lang->line('THB')."</h1>";
 							echo "<h2><br /></h2>";
 						}
 					?>

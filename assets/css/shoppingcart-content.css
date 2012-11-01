@@ -66,7 +66,7 @@
 }
 .product-image img{
 	width:90px;
-	height:auto;
+	height:120px;
 	position:relative;
 	float:left;	
 	margin-right:15px;
@@ -148,28 +148,28 @@
 }
 
 #content-footer_wish_list {
-float:right;
-width:380px;
-height:500px;
-font-size:80%;
-color:#5C5C5C;
-font-family:Serif;
-line-height:130%;
-margin-top:5px;
+	float:right;
+	width:380px;
+	height:500px;
+	font-size:80%;
+	color:#5C5C5C;
+	font-family:Serif;
+	line-height:130%;
+	margin-top:5px;
 
 }
 
 #footer-calculate{
-border-bottom:1px solid #ACACAC;
-padding-bottom:10px;
-height:30px;
+	border-bottom:1px solid #ACACAC;
+	padding-bottom:10px;
+	height:30px;
 }
 
 #footer-total{
-margin-top:5px;
-color:#000;
-font-size:110%;
-height:30px;
+	margin-top:5px;
+	color:#000;
+	font-size:110%;
+	height:30px;
 }
 span #subtotal{
 	display:block;
@@ -182,17 +182,16 @@ span #delivery-charge{
 	display:block;
 }
 .num-footer{
-float:right;
-font-size:110%;
+	float:right;
+	font-size:110%;
 }
 
 .total{
-
-float:left;
+	float:left;
 }
 
 .total-num{
-float:right;
+	float:right;
 }
 
 .footer-button input[type="submit"]{
