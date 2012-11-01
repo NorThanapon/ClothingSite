@@ -35,9 +35,9 @@
 				<a href="<?php echo asset_url().'db/brands/'.$product_detail->logo; ?>"><img src="<?php echo asset_url().'db/brands/'.$product_detail->logo; ?>"></a>
 				<br />
 				<h1> <?php echo $product_detail->product_name_en ?> </h1>
-				 <input type="hidden" id="item_id" value="<?php echo $product_detail->item_id; ?>" />
+					<input type="hidden" id="item_id" value="" />
 					<div id="item-detail" value="item-detail">
-
+						 
 					</div>
 				<br />
 			</div>
@@ -162,8 +162,9 @@
 					//alert(url_2);
 					$.getJSON(url_2, function(data){
 						$("#item-detail").html("ItemId: "+data.item_id);
+						$("#item_id").val(data.item_id);
 					});
-					
+					var url_3 = "<?php echo base_url('ajax/quantity_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
 					$.getJSON(url_3, function(data){
 						alert(data);
 					});
@@ -186,17 +187,19 @@
 				return false;
 			}
 			else{
+				var temp = document.getElementById("item-detail");
+				var item = $("#item_id").val(); //temp.innerHTML;
 				$.ajax({
+					
 					type: 'POST',
 					url: "<?php echo base_url('cart/add_to_cart');?>",
-					data:  { item_id: $('#item_id').val(),
-							 quantity: $('#quantity').val(),
-							 size: $('input[name=ddl-size]').val(),
-							 color: $('#color-image').val() 
+					data:  { item_id: item,
+							 quantity: $('#ddl-product-quantity').val(),
 						   },
 					success: function( data ) {
-						alert(data);
+						//alert(data);
 						if(data == 'true')	{
+							//alert(quantity);
 							window.location.href = "<?php echo base_url('cart');?>";
 							
 						}
