@@ -17,7 +17,13 @@ class Payment extends CI_Controller {
 		$data['order_number'] = $this->payment_model->get_order_number();
 		$this->load->helper('date');
 		$dateString = "%d/%m/%Y";
+
 		$data['order_date'] =   mdate($dateString, "");		
+
+		$data['order_date'] =   mdate($dateString, "");
+		$data['cookie_cart'] = "";
+		$data['items_order'] = FALSE;
+
 		
         $this->load->view('sub_page',$data);
 			
@@ -145,6 +151,28 @@ class Payment extends CI_Controller {
 		$data['mobile'] = $member->mobile;
 		$data['address'] = $member->address;
 		$data['postcode'] = $member->postcode;
+		$this->load->model('cart_model');
+		// get cart
+		if($this->input->cookie('cart') == TRUE){
+			$value = $this->input->cookie('cart');
+			$detail = explode(';',$value);
+			
+			$where = "";
+			for($i=0; $i<count($detail); $i++){
+			    //echo $detail[$i]."<br />";
+				$item = explode(',',$detail[$i]);
+				if($i == (count($detail)-2)){
+					$where = $where." '".$item[0]."' ";
+					break;
+				}
+				$where = $where." '".$item[0]."',";
+				
+			}
+			//echo $where;
+			$data['cookie_cart'] = $detail;
+			$data['items_order'] = $this->cart_model->get_item_detail($where);
+			 //print_r($data['items_order'] );
+		}
 		echo "true";
 	}
 	public function step_3()

@@ -1,4 +1,3 @@
-		
 		<form>
 			<div id="payment-head">
 			 <div id="header-logo">
@@ -128,7 +127,7 @@
 						</div>					
 					</div>				
 					<div id="product-detail">
-						
+						<?php echo"test 131"; print_r($items_order); ?>
 						<table id="product-detail-table">
 							<tr>
 								<th>Product ID</th>
@@ -138,15 +137,15 @@
 								<th>Price (THB)</th>
 							</tr>
 							<?php 
-							foreach($product_order as $item)
+							for($i=0;$i<count($items_order);$i++)
 							{
 							
 							echo "<tr>";
-							echo "<td>".$item->item_id."</td>";
-							echo "<td>".$item->product_descrption_en."</td>";
-							echo "<td>".$item->quantiity."</td>";
-							echo "<td>".$item->unit_price."</td>";
-							echo "<td>".$item->total_price."</td>";
+							echo "<td id='item_id_3_".$i."'></td>";
+							echo "<td>".$items_order[$i]->product_descrption_en."</td>";
+							echo "<td>".$items_order[$i]->quantiity."</td>";
+							echo "<td>".$items_order[$i]->unit_price."</td>";
+							echo "<td>".$items_order[$i]->total_price."</td>";
 							echo "</tr>";
 							
 							}
@@ -223,17 +222,25 @@
 								<th>Price (THB)</th>
 							</tr>
 							<?php 
-							foreach($product_order as $item)
+							if(isset($items_order))
+							{
+							foreach($items_order as $item)
 							{
 							
-							echo "<tr>";
-							echo "<td>".$item->item_id."</td>";
-							echo "<td>".$item->product_descrption_en."</td>";
-							echo "<td>".$item->quantiity."</td>";
-							echo "<td>".$item->unit_price."</td>";
-							echo "<td>".$item->total_price."</td>";
-							echo "</tr>";
+								echo "<tr>";
+								echo "<td>".$item->item_id."</td>";
+								echo "<td>".$item->product_descrption_en."</td>";
+								echo "<td>";
+								foreach($cookie_cart as $cart)
+								{
+									if($cart[0] == $item->item_id )echo $cart[1];
+								}
+								echo "</td>";
+								echo "<td>".$item->unit_price."</td>";
+								echo "<td>".$item->total_price."</td>";
+								echo "</tr>";
 							
+							}
 							}
 							?>
 						</table>
@@ -343,6 +350,8 @@
 							$("#address_3").html($('#address').val());
 							$("#postcode_3").html($('#postcode').val());
 							
+							
+							
 							$('#step1').css('display','none');
 							$('#step2').css('display','none');
 							$('#step3').css('display','block');
@@ -352,6 +361,8 @@
 							$('.head-step2').css('color','#A0A0A0');
 							$('.head-step3').css('color','#353535');
 							$('.head-step4').css('color','#A0A0A0');
+							
+		
 						}
 						else
 						{
