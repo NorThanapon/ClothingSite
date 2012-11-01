@@ -49,7 +49,7 @@ class Bfash_model extends CI_Model
 		//set common page
 			$data['page_title'] = "Welcome to BfashShop.com";
 			$data['brand_list'] = $this->brand_model->get(); 
-			$data['content_history'] ='common\content-history';
+			$data['content_history'] ='common/content-history';
 			$data['women_categories'] = $this->category_model->get_by_gender('WOMEN');
 			$data['men_categories'] = $this->category_model->get_by_gender('MEN');
 		//END set common
