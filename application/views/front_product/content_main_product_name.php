@@ -164,6 +164,9 @@
 						$("#item-detail").html("ItemId: "+data.item_id);
 					});
 					
+					$.getJSON(url_3, function(data){
+						alert(data);
+					});
 						
 					});
 					
