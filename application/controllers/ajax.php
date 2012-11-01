@@ -39,16 +39,10 @@ class Ajax extends CI_Controller
 		$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$size);
 		echo json_encode($data['color_in_size']);
 	}
-	public function item_ajax()
+	public function item_ajax($product_id, $size, $color_id)
 	{
-		$product_id = $this->input->post('product_id');
-		$size = $this->input->post('size');
-		$color_id = $this->input->post('color_id');
-		
 		$this->load->model('product_model');
 		$data['item'] = $this->product_model->get_item($product_id, $size, $color_id);
-
 		echo json_encode($data['item']);
-		//echo implode(":", $data['item']);
 	}
 }?>

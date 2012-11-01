@@ -99,6 +99,7 @@ class Cart extends CI_Controller {
 	
 	
 	public function remove_item($item_id){
+		$this->load->model('cart_model');
 		$cookie_value = $this->input->cookie('cart');
 		$cookie_num_value = $this->input->cookie('amount');
 		
@@ -128,11 +129,15 @@ class Cart extends CI_Controller {
 			for($i=0; $i<count($detail)-1; $i++){
 				$new = $new.''.$detail[$i];
 			}
+			
+			echo $new;
+			/*
 			$cookie_cart = array(
 				'name' =>  'cart',
 				'value' =>   $new,
 				'expire' => '2592000'
-			);  
+			);
+			*/			
 		}	
 		//redirect(site_url().'cart');
 	}
