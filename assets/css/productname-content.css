@@ -61,25 +61,24 @@
 }
 
 .sub-image{
-	border:1px solid #ACACAC;
-	width:57px;
-	height:74px;
 	position:relative;
-	float:left;
-	display:inline-block;
+	float:left;	
 	margin-top:20px;
 	margin-left:10px;
 }
 
-.sub-image li{
-
-	float:left;
-	
-}
-
 .sub-image img{
+	border:1px solid #ACACAC;
 	width:57px;
 	height:74px;
+	display:inline-block;
+	float:left;
+	margin-right:6px;
+}
+
+.sub-image ul li {
+	display:inline-block;
+	list-style-type:none;
 }
 
 #product-sub{
