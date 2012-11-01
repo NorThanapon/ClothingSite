@@ -19,7 +19,7 @@
 		    <label for="product_id">Product Name:</label>
 		
 			
-			<select name="product_id" > 
+			<select name="product_id" id="product_id"> 
 			
 				<option value="">--Product Name--</option>
 				<?php 
@@ -60,4 +60,16 @@
 	<?php $this->load->view('common/confirm_box');?>
 	<?php $this->load->view('common/color/color_box');?>
     </body>
+	<script language="javascript">
+		$(document).ready(function() {
+			$("#product_id").change(function(){
+				type: 'POST',
+				url: "<?php echo base_url('cart/add_to_cart');?>",
+				data:  { product_id = $(this).val() },
+				success: function( data ) {
+				
+				}				
+			});
+		});
+	</script>
 </html>
