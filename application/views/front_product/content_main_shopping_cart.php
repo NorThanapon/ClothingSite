@@ -27,7 +27,7 @@
 		<div id="content-wish_list">
 			<div class="product">
 				<div class="product-image">
-					<?php echo anchor(asset_url().'db/products/'.$items[$i]->image_file_name.'',"<img src='".asset_url().'db/products/'.$items[$i]->image_file_name."' />",'');	?>
+					<?php echo anchor(asset_url().'db/products/'.$items[$i]->file_name.'',"<img src='".asset_url().'db/products/'.$items[$i]->file_name."' />",'');	?>
 				</div>
 				<div class="product-name"><h2><?php echo $items[$i]->product_name_en; ?></h2></div>
 				<div class="product-link">
