@@ -11,8 +11,8 @@ class Product_model extends CI_Model
 	var $markdown_price = '';
 	var $description_th = '';
 	var $description_en = '';
-	var $how_to_wash_th = '';
-	var $how_to_wash_en = '';
+	var $material_th = '';
+	var $material_en = '';
 	var $date_add = '';
 	var $is_active = '';
 	
@@ -44,8 +44,8 @@ class Product_model extends CI_Model
 			'markdown_price'  => $this->input->post('markdown_price'),
 			'description_th'  => $this->input->post('description_th'),
 			'description_en'  => $this->input->post('description_en'),
-			'how_to_wash_th'  => $this->input->post('how_to_wash_th'),
-			'how_to_wash_en'  => $this->input->post('how_to_wash_en'),
+			'material_th'  => $this->input->post('material_th'),
+			'material_en'  => $this->input->post('material_en'),
 			'date_add' =>   $date = date("Y-m-d H:i:s"),
 			'on_sale'   => $on_sale,
 			'is_active' => $is_active

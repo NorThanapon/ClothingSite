@@ -55,8 +55,8 @@ class Product extends CI_Controller
 		$data['form_markdown_price']  = $this->input->post('markdown_price');
 		$data['form_description_th']  = $this->input->post('description_th');
 		$data['form_description_en']  = $this->input->post('description_en');
-		$data['form_how_to_wash_th']  = $this->input->post('how_to_wash_th');
-		$data['form_how_to_wash_en']  = $this->input->post('how_to_wash_en');
+		$data['form_material_th']  = $this->input->post('material_th');
+		$data['form_material_en']  = $this->input->post('material_en');
 		$data['form_on_sale']  = $this->input->post('on_sale');
 		$active=0;
 		if($this->input->post('is_active')==true)

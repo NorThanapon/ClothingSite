@@ -33,11 +33,11 @@
 		    <label for="description_en">Description (English):</label>
 		    <label name="description_en"  ><?php echo $product->description_en; ?></label>
 		    <br />
-			<label for="how_to_wash_th">How to Wash (Thai):</label>
-		    <label name="how_to_wash_th"  ><?php echo $product->how_to_wash_th; ?></label>
+			<label for="material_th">Material (Thai):</label>
+		    <label name="material_th"  ><?php echo $product->material_th; ?></label>
 		    <br />
-			<label for="how_to_wash_en">How to Wash (English):</label>
-		    <label name="how_to_wash_en"  ><?php echo $product->how_to_wash_en; ?></label>
+			<label for="material_en">Material (English):</label>
+		    <label name="material_en"  ><?php echo $product->material_en; ?></label>
 	   
 		</fieldset>
 	    </div>

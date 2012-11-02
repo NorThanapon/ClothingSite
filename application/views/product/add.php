@@ -92,11 +92,11 @@
 		    <label for="description_en">Description (English):</label>
 		    <textarea name ="description_en" ><?php if(isset($form_description_en)) echo $form_description_en; ?></textarea>
 		    <br />
-			<label for="how_to_wash_th">How to Wash (Thai):</label>
-		    <textarea name ="how_to_wash_th" ><?php if(isset($form_how_to_wash_th)) echo $form_how_to_wash_th; ?></textarea>
+			<label for="material_th">Material (Thai):</label>
+		    <textarea name ="material_th" ><?php if(isset($form_material_th)) echo $form_material_th; ?></textarea>
 		    <br />
-			<label for="how_to_wash_en">How to Wash (English):</label>
-		    <textarea name ="how_to_wash_en" ><?php if(isset($form_how_to_wash_en)) echo $form_how_to_wash_en; ?></textarea>
+			<label for="material_en">Material (English):</label>
+		    <textarea name ="material_en" ><?php if(isset($form_material_en)) echo $form_material_en; ?></textarea>
 			<br />
 			<label for="on_sale" >Sale:</label>
 			<input name="on_sale" <?php if($form_on_sale==1 ) echo " checked "?> type="checkbox"  />
