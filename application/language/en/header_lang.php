@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $lang['women'] = "WOMEN";  
 $lang['men'] = "MEN";
 $lang['Sign in'] = "Sign in"; 

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $lang['FAQ'] = "คำถามที่พบบ่อย";
 $lang['Confirm Payment'] = "ยืนยันการชำระเงิน";
 $lang['About us'] = "เกี่ยวกับเรา";
