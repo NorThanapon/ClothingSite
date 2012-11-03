@@ -30,12 +30,13 @@
 					<?php echo anchor(asset_url().'db/products/'.$items[$i]->file_name.'',"<img src='".asset_url().'db/products/'.$items[$i]->file_name."' />",'');	?>
 				</div>
 				<div class="product-name"><h2><?php echo $items[$i]->product_name_en; ?></h2></div>
+				<!-- <div class="item_id"><h2><ITEM ID: <?php// echo $items[$i]->item_id; ?></h2></div>-->
 				<div class="product-link">
 					<?php //echo anchor('#','SAVE FOR LATER |', 'title="save_for_later"'); ?>
 					<?php echo anchor('cart/remove_item/'.$items[$i]->item_id.'','REMOVE', array('title' => "Remove this item",'class' => "remove") ); ?>
 				</div>
 			</div>
-			<div class="option">
+			<div class="option" id="option<?php echo $i; ?>">
 				<div>
 				<span class="option-color">Color:</span>
 				<span><?php echo $items[$i]->color_name; ?></span>
@@ -59,9 +60,68 @@
 				<span><?php echo $quantity; ?></span>
 				</div>
 				<div class="option-button" >
-					<input type="submit" value="" />
+					<input type="submit" name="change-butt<?php echo $i; ?>" value="" />
 				</div>
 			</div>
+			<!--
+			<!-- CHANGE ITEM'S DETAILS 
+			<div class="change-option" id="change<?php echo $i; ?>" >
+				<div class="image-loading" >
+					<img class="imgs<?php echo $i; ?>" src="<?php echo asset_url().'img/loading1.gif'; ?>" />
+				</div>
+				<div id="change-product-sizecolor">
+					<div id="change-detail-size">
+						<select id="ddl-detail-size">
+							<option value="0"> ---Select Size--- </option>
+							<?php 
+							foreach($item_detail_size as $item)
+							{
+							?>
+								<option value="<?php echo $item->size; ?>"> <?php echo $item->size; ?> </option>
+							<?php
+							}
+							?>
+						</select>
+						<h2>Size:</h2>
+						
+					</div>
+					<div id="change-product-color">
+						<h2>Color:</h2>
+						<div id="color-image">
+							<?php
+							
+							//if($color_in_size != NULL)
+							{
+							?>
+								 <input type="hidden" value="<?php //echo $color_in_size[0]->color_id; ?>" id="select-color" />
+							<?php// foreach($color_in_size as $item)
+								//{
+								?>
+									<div  id="<?php// echo $item->color_file_name;?>">
+									<img src="<?php //echo asset_url().'db/colors/'.$item->color_file_name; ?>">
+									</div>
+								<?php
+								//} 
+							}
+								?>
+							
+						</div>
+					</div>
+				</div>	
+				<div id="change-product-quantity">
+					<h2>Quantity:</h2>
+					<select id="ddl-product-quantity"> 
+					<?php for($q=1;$q<=10;$q++)
+					{ 
+					?>
+						<option value="<?php echo $q; ?>"> <?php echo $q; ?> </option>
+			  <?php } ?>
+					</select>
+				</div>
+			</div>
+			<!-- END ITEM'S DETAILS -->
+			
+			
 			<div class="price">
 				<div class="price-product"><?php	if($items[$i]->on_sale == 1){
 														$price = $items[$i]->markdown_price * $quantity;
@@ -115,6 +175,14 @@
 </form>
 <script type="text/javascript">
 	$(document).ready(function() {
-	
+		//$('.option').hide();
+		//$('.option').show();
+		/*
+		$('.change-option').show();
+		$('#option1')
+		$('#change0').hide();
+		$('.imgs1').hide();*/
+		$()
+		//$('.change-option').hide();
 	});
 </script>
