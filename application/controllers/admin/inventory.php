@@ -292,9 +292,11 @@ class Inventory extends CI_Controller
 	public function color_in_product($product_id)
 	{
 		$this->load->model('product_model');
-		$data['color_in_size'] = $this->product_model->get_color_in_product($product_id);
-		echo json_encode($data['colors']);
-	}
-	
+		$data['colors'] = $this->product_model->get_color_in_product($product_id);
+		$data["allow_manage_color"] = FALSE;
+		$data["picker_control_name"] = "color";
+        $data["picker_control_id"] = "ddl-color";
+		$this->load->view('common/color/color_picker',$data);
+	}	
 }
 ?>

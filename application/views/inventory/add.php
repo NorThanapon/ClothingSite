@@ -40,7 +40,9 @@
 		   
 		    <br />
 			<label for="<?php echo $picker_control_name; ?>">Color:</label>
+			<span id="color-drop-down">
 			<?php $this->load->view('common/color/color_picker');?>*
+			</span>
 			
 			<?php echo form_error('color', '<span class="form-error-message">', '</span>'); ?>
 		    
@@ -61,14 +63,11 @@
 	<?php $this->load->view('common/color/color_box');?>
     </body>
 	<script language="javascript">
-		$(document).ready(function() {
+		$(document).ready(function() {			
 			$("#product_id").change(function(){
-				type: 'POST',
-				url: "<?php echo base_url('cart/add_to_cart');?>",
-				data:  { product_id = $(this).val() },
-				success: function( data ) {
-				
-				}				
+				product_id = $(this).val();
+				var url = "<?php echo base_url('admin/inventory/color_in_product/');?>/"+product_id;
+				$("#color-drop-down").load(url);								
 			});
 		});
 	</script>

@@ -270,7 +270,7 @@ class Product_model extends CI_Model
 	}
 	function get_color_in_product($product_id)
 	{
-		$query = $this->db->query("SELECT distinct color_file_name,color_id FROM products_items_colors WHERE product_id=".$product_id."");
+		$query = $this->db->query("SELECT distinct color_file_name,color_id,color_name FROM products_items_colors WHERE product_id='".$product_id."'");
 		return $query->result();
 	}
 	function get_item($product_id,$size,$color_id)
