@@ -67,10 +67,21 @@ class Brand_model extends CI_Model
 			$query = $this->db->get('brands');	
 			return $query->result();
 	    }
+		
 	    $query = $this->db->get_where('brands', array('brand_id' => $brand_id));
 	    if ($query->num_rows() > 0)
 		return $query->row();
 	    return FALSE;
+	}
+	
+	function get_brand()
+	{
+	    $this->db->order_by('brand_name','asc');	
+	    $query = $this->db->get_where('brands', array('is_active' => '1'));
+		if ($query->num_rows() <= 1)
+			return $query->row();
+		return $query->result();
+	   
 	}
 	
 	function get_by_name($brand_name = FALSE)

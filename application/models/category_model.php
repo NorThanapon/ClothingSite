@@ -76,6 +76,7 @@ class Category_model extends CI_Model
 	
 	function get_by_gender($cat_gender)
 	{
+		$this->db->order_by('cat_name_en','asc');
 	    $query = $this->db->get_where('categories', array('cat_gender' => $cat_gender , 'is_active' => '1'));
 		
 	    return $query->result();

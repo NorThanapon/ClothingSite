@@ -14,9 +14,40 @@
 		<label>Product Category:</label>
 		<select id='ddl_product_cat' name='product_cat'>
 			<option value="0">All Categories</option>
-			<?php foreach($category_list as $item){?>
-				<option <?php if (isset($search_product_cat) && $item->cat_id == $search_product_cat) echo 'selected' ?>  value="<?php echo $item->cat_id;?>" ><?php echo $item->cat_name_en;?></option>
-			<?php } ?>
+			<?php echo '<option value="" disabled >###### Women ######</option>'; ?>;
+			<?php
+			foreach($category_list as $item)
+				{  
+					if($item->cat_gender == "Women")
+					{
+						if(isset($form_cat_id)&&$form_cat_id==$item->cat_id)
+						{
+							
+							echo '<option value="'.$item->cat_id.'" selected="selected">'.$item->cat_name_en.'</option>';
+						}
+						else
+						{
+							echo '<option value="'.$item->cat_id.'">'.$item->cat_name_en.'</option>';
+						}
+					}
+				}
+				echo '<option value="" disabled ></option>';
+				echo '<option value=""  disabled >######## Men ########</option>';
+				foreach($category_list as $item)
+				{  
+					if($item->cat_gender == "Men")
+					{
+						if(isset($form_cat_id)&&$form_cat_id==$item->cat_id)
+						{
+							echo '<option value="'.$item->cat_id.'" selected="selected">'.$item->cat_name_en.'</option>';
+						}
+						else
+						{
+							echo '<option value="'.$item->cat_id.'">'.$item->cat_name_en.''.$item->cat_gender.'</option>';
+						}
+					}
+				}
+				?>
 		</select>
 		<br />
 		<label>Brands:</label>

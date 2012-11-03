@@ -21,7 +21,7 @@
 		</span>
 		<span class="footer-menu">
 			<a href="http://www.facebook.com/bfash"><img src="<?php echo asset_url().'img/tt-facebook.png'; ?>" />Facebook</a>
-			<a href="###"><img src="<?php echo asset_url().'img/twitter.png'; ?>" />Twiter</a>
+			<a href="https://twitter.com/bdashfash"><img src="<?php echo asset_url().'img/twitter.png'; ?>" />Twiter</a>
 			<a href="###"><img src="<?php echo asset_url().'img/instagram.png'; ?>" />Instagram</a>
 			
 			
