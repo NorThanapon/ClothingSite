@@ -21,16 +21,12 @@ class Inventory extends CI_Controller
 	{
 		//load color
 		$this->load->model('color_model');
-        //$data["all_colors"] = $this->color_model->get();
-        //$data["colors"] = $data["all_colors"];
 		$data["colors"] = NULL;
-		//$data["colors"] = $this->product_model->get_color_in_product($this->input->post('product_id'));
         $data["allow_manage_color"] = FALSE;
         $data["picker_control_name"] = "color";
         $data["picker_control_id"] = "ddl-color";
 		//end load color
-		
-		
+				
 		$data['dup_message_th']="";
 		$data['dup_message_en']="";
 		if(!check_authen('staff',TRUE)) {	

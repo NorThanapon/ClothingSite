@@ -78,8 +78,8 @@ class Product_model extends CI_Model
 			'markdown_price'  => $this->input->post('markdown_price'),
 			'description_th'  => $this->input->post('description_th'),
 			'description_en'  => $this->input->post('description_en'),
-			'how_to_wash_th'  => $this->input->post('how_to_wash_th'),
-			'how_to_wash_en'  => $this->input->post('how_to_wash_en'),
+			'material_th'  => $this->input->post('material_th'),
+			'material_en'  => $this->input->post('material_en'),
 			'on_sale'   => $on_sale,
 			'is_active'   => $is_active
 		);
