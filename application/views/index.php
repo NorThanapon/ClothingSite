@@ -29,14 +29,16 @@
 					<div class="text-branner">
 						<a href="<?php echo asset_url().'img/####' ?>">text</a>
 					</div>
-					<div class="sub-branner">
+					<div class="main-subbranner">
+					<div class="sub-branner1">
 					<a href="<?php echo asset_url().'img/253x360-Becky.jpg'; ?>"><img src="<?php echo asset_url().'img/253x360-Becky.jpg'; ?>"></a>
 					</div>
-					<div class="sub-branner">
+					<div class="sub-branner2">
 					<a href="<?php echo asset_url().'img/253x360-ELLEgirl-W.jpg'; ?>"><img src="<?php echo asset_url().'img/253x360-ELLEgirl-W.jpg'; ?>"></a>
 					</div>
-					<div class="sub-branner">
+					<div class="sub-branner3">
 					<a href="<?php echo asset_url().'img/253x360-ITOKIN.jpg'; ?>"><img src="<?php echo asset_url().'img/253x360-ITOKIN.jpg'; ?>"></a>
+					</div>
 					</div>
 				</div><!-- content-main -->
 				<div class="clear-float"></div>
