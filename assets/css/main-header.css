@@ -82,6 +82,9 @@ a.link-cart {
 	margin-top:0px;
 }
 
+#header-topmenu a.header-join{
+	text-decoration:underline;
+}
 /* end header topmenu */
 /* header nav bar */
 div.header-nav-bar {

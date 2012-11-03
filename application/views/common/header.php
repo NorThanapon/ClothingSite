@@ -4,22 +4,26 @@
 	?>
 	
     <div id="header-topmenu">
+			
+		<?php echo form_open('search'); ?>
 		<td><?php echo $this->lang->line('Welcome to');?> BfashShop&nbsp </td>
-		<?php echo anchor($join_link,$join_name, 'title="Register"'); ?>
+		<?php echo anchor($join_link,$join_name, array('title'=>'Register', 'class' =>'header-join')); ?>
         <?php echo anchor($sign_in_link, $sign_in , 'title="Sign in"'); ?><!-- first,where link ,word,attribute -->
         
 		
-		<?php echo form_open('search'); ?>
+		<?php //echo form_open('search'); ?>
 			<input id="product_search" type="text" placeholder="<?php echo $this->lang->line('Enter product name or code');?>" name="product_search"/>
 			<!--<input id="txt_tag_name" type="text" name="tag_name" value="<?php if(isset($search_name)) echo $search_name;  ?>"/>-->		
 			<input name="btn_filter" type="button" value="<?php echo $this->lang->line('Go'); ?>" >
-		</form>
+		
         
 		
 		<span class="lang-link">           
 			<a href="javascript:void(0)" class="language-en" title="English">EN</a>
 			<a href="javascript:void(0)" class="language-th" title="Thai">TH</a>
         </span>
+		
+		</form>
     </div> <!-- end #header-menu -->
     <div id="header-logo">
 		<?php echo anchor(base_url(), '<img src='.asset_url().'img/bfashshop.jpg />', 'title="BfashShop"'); ?>
