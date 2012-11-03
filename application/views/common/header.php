@@ -4,13 +4,19 @@
 	?>
 	
     <div id="header-topmenu">
-		<td><?php echo $this->lang->line('Welcome to');?> BFashShop&nbsp </td>
+		<td><?php echo $this->lang->line('Welcome to');?> BfashShop&nbsp </td>
 		<?php echo anchor($join_link,$join_name, 'title="Register"'); ?>
         <?php echo anchor($sign_in_link, $sign_in , 'title="Sign in"'); ?><!-- first,where link ,word,attribute -->
         
-        <input type="text" placeholder="<?php echo $this->lang->line('Enter product name or code');?>" name="product_search"/>
-        <input type="button" value="<?php echo $this->lang->line('Go');?>"/>
-        <span class="lang-link">           
+		
+		<?php echo form_open('search'); ?>
+			<input id="product_search" type="text" placeholder="<?php echo $this->lang->line('Enter product name or code');?>" name="product_search"/>
+			<!--<input id="txt_tag_name" type="text" name="tag_name" value="<?php if(isset($search_name)) echo $search_name;  ?>"/>-->		
+			<input name="btn_filter" type="button" value="<?php echo $this->lang->line('Go'); ?>" >
+		</form>
+        
+		
+		<span class="lang-link">           
 			<a href="javascript:void(0)" class="language-en" title="English">EN</a>
 			<a href="javascript:void(0)" class="language-th" title="Thai">TH</a>
         </span>
@@ -118,6 +124,13 @@
 				success: function( data ) {
 					window.location.reload();
 			}});
-		});			
+		});
+		$('#btn_filter').click(function() {
+		    var url = document.URL;
+		    url = url.substring(0, url.indexOf('/search') + 7);
+		    url = url + $('#product_search').val() + '/' + <?php echo $product_id->product_id;?>;
+		    window.location = url;
+		});
 	});
+	
 </script>
