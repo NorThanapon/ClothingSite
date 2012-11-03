@@ -1,10 +1,11 @@
 	<div id="content-image">
 	<?php $color_in_size; ?>
 		<div class="main-image">
-		<a href="<?php echo asset_url().'db/products/'.$product_detail->image_file_name; ?>" class="jqzoom" rel='gal1'  title=" " >
-            <img src="<?php echo asset_url().'db/products/'.$product_detail->image_file_name; ?>"  title=" "  style="width:265px;height:345px;">
-        </a>
-			
+			 <div class="clearfix">
+				<a href="<?php echo asset_url().'db/products/l_'.$product_detail->image_file_name; ?>" class="jqzoom" rel='gal1'  title=" " >			
+					<img src="<?php echo asset_url().'db/products/m_'.$product_detail->image_file_name; ?>"  title=" "  style="width:265px;height:345px;"> 
+				</a>
+			 </div>
 		</div>
 
 		<div id="product-sub">
@@ -76,7 +77,7 @@
 					?>
 				</select>
 				
-				<a href="###" >Size Chart</a>
+					<input class="button btn-submit" type = "submit" name="submit" value="Size Chart"/>
 			</div>
 			<div id="product-color">
 			   
@@ -113,7 +114,7 @@
 			</select>
 			
 			<!-- AddThis Button BEGIN -->
-			<div class="addthis_toolbox addthis_default_style ">
+			<div class="addthis_toolbox addthis_default_style">
 			<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
 			<a class="addthis_button_tweet"></a>
 			</div>

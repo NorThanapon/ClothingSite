@@ -370,8 +370,8 @@
                 this.node.css({
                     top: 0,
                     left: 0,
-                    width: this.node.w + 'px',
-                    height: this.node.h + 'px',
+                    width: '100px',
+                    height: '100px',
                     position: 'absolute',
                     display: 'none',
                     borderWidth: 1 + 'px'
@@ -389,7 +389,8 @@
                         position: 'absolute',
                         display: 'block',
                         left: -(this.node.left + 1 - smallimage.bleft) + 'px',
-                        top: -(this.node.top + 1 - smallimage.btop) + 'px'
+                        top: -(this.node.top + 1 - smallimage.btop) + 'px',
+						
                     });
 
                 }
@@ -506,7 +507,7 @@
 
         function Stage() {
             var $obj = this;
-            this.node = $("<div class='zoomWindow'><div class='zoomWrapper'><div ></div><div class='zoomWrapperImage'></div></div></div>");
+            this.node = $("<div class='zoomWindow'><div class='zoomWrapper'><div class='zoomWrapperTitle'></div><div class='zoomWrapperImage'></div></div></div>");
             this.ieframe = $('<iframe class="zoomIframe" src="javascript:\'\';" marginwidth="0" marginheight="0" align="bottom" scrolling="no" frameborder="0" ></iframe>');
             this.setposition = function () {
                 this.node.leftpos = 0;

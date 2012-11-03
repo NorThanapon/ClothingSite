@@ -142,12 +142,24 @@ margin-top:5px;
 	width:200px;
 	margin-left:10px;
 }
-
-#detail-size a{
-	text-decoration:underline;
-	font-size:90%;
-	margin-left:20px;
+#detail-size input[type="submit"]{
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#000;
+	cursor: hand;cursor: pointer; 
+	height:23px;
+	width:80px;
+	margin-left:2px;
+	margin-right:4px;
+	display:inline-block;
 }
+
+#detail-size input[type="submit"]:hover{
+	background:#4F4F4F;
+	}
 
 #product-color h2{
 	margin-top:15px;
@@ -180,6 +192,16 @@ padding-bottom:15px;
 margin-top:5px;
 }
 
+#product-quantity #ddl-product-quantity{	
+		display: inline-block;
+		float: left;
+		margin-top: 5px;
+}
+#product-quantity div{
+width: 65%;
+float: left;
+display: inline-block;}
+
 #product-quantity h2{
 	font-size:70%;
 	color:#9C9C9C;
@@ -199,7 +221,7 @@ margin-top:5px;
 position:relative;
 float:right;
 width:45%;
-background-color:Black;
+background-color:#111111;
 color:#FFF;
 text-align:center;
 padding-top:5px;
