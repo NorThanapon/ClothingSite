@@ -113,7 +113,7 @@ a.jms-link{
 	position: absolute;
 	text-align: center;
 	left: 0px;
-	bottom: 20px;
+	bottom: 5px;
 	z-index: 2000;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -124,11 +124,12 @@ a.jms-link{
 .jms-dots span{
 	display: inline-block;
 	position: relative;
-	width: 12px;
-	height: 12px;
+	width: 5px;
+	height: 5px;
 	border-radius: 50%;
 	background: #777;
-	margin: 3px;
+	margin-top: 10px;
+	margin-right:10px;
 	cursor: pointer;
 	box-shadow: 
 		1px 1px 1px rgba(0,0,0,0.1) inset, 
@@ -136,8 +137,8 @@ a.jms-link{
 }
 .jms-dots span.jms-dots-current:after{
 	content: '';
-	width: 8px;
-	height: 8px;
+	width: 5px;
+	height: 5px;
 	position: absolute;
 	top: 2px;
 	left: 2px;

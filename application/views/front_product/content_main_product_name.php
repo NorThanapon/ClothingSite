@@ -1,3 +1,4 @@
+
 	<div id="content-image">
 	<?php $color_in_size; ?>
 		<div class="main-image">
@@ -47,13 +48,13 @@
 				<?php
 					if($product_detail->on_sale==true)
 					{	
-						echo "<h3>".$product_detail->markup_price."THB</h3>";
-						echo "<h2>".$product_detail->markdown_price."THB</h2>";
+						echo "<h3>".number_format($product_detail->markup_price)." THB</h3>";
+						echo "<h2>".number_format($product_detail->markdown_price)." THB</h2>";
 					}
 					else
 					{
-						echo "<h1>".$product_detail->markup_price." THB</h1>";
-						echo "<h2><br /></h2>";
+						echo "<h1>".number_format($product_detail->markup_price)." THB</h1>";
+						
 					}
 				?>	
 				<br />
@@ -130,7 +131,7 @@
 			<input type="image" src="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>" value="Save to Wishist" id="add-to-wishlist" />
 		</div>
 	</div>
-	
+
 	<script type="text/javascript">
 	
 		$(document).ready(function() {

@@ -1,35 +1,3 @@
-#content{
-    top:-30px;	
-	max-width:1000px;
-	position:relative;
-	width: 100%;
-	margin: 0 auto;
-	vertical-align:middle;	
-	}
-	
-#content-main{ 
-	position:relative;
-	width:79%;
-	float:right;
-	padding-top:5px;
-}
-
-#content-history {
-	position:relative;
-	border-bottom:1px solid #CCCCCC;
-	width:100%;
-	height:15px;
-	font-size:75%;	
-}
-
-
-.history-previous{
-	position:relative;
-	float:left;
-	color:#8C8C8C;	
-	margin-left:5px;
-}
-
 #content-image{
 	
 	position:relative;
@@ -38,15 +6,6 @@
 	margin-top:20px;
 	
 }
-
-#history-current
-{
-	position:relative;
-	float:left;
-	color:#F93;
-	margin-left:5px;
-}
-
 
 .main-image{
 	border:1px solid #ACACAC;
@@ -85,64 +44,70 @@
 	margin-left:60px;
 }
 
-#content-detail{
+#content-product{
 	position:relative;
-	float:right;
-	width:45%;	
-	margin-top:20px;
-}
-
-#detail-price {
-font-size:70%
-}
-
-#detail-price h3{
-	text-decoration:line-through;
-	
-}
-#detail-price h2{
-	
-	color:Red;
-	font-size:85%;
-	line-height:170%;
-	
+	float:left;
+	width:50%;	
 	
 }
 
-#detail-product h2{
-	color:#CCCCCC;
-	font-size:75%;
-	line-height:120%;
-}
-
-#product-particular{
+#content-product #product-particular{
 position:relative;
-float:right;
-width:45%;
+float:left;
+width:100%;
 border-bottom:2px solid #ACACAC;
 padding-bottom:15px;
-margin-top:20px;
+
 }
 
-#detail-name img{
+#product-particular #detail-name img{
 	width:200px;
 	height:100px;
 }
 
-#product-sizecolor{
+#product-particular #detail-price h2{
+	
+	color:Red;
+	font-size:300%;
+	line-height:100%;	
+	
+}
+
+#product-particular #detail-price {
+font-size:70%
+}
+
+#product-particular #detail-price h3{
+	text-decoration:line-through;
+	font-size:150%;
+}
+
+#product-particular #detail-product{
+	width:100%;
+}
+
+#product-particular #detail-product h2{
+	color:#000;
+	font-size:80%;
+	line-height:120%;
+	font-weight:normal;
+}
+
+#content-product #product-sizecolor{
 position:relative;
 float:right;
-width:45%;
+width:100%;
 border-bottom:1px solid #000;
 padding-bottom:15px;
 margin-top:5px;
 }
 
-#detail-size select{
+#product-sizecolor #detail-size select{
 	width:200px;
 	margin-left:10px;
 }
-#detail-size input[type="submit"]{
+
+#product-sizecolor #detail-size input[type="submit"]{
 	border: none;
 	color: white;
 	float:right;
@@ -157,22 +122,22 @@ margin-top:5px;
 	display:inline-block;
 }
 
-#detail-size input[type="submit"]:hover{
+#product-sizecolor #detail-size input[type="submit"]:hover{
 	background:#4F4F4F;
-	}
-
-#product-color h2{
-	margin-top:15px;
-	color:#9C9C9C;
-	font-size:70%;
 }
 
-#color-image{
+#content-product #product-color h2{
+	margin-top:15px;
+	color:#9C9C9C;
+	font-size:90%;
+}
+
+#content-product #product-color #color-image{
 	margin-left:15px;
 	margin-top:5px;
 }
 
-#color-image div{
+#content-product #product-color #color-image div{
 	display:inline;
 	float:left;
 	margin-right:2px;
@@ -180,47 +145,49 @@ margin-top:5px;
 	position:relative;
 }
 
-#product-color a{
+#content-product #product-color a{
 	margin-left:5px;
 }
 
-#product-quantity{
+
+#content-product #product-quantity{
 position:relative;
-float:right;
-width:45%;
+float:left;
+width:100%;
 padding-bottom:15px;
 margin-top:5px;
 }
 
-#product-quantity #ddl-product-quantity{	
+#content-product #product-quantity #ddl-product-quantity{	
 		display: inline-block;
 		float: left;
 		margin-top: 5px;
 }
-#product-quantity div{
+
+#content-product #product-quantity div{
 width: 65%;
 float: left;
 display: inline-block;}
 
-#product-quantity h2{
+#content-product #product-quantity h2{
 	font-size:70%;
 	color:#9C9C9C;
 	
 }
-#product-quantity input{
+#content-product #product-quantity input{
 	margin-left:3px;
 	width:50px;
 }
 
-#product-quantity a{
+#content-product #product-quantity a{
 	float:right;
 	margin-top:5px;
 }
 
-#product-add {
+#content-product #product-add {
 position:relative;
 float:right;
-width:45%;
+width:100%;
 background-color:#111111;
 color:#FFF;
 text-align:center;
@@ -228,8 +195,9 @@ padding-top:5px;
 padding-bottom:5px;
 }
 
-#product-save{
+#content-product #product-save{
 	float:right;
 	margin-top:10px;
 }
+
 
