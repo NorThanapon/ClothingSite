@@ -12,13 +12,11 @@ class Main extends CI_Controller {
 	public function change_language() {
 		if (!$this->input->post('lang'))
 		{		
-			index();
 		}
 		else
 		{
 			$this->load->model('language_model');
 			$this->language_model->add($this->input->post('lang'));
-			index();
 		}
 	}
 }
