@@ -89,10 +89,21 @@ height:230px;
 
 .sub-product h2{
 	
-	font-size:70%;
+	font-size:80%;
 	color:#8C8C8C;	
 	width:180px;
 	padding-top: 5px;
 }
+
+.sub-product #detail-price h3{
+	font-size:85%;
+	text-decoration:line-through;
+}
+
+.sub-product #detail-price h2{
+	color:red;
+	font-size:90%;
+}
+
 
 

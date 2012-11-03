@@ -9,7 +9,7 @@ class Member extends CI_Controller {
 		$data['error'] = "No";
      
 		$data['page'] = 'member/registration';
-		$data['show_message_password'] = 'Please enter password,<br /> 6 characters or longer with at least 1 number';
+		$data['show_message_password'] = 'Please enter password,<br /> 6 numbers or longer with at least 1 number';
         $this->load->view('sub_page',$data);
         //$this->load->view('registration',$data); 
 
@@ -27,7 +27,7 @@ class Member extends CI_Controller {
         }
 		if (!$this->input->post('password')) 
 		{ //no authen
-			$data['show_message_password'] = 'Please enter password,<br />6 characters or longer with at least 1 number';
+			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number';
 			$data['page'] = 'member/registration';
 			$this->load->view('sub_page',$data);
             return;
@@ -62,14 +62,14 @@ class Member extends CI_Controller {
 		echo "password".$this->input->post('password');
 		if(strlen($this->input->post('password'))<6||strlen($this->input->post('password'))>6||$this->input->post('password')=="")//password lenght fail
 		{
-			$data['show_message_password'] = 'Please enter password,<br />6 characters or longer with at least 1 number';
+			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number';
 			$data['page'] = 'member/registration';
 			$this->load->view('sub_page',$data);
 			return;
 		}
 		if($this->_check_password($this->input->post('password'))!="")//password fail
 		{
-			$data['show_message_password'] = 'Please enter password,<br />6 characters or longer with at least 1 number';
+			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number';
 			$data['page'] = 'member/registration';
 			$this->load->view('sub_page',$data);
 			return;

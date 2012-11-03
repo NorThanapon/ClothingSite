@@ -58,7 +58,7 @@
 						}
 						else
 						{
-							echo "<h1>".number_format($products[$i]->markup_price)." ".$this->lang->line('THB')."</h1>";
+							echo "<h3>".number_format($products[$i]->markup_price)." ".$this->lang->line('THB')."</h3>";
 							echo "<h2><br /></h2>";
 						}
 					?>
