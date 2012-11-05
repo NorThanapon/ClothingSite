@@ -18,6 +18,7 @@ class Member extends CI_Controller {
 	{
 		$data['page_title'] = "Registration | BfashShop.com";
 		$data['form_e_mail'] = $this->input->post('e_mail');
+		// check email
 		if (!$this->input->post('e_mail')) 
 		{ //no authen
 			$data['show_message_e_mail'] = 'Please enter Email address';//
@@ -28,13 +29,6 @@ class Member extends CI_Controller {
 		if ($this->input->post('e_mail')!=$this->input->post('confirm_e_mail')) //confirm email fail
 		{ //no authen
 			$data['show_message_e_mail'] = 'Your E-mail and confirmed E-mail do not match';//
-			$data['page'] = 'member/registration';
-			$this->load->view('sub_page',$data);
-            return;
-        }
-		if (!$this->input->post('password')) 
-		{ //no authen
-			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number';
 			$data['page'] = 'member/registration';
 			$this->load->view('sub_page',$data);
             return;
@@ -57,7 +51,17 @@ class Member extends CI_Controller {
 			$data['show_message_e_mail'] = 'A customer account with this email address already exists,<br /> please use a different email address';
 			$this->load->view('sub_page',$data);
 			return;
-		}		
+		}	
+		$data['form_confirm_e_mail'] = $this->input->post('confirm_e_mail');
+		//check password
+		
+		if (!$this->input->post('password')) 
+		{ //no authen
+			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number';
+			$data['page'] = 'member/registration';
+			$this->load->view('sub_page',$data);
+            return;
+        }		
 		if($this->input->post('password')!=$this->input->post('confirm_password'))//confirm_password fail
 		{
 			$data['page_title'] = 'Registration';
@@ -126,7 +130,7 @@ class Member extends CI_Controller {
 			//$data['show_message'] = 'Please fill your Email for send new password';
 			echo 'Please fill your Email for send new password';
 			
-			return;
+			//return;
 		}
 		$this->load->model('member_model');
 		$result = $this->member_model->get($to);

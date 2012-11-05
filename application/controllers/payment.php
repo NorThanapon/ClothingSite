@@ -14,7 +14,7 @@ class Payment extends CI_Controller {
 		$data['address'] = $member->address;
 		$data['postcode'] = $member->postcode;
 		$this->load->model('payment_model');
-		$data['order_number'] = $this->payment_model->get_order_number();
+		$data['order_number'] = $this->payment_model->get_order_number()+1;
 		$this->load->helper('date');
 		$dateString = "%d/%m/%Y";
 
@@ -104,7 +104,7 @@ class Payment extends CI_Controller {
 		if($count_cha<=0)return "false";
 		
 	}
-	public function login_member()
+	public function login_member_check_error()
 	{						
 		if (!$this->input->post('e_mail')) 
 		{ //no authen	
@@ -130,19 +130,29 @@ class Payment extends CI_Controller {
 		// check password			
 		if($this->encrypt->decode($member->password)!=$this->input->post('password'))//password incorrect
 		{
+
 			echo 'The following errors have occurred:
 			Please check your email address and password are correct and submit your details again.';
 				
             return;
 		}
 		echo 'true';
+		//$data['member_profile'] = $this->member_model->get($this->input->post('e_mail'));
+		//echo json_encode($data['member_profile']);
 			
     }
+	public function get_member_profile()
+	{						
+		$this->load->model('member_model');
+		$data['member_profile'] = $this->member_model->get($this->input->post('e_mail'));
+		echo json_encode($data['member_profile']);
+			
+    }
+	
 	public function step_2()
 	{
 		$this->load->model('member_model');
-		$this->member_model->update_member_profile();
-		$this->load->model('member_model');
+		$this->member_model->update_member_profile();		
 		$member = $this->member_model->get($this->input->post('e_mail'));		
 		
 		$data['first_name'] = $member->first_name;
@@ -171,9 +181,49 @@ class Payment extends CI_Controller {
 			//echo $where;
 			$data['cookie_cart'] = $detail;
 			$data['items_order'] = $this->cart_model->get_item_detail($where);
+			
 			 //print_r($data['items_order'] );
 		}
-		echo "true";
+		
+		echo json_encode($data['cookie_cart']);
+		
+		
+		//echo json_encode($data['items_order']);
+		//echo "true";
+	}
+	public function step_2_get_items()
+	{
+		$this->load->model('member_model');	
+		$member = $this->member_model->get($this->input->post('e_mail'));
+		$this->load->model('cart_model');
+		// get cart
+		if($this->input->cookie('cart') == TRUE){
+			$value = $this->input->cookie('cart');
+			$detail = explode(';',$value);
+			
+			$where = "";
+			for($i=0; $i<count($detail); $i++){
+			    //echo $detail[$i]."<br />";
+				$item = explode(',',$detail[$i]);
+				if($i == (count($detail)-2)){
+					$where = $where." '".$item[0]."' ";
+					break;
+				}
+				$where = $where." '".$item[0]."',";
+				
+			}
+			//echo $where;
+			$data['cookie_cart'] = $detail;
+			$data['items_order'] = $this->cart_model->get_item_detail($where);
+			
+			 //print_r($data['items_order'] );
+		}
+		
+		echo json_encode($data['items_order']);
+		
+		
+		//echo json_encode($data['items_order']);
+		//echo "true";
 	}
 	public function step_3()
 	{

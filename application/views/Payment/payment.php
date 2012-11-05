@@ -1,4 +1,4 @@
-		<form>
+		<!--<form>-->
 			<div id="payment-head">
 			 <div id="header-logo">
 				<?php echo anchor(base_url(), '<img src='.asset_url().'img/bfashshop.jpg />', 'title="BfashShop"'); ?>
@@ -25,33 +25,25 @@
 			<fieldset id="step1">
 				<legend>Sign In</legend>
 				<div id="main-step1">
-				<label for="e_mail">E-mail</label>
-				<input type="text" name="e_mail" value="<?php if(isset($form_e_mail)) echo $form_e_mail; ?>" />
-				<br />
-				<label for="confirm_e_mail">Confirm E-mail</label>
-				<input type="text" name="confirm_e_mail" value="<?php if(isset($form_confirm_e_mail)) echo $form_confirm_e_mail; ?>" />
-				<br />
-				<!--<label for="username">Username</label>
-				<input type="text" name="username" >
-				<br />-->
-				<label for="password">Password</label>
-				<input type="password" name="password" />
-				<br />
-				<label for="confirm_password">Confirm Password</label>
-				<input type="password" name="confirm_password" >
-				<br />
+				<label>E-mail</label> 
+				<input name="e_mail" type="text" id="e_mail" />
+				<label>Password</label> 
+				<input name="password" type="password" id="password" />	
 				
 				<a href="javascript:void(0)" class="forget_password" title="Thai">Forgotten Password</a>
+				<input type="submit" id="sign-in" name="signin" value="Sign In" />
+				
 				<div id="forget_password_view" >
 				<label for="e_mail" >Email</label>
 				<input type = "text" name = "e_mail_send_password" class="input-text" id="e_mail_send_password"
 				value="<?php if(isset($form_e_mail_send_password))echo $form_e_mail_send_password;?>" />
 				<input type="submit" value="Send Password" class="button" id="send_email"/>
+				</div>				
 				</div>
 				
-				<input type="submit" id="sign-in" name="signin" value="Sign In" />
-				<input type="submit" id="register" name="register" value="Register" />			
-				</div>
+				
+		
+				
 			</fieldset>
 						
 			<fieldset id="step2">
@@ -146,28 +138,9 @@
 					</div>				
 					<div id="product-detail">
 						
-						<table id="product-detail-table">
-							<tr>
-								<th>Product ID</th>
-								<th>Product Description</th>
-								<th>Quantity</th>
-								<th>Unit Price (THB)</th>
-								<th>Price (THB)</th>
-							</tr>
-							<?php 
-							//for($i=0;$i<count($items_order);$i++)
-							{
+						<table id="product-detail-table_3">
 							
-							echo "<tr>";
-							//echo "<td id='item_id_3_".$i."'></td>";
-							//echo "<td>".$items_order[$i]->product_descrption_en."</td>";
-							//echo "<td>".$items_order[$i]->quantiity."</td>";
-							//echo "<td>".$items_order[$i]->unit_price."</td>";
-							//echo "<td>".$items_order[$i]->total_price."</td>";
-							echo "</tr>";
 							
-							}
-							?>
 						</table>
 					</div>
 					<div id="total-price">
@@ -231,7 +204,7 @@
 					</div>				
 					<div id="product-detail">
 						
-						<table id="product-detail-table">
+						<table id="product-detail-table_4">
 							<tr>
 								<th>Product ID</th>
 								<th>Product Description</th>
@@ -288,8 +261,9 @@
 					</div>
 					
 				</div>
-			</fieldset>		
-		</form>
+			</fieldset>	
+<?php $this->load->view('common/confirm_box_ok');?>
+		<!--</form>-->
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$('#register').click(function(event){//register
@@ -317,39 +291,65 @@
 					event.preventDefault();					
 					$.ajax({
 					type: 'POST',
-					url: "<?php echo base_url('payment/login_member');?>",//controller path; go function
+					//dataType: "json",
+					url: "<?php echo base_url('payment/login_member_check_error');?>",//controller path; go function
 					data:  {e_mail: $('#e_mail').val(), // set data variable and assign value from body
 							password: $('#password').val()
 							
 						   },
 					success: function( data ) { // if success do something ;data is returned
-									
-						if(data == 'true' )
+						
+						if(data == 'true')
 						{
-							$('#step1').css('display','none');
-							$('#step2').css('display','block');
-							$('#step3').css('display','none');
-							$('#step4').css('display','none');
 							
-							$('.head-step1').css('color','#A0A0A0');
-							$('.head-step2').css('color','#353535');
-							$('.head-step3').css('color','#A0A0A0');
-							$('.head-step4').css('color','#A0A0A0');
+							var url_2 = "<?php echo base_url('payment/get_member_profile') ?>";
+							//alert(url_2);								
+							$.getJSON(url_2, function(data){
+							alert(data+"data sign in");												
+							if(data !='' )
+							{
+								$('#step1').css('display','none');
+								$('#step2').css('display','block');
+								$('#step3').css('display','none');
+								$('#step4').css('display','none');
+								
+								$('.head-step1').css('color','#A0A0A0');
+								$('.head-step2').css('color','#353535');
+								$('.head-step3').css('color','#A0A0A0');
+								$('.head-step4').css('color','#A0A0A0');							
+								
+								$("#first_name").val(data.first_name);//assign value to html
+								$("#last_name").val(data.last_name);
+								$("#telephone").val(data.telephone);
+								$("#mobile").val(data.mobile);
+								$("#address").val(data.address);
+								$("#postcode").val(data.postcode);
+								
+								
+							}
+							else
+							{
+								alert(data);
+							}						
+						
+											
+							});	
 						}
 						else
 						{
 							alert(data);
-						}						
-					}				
-					});	
+						}
+					}
 				});
+			});
 				
 				$('#submit-step2').click(function(event){
 					event.preventDefault();					
 					$.ajax({
 					type: 'POST',
-					url: "<?php echo base_url('payment/step_2');?>",//controller path; go function
-					data:  {e_mail: $('#e_mail').val(), // set data variable and assign value from body
+					dataType: "json",//for getJson
+					url: "<?php echo base_url('payment/step_2');?>",//controller path; go to goal function
+					data:  {e_mail: $('#e_mail').val(), // set data variable and assign value from body for $this->input->post('e_mail');
 							first_name: $('#first_name').val(),
 							last_name: $('#last_name').val(),
 							telephone: $('#telephone').val(),
@@ -359,14 +359,81 @@
 						   },
 					success: function( data ) { // if success do something ;data is returned
 									
-						if(data == 'true' )
+						if(data !="" )
 						{
-							$("#first_name_3").html($('#first_name').val());
+							$("#first_name_3").html($('#first_name').val());//assign value to html
 							$("#last_name_3").html($('#last_name').val());
 							$("#telephone_3").html($('#telephone').val());
 							$("#mobile_3").html($('#mobile').val());
 							$("#address_3").html($('#address').val());
 							$("#postcode_3").html($('#postcode').val());
+							
+							
+							//show data step 3
+							var table_head = "<tr>";
+								table_head +="<th>Product ID</th>";
+								table_head +="<th>Product Description</th>";
+								table_head +="<th>Quantity</th>";
+								table_head +="<th>Unit Price (THB)</th>";
+								table_head +="<th>Price (THB)</th>";
+								table_head +="</tr>";
+							
+							
+							var url_2 = "<?php echo base_url('payment/step_2_get_items') ?>";
+							//alert(url_2);						
+							$.getJSON(url_2, function(data2){
+							alert(data2+"data2");
+							alert(data[0]+"data1");
+							
+							var detail ="";
+							var i=0;
+							var total_price=0.0;
+							alert(data.length+"i="+i);
+							while( i < data2.length)//items
+							{
+								
+								detail +="<tr>";
+								detail +="<td>"+data2[i].item_id+"</td>";//product_id
+								detail +="<td>"+data2[i].description_en+"</td>";//product_detail
+								detail +="<td>";//product_Quantity
+								for(j=0;j<data.length;j++)
+								{
+									var temp = data[j].split(",");
+									if(temp[0]== data2[i].item_id)
+									{
+										detail += temp[1];
+										total_price = temp[1];
+										break;
+									}
+								}
+								detail +="</td>";
+								detail +="<td>";//unit_price
+								
+								if(data2[i].on_sale == 0)
+								{
+									detail += data2[i].markup_price;
+									total_price = total_price*data2[i].markup_price;
+								}
+								else
+								{
+									detail += data2[i].markdown_price;
+									total_price = total_price*data2[i].markdown_price;
+								}
+								
+								detail +="</td>";
+								detail +="<td>"+total_price+"</td>";//total_price
+								
+								detail +="</tr>";
+								alert(detail);
+								i++;
+							}
+								
+								//alert(detail);
+							
+							$("#product-detail-table_3").html(table_head+detail);	
+								
+								
+							//show data step 3
 							
 							
 							
@@ -379,6 +446,9 @@
 							$('.head-step2').css('color','#A0A0A0');
 							$('.head-step3').css('color','#353535');
 							$('.head-step4').css('color','#A0A0A0');
+							
+							});
+							
 							
 		
 						}
@@ -456,20 +526,24 @@
 					history.back();
 				});
 				$('a.forget_password').click(function() {			
-				$("#forget_password_view").css("display","inline-block");	 			
+					$("#forget_password_view").css("display","inline-block");	 			
 				});
-				$('#send_email').click(function() {			
-					$.ajax({
-							type: 'POST',
-							url: "<?php echo base_url('member/forget_password');?>",//controller path; go function
-							data:  { e_mail_send_password: $('#e_mail_send_password').val(), // set data variable and assign value from body
-								   },
-							success: function( data ) { // if succes do something ;data is returned
-								alert(data);						
-							//	confirm('Confirm for deletion','Do you want to delete products.',this.href, 'Delete'); 
+				 $('#send_email').click(function() {			
+					 $.ajax({
+							 type: 'POST',
+							 url: "<?php echo base_url('member/forget_password');?>",//controller path; go function
+							 data:  { e_mail_send_password:'e_mail',// $('#e_mail_send_password').val(), // set data variable and assign value from body
+								    },
+							 error: function(xhr,err){
+									//alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+									alert("error ::"+err.message);},
+							 success: function( data ) { // if succes do something ;data is returned
+													
+								confirm('Please enter the information',data,this.href);
 								return false;							
 							}				
-						});	
-				});
+						 });	
+				 });
+				
 			});
 		</script>
