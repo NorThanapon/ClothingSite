@@ -15,35 +15,30 @@ class Cart extends CI_Controller {
 		$data['breadcrumbs'] = array($this->lang->line('Home'), $this->lang->line('Shopping Cart'));
 		$data['link'] = array(site_url(), site_url().'cart');
 			
-		//$data['products'] = $this->product_model->get_product_brand_image($brand_id);
-		//$data['cookie_name'] = $this->input->get_cookie('item_id');
 		$data['items'] = FALSE;
 		$data['cookie_name'] = "";
 		
-		if($this->encrypt->decode($this->input->cookie('cart')) == TRUE){
-			//echo $this->input->cookie('cart').'<br />';
-			$value = $this->encrypt->decode($this->input->cookie('cart'));
-			//echo $value;
-			$detail = explode('&',$value);
+		$value = $this->encrypt->decode($this->input->cookie('cart'));
+		$detail = explode('&',$value);
 			
-			$where = "";
-			$amount = 0;
+		$where = "";
+		$amount = 0;
 			
-			for($i=0; $i<count($detail)-1; $i++){
-				$item = explode(',',$detail[$i]);
-				if($i == count($detail)-2){
-					$where = $where." '".$item[0]."' ";
-					$amount += $item[1];
-				}
-				else{
-					$where = $where." '".$item[0]."', ";
-					$amount += $item[1];
-				}
+		for($i=0; $i<count($detail)-1; $i++){
+			$item = explode(',',$detail[$i]);
+			if($i == count($detail)-2){
+				$where = $where." '".$item[0]."' ";
+				$amount += $item[1];
 			}
-			$data['cookie_amount'] = $amount;
-			$data['detail'] = $detail;
-			$data['items'] = $this->cart_model->get_item_detail($where);
+			else{
+				$where = $where." '".$item[0]."', ";
+				$amount += $item[1];
+			}
 		}
+		$data['cookie_amount'] = $amount;
+		$data['detail'] = $detail;
+		if($where != "")
+			$data['items'] = $this->cart_model->get_item_detail($where);
 		$data['page'] = "front_product/content_main_shopping_cart";
         $this->load->view('main_page',$data);
     }
@@ -80,10 +75,7 @@ class Cart extends CI_Controller {
 			return;
 		}
 		
-		
 		$cookie_value =  $this->encrypt->decode($this->input->cookie('cart'));  
-
-		
 		$detail = explode('&',$cookie_value);
 		
 		//echo count($detail);
@@ -129,8 +121,6 @@ class Cart extends CI_Controller {
 		if(strpos($new, '&')==0){
 			$new = substr($new,1);
 		}
-		//echo $new;
-		//echo $temp.' :: '.$tmp.' :: '.$str.' ** '.$str_pos,' &&& '.$new .' '.$cookie_num_value;
 
 		$cookie_cart = array(
 			'name' =>  'cart',
@@ -139,7 +129,6 @@ class Cart extends CI_Controller {
 		);
 		
 		$this->input->set_cookie($cookie_cart);
-		
 		redirect(site_url().'cart');
 	}
 	public function destroy_cookie($item_id=FALSE){
@@ -150,7 +139,6 @@ class Cart extends CI_Controller {
 	}
 	
 	public function check_path(){
-
 		if($this->input->post('continue')){
 			//echo $this->session->flashdata('redirect_url');
 			redirect( $this->session->userdata('redirect'));

@@ -44,7 +44,14 @@ class Bfash_model extends CI_Model
 		}	
 				
 		//load number of cookie
-		$data['cookie_amount'] = $this->input->cookie('amount');		
+		$value = $this->encrypt->decode($this->input->cookie('cart'));
+		$detail = explode('&',$value);
+		$amount = 0;
+		for($i=0; $i<count($detail)-1; $i++){
+				$item = explode(',',$detail[$i]);
+				$amount += $item[1];
+		}
+		$data['cookie_amount'] = $amount;	
 		
 		//set common page
 			$data['page_title'] = "Welcome to BfashShop.com";
