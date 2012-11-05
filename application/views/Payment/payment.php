@@ -25,12 +25,30 @@
 			<fieldset id="step1">
 				<legend>Sign In</legend>
 				<div id="main-step1">
-				<label>E-mail</label> 
-				<input name="e_mail" type="text" id="e_mail" />
-				<label>Password</label> 
-				<input name="password" type="password" id="password" />
-				<label>Confirm Password</label> 
-				<input name="confirm_password" type="password" id="confirm_password" />	
+				<label for="e_mail">E-mail</label>
+				<input type="text" name="e_mail" value="<?php if(isset($form_e_mail)) echo $form_e_mail; ?>" />
+				<br />
+				<label for="confirm_e_mail">Confirm E-mail</label>
+				<input type="text" name="confirm_e_mail" value="<?php if(isset($form_confirm_e_mail)) echo $form_confirm_e_mail; ?>" />
+				<br />
+				<!--<label for="username">Username</label>
+				<input type="text" name="username" >
+				<br />-->
+				<label for="password">Password</label>
+				<input type="password" name="password" />
+				<br />
+				<label for="confirm_password">Confirm Password</label>
+				<input type="password" name="confirm_password" >
+				<br />
+				
+				<a href="javascript:void(0)" class="forget_password" title="Thai">Forgotten Password</a>
+				<div id="forget_password_view" >
+				<label for="e_mail" >Email</label>
+				<input type = "text" name = "e_mail_send_password" class="input-text" id="e_mail_send_password"
+				value="<?php if(isset($form_e_mail_send_password))echo $form_e_mail_send_password;?>" />
+				<input type="submit" value="Send Password" class="button" id="send_email"/>
+				</div>
+				
 				<input type="submit" id="sign-in" name="signin" value="Sign In" />
 				<input type="submit" id="register" name="register" value="Register" />			
 				</div>
@@ -436,6 +454,22 @@
 				
 				$('.back-button').click(function(e){				
 					history.back();
+				});
+				$('a.forget_password').click(function() {			
+				$("#forget_password_view").css("display","inline-block");	 			
+				});
+				$('#send_email').click(function() {			
+					$.ajax({
+							type: 'POST',
+							url: "<?php echo base_url('member/forget_password');?>",//controller path; go function
+							data:  { e_mail_send_password: $('#e_mail_send_password').val(), // set data variable and assign value from body
+								   },
+							success: function( data ) { // if succes do something ;data is returned
+								alert(data);						
+							//	confirm('Confirm for deletion','Do you want to delete products.',this.href, 'Delete'); 
+								return false;							
+							}				
+						});	
 				});
 			});
 		</script>

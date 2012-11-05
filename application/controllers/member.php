@@ -25,6 +25,13 @@ class Member extends CI_Controller {
 			$this->load->view('sub_page',$data);
             return;
         }
+		if ($this->input->post('e_mail')!=$this->input->post('confirm_e_mail')) //confirm email fail
+		{ //no authen
+			$data['show_message_e_mail'] = 'Your E-mail and confirmed E-mail do not match';//
+			$data['page'] = 'member/registration';
+			$this->load->view('sub_page',$data);
+            return;
+        }
 		if (!$this->input->post('password')) 
 		{ //no authen
 			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number';
@@ -54,23 +61,24 @@ class Member extends CI_Controller {
 		if($this->input->post('password')!=$this->input->post('confirm_password'))//confirm_password fail
 		{
 			$data['page_title'] = 'Registration';
-			$data['show_message_password'] = 'Please enter password,<br />6 characters or longer with at least 1 number';
+			$data['show_message_password'] = 'Your password and confirmed password do not match';
 			$data['page'] = 'member/registration';			
 			$this->load->view('sub_page',$data);
 			return;
 		}
-		echo "password".$this->input->post('password');
-		if(strlen($this->input->post('password'))<6||strlen($this->input->post('password'))>6||$this->input->post('password')=="")//password lenght fail
+		
+		if(strlen($this->input->post('password'))<6||$this->input->post('password')=="")//password lenght fail
 		{
-			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number';
+			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number1';
 			$data['page'] = 'member/registration';
 			$this->load->view('sub_page',$data);
 			return;
 		}
 		if($this->_check_password($this->input->post('password'))!="")//password fail
 		{
-			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number';
+			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number2';
 			$data['page'] = 'member/registration';
+			echo "password".$this->input->post('password');
 			$this->load->view('sub_page',$data);
 			return;
 		}
@@ -83,7 +91,7 @@ class Member extends CI_Controller {
 	{
 		$count_cha=0;
 		$count_int=0;
-		for($i=0;$i<6;$i++)
+		for($i=0;$i<strlen($password);$i++)
 		{				
 			if(ord($password[$i])>=48 && ord($password[$i])<=57)
 			{
@@ -100,8 +108,9 @@ class Member extends CI_Controller {
 			else
 			{
 				return $password[$i];
-			}
-		}		
+			}			
+		}	
+		
 		if($count_int<=0)return "false";
 		if($count_cha<=0)return "false";
 		

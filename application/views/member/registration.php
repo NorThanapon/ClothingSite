@@ -12,6 +12,9 @@
 		<input type="text" name="e_mail" value="<?php if(isset($form_e_mail)) echo $form_e_mail; ?>" />
 		<?php if(isset($show_message_e_mail))echo "<h1>".$show_message_e_mail."</h1>";?>
 		<br />
+		<label for="confirm_e_mail">Confirm E-mail</label>
+		<input type="text" name="confirm_e_mail" value="<?php if(isset($form_confirm_e_mail)) echo $form_confirm_e_mail; ?>" />
+		<br />
 		<!--<label for="username">Username</label>
 		<input type="text" name="username" >
 		<br />-->
