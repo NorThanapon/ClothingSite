@@ -55,6 +55,11 @@ class Cart extends CI_Controller {
 		$quantity = $this->input->post('quantity');
 		$item = $this->cart_model->validate_add_cart_item();
 
+		if($quantity == 0){
+			echo 'false';
+			return;
+		}
+		
 		//check item quatity
 		if(($item->quantity - $quantity) < 0 || $item->quantity <= 0){
 			echo 'false';

@@ -60,6 +60,11 @@ padding-bottom:15px;
 
 }
 
+#product-particular #item-detail{
+	font-size:80%;
+	
+}
+
 #product-particular #detail-name img{
 	width:200px;
 	height:100px;
@@ -149,6 +154,11 @@ margin-top:5px;
 	margin-left:5px;
 }
 
+#content-product #product-color #color-image{
+	width: 380px;
+	height: 35px;
+	padding-top:2px;
+}
 
 #content-product #product-quantity{
 position:relative;

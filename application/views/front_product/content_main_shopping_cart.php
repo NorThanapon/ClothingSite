@@ -1,4 +1,4 @@
-<?php echo form_open('cart/check_path'); ?>
+
 <div id="content-Head_name_page">
 <h2>MY SHOPPING CART</h2>
 <!--<h5>Stock reserved for 60 minutes only</h5>-->
@@ -24,6 +24,7 @@
 	}
 	else{
 		for($i=0; $i<count($items); $i++){ ?>
+		<input type="hidden" name="count-item" value="<?php echo count($items);?>" />
 		<div id="content-wish_list">
 			<div class="product">
 				<div class="product-image">
@@ -60,11 +61,11 @@
 				<span><?php echo $quantity; ?></span>
 				</div>
 				<div class="option-button" >
-					<input type="submit" name="change-butt<?php echo $i; ?>" value="" />
+					<input type="submit" name="change-butt<?php echo $i; ?>" value=" " />
 				</div>
 			</div>
+			<!-- CHANGE ITEM'S DETAILS -->
 			<!--
-			<!-- CHANGE ITEM'S DETAILS 
 			<div class="change-option" id="change<?php echo $i; ?>" >
 				<div class="image-loading" >
 					<img class="imgs<?php echo $i; ?>" src="<?php echo asset_url().'img/loading1.gif'; ?>" />
@@ -74,10 +75,10 @@
 						<select id="ddl-detail-size">
 							<option value="0"> ---Select Size--- </option>
 							<?php 
-							foreach($item_detail_size as $item)
+							//foreach($item_detail_size as $item)
 							{
 							?>
-								<option value="<?php echo $item->size; ?>"> <?php echo $item->size; ?> </option>
+								<option value="<?php// echo $item->size; ?>"> <?php echo $item->size; ?> </option>
 							<?php
 							}
 							?>
@@ -165,6 +166,7 @@
 	<div class="total"><b>Total cost</b></div>
 	<div class="total-num"><?php echo number_format($total_price,2, '.', ','); ?></div>
 	</div>
+<?php echo form_open('cart/check_path'); ?>
 	<div class="footer-continue-button">
 		<input type="submit" value=" " name="continue" />
 	</div>
@@ -175,14 +177,20 @@
 </form>
 <script type="text/javascript">
 	$(document).ready(function() {
-		//$('.option').hide();
-		//$('.option').show();
-		/*
-		$('.change-option').show();
-		$('#option1')
-		$('#change0').hide();
-		$('.imgs1').hide();*/
-		$()
-		//$('.change-option').hide();
+		$('.image-loading').hide();
+		$('.change-option').hide();
+		$('.option-button').click(function (){
+			var num = $('input[name=count-item]').val();
+			for(var i=0; i<num ;i++){
+				
+				$('input[name="change-butt'+i+'"]').click() == true)
+				{
+					alert($('input[name="change-butt'+i+'"]').val());
+				}
+				
+			
+			}
+		
+		});
 	});
 </script>

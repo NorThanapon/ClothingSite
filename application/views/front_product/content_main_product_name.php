@@ -38,10 +38,8 @@
 				<br />
 				<h1> <?php echo $product_detail->product_name_en ?> </h1>
 					<input type="hidden" id="item_id" value="" />
-					<div id="item-detail" value="item-detail">
-						 
-					</div>
-				<br />
+					<span id="item-detail" value="item-detail">	</span>
+				<br /><br />
 			</div>
 			
 			<div id="detail-price">
@@ -77,8 +75,7 @@
 					}
 					?>
 				</select>
-				
-					<input class="button btn-submit" type = "submit" name="submit" value="Size Chart"/>
+				<input class="button btn-submit" type = "submit" name="submit" value="Size Chart"/>
 			</div>
 			<div id="product-color">
 			   
@@ -93,7 +90,7 @@
 					<?php foreach($color_in_size as $item)
 						{
 						?>
-							<div  id="<?php echo $item->color_file_name;?>">
+							<div class="div-color"  name="<?php echo $item->color_id; ?>" id="<?php echo $item->color_file_name;?>">
 							<img src="<?php echo asset_url().'db/colors/'.$item->color_file_name; ?>">
 							</div>
 						<?php
@@ -131,7 +128,7 @@
 			<input type="image" src="<?php echo asset_url().'img/savetowishlistbut.jpg'; ?>" value="Save to Wishist" id="add-to-wishlist" />
 		</div>
 	</div>
-
+	<input type="hidden" name="sel-color" />
 	<script type="text/javascript">
 	
 		$(document).ready(function() {
@@ -157,19 +154,25 @@
 						);
 					
 					$("#"+color.color_id).click(function() {
-						$("#select-color").val(this.id)
+						$("#select-color").val(this.id);						
+						
 						var color_id = this.id;
-					
+						
 					var url_2 = "<?php echo base_url('ajax/item_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
 					//alert(url_2);
 					$.getJSON(url_2, function(data){
-						$("#item-detail").html("ItemId: "+data.item_id);
+						$("#item-detail").html("Item Code: "+data.item_id);
 						$("#item_id").val(data.item_id);
 					});
 					var url_3 = "<?php echo base_url('ajax/quantity_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
 					$.getJSON(url_3, function(data){
 						alert(data);
 					});
+					
+					var c = $('input[name=sel-color]').val();
+					$('#'+c).css("border","none");
+					$('input[name=sel-color]').val(this.id);
+					$(this).css("border","1px solid #3A4F6C");
 						
 					});
 					
