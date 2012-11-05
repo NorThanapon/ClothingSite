@@ -20,28 +20,26 @@ class Cart extends CI_Controller {
 		$data['items'] = FALSE;
 		$data['cookie_name'] = "";
 		
-		$data['cookie_amount'] = $this->input->cookie('amount');
 		if($this->input->cookie('cart') == TRUE){
-			$value = $this->input->cookie('cart');
+			//echo $this->input->cookie('cart').'<br />';
+			$value = $this->encrypt->decode($this->input->cookie('cart'));
+			//echo $value;
 			$detail = explode('&',$value);
 			
 			$where = "";
-			for($i=0; $i<count($detail); $i++){
-			   // echo $detail[$i]."<br />";
+			$amount = 0;
+			for($i=0; $i<count($detail)-1; $i++){
 				$item = explode(',',$detail[$i]);
-				if(count($detail) <= 2){
+				if($i == count($detail)-2){
 					$where = $where." '".$item[0]."' ";
-				}
-				else if($i == (count($detail)-2)){
-					$where = $where." '".$item[0]."' ";
-					break;
+					$amount += $item[1];
 				}
 				else{
 					$where = $where." '".$item[0]."', ";
+					$amount += $item[1];
 				}
-				
 			}
-			//echo $where."::";
+			$data['cookie_amount'] = $amount;
 			$data['detail'] = $detail;
 			$data['items'] = $this->cart_model->get_item_detail($where);
 		}
@@ -69,26 +67,21 @@ class Cart extends CI_Controller {
 						
 		//cookie
 		//delete_cookie("cart");
+		$item_detail = $item_id.','.$quantity.'&';
 		if($this->input->cookie('cart') == FALSE ){ //don't have items
 			$cookie_cart = array(
 				'name' =>  'cart',
-				'value' =>   $item_id.','.$quantity.'&',
-				'expire' => '2592000'
-			);
-			$cookie_num = array(
-				'name' => 'amount',
-				'value' => $quantity,
+				'value' =>   $this->encrypt->encode($item_detail),
 				'expire' => '2592000'
 			);
 			$this->input->set_cookie($cookie_cart);			
-			$this->input->set_cookie($cookie_num);
 			echo 'true';
 			return;
 		}
 		
 		
-		$cookie_value = $this->input->cookie('cart');   //.''.$item_id.','.$quantity.';';
-		$cookie_num_value = $this->input->cookie('amount');  //+$quantity;
+		$cookie_value =  $this->encrypt->decode($this->input->cookie('cart'));  
+
 		
 		$detail = explode('&',$cookie_value);
 		
@@ -106,37 +99,28 @@ class Cart extends CI_Controller {
 		{
 			$cookie_value = $cookie_value.''.$item_id.','.$quantity.'&';
 		}
-		$cookie_num_value += $quantity;
 		
 		$cookie_cart = array(
 			'name' =>  'cart',
-			'value' =>   $cookie_value,
+			'value' =>   $this->encrypt->encode($cookie_value),
 			'expire' => '2592000'
-		);   
-		$cookie_num = array(
-			'name' => 'amount',
-			'value' => $cookie_num_value,
-			'expire' => '2592000'
-		);		
+		);  
+
 		$this->input->set_cookie($cookie_cart);
-		$this->input->set_cookie($cookie_num);
-		
+
 		echo 'true';		
 	}
 	
 	
 	public function remove_item($item_id){
 		$this->load->model('cart_model');
-		$cookie_value = $this->input->cookie('cart');
-		$cookie_num_value = $this->input->cookie('amount');
-		
+		$cookie_value = $this->encrypt->decode($this->input->cookie('cart'));
 		echo $cookie_value."<br />";
 			
 		//set new value to cookie
 		$temp = strstr($cookie_value,$item_id);
 		$tmp = strpos($temp, '&');
-		$str = substr($temp,0,$tmp); //GET string of item
-		$qty = explode(',', $str);
+		$str = substr($temp,0,$tmp+1); //GET string of item
 		$str_pos = strpos($temp,$str);
 			
 		// set new value
@@ -144,26 +128,17 @@ class Cart extends CI_Controller {
 		if(strpos($new, '&')==0){
 			$new = substr($new,1);
 		}
-
-		//set new quantity
-		$cookie_num_value = $cookie_num_value - $qty[1];
-		
+		//echo $new;
 		//echo $temp.' :: '.$tmp.' :: '.$str.' ** '.$str_pos,' &&& '.$new .' '.$cookie_num_value;
 
 		$cookie_cart = array(
 			'name' =>  'cart',
-			'value' =>   $new,
+			'value' =>   $this->encrypt->encode($new),
 			'expire' => '2592000'
 		);
-		$cookie_num = array(
-			'name' => 'amount',
-			'value' => $cookie_num_value,
-			'expire' => '2592000'
-		);	
-			
+		
 		$this->input->set_cookie($cookie_cart);
-		$this->input->set_cookie($cookie_num);
-				
+		
 		redirect(site_url().'cart');
 	}
 	public function destroy_cookie($item_id=FALSE){
