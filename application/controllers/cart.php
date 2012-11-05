@@ -20,7 +20,7 @@ class Cart extends CI_Controller {
 		$data['items'] = FALSE;
 		$data['cookie_name'] = "";
 		
-		if($this->encrypt->decode($this->input->cookie('cart') == TRUE)){
+		if($this->encrypt->decode($this->input->cookie('cart')) == TRUE){
 			//echo $this->input->cookie('cart').'<br />';
 			$value = $this->encrypt->decode($this->input->cookie('cart'));
 			//echo $value;
