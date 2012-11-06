@@ -161,69 +161,86 @@ class Payment extends CI_Controller {
 		$data['mobile'] = $member->mobile;
 		$data['address'] = $member->address;
 		$data['postcode'] = $member->postcode;
-		$this->load->model('cart_model');
-		// get cart
-		if($this->input->cookie('cart') == TRUE){
-			$value = $this->input->cookie('cart');
-			$detail = explode(';',$value);
-			
-			$where = "";
-			for($i=0; $i<count($detail); $i++){
-			    //echo $detail[$i]."<br />";
-				$item = explode(',',$detail[$i]);
-				if($i == (count($detail)-2)){
-					$where = $where." '".$item[0]."' ";
-					break;
-				}
-				$where = $where." '".$item[0]."',";
-				
-			}
-			//echo $where;
-			$data['cookie_cart'] = $detail;
-			$data['items_order'] = $this->cart_model->get_item_detail($where);
-			
-			 //print_r($data['items_order'] );
-		}
 		
-		echo json_encode($data['cookie_cart']);
+		//echo 'true';
 		
 		
-		//echo json_encode($data['items_order']);
-		//echo "true";
 	}
 	public function step_2_get_items()
 	{
-		$this->load->model('member_model');	
-		$member = $this->member_model->get($this->input->post('e_mail'));
+		
+		$this->load->library('encrypt');		
 		$this->load->model('cart_model');
 		// get cart
 		if($this->input->cookie('cart') == TRUE){
-			$value = $this->input->cookie('cart');
-			$detail = explode(';',$value);
-			
+			$value = $this->encrypt->decode($this->input->cookie('cart'));
+			$detail = explode('&',$value);
 			$where = "";
-			for($i=0; $i<count($detail); $i++){
-			    //echo $detail[$i]."<br />";
-				$item = explode(',',$detail[$i]);
-				if($i == (count($detail)-2)){
-					$where = $where." '".$item[0]."' ";
-					break;
-				}
-				$where = $where." '".$item[0]."',";
+			$amount = 0;
 				
+			for($i=0; $i<count($detail)-1; $i++){
+				$item = explode(',',$detail[$i]);
+				if($i == count($detail)-2){
+					$where = $where." '".$item[0]."' ";
+					$amount += $item[1];
+				}
+				else{
+					$where = $where." '".$item[0]."', ";
+					$amount += $item[1];
+				}
 			}
-			//echo $where;
+			if($where=="")
+			{
+				echo json_encode('where'+$where);				
+				return;
+			}
+			
+			
+		
 			$data['cookie_cart'] = $detail;
 			$data['items_order'] = $this->cart_model->get_item_detail($where);
 			
-			 //print_r($data['items_order'] );
+			
+			$data2[][]="";
+			$price = 0.0;
+			for($i=0;$i<count($data['items_order']);$i++)
+			{
+				$data2[$i]['item_id'] = $data['items_order'][$i]->item_id;
+				$data2[$i]['product_name'] = $data['items_order'][$i]->product_name_en;
+				for($j=0;$j<count($data['cookie_cart']);$j++)
+				{
+					$temp = explode(',',$data['cookie_cart'][$j]);
+					if($temp[0] == $data2[$i]['item_id'])
+					{
+						$data2[$i]['quantity'] = $temp[1];
+						$price = $temp[1];
+						break;
+					}
+				}
+				if($data['items_order'][$i]->on_sale== 0 )
+				{
+				
+					$data2[$i]['unit_price'] = $data['items_order'][$i]->markup_price;
+					
+				}
+				else
+				{
+					$data2[$i]['unit_price'] = $data['items_order'][$i]->markdown_price;
+				}
+				$data2[$i]['price'] = $price*$data2[$i]['unit_price'] ;
+				
+				
+			}
+			
+			
+			 
 		}
 		
-		echo json_encode($data['items_order']);
+		
+		echo json_encode($data2);
+		return;
 		
 		
-		//echo json_encode($data['items_order']);
-		//echo "true";
 	}
 	public function step_3()
 	{

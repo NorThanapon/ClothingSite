@@ -147,14 +147,14 @@
 						<div id="price-head">
 							<label >Subtotal :</label>
 							<label >Shipping :</label>
-							<label >Tax :</label>
+							<label >VAT :</label>
 							<label >Total :</label>					
 						</div>
 						<div id="price-detial">
-							<label ><?php// echo $subtotal ;?>THB</label>
-							<label ><?php// echo $shipping ;?> THB</label>
-							<label ><?php// echo $vat ;?> THB</label>
-							<label ><?php// echo $total ;?> THB</label>
+							<label id="subtotal_3"></label>
+							<label id="shipping_3"></label>
+							<label id="vat_3"></label>
+							<label id="total_3"></label>
 						</div>
 						<input type="submit" id="submit-step3" name="submit-step3" value="Confirm" />
 						<input type="submit" id="back-step3"  value="Back" />
@@ -205,35 +205,7 @@
 					<div id="product-detail">
 						
 						<table id="product-detail-table_4">
-							<tr>
-								<th>Product ID</th>
-								<th>Product Description</th>
-								<th>Quantity</th>
-								<th>Unit Price (THB)</th>
-								<th>Price (THB)</th>
-							</tr>
-							<?php 
-							if(isset($items_order))
-							{
-							//foreach($items_order as $item)
-							{
-							
-								echo "<tr>";
-							//	echo "<td>".$item->item_id."</td>";
-							//	echo "<td>".$item->product_descrption_en."</td>";
-							//	echo "<td>";
-							//	foreach($cookie_cart as $cart)
-								{
-									//if($cart[0] == $item->item_id )echo $cart[1];
-								}
-							//	echo "</td>";
-							//	echo "<td>".$item->unit_price."</td>";
-							//	echo "<td>".$item->total_price."</td>";
-								echo "</tr>";
-							
-							}
-							}
-							?>
+						
 						</table>
 					</div>
 					<div id="pay-attention">
@@ -251,10 +223,10 @@
 							<label >Total :</label>					
 						</div>
 						<div id="price-detial">
-							<label ><?php //echo $subtotal ;?>THB</label>
-							<label ><?php //echo $shipping ;?> THB</label>
-							<label ><?php// echo $vat ;?> THB</label>
-							<label ><?php// echo $total ;?> THB</label>
+								<label id="subtotal_4"></label>
+							<label id="shipping_4"></label>
+							<label id="vat_4"></label>
+							<label id="total_4"></label>
 						</div>
 						<input type="submit" id="submit-step4" name="submit-step4" value="Confirm" />
 						<input type="submit" id="back-step4"   value="Back" />
@@ -305,7 +277,7 @@
 							var url_2 = "<?php echo base_url('payment/get_member_profile') ?>";
 							//alert(url_2);								
 							$.getJSON(url_2, function(data){
-							alert(data+"data sign in");												
+																		
 							if(data !='' )
 							{
 								$('#step1').css('display','none');
@@ -346,8 +318,7 @@
 				$('#submit-step2').click(function(event){
 					event.preventDefault();					
 					$.ajax({
-					type: 'POST',
-					dataType: "json",//for getJson
+					type: 'POST',					
 					url: "<?php echo base_url('payment/step_2');?>",//controller path; go to goal function
 					data:  {e_mail: $('#e_mail').val(), // set data variable and assign value from body for $this->input->post('e_mail');
 							first_name: $('#first_name').val(),
@@ -358,84 +329,14 @@
 							postcode: $('#postcode').val()						
 						   },
 					success: function( data ) { // if success do something ;data is returned
-									
-						if(data !="" )
-						{
+						
 							$("#first_name_3").html($('#first_name').val());//assign value to html
 							$("#last_name_3").html($('#last_name').val());
 							$("#telephone_3").html($('#telephone').val());
 							$("#mobile_3").html($('#mobile').val());
 							$("#address_3").html($('#address').val());
 							$("#postcode_3").html($('#postcode').val());
-							
-							
-							//show data step 3
-							var table_head = "<tr>";
-								table_head +="<th>Product ID</th>";
-								table_head +="<th>Product Description</th>";
-								table_head +="<th>Quantity</th>";
-								table_head +="<th>Unit Price (THB)</th>";
-								table_head +="<th>Price (THB)</th>";
-								table_head +="</tr>";
-							
-							
-							var url_2 = "<?php echo base_url('payment/step_2_get_items') ?>";
-							//alert(url_2);						
-							$.getJSON(url_2, function(data2){
-							alert(data2+"data2");
-							alert(data[0]+"data1");
-							
-							var detail ="";
-							var i=0;
-							var total_price=0.0;
-							alert(data.length+"i="+i);
-							while( i < data2.length)//items
-							{
-								
-								detail +="<tr>";
-								detail +="<td>"+data2[i].item_id+"</td>";//product_id
-								detail +="<td>"+data2[i].description_en+"</td>";//product_detail
-								detail +="<td>";//product_Quantity
-								for(j=0;j<data.length;j++)
-								{
-									var temp = data[j].split(",");
-									if(temp[0]== data2[i].item_id)
-									{
-										detail += temp[1];
-										total_price = temp[1];
-										break;
-									}
-								}
-								detail +="</td>";
-								detail +="<td>";//unit_price
-								
-								if(data2[i].on_sale == 0)
-								{
-									detail += data2[i].markup_price;
-									total_price = total_price*data2[i].markup_price;
-								}
-								else
-								{
-									detail += data2[i].markdown_price;
-									total_price = total_price*data2[i].markdown_price;
-								}
-								
-								detail +="</td>";
-								detail +="<td>"+total_price+"</td>";//total_price
-								
-								detail +="</tr>";
-								alert(detail);
-								i++;
-							}
-								
-								//alert(detail);
-							
-							$("#product-detail-table_3").html(table_head+detail);	
-								
-								
-							//show data step 3
-							
-							
+														
 							
 							$('#step1').css('display','none');
 							$('#step2').css('display','none');
@@ -446,20 +347,63 @@
 							$('.head-step2').css('color','#A0A0A0');
 							$('.head-step3').css('color','#353535');
 							$('.head-step4').css('color','#A0A0A0');
+						}	
+						});
+						$.ajax({
+						type: 'POST',
+						dataType: "json",//for getJson
+						url: "<?php echo base_url('payment/step_2_get_items');?>",//controller path; go to goal function
+						
+						error: function(data,textStatus,xhr) {
+						    alert(xhr );
+						},
+						success: function( data ) {
 							
-							});
-							
-							
-		
-						}
-						else
-						{
-							alert(data);
-						}						
-					}				
-					});	
+							var table_head = "<tr>";
+								table_head +="<th>Product ID</th>";
+								table_head +="<th>Product Name</th>";
+								table_head +="<th>Quantity</th>";
+								table_head +="<th>Unit Price (THB)</th>";
+								table_head +="<th>Price (THB)</th>";
+								table_head +="</tr>";
+							var vat = 0.0;
+							var subtotal = 0.0;
+							var total = 0.0;
+							var shipping = 10.0;
+							var value = " THB";
+							var detail = "";
+							if(data!="")
+							{
+								for(i=0;i<data.length;i++)
+								{
+									detail += "<tr><td>"+data[i]['item_id']+"</td>";
+									detail += "<td>"+data[i]['product_name']+"</td>";
+									detail += "<td>"+data[i]['quantity']+"</td>";
+									detail += "<td>"+data[i]['unit_price']+"</td>";
+									detail += "<td>"+data[i]['price']+"</td></tr>";
+									subtotal += data[i]['price'];
+								}
+								vat = subtotal*7.0/100.0;
+								total = vat+subtotal+shipping;
+							}
+							$("#product-detail-table_3").html(table_head+detail);
+							$("#subtotal_3").html(subtotal+value);//assign value to html
+							$("#shipping_3").html(shipping+value);
+							$("#vat_3").html(vat+value);
+							$("#total_3").html(total+value);
+							$("#product-detail-table_4").html(table_head+detail);
+							$("#subtotal_4").html(subtotal+value);//assign value to html
+							$("#shipping_4").html(shipping+value);
+							$("#vat_4").html(vat+value);
+							$("#total_4").html(total+value);
+						}	
+						});
+											
+					});				
 					
-				});
+								
+					
+					
 				
 				$('#submit-step3').click(function(event){
 					event.preventDefault();
@@ -542,8 +486,8 @@
 								confirm('Please enter the information',data,this.href);
 								return false;							
 							}				
-						 });	
-				 });
+						});	
+				});
 				
 			});
 		</script>
