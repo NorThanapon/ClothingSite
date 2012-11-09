@@ -1,0 +1,56 @@
+#thanku-head{
+	max-width:1000px;
+	position:relative;
+	width: 100%;
+	margin: 0 auto;
+	vertical-align:middle;
+	padding-bottom:50px;
+	padding-top:20px;
+}
+
+#thanku-head #header-logo{
+	float:left;
+	padding-bottom:30px;
+}
+
+#thanku{
+	text-align:left;
+}
+
+#thanku #thank_en{
+	margin: 0 auto;
+	vertical-align:middle;
+	width:80%;
+}
+
+#thanku #thank_th{
+	display:none;
+	margin: 0 auto;
+	vertical-align:middle;
+	width:80%;
+}
+
+#thanku input[type="submit"]{
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	width:150px;
+	margin-top:10px;
+	margin-left:6px;
+	margin-right:2px;
+	display:inline-block;
+}
+
+#thanku input[type="submit"]:hover{
+	background:#4F4F4F;	
+}
+
+#btn_thanku{
+	
+	margin-right:110px;
+}
