@@ -1,0 +1,81 @@
+#head-sizechart{
+	display:block;
+	color:#000;
+	font-size:170%;
+	font-weight:bold;
+	font-family:Sans-serif;
+	padding-bottom:30px;
+	padding-top:10px;
+	text-transform: uppercase;
+}
+
+#size-chart_content{
+	margin:0 auto;
+	width:100%;
+	padding:20px;
+	vertical-align:middle;
+	max-width:1900px;	
+}
+
+.main-sizechart-table{
+	width:100%;
+	font-size:100%;
+	border-collapse:collapse;
+}
+
+.main-sizechart-table tr{
+display: table-row;
+vertical-align: inherit;
+border-color: inherit;
+
+}
+
+.main-sizechart-table tbody{
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+
+.size-section{
+	border-left: 1px solid #7F7F7F;
+	padding-left: 10px;
+}
+
+.figures{
+	text-align: center;
+	padding-right: 10px;
+	width: 263px;
+}
+
+.size-title{
+	background: black;
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:5px;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 90%;
+	display: inline-block;
+	width: 100%;
+}
+
+.col-size{
+	margin: 10px 0 15px;
+	width:100%;
+	text-align:center;
+}
+
+.col-size td,th{
+	padding:4px;
+	border-right: 1px solid #F2F2F2;
+}
+
+.col-size .first-col{
+	text-align:left;
+}
+
+.figures img{
+display: block;
+margin: 10px auto 50px;
+}

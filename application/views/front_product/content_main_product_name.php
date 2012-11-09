@@ -218,47 +218,7 @@
 				});
 			}
 			
-		});
-		/*
-		$('#add-to-wishlist').click(function() {
-			$.ajax({
-				type: 'POST',
-				url: "<?php echo base_url('brand/product');?>",
-				data: "lang=en",
-				success: function( data ) {
-					window.location.href = "<?php echo base_url();?>";
-			}});
 		});		
-		*/
-		
-				/*
-		$('#ddl-detail-size').change(function() {
-			$.ajax({
-			type: 'POST',
-			url: "<?php echo base_url('ajax/product_ajax/'.$product_detail->product_id);?>",
-			data: "size=" + $('#ddl-detail-size').val() + "&action=change",
-			success: function( data ) {
-				if(data == '1')
-					alert("1");
-				else if(data == $('#ddl-detail-size').val())
-					alert("size" + $('#ddl-detail-size').val());
-				else
-				{
-						//alert(data);
-					$.getJSON(url, function(data){
-						for(i = 0; i<data.length;i++) 
-						{
-							color = data[i];
-							alert(color);
-							//display it somehow
-						}
-				}
-			//window.location.reload();
-			//alert($('#ddl-detail-size').val());
-			
-			}});
-		});
-		*/
 		
 		});
 		
