@@ -55,17 +55,19 @@
 
 
 #main-upload-slip label{
-	display:inline-block;
-	margin-top:5px;
-	margin-bottom:10px;
-	font-family:Sans-serif;
-	color:#000;
-	font-size:120%;
+display: inline-block;
+margin-top: 5px;
+margin-bottom: 10px;
+font-family: Sans-serif;
+color: black;
+font-size: 120%;
+margin-right: 30px;
+vertical-align:middle;
 }
 
-#main-upload-slip input{
+#main-upload-slip input[type="text"]{
 	display:inline-block;	
-	float:right;
+	margin-bottom: 10px;
 }
 
 #main-upload-slip input[type="submit"]{
@@ -86,4 +88,14 @@
 #main-upload-slip input[type="submit"]:hover{
 	background:#4F4F4F;
 	
+}
+
+.upload-slip-order{
+	display: block;
+	text-align: left;
+}
+
+.upload-slip-payslip{
+	display: block;
+	text-align: left;
 }
