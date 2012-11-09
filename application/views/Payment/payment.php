@@ -153,10 +153,10 @@
 							<label >Total :</label>					
 						</div>
 						<div id="price-detial">
-							<label id="subtotal_3"></label>
+							<label id="subtotal_3" class="subtotal"></label>
 							<label id="shipping_3"></label>
 							<label id="vat_3"></label>
-							<label id="total_3"></label>
+							<label id="total_3" class="total"></label>
 						</div>
 						<div id="data_post_step_3">
 						</div>
@@ -228,10 +228,10 @@
 							<label >Total :</label>					
 						</div>
 						<div id="price-detial">
-								<label id="subtotal_4"></label>
+							<label id="subtotal_4" class="subtotal"></label>
 							<label id="shipping_4"></label>
 							<label id="vat_4"></label>
-							<label id="total_4"></label>
+							<label id="total_4"  class="total"></label>
 						</div>
 						<div id="data_post_step_4">
 						</div>						
