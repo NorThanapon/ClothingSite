@@ -320,9 +320,21 @@ class Payment extends CI_Controller {
 		}
 		$datestring = "%d/%m/%Y  %h:%i %a";
 		$expire_date = mdate($datestring, $time_exp);
-		echo $expire_date ;
+		//echo $expire_date ;
+		$data['page_title'] = 'Payment | BfashShop';
+		//$data['error'] = "No";     
+		$data['page'] = 'Payment/thank_you';
+		$this->load->view('sub_page',$data);
 		
 	}
+	function thank()
+	{
+		$data['page_title'] = 'Payment | BfashShop';
+		//$data['error'] = "No";     
+		$data['page'] = 'Payment/thank_you';
+		$this->load->view('sub_page',$data);
+	}
+	
 	
 	
 

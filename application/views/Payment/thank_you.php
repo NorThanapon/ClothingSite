@@ -13,6 +13,7 @@ Back to home
 Visit BFash.com
  
 </div>
+<br />
 <div id="thank_th">
  
 ขอบคุณสำหรับการซื้อสินค้าของท่าน
