@@ -242,8 +242,7 @@
 					
 					
 				</div>
-				<div id="after_confirm">
-						<input type="submit" class="btn_go_to_homepage" id="btn_go_to_homepage" name="btn_go_to_homepage" value="Continue Shopping" />
+				<div id="after_confirm">						
 						
 						<input type="submit" class="save_pdf" id="save_pdf" name="save_pdf" value="Save to PDF file" />
 				</div>
@@ -380,7 +379,7 @@
 						},
 						success: function( data ) {
 							
-							var table_head = "<tr>";
+							var table_head = "<tr><th></th>";
 								table_head +="<th>Product ID</th>";
 								table_head +="<th>Product Name</th>";
 								table_head +="<th>Quantity</th>";
@@ -534,7 +533,7 @@
 				$('a.forget_password').click(function() {			
 					$("#forget_password_view").css("display","inline-block");	 			
 				});
-				 $('#send_email').click(function() {			
+				$('#send_email').click(function() {			
 					 $.ajax({
 							 type: 'POST',
 							 url: "<?php echo base_url('member/forget_password');?>",//controller path; go function
@@ -549,6 +548,9 @@
 								return false;							
 							}				
 						});	
+				});
+				$('#btn_go_to_homepage').click(function() {			
+					 window.location.replace('<?php echo base_url('');?>');
 				});
 				
 			});
