@@ -14,13 +14,14 @@ class Payment extends CI_Controller {
 		$data['address'] = $member->address;
 		$data['postcode'] = $member->postcode;
 		$this->load->model('payment_model');
-		$data['order_number'] = $this->payment_model->get_order_number()+1;
+		$data['order_id'] = $this->payment_model->get_order_number()+1;
 		$this->load->helper('date');
-		$dateString = "%d/%m/%Y";
+		$dateString = date('Y/m/d', strtotime('now'));
+		//$dateString = "%d/%m/%Y H:i:s";
 
 		$data['order_date'] =   mdate($dateString, "");		
 
-		$data['order_date'] =   mdate($dateString, "");
+		//$data['order_date'] =   mdate($dateString, "");
 		$data['cookie_cart'] = "";
 		$data['items_order'] = FALSE;
 
@@ -217,7 +218,7 @@ class Payment extends CI_Controller {
 						break;
 					}
 				}
-				if($data['items_order'][$i]->on_sale== 0 )
+				if($data['items_order'][$i]->on_sale == 0 )
 				{
 				
 					$data2[$i]['unit_price'] = $data['items_order'][$i]->markup_price;
@@ -242,14 +243,88 @@ class Payment extends CI_Controller {
 		
 		
 	}
-	public function step_3()
+	public function step_4()
 	{
+		$this->load->library('encrypt');		
+		$this->load->model('cart_model');
+		// get cart
+		if($this->input->cookie('cart') != TRUE)
+		{
+			
+			return;
+		}
+		$value = $this->encrypt->decode($this->input->cookie('cart'));
+		$detail = explode('&',$value);
+		$where = "";
+		$amount = 0;
+			
+		for($i=0; $i<count($detail)-1; $i++){
+			$item = explode(',',$detail[$i]);
+			if($i == count($detail)-2){
+				$where = $where." '".$item[0]."' ";
+				$amount += $item[1];
+			}
+			else{
+				$where = $where." '".$item[0]."', ";
+				$amount += $item[1];
+			}
+		}
+		if($where=="")
+		{
+			//echo json_encode('where'+$where);				
+			return;
+		}
 		
+		$data['cookie_cart'] = $detail;
+		$data['items_order'] = $this->cart_model->get_item_detail($where);
 		
-		echo "true";
+		//save to database
+		$this->load->model('payment_model');
+		$this->load->model('member_model');
+		$member_id = $this->member_model->get($this->input->post('e_mail'))->member_id;			
+		$this->load->helper('date');		
+		$time = time();		
+		$order_data['date_add'] = $time;//timestamp
+		$time_exp = $time+(86400*2);
+		$order_data['date_expire'] = $time_exp ;
+		$this->payment_model->add($member_id,$order_data);	
+		$data2[][]="";
+		$price = 0.0;
+		$order_id = $this->input->post('order_id');
+		for($i=0;$i<count($data['items_order']);$i++)
+		{
+			$data2[$i]['item_id'] = $data['items_order'][$i]->item_id;
+			$data2[$i]['product_name'] = $data['items_order'][$i]->product_name_en;
+			for($j=0;$j<count($data['cookie_cart']);$j++)
+			{
+				$temp = explode(',',$data['cookie_cart'][$j]);
+				if($temp[0] == $data2[$i]['item_id'])
+				{
+					$data2[$i]['quantity'] = $temp[1];
+					$price = $temp[1];
+					break;
+				}
+			}
+			if($data['items_order'][$i]->on_sale== 0 )
+			{
+			
+				$data2[$i]['unit_price'] = $data['items_order'][$i]->markup_price;
+				
+			}
+			else
+			{
+				$data2[$i]['unit_price'] = $data['items_order'][$i]->markdown_price;
+			}
+			$data2[$i]['price'] = $price*$data2[$i]['unit_price'] ;
+			$this->payment_model->add_order_detail($order_id,$data2[$i]['item_id'],$data2[$i]['quantity'],$data2[$i]['unit_price']);
+		}
+		$datestring = "%d/%m/%Y  %h:%i %a";
+		$expire_date = mdate($datestring, $time_exp);
+		echo $expire_date ;
+		
 	}
 	
-
+	
 
 }
 ?>

@@ -131,7 +131,7 @@
 							</div>
 							<div id="order-detail">
 								<label> &nbsp </label>
-								<label class="sub-head"><?php echo $order_number ;?></label>
+								<label class="sub-head"><?php echo $order_id ;?></label>
 								<label class="sub-head">ground</label>
 							</div>
 						</div>					
@@ -155,6 +155,8 @@
 							<label id="shipping_3"></label>
 							<label id="vat_3"></label>
 							<label id="total_3"></label>
+						</div>
+						<div id="data_post_step_3">
 						</div>
 						<input type="submit" id="submit-step3" name="submit-step3" value="Confirm" />
 						<input type="submit" id="back-step3"  value="Back" />
@@ -196,7 +198,7 @@
 							</div>
 							<div id="order-detail">
 								<label> &nbsp </label>
-								<label class="sub-head"><?php echo $order_number ;?></label>
+								<label class="sub-head"><?php echo $order_id ;?></label>
 								<label class="sub-head"><?php echo $order_date ;?></label>
 								<label class="sub-head">ground</label>
 							</div>
@@ -212,6 +214,7 @@
 						<label>Please  transfer the total amount to Account Number ..................... <br />
 						ICC International Public Company Limited, .... Bank.<br />
 						<br />
+						<label for="date_expire_payment" id="date_expire_payment"></label>
 						After the transfer, please upload your pay-in-slip<br /> 
 						at &lsquo;confirm payment &rsquo; page or fax to 02-123-4567</label>
 					</div>
@@ -228,8 +231,12 @@
 							<label id="vat_4"></label>
 							<label id="total_4"></label>
 						</div>
-						<input type="submit" id="submit-step4" name="submit-step4" value="Confirm" />
+						<div id="data_post_step_4">
+						</div>						
+						<input type="submit" class="submit-step4" id="submit-step4" name="submit-step4" value="Confirm" />						
 						<input type="submit" id="back-step4"   value="Back" />
+						<input type="submit" class="btn_go_to_homepage" id="btn_go_to_homepage" name="btn_go_to_homepage" value="Continue Shopping" />
+						<input type="submit" class="save_pdf" id="save_pdf" name="save_pdf" value="Save to PDF file" />
 					</div>
 					
 				</div>
@@ -337,6 +344,13 @@
 							$("#address_3").html($('#address').val());
 							$("#postcode_3").html($('#postcode').val());
 														
+							var data_post = "<input type='hidden' name='address' id='address'";
+							data_post += "value='"+$('#first_name').val()+" "+$('#last_name').val();
+							data_post += " "+$('#address').val()+" "+ $('#postcode').val()+"'>";
+							data_post += "<input type='hidden' name='order_id' id='order_id' value='<?php echo $order_id ;?>'>";
+							data_post += "<input type='hidden' name='date_order' id='date_order' value='<?php echo $order_date ;?>'>";
+							//data_post += "<input type='hidden' name='total' value='"+total+"'>";							
+							$("#data_post_step_3").html(data_post);
 							
 							$('#step1').css('display','none');
 							$('#step2').css('display','none');
@@ -380,12 +394,17 @@
 									detail += "<td>"+data[i]['product_name']+"</td>";
 									detail += "<td>"+data[i]['quantity']+"</td>";
 									detail += "<td>"+data[i]['unit_price']+"</td>";
-									detail += "<td>"+data[i]['price']+"</td></tr>";
+									detail += "<td>"+data[i]['price']+"</tr>";
 									subtotal += data[i]['price'];
 								}
 								vat = subtotal*7.0/100.0;
 								total = vat+subtotal+shipping;
 							}
+							var data_post = "<input type='hidden' name='vat' id='vat' value='"+vat+"'>";
+							data_post += "<input type='hidden' name='subtotal' id='subtotal' value='"+subtotal+"'>";
+							data_post += "<input type='hidden' name='shipping' id='shipping' value='"+shipping+"'>";
+							data_post += "<input type='hidden' name='total' id='total' value='"+total+"'>";
+							
 							$("#product-detail-table_3").html(table_head+detail);
 							$("#subtotal_3").html(subtotal+value);//assign value to html
 							$("#shipping_3").html(shipping+value);
@@ -396,6 +415,7 @@
 							$("#shipping_4").html(shipping+value);
 							$("#vat_4").html(vat+value);
 							$("#total_4").html(total+value);
+							$("#data_post_step_4").html(data_post);
 						}	
 						});
 											
@@ -424,6 +444,32 @@
 					$('.head-step2').css('color','#A0A0A0');
 					$('.head-step3').css('color','#A0A0A0');
 					$('.head-step4').css('color','#353535');
+				});
+				$('#submit-step4').click(function(event){
+					event.preventDefault();
+					$.ajax({
+						type: 'POST',
+						//dataType: "json",//for getJson
+						url: "<?php echo base_url('payment/step_4');?>",//controller path; go to goal function
+						data:{e_mail : $('#e_mail').val(),
+							order_id : $('#order_id').val(),							
+							address : $('#address').val(),
+							vat : $('#vat').val(),
+							total : $('#total').val(),
+							shipping_cost : $('#shipping').val()
+						},
+						error: function(data,textStatus,xhr) {
+						    alert(xhr+' error' );
+						},
+						success: function( data ) {							
+							//alert(data);
+							$('#date_expire_payment').html(data);
+							$('#save_pdf').css('display','block');
+							$('#home').css('display','block');
+							$('#submit-step4').css('display','none');							
+						}	
+						});
+				
 				});
 				
 				$('#back-step2').click(function(event){

@@ -588,7 +588,7 @@ background: #EFEFEF;
 
 #main-step4 #total-price{
 	float:right;
-	width:23%;
+	width:26%;
 	margin-top:10px;
 	line-height:120%;
 	text-align:right;
@@ -625,14 +625,18 @@ background: #EFEFEF;
 	background:#6F6F6F;
 	cursor: hand;cursor: pointer; 
 	height:24px;
-	width:90px;
+	width:110px;
 	margin-top:10px;
 	margin-left:2px;
 	margin-right:2px;
-	display:block;
+	
 }
+
 
 #main-step4 input[type="submit"]:hover{
 	background:#4F4F4F;
 	
+}
+#confirm_payment{
+	display: none;
 }
