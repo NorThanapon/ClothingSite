@@ -36,7 +36,7 @@
 		</div>
 </div>
 <!--</form>-->
-<?php $this->load->view('common/confirm_box');?>		 
+<?php $this->load->view('common/confirm_box_ok');?>	 
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -51,8 +51,8 @@
 					data:  { e_mail_send_password: $('#e_mail_send_password').val(), // set data variable and assign value from body
 						   },
 					success: function( data ) { // if succes do something ;data is returned
-						alert(data);						
-						confirm('Confirm for deletion','Do you want to delete products.',this.href, 'Delete'); 
+						//alert(data);						
+						confirm('Please enter the information',data,this.href);
 						return false;							
 					}				
 				});	

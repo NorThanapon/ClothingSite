@@ -1,5 +1,7 @@
 		<!--<form>-->
-			<div id="payment-head">
+		<script type="text/javascript" src="<?php echo asset_url().'js/accounting.js';?>" charset="utf-8"></script>    
+
+		<div id="payment-head">
 			 <div id="header-logo">
 				<?php echo anchor(base_url(), '<img src='.asset_url().'img/bfashshop.jpg />', 'title="BfashShop"'); ?>
 			</div>
@@ -235,10 +237,15 @@
 						</div>						
 						<input type="submit" class="submit-step4" id="submit-step4" name="submit-step4" value="Confirm" />						
 						<input type="submit" id="back-step4"   value="Back" />
-						<input type="submit" class="btn_go_to_homepage" id="btn_go_to_homepage" name="btn_go_to_homepage" value="Continue Shopping" />
-						<input type="submit" class="save_pdf" id="save_pdf" name="save_pdf" value="Save to PDF file" />
+						
 					</div>
 					
+					
+				</div>
+				<div id="after_confirm">
+						<input type="submit" class="btn_go_to_homepage" id="btn_go_to_homepage" name="btn_go_to_homepage" value="Continue Shopping" />
+						
+						<input type="submit" class="save_pdf" id="save_pdf" name="save_pdf" value="Save to PDF file" />
 				</div>
 			</fieldset>	
 <?php $this->load->view('common/confirm_box_ok');?>
@@ -293,7 +300,7 @@
 								$('#step4').css('display','none');
 								
 								$('.head-step1').css('color','#A0A0A0');
-								$('.head-step2').css('color','#f5989d');
+								$('.head-step2').css('color','#353535');
 								$('.head-step3').css('color','#A0A0A0');
 								$('.head-step4').css('color','#A0A0A0');							
 								
@@ -359,7 +366,7 @@
 							
 							$('.head-step1').css('color','#A0A0A0');
 							$('.head-step2').css('color','#A0A0A0');
-							$('.head-step3').css('color','#f5989d');
+							$('.head-step3').css('color','#353535');
 							$('.head-step4').css('color','#A0A0A0');
 						}	
 						});
@@ -393,8 +400,8 @@
 									detail += "<tr><td>"+data[i]['item_id']+"</td>";
 									detail += "<td>"+data[i]['product_name']+"</td>";
 									detail += "<td>"+data[i]['quantity']+"</td>";
-									detail += "<td>"+data[i]['unit_price']+"</td>";
-									detail += "<td>"+data[i]['price']+"</tr>";
+									detail += "<td  class='number'>"+accounting.formatMoney(data[i]['unit_price'],'')+"</td>";
+									detail += "<td  class='number'>"+accounting.formatMoney(data[i]['price'],'')+"</tr>";
 									subtotal += data[i]['price'];
 								}
 								vat = subtotal*7.0/100.0;
@@ -405,17 +412,24 @@
 							data_post += "<input type='hidden' name='shipping' id='shipping' value='"+shipping+"'>";
 							data_post += "<input type='hidden' name='total' id='total' value='"+total+"'>";
 							
+							subtotal = accounting.formatMoney(subtotal,'');
+							vat = accounting.formatMoney(vat,'');
+							shipping = accounting.formatMoney(shipping,'');
+							total = accounting.formatMoney(total,'');
+							
 							$("#product-detail-table_3").html(table_head+detail);
-							$("#subtotal_3").html(subtotal+value);//assign value to html
-							$("#shipping_3").html(shipping+value);
+							$("#subtotal_3").html(subtotal + value);//assign value to html
+							$("#shipping_3").html(shipping + value);
 							$("#vat_3").html(vat+value);
 							$("#total_3").html(total+value);
 							$("#product-detail-table_4").html(table_head+detail);
-							$("#subtotal_4").html(subtotal+value);//assign value to html
-							$("#shipping_4").html(shipping+value);
+							$("#subtotal_4").html(subtotal + value);//assign value to html
+							$("#shipping_4").html(shipping + value);
 							$("#vat_4").html(vat+value);
 							$("#total_4").html(total+value);
 							$("#data_post_step_4").html(data_post);
+						//	$(".number").format({format:"#,###.00", locale:"de"});
+							
 						}	
 						});
 											
@@ -443,7 +457,7 @@
 					$('.head-step1').css('color','#A0A0A0');
 					$('.head-step2').css('color','#A0A0A0');
 					$('.head-step3').css('color','#A0A0A0');
-					$('.head-step4').css('color','#f5989d');
+					$('.head-step4').css('color','#353535');
 				});
 				$('#submit-step4').click(function(event){
 					event.preventDefault();
@@ -465,8 +479,10 @@
 							//alert(data);
 							$('#date_expire_payment').html(data);
 							$('#save_pdf').css('display','block');
-							$('#home').css('display','block');
-							$('#submit-step4').css('display','none');							
+							$('#btn_go_to_homepage').css('display','block');
+							$('#back-step4').css('display','none');	
+							$('#submit-step4').css('display','none');
+							confirm('Thank you','Thank you '+data ,this.href);
 						}	
 						});
 				
@@ -479,7 +495,7 @@
 					$('#step3').css('display','none');
 					$('#step4').css('display','none');
 					
-					$('.head-step1').css('color','#f5989d');
+					$('.head-step1').css('color','#353535');
 					$('.head-step2').css('color','#A0A0A0');
 					$('.head-step3').css('color','#A0A0A0');
 					$('.head-step4').css('color','#A0A0A0');					
@@ -494,7 +510,7 @@
 					$('#step4').css('display','none');
 					
 					$('.head-step1').css('color','#A0A0A0');
-					$('.head-step2').css('color','#f5989d');
+					$('.head-step2').css('color','#353535');
 					$('.head-step3').css('color','#A0A0A0');
 					$('.head-step4').css('color','#A0A0A0');
 				});
@@ -508,7 +524,7 @@
 					
 					$('.head-step1').css('color','#A0A0A0');
 					$('.head-step2').css('color','#A0A0A0');
-					$('.head-step3').css('color','#f5989d');
+					$('.head-step3').css('color','#353535');
 					$('.head-step4').css('color','#A0A0A0');
 				});
 				

@@ -17,7 +17,7 @@
 	display:inline-block;
 	font-family:Sans-serif;	
 	padding-left:30px;
-	color:#f5989d;
+	color:#353535;
 	margin-bottom:10px;
 	float:right;
 }
@@ -407,7 +407,7 @@ background: #EFEFEF;
 
 #main-step3 #total-price{
 	float:right;
-	width:23%;
+	width:26%;
 	margin-top:10px;
 	line-height:120%;
 	text-align:right;
@@ -637,6 +637,41 @@ background: #EFEFEF;
 	background:#4F4F4F;
 	
 }
-#confirm_payment{
+#after_confirm{
+	float:right;
+	width:26%;
+	margin-top:10px;
+	line-height:120%;
+	text-align:right;
+	margin-right:80px;
+}
+#btn_go_to_homepage{
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
 	display: none;
+	width:250px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:2px;
+}
+#save_pdf{
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	display: none;
+	width:250px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:2px;
 }
