@@ -13,7 +13,7 @@
 		 
 		<p>Your transaction has not yet been completed until the amount stated in the invoice has been wire-transferred to us.
 
-		Once the amount has been transferred, please upload your transfer receipt to us (or fax to 02-683-5791) by [DATE], and we will send you the receipt for your purchase via email.
+		Once the amount has been transferred, please upload your transfer receipt to us (or fax to 02-683-5791) by <?php echo $date_expire;?>, and we will send you the receipt for your purchase via email.
 		
 		You MUST put your name and the order number in the receipt.
 		 
@@ -34,7 +34,7 @@
 		
 		ขอบคุณสำหรับการสั่งซื้อสินค้าของท่าน เราหวังว่าท่านจะชอบสินค้าของเรา<br /><br />
 		 
-		<p>การซื้อสินค้าของท่านยังไม่สิ้นสุดจนกว่าท่านจะโอนเงินมาให้เราตามจำนวนที่ได้ระบุไว้ในใบแจ้งหนี้ เมื่อท่านได้โอนเงินแล้วกรุณาส่งรูปถ่ายของใบเสร็จการโอนเงินจากธนาคารผ่านระบบ upload ของเราหรือแฟกซ์มาได้ที่ 02-683-5791 ภายในวันที่ [DATE] โดยเขียนชื่อและเลขที่ของการสั่งซื้อลงบนใบเสร็จการโอนเงินจากธนาคารด้วย เพื่อเราจะได้จัดส่งใบเสร็จการซื้อสินค้าให้แก่ท่าน
+		<p>การซื้อสินค้าของท่านยังไม่สิ้นสุดจนกว่าท่านจะโอนเงินมาให้เราตามจำนวนที่ได้ระบุไว้ในใบแจ้งหนี้ เมื่อท่านได้โอนเงินแล้วกรุณาส่งรูปถ่ายของใบเสร็จการโอนเงินจากธนาคารผ่านระบบ upload ของเราหรือแฟกซ์มาได้ที่ 02-683-5791 ภายในวันที่ <?php echo $date_expire;?> โดยเขียนชื่อและเลขที่ของการสั่งซื้อลงบนใบเสร็จการโอนเงินจากธนาคารด้วย เพื่อเราจะได้จัดส่งใบเสร็จการซื้อสินค้าให้แก่ท่าน
 		 
 		ท่านสามารถเข้าสู่ระบบบัญชีลูกค้าเพื่อดูรายละเอียดของการซื้อสินค้าครั้งนี้
 		 

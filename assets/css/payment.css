@@ -191,7 +191,7 @@ legend{
 	background:#6F6F6F;
 	cursor: hand;cursor: pointer; 
 	height:24px;
-	width:70px;
+	width:110px;
 	margin-top:10px;
 	margin-left:2px;
 	margin-right:2px;
@@ -267,7 +267,7 @@ legend{
 	width:70px;
 	margin-top:10px;
 	margin-left:6px;
-	margin-right:2px;
+	margin-right:20px;
 	display:inline-block;
 }
 
@@ -435,7 +435,7 @@ background: #EFEFEF;
 	display:block;
 	font-size:95%;
 	font-family:Sans-serif;
-	font-weight:bold;
+	
 	line-height:150%;
 }
 
@@ -461,7 +461,7 @@ background: #EFEFEF;
 	background:#6F6F6F;
 	cursor: hand;cursor: pointer; 
 	height:24px;
-	width:90px;
+	width:110px;
 	margin-top:10px;
 	margin-left:2px;
 	margin-right:2px;
@@ -616,7 +616,7 @@ background: #EFEFEF;
 	display:block;
 	font-size:95%;
 	font-family:Sans-serif;
-	font-weight:bold;
+	
 	line-height:150%;
 }
 
@@ -677,6 +677,11 @@ background: #EFEFEF;
 	margin-left:2px;
 	margin-right:2px;
 }
+.text_bold{
+	font-weight: bold;
+}
+
+
 #save_pdf{
 	border: none;
 	color: white;

@@ -327,9 +327,10 @@ class Payment extends CI_Controller {
 		$this->load->view('sub_page',$data);
 		
 	}
-	function thank()
+	function thank_you()
 	{
 		$data['page_title'] = 'Payment | BfashShop';
+		$data['date_expire'] ='';
 		//$data['error'] = "No";     
 		$data['page'] = 'Payment/thank_you';
 		$this->load->view('sub_page',$data);

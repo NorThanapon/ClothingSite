@@ -34,7 +34,7 @@
 				
 				<a href="javascript:void(0)" class="forget_password" title="Thai">Forgotten Password</a>
 				<input type="submit" id="sign-in" name="signin" value="Sign In" />
-				
+				<br />
 				<div id="forget_password_view" >
 				<label for="e_mail" >Email</label>
 				<input type = "text" name = "e_mail_send_password" class="input-text" id="e_mail_send_password"
@@ -147,16 +147,16 @@
 					</div>
 					<div id="total-price">
 						<div id="price-head">
-							<label >Subtotal :</label>
+							<label class="text_bold">Subtotal :</label>
 							<label >Shipping :</label>
 							<label >VAT :</label>
-							<label >Total :</label>					
+							<label class="text_bold" >Total :</label>					
 						</div>
 						<div id="price-detial">
-							<label id="subtotal_3" class="subtotal"></label>
+							<label id="subtotal_3" class="text_bold"></label>
 							<label id="shipping_3"></label>
 							<label id="vat_3"></label>
-							<label id="total_3" class="total"></label>
+							<label id="total_3" class="text_bold"></label>
 						</div>
 						<div id="data_post_step_3">
 						</div>
@@ -222,16 +222,16 @@
 					</div>
 					<div id="total-price">
 						<div id="price-head">
-							<label >Subtotal :</label>
+							<label class="text_bold" >Subtotal :</label>
 							<label >Shipping :</label>
 							<label >VAT :</label>
-							<label >Total :</label>					
+							<label class="text_bold" >Total :</label>					
 						</div>
 						<div id="price-detial">
-							<label id="subtotal_4" class="subtotal"></label>
+							<label id="subtotal_4" class="text_bold" ></label>
 							<label id="shipping_4"></label>
 							<label id="vat_4"></label>
-							<label id="total_4"  class="total"></label>
+							<label id="total_4" class="text_bold" ></label>
 						</div>
 						<div id="data_post_step_4">
 						</div>						
@@ -322,7 +322,7 @@
 						}
 						else
 						{
-							alert(data);
+							confirm('Please enter the information',data,this.href);
 						}
 					}
 				});
@@ -350,7 +350,7 @@
 							$("#address_3").html($('#address').val());
 							$("#postcode_3").html($('#postcode').val());
 														
-							var data_post = "<input type='hidden' name='address' id='address'";
+							var data_post = "<input type='hidden' name='shipping_address' id='shipping_address'";
 							data_post += "value='"+$('#first_name').val()+" "+$('#last_name').val();
 							data_post += " "+$('#address').val()+" "+ $('#postcode').val()+"'>";
 							data_post += "<input type='hidden' name='order_id' id='order_id' value='<?php echo $order_id ;?>'>";
@@ -467,7 +467,7 @@
 						url: "<?php echo base_url('payment/step_4');?>",//controller path; go to goal function
 						data:{e_mail : $('#e_mail').val(),
 							order_id : $('#order_id').val(),							
-							address : $('#address').val(),
+							address : $('#shipping_address').val(),
 							vat : $('#vat').val(),
 							total : $('#total').val(),
 							shipping_cost : $('#shipping').val()
@@ -483,7 +483,7 @@
 							$('#back-step4').css('display','none');	
 							$('#submit-step4').css('display','none');
 							//confirm('Thank you','Thank you '+data ,this.href);
-							 window.location.replace('<?php echo base_url('payment/thank');?>');
+							 window.location.replace('<?php echo base_url('payment/thank_you');?>');
 						}	
 						});
 				
@@ -533,7 +533,8 @@
 					history.back();
 				});
 				$('a.forget_password').click(function() {			
-					$("#forget_password_view").css("display","inline-block");	 			
+					$("#forget_password_view").css("display","inline-table");
+					
 				});
 				$('#send_email').click(function() {			
 					 $.ajax({
