@@ -244,7 +244,7 @@
 				</div>
 				<div id="after_confirm">						
 						
-						<input type="submit" class="save_pdf" id="save_pdf" name="save_pdf" value="Save to PDF file" />
+						<!--<input type="submit" class="save_pdf" id="save_pdf" name="save_pdf" value="Save to PDF file" />-->
 				</div>
 			</fieldset>	
 <?php $this->load->view('common/confirm_box_ok');?>
@@ -355,7 +355,7 @@
 							data_post += " "+$('#address').val()+" "+ $('#postcode').val()+"'>";
 							data_post += "<input type='hidden' name='order_id' id='order_id' value='<?php echo $order_id ;?>'>";
 							data_post += "<input type='hidden' name='date_order' id='date_order' value='<?php echo $order_date ;?>'>";
-							//data_post += "<input type='hidden' name='total' value='"+total+"'>";							
+														
 							$("#data_post_step_3").html(data_post);
 							
 							$('#step1').css('display','none');
@@ -379,7 +379,7 @@
 						},
 						success: function( data ) {
 							
-							var table_head = "<tr><th></th>";
+							var table_head = "<tr><th>No.</th>";
 								table_head +="<th>Product ID</th>";
 								table_head +="<th>Product Name</th>";
 								table_head +="<th>Quantity</th>";
@@ -396,7 +396,8 @@
 							{
 								for(i=0;i<data.length;i++)
 								{
-									detail += "<tr><td>"+data[i]['item_id']+"</td>";
+									detail += "<tr><td>"+(i+1)+"</td>";
+									detail += "<td>"+data[i]['item_id']+"</td>";
 									detail += "<td>"+data[i]['product_name']+"</td>";
 									detail += "<td>"+data[i]['quantity']+"</td>";
 									detail += "<td  class='number'>"+accounting.formatMoney(data[i]['unit_price'],'')+"</td>";
@@ -427,7 +428,7 @@
 							$("#vat_4").html(vat+value);
 							$("#total_4").html(total+value);
 							$("#data_post_step_4").html(data_post);
-						//	$(".number").format({format:"#,###.00", locale:"de"});
+						
 							
 						}	
 						});
@@ -476,12 +477,13 @@
 						},
 						success: function( data ) {							
 							//alert(data);
-							$('#date_expire_payment').html(data);
+							//$('#date_expire_payment').html(data);
 							$('#save_pdf').css('display','block');
 							$('#btn_go_to_homepage').css('display','block');
 							$('#back-step4').css('display','none');	
 							$('#submit-step4').css('display','none');
-							confirm('Thank you','Thank you '+data ,this.href);
+							//confirm('Thank you','Thank you '+data ,this.href);
+							 window.location.replace('<?php echo base_url('payment/thank');?>');
 						}	
 						});
 				

@@ -374,25 +374,25 @@ legend{
 	border-collapse: collapse;
 	width:100%;
 	text-align:center;
-	
+	border-top:2px solid #ccc;
 	font-family:Sans-serif;
 }
 #product-detail-table_4{
 	margin-top:15px;
 	margin-bottom:10px;
 	border-collapse: collapse;
+	border-top:2px solid #ccc;
 	width:100%;
 	text-align:center;
 	
 	font-family:Sans-serif;
 }
-
-#product-detail-table th{
+#product-detail-table_3 th{
 	font-size:100%;
 	border-bottom: 2px solid #ccc;
 }
 
-#product-detail-table td{
+#product-detail-table_3 td{
 font-size:90%;
 border-bottom: 1px solid #ccc;
 color: #666;
@@ -400,7 +400,24 @@ background: #fff;
 padding: 5px;
 }
 
-#product-detail-table tbody tr:hover td{
+#product-detail-table_4 th{
+	font-size:100%;
+	border-bottom: 2px solid #ccc;
+}
+
+#product-detail-table_4 td{
+font-size:90%;
+border-bottom: 1px solid #ccc;
+color: #666;
+background: #fff;
+padding: 5px;
+}
+
+#product-detail-table_3 tbody tr:hover td{
+color: #222;
+background: #EFEFEF;
+}
+#product-detail-table_4 tbody tr:hover td{
 color: #222;
 background: #EFEFEF;
 }
@@ -550,7 +567,7 @@ background: #EFEFEF;
 }
 
 
-#main-step4 #product-detail-table{
+#main-step4 #product-detail-table_4{
 	margin-top:10px;
 	margin-bottom:10px;
 	border-collapse: collapse;
@@ -560,12 +577,12 @@ background: #EFEFEF;
 	font-family:Sans-serif;
 }
 
-#main-step4 #product-detail-table th{
+#main-step4 #product-detail-table_4 th{
 	font-size:100%;
 	border-bottom: 2px solid #ccc;
 }
 
-#main-step4 #product-detail-table td{
+#main-step4 #product-detail-table_4 td{
 font-size:90%;
 border-bottom: 1px solid #ccc;
 color: #666;
@@ -573,7 +590,7 @@ background: #fff;
 padding: 5px;
 }
 
-#main-step4 #product-detail-table tbody tr:hover td{
+#main-step4 #product-detail-table_4 tbody tr:hover td{
 color: #222;
 background: #EFEFEF;
 }
