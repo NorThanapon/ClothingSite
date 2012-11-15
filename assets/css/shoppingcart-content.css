@@ -163,6 +163,14 @@
 	float:right;
 }
 
+#change-product-color{
+	float: left;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+
+
 .change-option{
 	float:left;
 	width:250px;
@@ -197,9 +205,14 @@
 }
 
 .change-quantity{
-	display:block;
-	width:100px;
-	height:30px
+	margin-top: 25px;
+	margin-left: 50px;
+	float: right;
+	margin-bottom: 15px;
+}
+
+.change-quantity h2{
+	display:inline-block;
 }
 
 .update-butt{
