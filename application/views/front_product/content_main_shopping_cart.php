@@ -310,6 +310,7 @@
 					alert(xhr);
 				},
 				success: function(data){
+					//alert(data);
 					if(data = 'true'){
 						window.location.href = "<?php echo base_url('cart');?>";
 					}

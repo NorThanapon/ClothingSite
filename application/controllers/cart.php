@@ -146,12 +146,6 @@ class Cart extends CI_Controller {
 		
 		$this->load->model('cart_model');
 		$result = $this->cart_model->get_item_id($size,$color);
-
-		if(strpos($cookie_value,$result->item_id)>0){
-			echo 'This item is currently in cart!';
-			return;
-			
-		}
 		
 		//set new value to cookie
 		$temp = strstr($cookie_value,$id);
@@ -159,6 +153,31 @@ class Cart extends CI_Controller {
 		$str = substr($temp,0,$tmp+1); //GET string of item
 		$str_pos = strpos($temp,$str);
 			
+		if(strpos($cookie_value,$result->item_id)>0){
+			$temp = strstr($cookie_value,$result->item_id);
+			$tmp = strpos($temp, '&');
+			$str = substr($temp,0,$tmp+1); //GET string of item
+			$str_pos = strpos($temp,$str);
+			
+			$obj = explode(',',$str);
+			$val = substr($obj[1],0,strlen($obj[1])-1);
+			if($val == $qty){
+				echo 'This item is currently in cart!';
+				return;
+			}
+			$val = $result->item_id.','.$qty.'&';
+			$new =  str_replace($str, $val ,$cookie_value); 
+			$cookie_cart = array(
+				'name' =>  'cart',
+				'value' =>   $this->encrypt->encode($new),
+				'expire' => '2592000'
+			);
+			
+			$this->input->set_cookie($cookie_cart);
+			echo 'true';
+			return;
+		}	
+		
 		// set new value
 		$val = $result->item_id.','.$qty.'&';
 		$new =  str_replace($str, $val ,$cookie_value); //substr($str,$str_pos,strlen($str));
