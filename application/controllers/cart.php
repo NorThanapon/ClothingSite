@@ -136,6 +136,46 @@ class Cart extends CI_Controller {
 		$data['colors'] = $this->product_model->get_color_in_size($data['item']->product_id,$size);
 		echo json_encode($data);
 	}
+	
+	public function update_cookie(){
+		$id = $this->input->post('item_id');
+		$size = $this->input->post('item_size');
+		$color = $this->input->post('item_color_id');
+		$qty = $this->input->post('item_qty');
+		$cookie_value = $this->encrypt->decode($this->input->cookie('cart'));
+		
+		$this->load->model('cart_model');
+		$result = $this->cart_model->get_item_id($size,$color);
+
+		if(strpos($cookie_value,$result->item_id)>0){
+			echo 'This item is currently in cart!';
+			return;
+			
+		}
+		
+		//set new value to cookie
+		$temp = strstr($cookie_value,$id);
+		$tmp = strpos($temp, '&');
+		$str = substr($temp,0,$tmp+1); //GET string of item
+		$str_pos = strpos($temp,$str);
+			
+		// set new value
+		$val = $result->item_id.','.$qty.'&';
+		$new =  str_replace($str, $val ,$cookie_value); //substr($str,$str_pos,strlen($str));
+		if(strpos($new, '&')==0){
+			$new = substr($new,1);
+		}
+
+		$cookie_cart = array(
+			'name' =>  'cart',
+			'value' =>   $this->encrypt->encode($new),
+			'expire' => '2592000'
+		);
+		
+		$this->input->set_cookie($cookie_cart);
+		
+		echo 'true';
+	}
 	public function remove_item($item_id){
 		$this->load->model('cart_model');
 		$cookie_value = $this->encrypt->decode($this->input->cookie('cart'));

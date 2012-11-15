@@ -155,21 +155,7 @@
 	
 }
 
-.update-butt{
-	border:none;
-	float:right;
-	border-radius:.2em;
-	background:url('../img/update_butt.png');
-	cursor:pointer;
-	display:inline-block;
-	width:100px;
-	height:20px;
-}
 
-.update-butt:hover{
-
-background:url('../img/update_butt_hover.png');
-}
 /* CHANGE-OPTION */ 
 
 #change-detail-size select{
@@ -211,9 +197,45 @@ background:url('../img/update_butt_hover.png');
 }
 
 .change-quantity{
+	display:block;
 	width:100px;
 	height:30px
 }
+
+.update-butt{
+	border:none;
+	float:right;
+	border-radius:.2em;
+	background:url('../img/update_butt.png');
+	cursor:pointer;
+	display:inline-block;
+	width:100px;
+	height:20px;
+}
+
+.update-butt:hover{
+
+background:url('../img/update_butt_hover.png');
+}
+
+.cancel-butt{
+	border:none;
+	float:bottom-right;
+	border-radius:.2em;
+	background:url('../img/cancel_butt.png');
+	cursor:pointer;
+	display:inline-block;
+	width:100px;
+	height:20px;
+}
+
+.cancel-butt:hover{
+
+background:url('../img/cancel_butt_hover.png');
+}
+
+
+
 /* END CHANGE-OPTION */ 
 
 #content-footer_wish_list {

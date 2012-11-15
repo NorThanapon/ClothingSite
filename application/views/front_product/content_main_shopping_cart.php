@@ -32,6 +32,7 @@
 				</div>
 				<div class="product-name"><h2><?php echo $items[$i]->product_name_en; ?></h2></div>
 				<div class="item-id" id="item-id<?php echo $items[$i]->item_id; ?>">ITEM ID: <?php echo $items[$i]->item_id; ?></div>
+			
 				<div class="product-link">
 					<?php //echo anchor('#','SAVE FOR LATER |', 'title="save_for_later"'); ?>
 					<?php echo anchor('cart/remove_item/'.$items[$i]->item_id.'','REMOVE', array('title' => "Remove this item",'class' => "remove") ); ?>
@@ -59,6 +60,7 @@
 					}
 				}	
 				?>
+				<input type="hidden" name="item-qty-<?php echo $items[$i]->item_id; ?>" value="<?php echo $quantity; ?>" />
 				<span><?php echo $quantity; ?></span>
 				</div>
 				<div class="option-button" >
@@ -93,6 +95,7 @@
 					</select>
 				</div>
 				<div class="update-button" >
+					<input type="submit" class="cancel-butt" name="cancel<?php echo $items[$i]->item_id; ?>" value=" " />
 					<input type="submit" class="update-butt" name="update<?php echo $items[$i]->item_id; ?>" value=" " />
 			</div>
 			</div>
@@ -158,9 +161,12 @@
 		$('.imgs-loading').hide();
 		$('.change-option').hide();
 		$('.option-butt').click(function (){
+			
 			$('.change-option').hide();
 			var n = $(this).attr("name");
-			$('.option').css('display','block');
+			
+			$('#sel-option').val(n);
+			
 			$('#loading'+n).bind('ajaxStart', function () {
 				$(this).show();
 				$('#option'+n).hide();
@@ -178,6 +184,8 @@
 					alert(xhr);
 				},
 				success: function(data){
+					$('.option').show();
+					$('#option'+n).hide();
 					$('#change'+n).show();
 					//$('.change-option').show();
 					//set size
@@ -192,7 +200,7 @@
 					//set quantity			
 					for(i=0; i<10 ; i++){
 						var option_qty = "<option value="+i+"> "+i+" </option>";
-						if(i == <?php echo $quantity; ?> ){
+						if(i == $('input[name=item-qty-'+n+']').val() ){
 							option_qty = "<option value="+i+" selected > "+i+" </option>";
 						}
 						$('select[name=change-quantity'+n+']').append(option_qty);
@@ -281,8 +289,41 @@
 		});
 		
 		$('.update-butt').click(function(){
-			alert("ss");
-		
+			var n = $(this).attr("name").substring(6);
+			//alert(n);
+			var size = $('select[name=dll-size-'+n+']').val();
+			var color = $('input[name=sel-color]').val();
+			var qty = $('select[name=change-quantity'+n+']').val();
+			
+			var s = $('input[name=first-id]').val();
+			//alert(n+"  "+size+"  "+color+"  "+qty);
+			var path = "<?php echo base_url('cart/update_cookie');?>";
+			$.ajax({
+				type: 'POST',
+				url: path,
+				data: {	item_id: n,
+						item_size: size,
+						item_color_id: color,
+						item_qty: qty
+				},
+				error: function(data, textStatus, xhr){
+					alert(xhr);
+				},
+				success: function(data){
+					if(data = 'true'){
+						window.location.href = "<?php echo base_url('cart');?>";
+					}
+					else{
+						alert(data);
+					}
+				}
+			});		
 		});
+		$('.cancel-butt').click(function(){
+			var n = $(this).attr("name").substring(6);
+			$('#change'+n).hide();
+			$('#option'+n).show();
+		});
+		
 });
 </script>

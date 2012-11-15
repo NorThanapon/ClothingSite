@@ -42,6 +42,13 @@ class Cart_model extends CI_Model
 		return $query->result();
 	}
 	
+	function get_item_id($size,$color_id){
+		$query = $this->db->query("SELECT *
+								   FROM products_items_colors
+								   WHERE size = '".$size."' AND color_id = ".$color_id);
+		return $query->row();
+	}
+	
 	/*
 	function get_item_detail($where)
 	{
