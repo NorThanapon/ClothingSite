@@ -577,6 +577,7 @@ div.report-items table {
 	width:100%;
 	border-left:none;
 	border-right:none;
+	margin-top:5px;
 }
 div.report-items table th{
 	text-align:left;

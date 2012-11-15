@@ -196,5 +196,18 @@ class Brand extends CI_Controller
 		$data['page'] = 'brand/list';
 		$this->load->view('main_admin_page',$data);
 	}
+	
+	public function sizechart()
+	{
+		 if(!check_authen('staff',TRUE)) return;
+        //authenticated
+        $data['page_title'] = 'Admin: Size Chart Management';
+        if (!$this->input->post('submit'))
+        {
+			$data['page'] = 'brand/sizechart';
+            $this->load->view('main_admin_page',$data);
+            return;
+        }
+	}
 }
 ?>
