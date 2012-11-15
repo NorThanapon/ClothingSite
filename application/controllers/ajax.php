@@ -51,5 +51,11 @@ class Ajax extends CI_Controller
 		$data['quantity'] = $this->product_model->get_quantity($product_id, $size, $color_id);
 		echo json_encode($data['quantity']);
 	}
-
+	public function sub_image_ajax($product_id, $color_id)
+	{
+		$this->load->model('product_model');
+		$data['sub_image'] = $this->product_model->get_sub_image($product_id,$color_id);
+		echo json_encode($data['sub_image']);
+	}
+	
 }?>

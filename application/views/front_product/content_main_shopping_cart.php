@@ -31,13 +31,14 @@
 					<?php echo anchor(asset_url().'db/products/'.$items[$i]->file_name.'',"<img src='".asset_url().'db/products/'.$items[$i]->file_name."' />",'');	?>
 				</div>
 				<div class="product-name"><h2><?php echo $items[$i]->product_name_en; ?></h2></div>
-				<!-- <div class="item_id"><h2><ITEM ID: <?php// echo $items[$i]->item_id; ?></h2></div>-->
+				<div class="item-id" id="item-id<?php echo $items[$i]->item_id; ?>">ITEM ID: <?php echo $items[$i]->item_id; ?></div>
 				<div class="product-link">
 					<?php //echo anchor('#','SAVE FOR LATER |', 'title="save_for_later"'); ?>
 					<?php echo anchor('cart/remove_item/'.$items[$i]->item_id.'','REMOVE', array('title' => "Remove this item",'class' => "remove") ); ?>
 				</div>
 			</div>
-			<div class="option" id="option<?php echo $i; ?>">
+			<input type="hidden" id="sel-option" />
+			<div class="option" id="option<?php echo $items[$i]->item_id; ?>">
 				<div>
 				<span class="option-color">Color:</span>
 				<span><?php echo $items[$i]->color_name; ?></span>
@@ -61,65 +62,41 @@
 				<span><?php echo $quantity; ?></span>
 				</div>
 				<div class="option-button" >
-					<input type="submit" name="change-butt<?php echo $i; ?>" value=" " />
+					<input type="submit" class="option-butt" name="<?php echo $items[$i]->item_id; ?>" value=" " />
 				</div>
 			</div>
 			<!-- CHANGE ITEM'S DETAILS -->
-			<!--
-			<div class="change-option" id="change<?php echo $i; ?>" >
-				<div class="image-loading" >
-					<img class="imgs<?php echo $i; ?>" src="<?php echo asset_url().'img/loading1.gif'; ?>" />
-				</div>
+			<input type="hidden" id="sel-change" />
+			<img class="imgs-loading" id="loading<?php echo $items[$i]->item_id; ?>" src="<?php echo asset_url().'img/loading1.gif'; ?>" />
+			
+			<div class="change-option" id="change<?php echo $items[$i]->item_id; ?>" >
+				
 				<div id="change-product-sizecolor">
 					<div id="change-detail-size">
-						<select id="ddl-detail-size">
-							<option value="0"> ---Select Size--- </option>
-							<?php 
-							//foreach($item_detail_size as $item)
-							{
-							?>
-								<option value="<?php// echo $item->size; ?>"> <?php echo $item->size; ?> </option>
-							<?php
-							}
-							?>
+						<select class="dll-size-item" name="dll-size-<?php echo $items[$i]->item_id; ?>">
+							
 						</select>
 						<h2>Size:</h2>
-						
 					</div>
+					<input type="hidden" name="sel-color" />
 					<div id="change-product-color">
 						<h2>Color:</h2>
-						<div id="color-image">
-							<?php
-							
-							//if($color_in_size != NULL)
-							{
-							?>
-								 <input type="hidden" value="<?php //echo $color_in_size[0]->color_id; ?>" id="select-color" />
-							<?php// foreach($color_in_size as $item)
-								//{
-								?>
-									<div  id="<?php// echo $item->color_file_name;?>">
-									<img src="<?php //echo asset_url().'db/colors/'.$item->color_file_name; ?>">
-									</div>
-								<?php
-								//} 
-							}
-								?>
-							
+						<div id="color-image<?php echo $items[$i]->item_id; ?>">
+			
 						</div>
 					</div>
 				</div>	
-				<div id="change-product-quantity">
+				<div class="change-quantity" id="change-product-quantity">
 					<h2>Quantity:</h2>
-					<select id="ddl-product-quantity"> 
-					<?php for($q=1;$q<=10;$q++)
-					{ 
-					?>
-						<option value="<?php echo $q; ?>"> <?php echo $q; ?> </option>
-			  <?php } ?>
+					<select name="change-quantity<?php echo $items[$i]->item_id; ?>"> 
+			 
 					</select>
 				</div>
+				<div class="update-button" >
+					<input type="submit" class="update-butt" name="update<?php echo $items[$i]->item_id; ?>" value=" " />
 			</div>
+			</div>
+			
 			<!-- END ITEM'S DETAILS -->
 			
 			
@@ -134,7 +111,8 @@
 														echo number_format($price,2, '.', ',');
 														$total_price += $price;
 													}
-											?></div>
+											?>
+				</div>
 			</div>
 		</div>
 <?php 
@@ -177,20 +155,134 @@
 </form>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.image-loading').hide();
+		$('.imgs-loading').hide();
 		$('.change-option').hide();
-		$('.option-button').click(function (){
-			var num = $('input[name=count-item]').val();
-			for(var i=0; i<num ;i++){
-				
-				$('input[name="change-butt'+i+'"]').click() == true)
-				{
-					alert($('input[name="change-butt'+i+'"]').val());
-				}
-				
+		$('.option-butt').click(function (){
+			$('.change-option').hide();
+			var n = $(this).attr("name");
+			$('.option').css('display','block');
+			$('#loading'+n).bind('ajaxStart', function () {
+				$(this).show();
+				$('#option'+n).hide();
+			}).bind('ajaxStop', function () {
+				$(this).hide();
+			});
 			
-			}
+			var path = "<?php echo base_url('cart/load_value');?>";
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: path,
+				data: {	item_id: n },
+				error: function(data, textStatus, xhr){
+					alert(xhr);
+				},
+				success: function(data){
+					$('#change'+n).show();
+					//$('.change-option').show();
+					//set size
+					for(i=0; i<data['item_detail_size'].length ;i++){
+						var option = "<option value='"+data['item_detail_size'][i].size+"' > "+data['item_detail_size'][i].size+"</option>";
+						if(data['item_detail_size'][i].size == data['item'].size){
+							option = "<option value='"+data['item_detail_size'][i].size+"' selected > "+data['item_detail_size'][i].size+"</option>";
+						}
+						$('select[name=dll-size-'+n+']').append(option);
+					}
+					
+					//set quantity			
+					for(i=0; i<10 ; i++){
+						var option_qty = "<option value="+i+"> "+i+" </option>";
+						if(i == <?php echo $quantity; ?> ){
+							option_qty = "<option value="+i+" selected > "+i+" </option>";
+						}
+						$('select[name=change-quantity'+n+']').append(option_qty);
+					}					
+
+					//set color
+					var color_div = document.getElementById('color-image'+n);
+					color_div.innerHTML = "";
+					$("#color-image").html("");
+					for(i = 0; i<data['color_in_size'].length;i++) {
+						color = data['color_in_size'][i];
+						
+						//alert(data);
+						$("#color-image"+n)
+							.append($('<div></div>').attr('id',"div"+color.color_id)
+								.append($('<img></img>')
+									.attr('src','<?php echo asset_url().'db/colors/'; ?>'+color.color_file_name)
+									.attr('id', color.color_id)
+									.attr('class','div-color')
+								)
+							);
+						if(data['color_in_size'][i].color_id == data['item'].color_id)
+						{
+							$("#"+color.color_id).css("border","1px solid #3A4F6C");
+							$("input[name=sel-color]").val(color.color_id);
+						}
+						
+						$("#"+color.color_id).click(function() {
+
+							var color_id = this.id;
+							alert(color_id);
+
+							var c = $('input[name=sel-color]').val();
+							$('#'+c).css("border","none");
+							$('input[name=sel-color]').val(this.id);
+							$(this).css("border","1px solid #3A4F6C");
+						
+							var url_2 = "<?php echo base_url('cart/get_item_id') ?>"+"/"+data['item'].size+"/"+$('input[name=sel-color]').val();
+							$.getJSON(url_2, function(data){
+								$("#item-id"+n).html("ITEM ID: "+data['item'].item_id);
+							});
+						});	
+					}
+					
+					
+				}
+			});
+			
+		});
+		//$('select[name=dll-size-'+n+']').change(function(){
+		$('.dll-size-item').change(function(){
+			var n = $(this).attr("name").substring(9);
+			var size = $(this).val();
+			var path_color = "<?php echo base_url('cart/get_color');?>"+"/"+n+"/"+size;
+			//alert(path_color);
+			$.getJSON(path_color, function(data){
+				var color_div = document.getElementById('color-image'+n);
+				color_div.innerHTML = "";
+				$("#color-image").html("");
+				for(i = 0; i<data['colors'].length;i++) {
+					color = data['colors'][i];
+					$("#color-image"+n)
+						.append($('<div></div>').attr('id',"div"+color.color_id)
+							.append($('<img></img>')
+								.attr('src','<?php echo asset_url().'db/colors/'; ?>'+color.color_file_name)
+								.attr('id', color.color_id)
+								.attr('class','div-color')
+									)
+						);
+					$("#"+color.color_id).click(function() {
+						var color_id = this.id;
+						//alert(color_id);
+						var c = $('input[name=sel-color]').val();
+						$('#'+c).css("border","none");
+						$('input[name=sel-color]').val(this.id);
+						$(this).css("border","1px solid #3A4F6C");
+								
+						var url_2 = "<?php echo base_url('cart/get_item_id') ?>"+"/"+size+"/"+$('input[name=sel-color]').val();
+						//alert(url_2);
+						$.getJSON(url_2, function(data){
+							$("#item-id"+n).html("ITEM ID: "+data['item'].item_id);
+						});
+					});	
+				}
+			});
+		});
+		
+		$('.update-butt').click(function(){
+			alert("ss");
 		
 		});
-	});
+});
 </script>

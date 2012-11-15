@@ -48,7 +48,7 @@ class Brand extends CI_Controller
             $this->load->view('main_admin_page',$data);
             return;
         }
-		echo $data['form_brand_name'];
+		//echo $data['form_brand_name'];
 		
         //none duplicate brand name
         $this->load->library('upload');

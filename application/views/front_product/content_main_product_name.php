@@ -20,7 +20,7 @@
 		{	
 			
 		?>		
-			<li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?php echo asset_url().'db/products/m_'.$item->image_file_name; ?>',largeimage: '<?php echo asset_url().'db/products/l_'.$item->image_file_name; ?>'}"><img src='<?php echo asset_url().'db/products/s_'.$item->image_file_name; ?>'></a></li>
+			<li id='sub-image-list'><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?php echo asset_url().'db/products/m_'.$item->image_file_name; ?>',largeimage: '<?php echo asset_url().'db/products/l_'.$item->image_file_name; ?>'}"><img src='<?php echo asset_url().'db/products/s_'.$item->image_file_name; ?>'></a></li>
 			
 		<?php
 		}
@@ -175,6 +175,24 @@
 					$(this).css("border","1px solid #3A4F6C");
 						
 					});
+					var url_4 = "<?php echo base_url('ajax/sub_image_ajax') . '/' . $product_detail->product_id; ?>/"+color_id;
+					$.getJSON(url_4, function(data){
+						var subimg_div = document.getElementById('sub-image');
+						subimg_div.innerHTML = "";
+						
+						var li = document.createElement("li");
+						li.id = 'sub-image-list';
+						
+						var a = document.createElement("a");
+						a.setAttribute('href', 'javascript:void(0)');
+						//a.setAttribute('rel', '{gallery: 'gal1', smallimage: '<?php echo asset_url().'db/products/m_'; ?>+data.image_file_name+'\',largeimage: '<?php echo asset_url().'db/products/l_'; ?>+data.image_file_name+'\'}');	
+						li.appendChild(a);
+						
+						var img = document.createElement("img");
+						//img.setAttribute('src','<?php echo asset_url().'db/products/s_';?>' + data.image_file_name;
+						a.appendChild(img);
+
+					});
 					
 				}
 			});
@@ -218,7 +236,47 @@
 				});
 			}
 			
+		});
+		/*
+		$('#add-to-wishlist').click(function() {
+			$.ajax({
+				type: 'POST',
+				url: "<?php echo base_url('brand/product');?>",
+				data: "lang=en",
+				success: function( data ) {
+					window.location.href = "<?php echo base_url();?>";
+			}});
 		});		
+		*/
+		
+				/*
+		$('#ddl-detail-size').change(function() {
+			$.ajax({
+			type: 'POST',
+			url: "<?php echo base_url('ajax/product_ajax/'.$product_detail->product_id);?>",
+			data: "size=" + $('#ddl-detail-size').val() + "&action=change",
+			success: function( data ) {
+				if(data == '1')
+					alert("1");
+				else if(data == $('#ddl-detail-size').val())
+					alert("size" + $('#ddl-detail-size').val());
+				else
+				{
+						//alert(data);
+					$.getJSON(url, function(data){
+						for(i = 0; i<data.length;i++) 
+						{
+							color = data[i];
+							alert(color);
+							//display it somehow
+						}
+				}
+			//window.location.reload();
+			//alert($('#ddl-detail-size').val());
+			
+			}});
+		});
+		*/
 		
 		});
 		

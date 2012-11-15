@@ -109,7 +109,33 @@ class Cart extends CI_Controller {
 		echo 'true';		
 	}
 	
+	public function load_value(){
+		$this->load->model('product_model');
+		$this->load->model('item_model');
+			
+		$item_id = $this->input->post('item_id');
+		$data['item'] = $this->item_model->get($item_id);
+		
+		$data['color_in_size'] = $this->product_model->get_color_in_size($data['item']->product_id,$data['item']->size);
+		$data['item_detail_size'] = $this->product_model->get_item_detail_size($data['item']->product_id);
+		echo json_encode($data);
+		
+	}
 	
+	public function get_item_id($size,$color_id){
+		$this->load->model('cart_model');
+		
+		$where = "size = '".$size."' AND color_id = '".$color_id."'";
+		$data['item'] = $this->cart_model->get_item($where);
+		echo json_encode($data);
+	}
+	public function get_color($item_id,$size){
+		$this->load->model('product_model');
+		$this->load->model('item_model');
+		$data['item'] = $this->item_model->get($item_id);
+		$data['colors'] = $this->product_model->get_color_in_size($data['item']->product_id,$size);
+		echo json_encode($data);
+	}
 	public function remove_item($item_id){
 		$this->load->model('cart_model');
 		$cookie_value = $this->encrypt->decode($this->input->cookie('cart'));
@@ -138,7 +164,6 @@ class Cart extends CI_Controller {
 	}
 	public function destroy_cookie($item_id=FALSE){
 		delete_cookie("cart");
-		delete_cookie("amount");
 		delete_cookie("redirect");
 		redirect();
 	}

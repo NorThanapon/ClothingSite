@@ -241,9 +241,14 @@ class Product_model extends CI_Model
 		$query =  $this->db->query("SELECT * FROM `products_brands_items_images_colors` where product_id=".$product_id." and image_id = main_image");
 	    return $query->row();
 	}
-	function get_sub_image($product_id)
+	function get_sub_image($product_id, $color_id=FALSE)
 	{
-		$query =  $this->db->query("SELECT distinct(brand_id),main_image,image_id,image_file_name FROM `products_brands_items_images_colors` WHERE product_id=".$product_id." ORDER BY image_id DESC");
+		if($color_id!=FALSE)
+			$query =  $this->db->query("SELECT image_file_name FROM `images_colors` WHERE product_id=".$product_id." AND color_id=".$color_id." LIMIT 4");
+		else
+		{
+			$query =  $this->db->query("SELECT image_file_name FROM images_colors WHERE product_id=".$product_id." LIMIT 4 ");
+		}
 		return $query->result();
 	}
 	function get_item_detail_size($product_id)
