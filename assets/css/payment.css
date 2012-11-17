@@ -682,7 +682,7 @@ background: #EFEFEF;
 }
 
 #invoice{
-	font-size:10px;
+	font-size: 14px;
 	max-width: 1000px;
 	position: relative;
 	width: 80%;
@@ -690,6 +690,11 @@ background: #EFEFEF;
 	vertical-align: middle;
 	padding-top: 30px;
 	padding-bottom: 60px;
+}
+#invoice #customer-info{
+	display:block;
+	float:left;
+	width:70%;
 }
 #save_pdf{
 	border: none;

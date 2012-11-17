@@ -93,7 +93,7 @@
 		
 		
 	</div>				
-	<input type="button" value="Print this page" onclick="print()">
+
 </div>
 </fieldset>		
-		
+<input type="button" value="Print this page" onclick="print()">	
