@@ -768,3 +768,16 @@ vertical-align:bottom;
 	margin-top:5px;
 }
 
+.photo-item-details label{
+	font-size:90%;
+	font-weight: bold;
+}
+
+.photo-item-details span{
+	font-size:85%;
+}
+
+.photo-item-details img{
+	width:15px;
+	height:15px;
+}

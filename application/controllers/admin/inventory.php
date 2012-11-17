@@ -21,8 +21,8 @@ class Inventory extends CI_Controller
 	{
 		//load color
 		$this->load->model('color_model');
-		$data["colors"] = NULL;
-        $data["allow_manage_color"] = FALSE;
+		$data["colors"] = $this->color_model->get();
+        $data["allow_manage_color"] = TRUE;
         $data["picker_control_name"] = "color";
         $data["picker_control_id"] = "ddl-color";
 		//end load color
@@ -96,8 +96,10 @@ class Inventory extends CI_Controller
 	    }
 		//load color
 		$this->load->model('color_model');
-        $data["all_colors"] = $this->color_model->get();
-        $data["colors"] = $data["all_colors"];
+		$this->load->model('item_model');
+        //$data["item_color"] = $this->item_model->get($item_id)->color_id;
+        $data["colors"] = $this->color_model->get();
+		//$data["all_colors"];
         $data["allow_manage_color"] = TRUE;
         $data["picker_control_name"] = "color";
         $data["picker_control_id"] = "ddl-color";
@@ -118,7 +120,7 @@ class Inventory extends CI_Controller
 		$data['products'] = $this->product_model->get();
 		
 		$data['page_title'] = 'Admin: Inventory Management';
-		if (!$this->input->post('submit')) 
+		if (!$this->input->post('submit') && !$this->input->post('manage_photo')) 
 	    {    
 			$this->load->view('inventory/edit',$data);
 			return;
@@ -166,9 +168,46 @@ class Inventory extends CI_Controller
 		$this->item_model->update_total_quantity($this->input->post('product_id'),$total);		
 		$this->item_model->edit($this->input->post('item_id_key'));
 		
+		// IF click manage photo
+		if($this->input->post('manage_photo')){
+			$item =  $this->item_model->get($this->input->post('item_id'));
+			if ($data['items'] == FALSE)
+			{
+				$data['page'] = 'inventory/list';
+				$this->load->view('main_admin_page',$data);
+			}
+            redirect('admin/inventory/photo/'.$item->item_id);
+            return;
+			
+		}
+		
 		redirect('admin/inventory');	
 	}
-	
+	public function photo($item_id)//addPhoto change Name
+	{
+		if(!check_authen('staff',TRUE)) return;
+		$this->load->model('item_model');
+		$this->load->model('image_model');
+		$this->load->model('product_model');
+		$data['item'] = $this->item_model->get($item_id);
+		$data['photos'] = $this->image_model->get_photos($data['item']->product_id);
+		$data['product'] = $this->product_model->get($data['item']->product_id);
+		
+		
+		$data['page_title']='Manage Photo';
+		$this->load->model('color_model');
+		
+        $data["all_colors"] = $this->color_model->get();
+        //$data["colors"] = $data["all_colors"];
+        $data["allow_manage_color"] = TRUE;
+        $data["picker_control_name"] = "color";
+        $data["picker_control_id"] = "ddl-color";
+		$data['page'] = 'inventory/photo_management';
+        $this->load->view('main_admin_page',$data);
+		
+		//$this->load->view('product/photo_management',$data);
+		 
+	}
 	
     public function service_add() {
         if(!check_authen('staff',TRUE)) return;

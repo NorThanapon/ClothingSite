@@ -1,21 +1,20 @@
-	    <h1>Photos of <?php echo $product->product_name_en; ?></h1> 
-		
-	    <div class="form-input">
-		<fieldset>
-		    <legend>Add a photo</legend>			
-			<?php echo form_open_multipart('admin/product/add_photo/', 'id="form-add-photo"'); ?>
-				<div id="add-photo">
-				
-					<label for="photo">Photo:</label>
-					<input name="photo" type="file" id="photo"/>	
-					<input type="hidden" name="product_id" value="<?php echo $product->product_id; ?>" />
-					<span class="button" id="btn-add-photo">Add Photo</span>
-
-				</div>
-			</form>
-		</fieldset>	
-		
-		
+	    <h1>Photos of Item<?php echo ' '.$item->item_id; ?></h1> 
+		<div class="photo-item-details">
+			<label>Product's name: </label>
+			<span><?php echo $product->product_name_en;?></span><br />
+			<label>Size: </label>
+			<span><?php echo $item->size; ?></span><br />
+			<label>Color: </label>
+			<span><?php foreach($all_colors as $color){
+									if($color->color_id == $item->color_id){
+									  echo '<img src='.asset_url().'db/colors/'.$color->file_name.' alt="" />  ';
+									  echo $color->color_name;
+									}
+								}
+						 ?>
+			</span><br /><br />
+		</div>
+	    <div class="form-input">	
 	    <fieldset>
 		<legend>Existing photos</legend>
 		<?php 
@@ -30,7 +29,7 @@
 				</a>
 				<input type="hidden" name="image_id" value="<?php echo $item->image_id ; ?>" />
 				<br />
-					<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>
+					<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$item->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>
 					<br />					
 				</div>
 		<?php	
@@ -40,7 +39,7 @@
 		</fieldset>
 		
 		</div>			
-			<input type="hidden" name="product_id" value="<?php echo $product->product_id;?>" id= "product_id" />
+			<input type="hidden" name="product_id" value="<?php echo $item->product_id;?>" id= "product_id" />
 			<div class="content-right form-action">			
 			<?php echo anchor('admin/product','Done' ,array('class' => 'button')); ?>	
 			</div>

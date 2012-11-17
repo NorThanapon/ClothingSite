@@ -51,7 +51,8 @@
 	    </div>
 	    <div class="content-right form-action">
 		<?php echo anchor('admin/item','Cancel' ,array('class' => 'button')); ?>
-		<input class="button btn-submit" type = "submit" name="submit" value="Save change"/>
+		<input class="button btn-submit" type = "submit" name="submit" value="Save and Return"/>
+		<input class="button btn-submit" type = "submit" name="manage_photo" value="Save and Manage photo"/>
 	    </div>
 	</form>
 	<?php $this->load->view('common/admin_footer');?>

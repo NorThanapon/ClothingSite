@@ -5,20 +5,10 @@ class Image_model extends CI_Model
  	{
         parent::__construct();
     }
-	function add_photo($file_name,$color_id)
+	function add_photo($file_name)
 	{		
-		if($color_id==FALSE){
-			$data = array(
-		    'product_id' => $this->input->post('product_id'),	
-			'file_name'=>$file_name
-			);
-			$this->db->insert('images',$data);
-			return;
-		}
 		$data = array(
-		    
 		    'product_id' => $this->input->post('product_id'),	
-			'color_id' => $color_id,
 			'file_name'=>$file_name
 			);
 		$this->db->insert('images',$data);
@@ -51,14 +41,25 @@ class Image_model extends CI_Model
     {
         if ($product_id === FALSE) 
         {
-                $query = $this->db->get('images_colors');	
+                $query = $this->db->get('images');	
                 return $query->result();
         }
-        $query = $this->db->get_where('images_colors', array('product_id' => $product_id));
+        $query = $this->db->get_where('images', array('product_id' => $product_id));
         //if ($query->num_rows() > 0)
         return $query->result();
         //return FALSE;
     }
+	/*
+	function get_item_image($item_id = FALSE){
+		if($item_id === FALSE){
+			$query = $this->db->get('items_images');
+			return $query->result();
+		}
+		$query = $this->db->get_where('items_images', array('item_id'=>$item_id));
+		return $query->result();
+		
+	}	
+	/*
 	function edit_color($photo_id,$color_id)
 	{
 		$data = array(
@@ -66,7 +67,7 @@ class Image_model extends CI_Model
 			);
 		$this->db->update('images',$data,array('image_id'=>$photo_id));
 	}
-	
+	*/
 
 }
 ?>

@@ -468,11 +468,11 @@ class Product extends CI_Controller
 		$data['photos'] = $this->image_model->get_photos($product_id);
 		$data['page_title']='Manage Photo';
 		$this->load->model('color_model');
-        $data["all_colors"] = $this->color_model->get();
-        $data["colors"] = $data["all_colors"];
-        $data["allow_manage_color"] = TRUE;
-        $data["picker_control_name"] = "color";
-        $data["picker_control_id"] = "ddl-color";
+        //$data["all_colors"] = $this->color_model->get();
+        //$data["colors"] = $data["all_colors"];
+       // $data["allow_manage_color"] = TRUE;
+       // $data["picker_control_name"] = "color";
+       // $data["picker_control_id"] = "ddl-color";
 		$data['page'] = 'product/photo_management';
         $this->load->view('main_admin_page',$data);
 		
@@ -521,7 +521,7 @@ class Product extends CI_Controller
 		$photo_id++;		
 		
         $result_photo = $this->_upload_photo_file($photo_id,'photo');	
-		$this->product_model->save_main_image($this->input->post('main_image'));
+		//$this->product_model->save_main_image($this->input->post('main_image'));
 		$data['product'] =  $this->product_model->get($this->input->post('product_id'));
 		if ($data['product'] == FALSE)
 		{
@@ -529,7 +529,7 @@ class Product extends CI_Controller
 			return;
 		}
 		
-		$this->image_model->add_photo($result_photo['file_name'] ,$color_id);
+		$this->image_model->add_photo($result_photo['file_name']);
 		$data['product'] = $this->product_model->get($this->input->post('product_id'));
 		$data['photos'] = $this->image_model->get_photos('product_id');
 		redirect('admin/product/photo/'.$this->input->post('product_id'));
@@ -550,6 +550,7 @@ class Product extends CI_Controller
 		redirect('admin/product/photo/'.$product_id);
 		
 	}
+	/*
 	public function save_main_image()
 	{
 		if(!check_authen('staff',TRUE)) return;
@@ -562,5 +563,6 @@ class Product extends CI_Controller
 		redirect('admin/product/photo/'.$this->input->post('product_id'));
 		
 	}
+	*/
 }
 ?>
