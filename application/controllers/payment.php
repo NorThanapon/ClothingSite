@@ -285,6 +285,12 @@ class Payment extends CI_Controller {
 		$this->load->helper('date');		
 		$time = time();		
 		$order_data['date_add'] = $time;//timestamp
+		
+		//if( !ini_get('date.timezone') )
+		//{
+		date_default_timezone_set('Asia/Bangkok');
+		//}
+		//echo "ini_get('date.timezone')".ini_get('date.timezone');
 		$time_exp = $time+(86400*2);
 		$order_data['date_expire'] = $time_exp ;
 		$this->payment_model->add($member_id,$order_data);	
@@ -318,21 +324,52 @@ class Payment extends CI_Controller {
 			$data2[$i]['price'] = $price*$data2[$i]['unit_price'] ;
 			$this->payment_model->add_order_detail($order_id,$data2[$i]['item_id'],$data2[$i]['quantity'],$data2[$i]['unit_price']);
 		}
-		$datestring = "%d/%m/%Y  %h:%i %a";
+		$datestring = "%d/%M/%Y  %h:%i %a";
 		$expire_date = mdate($datestring, $time_exp);
-		//echo $expire_date ;
-		$data['page_title'] = 'Payment | BfashShop';
-		//$data['error'] = "No";     
-		$data['page'] = 'Payment/thank_you';
-		$this->load->view('sub_page',$data);
 		
-	}
-	function thank_you()
-	{
+		$data['order_id'] = $order_id;
 		$data['page_title'] = 'Payment | BfashShop';
-		$data['date_expire'] ='';
-		//$data['error'] = "No";     
+		$data['error'] = "No";  
+		$data['date_expire'] = $expire_date;
 		$data['page'] = 'Payment/thank_you';
+		$this->load->view('sub_page',$data);		
+	}
+	public function invoice()
+	{
+		$order_id = $this->input->post('order_id');		
+		$this->load->model('payment_model');
+		$data['order_id'] = $this->input->post('order_id');
+		$order = $this->payment_model->get_order($order_id);
+		
+		$this->load->helper('date');
+		$datestring = "%d/%M/%Y  %h:%i %a";
+		$data['order_date'] = mdate($datestring, $order->date_add);
+		$data['order_expire'] = mdate($datestring, $order->date_expire);
+		
+		$data['shipping'] = number_format( $order->shipping_cost , 2, '.', ',');
+		$data['vat'] = number_format( $order->vat , 2, '.', ',');
+		$data['total'] = number_format( $order->total_price , 2, '.', ',');
+		$data['subtotal'] = number_format($order->total_price-$order->vat- $order->shipping_cost, 2, '.', ',');
+		
+		$address = explode(";",$order->shipping_address);
+		$data['first_name'] = $address[0];
+		$data['last_name'] = $address[1];
+		$data['tel'] = $address[2];
+		$data['mobile'] = $address[3];
+		$data['address'] = $address[4];
+		$data['postcode'] = $address[5];
+		
+		
+		$data['products'] = $this->payment_model->get_order_detail($order_id);
+		
+		
+		
+		
+		
+		
+		$data['page_title'] = 'Invoice | BfashShop';
+		$data['error'] = "No";  		
+		$data['page'] = 'Payment/invoice';
 		$this->load->view('sub_page',$data);
 	}
 	

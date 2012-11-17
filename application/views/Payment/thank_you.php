@@ -21,8 +21,8 @@
 		 
 		If you have any questions about your order, or comments about your shopping experience, please contact us at support@bfashshop.com or call 02-xxx-xxxx.</p>
 		 
-		Back to home
-		Visit BFash.com
+		<!--Back to home
+		Visit BFash.com-->
 		 
 		</div>
 		<br />
@@ -40,11 +40,14 @@
 		 
 		ถ้าท่านมีคำถามเกี่ยวกับการซื้อสินค้าหรือมีข้อเสนอแนะเกี่ยวกับประสบการณ์การการซื้อสินค้าครั้งนี้ โปรดติดต่อเราได้ที่ support@bfashshop.com หรือโทร 02-xxx-xxxx</p>
 		 
-		กลับสู่หน้าหลัก
-		เข้าชม BFash.com
+		<!--กลับสู่หน้าหลัก
+		เข้าชม BFash.com-->
 		</div>
 		<div id="btn_thanku">
+		<?php echo form_open('payment/invoice'); ?>
+		<input type="hidden" name="order_id" value="<?php echo $order_id;?>">
 		<input type="submit" class="btn_go_to_homepage"  name="btn_go_to_homepage" value="Continue Shopping" />
 		<input type="submit" class="btn_print_invoice"  name="btn_print_invoice" value="Print Invoice" />
+		</form>
 		</div>
 	</fieldset>

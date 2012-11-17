@@ -158,8 +158,7 @@
 							<label id="vat_3"></label>
 							<label id="total_3" class="text_bold"></label>
 						</div>
-						<div id="data_post_step_3">
-						</div>
+						
 						<input type="submit" id="submit-step3" name="submit-step3" value="Confirm" />
 						<input type="submit" id="back-step3"  value="Back" />
 					</div>
@@ -233,13 +232,17 @@
 							<label id="vat_4"></label>
 							<label id="total_4" class="text_bold" ></label>
 						</div>
+						<?php echo form_open('payment/step_4'); ?>
+						<div id="data_post_step_3">
+						</div>
 						<div id="data_post_step_4">
 						</div>						
 						<input type="submit" class="submit-step4" id="submit-step4" name="submit-step4" value="Confirm" />						
+						</form>
 						<input type="submit" id="back-step4"   value="Back" />
 						
 					</div>
-					
+					<input type="hidden" id="date_exp" name="date_exp">
 					
 				</div>
 				<div id="after_confirm">						
@@ -351,8 +354,9 @@
 							$("#postcode_3").html($('#postcode').val());
 														
 							var data_post = "<input type='hidden' name='shipping_address' id='shipping_address'";
-							data_post += "value='"+$('#first_name').val()+" "+$('#last_name').val();
-							data_post += " "+$('#address').val()+" "+ $('#postcode').val()+"'>";
+							data_post += "value='"+$('#first_name').val()+";"+$('#last_name').val();
+							data_post += ";"+$('#telephone').val()+";"+$('#mobile').val();
+							data_post += ";"+$('#address').val()+";"+ $('#postcode').val()+"'>";
 							data_post += "<input type='hidden' name='order_id' id='order_id' value='<?php echo $order_id ;?>'>";
 							data_post += "<input type='hidden' name='date_order' id='date_order' value='<?php echo $order_date ;?>'>";
 														
@@ -407,10 +411,14 @@
 								vat = subtotal*7.0/100.0;
 								total = vat+subtotal+shipping;
 							}
-							var data_post = "<input type='hidden' name='vat' id='vat' value='"+vat+"'>";
-							data_post += "<input type='hidden' name='subtotal' id='subtotal' value='"+subtotal+"'>";
-							data_post += "<input type='hidden' name='shipping' id='shipping' value='"+shipping+"'>";
-							data_post += "<input type='hidden' name='total' id='total' value='"+total+"'>";
+							
+							// var str="Visit Microsoft!";
+							// var n=str.replace("Microsoft","W3Schools"); 
+							
+							var data_post = "<input type='hidden' name='vat' id='vat' value='"+accounting.formatMoney(vat,'').replace(",","")+"'>";
+							data_post += "<input type='hidden' name='subtotal' id='subtotal' value='"+accounting.formatMoney(subtotal,'').replace(",","")+"'>";
+							data_post += "<input type='hidden' name='shipping' id='shipping' value='"+accounting.formatMoney(shipping,'').replace(",","")+"'>";
+							data_post += "<input type='hidden' name='total' id='total' value='"+accounting.formatMoney(total,'').replace(",","")+"'>";
 							
 							subtotal = accounting.formatMoney(subtotal,'');
 							vat = accounting.formatMoney(vat,'');
@@ -427,7 +435,7 @@
 							$("#shipping_4").html(shipping + value);
 							$("#vat_4").html(vat+value);
 							$("#total_4").html(total+value);
-							$("#data_post_step_4").html(data_post);
+							$("#data_post_step_4").html(data_post+$("#data_post_step_3").val());
 						
 							
 						}	
@@ -459,35 +467,38 @@
 					$('.head-step3').css('color','#A0A0A0');
 					$('.head-step4').css('color','#353535');
 				});
-				$('#submit-step4').click(function(event){
-					event.preventDefault();
-					$.ajax({
-						type: 'POST',
-						//dataType: "json",//for getJson
-						url: "<?php echo base_url('payment/step_4');?>",//controller path; go to goal function
-						data:{e_mail : $('#e_mail').val(),
-							order_id : $('#order_id').val(),							
-							address : $('#shipping_address').val(),
-							vat : $('#vat').val(),
-							total : $('#total').val(),
-							shipping_cost : $('#shipping').val()
-						},
-						error: function(data,textStatus,xhr) {
-						    alert(xhr+' error' );
-						},
-						success: function( data ) {							
-							//alert(data);
-							//$('#date_expire_payment').html(data);
-							$('#save_pdf').css('display','block');
-							$('#btn_go_to_homepage').css('display','block');
-							$('#back-step4').css('display','none');	
-							$('#submit-step4').css('display','none');
-							//confirm('Thank you','Thank you '+data ,this.href);
-							 window.location.replace('<?php echo base_url('payment/thank_you');?>');
-						}	
-						});
+				// $('#submit-step4').click(function(event){
+					// event.preventDefault();
+					// $.ajax({
+						// type: 'POST',
+						////dataType: "json",//for getJson
+						// url: "<?php echo base_url('payment/step_4');?>",//controller path; go to goal function
+						// data:{e_mail : $('#e_mail').val(),
+							// order_id : $('#order_id').val(),							
+							// address : $('#shipping_address').val(),
+							// vat : $('#vat').val(),
+							// total : $('#total').val(),
+							// shipping_cost : $('#shipping').val()
+						// },
+						// error: function(data,textStatus,xhr) {
+						    // alert(xhr+' error' );
+						// },
+						// success: function( data ) {							
+						////	alert(data);
+						////	$('#date_expire_payment').html(data);
+							// $('#save_pdf').css('display','block');
+							// $('#btn_go_to_homepage').css('display','block');
+							// $('#back-step4').css('display','none');	
+							// $('#submit-step4').css('display','none');
+							// $('#date_exp').val(data);
+							// alert(data);
+						////	confirm('Thank you','Thank you '+data ,this.href);
+						////	window.location.replace('<?php echo base_url('payment/thank_you');?>');
+							
+						// }	
+						// });
 				
-				});
+				// });
 				
 				$('#back-step2').click(function(event){
 					event.preventDefault();

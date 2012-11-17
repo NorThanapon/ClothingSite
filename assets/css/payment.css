@@ -681,7 +681,16 @@ background: #EFEFEF;
 	font-weight: bold;
 }
 
-
+#invoice{
+	font-size:10px;
+	max-width: 1000px;
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
+	vertical-align: middle;
+	padding-top: 30px;
+	padding-bottom: 60px;
+}
 #save_pdf{
 	border: none;
 	color: white;
