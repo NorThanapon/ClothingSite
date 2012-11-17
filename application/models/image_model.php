@@ -7,6 +7,14 @@ class Image_model extends CI_Model
     }
 	function add_photo($file_name,$color_id)
 	{		
+		if($color_id==FALSE){
+			$data = array(
+		    'product_id' => $this->input->post('product_id'),	
+			'file_name'=>$file_name
+			);
+			$this->db->insert('images',$data);
+			return;
+		}
 		$data = array(
 		    
 		    'product_id' => $this->input->post('product_id'),	

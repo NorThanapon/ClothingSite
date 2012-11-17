@@ -41,7 +41,7 @@
 		    <br />
 			<label for="<?php echo $picker_control_name; ?>">Color:</label>
 			<span id="color-drop-down">
-			<?php $this->load->view('common/color/color_picker');?>*
+			<?php $this->load->view('common/color/color_picker');?>
 			</span>
 			
 			<?php echo form_error('color', '<span class="form-error-message">', '</span>'); ?>

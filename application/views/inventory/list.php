@@ -68,13 +68,20 @@
 					?>
 				</td>
 				<td><?php echo $item->size;?></td>
-				<?php foreach($colors as $color_item)
-					  {
-						if($color_item->color_id == $item->color_id)
-						{
-							echo "<td>".$color_item->color_name."</td>";
+				<?php 
+						if($item->color_id == 0){
+							echo "<td>-</td>";
 						}
-					  }
+						else{
+						
+							foreach($colors as $color_item)
+							{
+								if($color_item->color_id == $item->color_id)
+								{
+									echo "<td>".$color_item->color_name."</td>";
+								}
+							}
+						}
 				?>
 				
 				<td><?php echo $item->quantity;?></td>

@@ -56,7 +56,7 @@ class Inventory extends CI_Controller
 		$this->form_validation->set_rules('item_id', 'Item ID', 'trim|required');
 		$this->form_validation->set_rules('product_id', 'Product ID', 'trim|required');
 		$this->form_validation->set_rules('size', 'Size', 'trim|required');
-		$this->form_validation->set_rules('color', 'Color Picker', 'trim|required');
+		//$this->form_validation->set_rules('color', 'Color Picker', 'trim|required');
 		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|required');
 	
 		if ($this->form_validation->run() == FALSE)

@@ -16,6 +16,16 @@ class Item_model extends CI_Model
 	
 	function add()
 	{
+		if($this->input->post('color') == FALSE){
+			$data = array(
+			'item_id' => $this->input->post('item_id'),
+		    'product_id' => $this->input->post('product_id'),
+			'size' => $this->input->post('size'),
+		    'quantity' => $this->input->post('quantity')
+			);	
+			$this->db->insert('items', $data); 	
+			return;
+		}
 		$data = array(
 			'item_id' => $this->input->post('item_id'),
 		    'product_id' => $this->input->post('product_id'),

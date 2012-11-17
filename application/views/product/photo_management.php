@@ -4,22 +4,21 @@
 		<fieldset>
 		    <legend>Add a photo</legend>			
 			<?php echo form_open_multipart('admin/product/add_photo/', 'id="form-add-photo"'); ?>
-			<div id="add-photo">
-			<!--<div id="select-photo">-->
-		    <label for="photo">Photo:</label>
-		    <input name="photo" type ="file"/>
-			
-			<label for="color">Color:</label>			
-			<div id="select-color"><?php $this->load->view('common/color/color_picker');?>
-			
-			
-			<input type="hidden" name="product_id" value="<?php echo $product->product_id; ?>" />
-			<span class="button" id="btn-add-photo">Add Photo</span>
-						
-			
-		</div>
+				<div id="add-photo">
+				
+					<label for="photo">Photo:</label>
+					<input name="photo" type="file" id="photo"/>	
+					<label for="color">Color:</label>			
+					<div id="select-color">
+						<?php $this->load->view('common/color/color_picker');?>
+						<input type="hidden" name="product_id" value="<?php echo $product->product_id; ?>" />
+						<span class="button" id="btn-add-photo">Add Photo</span>
+					</div>
+				
+				</div>
+			</form>
 		</fieldset>	
-		</form>
+		
 		
 	    <fieldset>
 		<legend>Existing photos</legend>
@@ -62,7 +61,7 @@
                                 }
                             ?>
                         </select>			
-					<input type="button" name="submit_<?php echo $item->image_id ;?> " value="save" class='save-button' onclick="save_color(<?php echo $item->image_id ;?>)" />
+					<input type="button" name="submit_<?php echo $item->image_id ;?> " value="save" class='save-button' /> 
 					<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>
 					<br />
 					<div class="main_image_radio">
@@ -76,7 +75,7 @@
 					else 
 					{
 					?>
-						<input type="radio" " name="main_image" value="<?php echo $item->image_id ;?>" />
+						<input type="radio"  name="main_image" value="<?php echo $item->image_id ;?>" />
 					<?php 
 					}
 					?>
@@ -104,18 +103,6 @@
 	
 	
 	<script type="text/javascript"> 
-	function save_color(image_id)
-	{
-		var color_id = document.getElementById("ddl-color-"+image_id).value;
-		var product_id = document.getElementById("product_id").value;
-		var url = document.URL;
-		url = url.substring(0, url.indexOf('/product') + 8);
-		url = url + '/edit_color/' + product_id+'/'+image_id+'/'+color_id;
-		window.location = url;
-		//alert(image_id +"color = "+color_id+" >"+url+"<<");
-
-		
-	}
 	$(document).ready(function() {
 		
 		$('.fancybox-button').fancybox({
@@ -146,7 +133,7 @@
 	$("#btn-add-photo").click(function(){
 		document.getElementById("form-add-photo").submit();
 	});
-		
+			
 	<?php
 		foreach($photos as $item)
 		{

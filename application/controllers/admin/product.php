@@ -503,22 +503,25 @@ class Product extends CI_Controller
 		$this->load->model('product_model');
 		$this->load->model('image_model');
 		$color_id = $this->input->post('color');
-		if($this->input->post('photo')==null && $color_id==null)
+		if(empty($_FILES['photo']['name']))
 		{
 			$this->load->library('form_validation');
-			$data['error_message'] = 'Please select image and color.';
+			$data['error_message'] = 'Please select image.';
 			$data['product'] = $this->product_model->get($this->input->post('product_id'));
 			$data['photos'] = $this->image_model->get_photos('$product_id');
-			//$data['page'] = 'product/photo_management';
+			$data['page'] = 'product/photo_management';
+			$data['product'] = $this->product_model->get($this->input->post('product_id'));
+			$data['photos'] = $this->image_model->get_photos($this->input->post('product_id'));
 			$this->load->view('main_admin_page',$data);
-			redirect('admin/product/photo/'.$this->input->post('product_id'),$data);			
+			//redirect('admin/product/photo/'.$this->input->post('product_id'),$data);			
 			return;
 		}
 		
 		$photo_id = $this->image_model->get_latest()->image_id;
 		$photo_id++;		
 		
-        $result_photo = $this->_upload_photo_file($photo_id,'photo');		
+        $result_photo = $this->_upload_photo_file($photo_id,'photo');	
+		$this->product_model->save_main_image($this->input->post('main_image'));
 		$data['product'] =  $this->product_model->get($this->input->post('product_id'));
 		if ($data['product'] == FALSE)
 		{
@@ -528,7 +531,7 @@ class Product extends CI_Controller
 		
 		$this->image_model->add_photo($result_photo['file_name'] ,$color_id);
 		$data['product'] = $this->product_model->get($this->input->post('product_id'));
-		$data['photos'] = $this->image_model->get_photos('$product_id');
+		$data['photos'] = $this->image_model->get_photos('product_id');
 		redirect('admin/product/photo/'.$this->input->post('product_id'));
 	   
 	}
@@ -552,6 +555,7 @@ class Product extends CI_Controller
 		if(!check_authen('staff',TRUE)) return;
 		$this->load->model('product_model');
 		$this->load->model('image_model');
+		//echo $this->input->post('main_image');
 		$this->product_model->save_main_image($this->input->post('main_image'));
 		$data['product'] = $this->product_model->get($this->input->post('product_id'));
 		$data['photos'] = $this->image_model->get_photos($this->input->post('product_id'));	
