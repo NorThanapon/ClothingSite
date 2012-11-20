@@ -1,9 +1,19 @@
+
+<fieldset id="invoice">
 <div id="payment-head">
 	<div id="header-logo">
 					<?php echo anchor(base_url(), '<img src='.asset_url().'img/bfashshop.jpg />', 'title="BfashShop"'); ?>
 	</div>
+	<div id="campany_contact_en" class="contact">
+		<p class="text_bold">I.C.C. International Public Company Limited<br />
+		Address: 530 Soi Sathupradit 58, Bangpongpang, Yannawa, Bangkok 10120<br />
+		Tel. 02-293-9000,02-293-9300<br />
+		Fax. 02-294-3024</p>
+	</div>
+	<div id="campany_contact_th" class="contact">
+	
+	</div>
 </div>
-<fieldset id="invoice">
 <div id="main-step4">
 	<div id="top-main-step4">
 		<div id="customer-info">
@@ -70,22 +80,25 @@
 		</table>
 	</div>
 	<div id="pay-attention">
-		<label>Please  transfer the total amount to Account Number ..................... <br />
-		ICC International Public Company Limited, .... Bank.<br />
+		<label><font style="color:red;font-weight:bold">Note:</font> <br /><br />Please  transfer the total amount to:<br /> 
+		<br /><font style="font-weight:bold">ICC International Public Company Limited</font>
+		<br /><font style="font-weight:bold">Account Number:</font>  
+		<br /><font style="font-weight:bold">Bank:</font> <br />
 		<br />
 		<label for="date_expire_payment" id="date_expire_payment"></label>
-		After the transfer, please upload your pay-in-slip<br /> 
-		at &lsquo;confirm payment &rsquo; page or fax to 02-123-4567</label>
+		Please make your payment by 19 November 2012 at 23:59.  
+		<br />After the transfer is completed, please upload your pay-in-slip<br />  
+		information at the &lsquo;<a href="###">payment confirmation page</a>&rsquo; or fax to 02-123-4567</label>
 	</div>
 	<div id="total-price">
 		<div id="price-head">
-			<label class="text_bold" >Subtotal :</label>
-			<label >Shipping :</label>
-			<label >VAT :</label>
+			<label>Subtotal :</label>
+			<label>Shipping :</label>
+			<label>VAT :</label>
 			<label class="text_bold" >Total :</label>					
 		</div>
 		<div id="price-detial">
-			<label id="subtotal_4" class="text_bold" ><?php echo $subtotal;?></label>
+			<label id="subtotal_4"  ><?php echo $subtotal;?></label>
 			<label id="shipping_4"><?php echo $shipping;?></label>
 			<label id="vat_4"><?php echo $vat;?></label>
 			<label id="total_4" class="text_bold" ><?php echo $total;?></label>
@@ -95,5 +108,7 @@
 	</div>				
 
 </div>
-</fieldset>		
+</fieldset>	
+<div id="invoice-page">	
 <input type="button" value="Print this page" onclick="print()">	
+</div>

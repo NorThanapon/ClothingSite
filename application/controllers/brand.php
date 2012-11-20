@@ -9,6 +9,7 @@ class Brand extends CI_Controller {
     }
 	public function product($brand_name=FALSE,$brand_id=FALSE) 
 	{
+		
 		$this->load->model('bfash_model');
 		$this->load->model('product_model');
 		$this->load->model('image_model');
@@ -56,6 +57,7 @@ class Brand extends CI_Controller {
 	
 
 	public function product_list( $brand_name,$brand_id, $page=0, $per_page=0 ) {
+	
 		$this->load->model('bfash_model');
 		$this->load->model('product_model');
 		$this->load->model('image_model');

@@ -147,13 +147,13 @@
 					</div>
 					<div id="total-price">
 						<div id="price-head">
-							<label class="text_bold">Subtotal :</label>
+							<label >Subtotal :</label>
 							<label >Shipping :</label>
 							<label >VAT :</label>
 							<label class="text_bold" >Total :</label>					
 						</div>
 						<div id="price-detial">
-							<label id="subtotal_3" class="text_bold"></label>
+							<label id="subtotal_3"></label>
 							<label id="shipping_3"></label>
 							<label id="vat_3"></label>
 							<label id="total_3" class="text_bold"></label>
@@ -221,13 +221,13 @@
 					</div>
 					<div id="total-price">
 						<div id="price-head">
-							<label class="text_bold" >Subtotal :</label>
+							<label >Subtotal :</label>
 							<label >Shipping :</label>
 							<label >VAT :</label>
 							<label class="text_bold" >Total :</label>					
 						</div>
 						<div id="price-detial">
-							<label id="subtotal_4" class="text_bold" ></label>
+							<label id="subtotal_4" ></label>
 							<label id="shipping_4"></label>
 							<label id="vat_4"></label>
 							<label id="total_4" class="text_bold" ></label>

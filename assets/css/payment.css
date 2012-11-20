@@ -10,7 +10,7 @@
 
 #payment-head #header-logo{
 	float:left;
-	padding-bottom:30px;
+
 }
 
 .head-step1{
@@ -479,8 +479,6 @@ background: #EFEFEF;
 	position:relative;
 	width:90%;
 	vertical-align:middle;	
-	padding-top:5px;
-	margin-top:10px;
 	padding-bottom:30px;
 }
 
@@ -596,11 +594,15 @@ background: #EFEFEF;
 }
 
 #main-step4 #pay-attention{
-	color:Red;
+	color:Black;
 	display:inline-block;
 	margin-top:30px;
 	border:1px solid red;
 	padding:10px;
+}
+
+#main-step4 #pay-attention a{
+	color:Blue;
 }
 
 #main-step4 #total-price{
@@ -617,7 +619,7 @@ background: #EFEFEF;
 	font-size:95%;
 	font-family:Sans-serif;
 	
-	line-height:150%;
+	
 }
 
 #main-step4 #total-price #price-head{
@@ -680,21 +682,73 @@ background: #EFEFEF;
 .text_bold{
 	font-weight: bold;
 }
-
+.contact{
+	font-size: 10px;
+	float: right;
+	width:35%;
+}
 #invoice{
 	font-size: 14px;
 	max-width: 1000px;
 	position: relative;
-	width: 80%;
+	width: 95%;
 	margin: 0 auto;
 	vertical-align: middle;
-	padding-top: 30px;
+	padding-top: 0px;
 	padding-bottom: 60px;
+	margin-top: 30px;
 }
 #invoice #customer-info{
-	display:block;
-	float:left;
-	width:70%;
+	display: block;
+	float: left;
+	width: 55%;
+	padding-left: 10px;
+	padding-top: 10px;
+	border-right: 1px solid #CFCFCF;
+	height: 140px;
+}
+#invoice  #total-price {
+	float: right;
+	width: 25%;
+	margin-top: 30px;
+	line-height: 120%;
+	text-align: right;
+	margin-right: 10px;
+	padding: 10px;
+	border: 1px solid #CFCFCF;
+}
+#invoice #order-info {
+	display: block;
+	float: left;
+	width: 40%;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+#invoice #payment-head{
+	max-width:1000px;
+	position:relative;
+	width: 90%;
+	margin: 0 auto;
+	vertical-align:middle;
+	height: 65px;
+	border-bottom: 1px solid #CFCFCF;
+
+}
+#invoice  #top-main-step4 {
+	display: block;
+	max-width: 1000px;
+	margin: 0 auto;
+	position: relative;
+	padding-bottom: 100px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #CFCFCF;
+	height: 50px;
+	border-left: 1px solid #CFCFCF;
+	border-right: 1px solid #CFCFCF;
+}
+#invoice #header-logo {
+	float: left;
+	
 }
 #save_pdf{
 	border: none;
@@ -710,4 +764,35 @@ background: #EFEFEF;
 	margin-top:10px;
 	margin-left:2px;
 	margin-right:2px;
+}
+
+#invoice-page{
+	position:relative;
+	max-width: 1000px;
+	margin:0 auto;
+	width:95%;
+	vertical-align:middle;
+	margin-top:30px;
+}
+
+#invoice-page input[type="button"]{
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	width:110px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:2px;
+	
+}
+
+
+#invoice-page input[type="button"]:hover{
+	background:#4F4F4F;
+	
 }

@@ -33,18 +33,17 @@ class Cart_model extends CI_Model
 	
 	function get_item_detail($where)
 	{
-		$query = $this->db->query("SELECT *
-								   FROM products p
+		$query = $this->db->query("SELECT *   FROM products p
 								   LEFT JOIN items i ON p.product_id = i.product_id
 								   LEFT JOIN colors c ON c.color_id = i.color_id
-								   LEFT JOIN images m ON m.image_id = p.main_image
-								   WHERE item_id IN(".$where.")");
+                                   LEFT JOIN images m ON m.image_id = i.main_image
+								   WHERE item_id IN( ".$where.")");
 		return $query->result();
 	}
 	
 	function get_item_id($size,$color_id){
 		$query = $this->db->query("SELECT *
-								   FROM products_items_colors
+								   FROM products_brands_items_images_colors
 								   WHERE size = '".$size."' AND color_id = ".$color_id);
 		return $query->row();
 	}

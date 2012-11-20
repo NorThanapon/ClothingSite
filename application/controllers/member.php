@@ -81,8 +81,7 @@ class Member extends CI_Controller {
 		if($this->_check_password($this->input->post('password'))!="")//password fail
 		{
 			$data['show_message_password'] = 'Please enter password,<br />6 numbers or longer with at least 1 number2';
-			$data['page'] = 'member/registration';
-			echo "password".$this->input->post('password');
+			$data['page'] = 'member/registration';			
 			$this->load->view('sub_page',$data);
 			return;
 		}
