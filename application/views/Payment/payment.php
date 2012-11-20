@@ -277,58 +277,64 @@
 				});
 				$('#sign-in').click(function(event){//register
 					event.preventDefault();					
-					$.ajax({
+					var request = $.ajax({
 					type: 'POST',
 					//dataType: "json",
 					url: "<?php echo base_url('payment/login_member_check_error');?>",//controller path; go function
 					data:  {e_mail: $('#e_mail').val(), // set data variable and assign value from body
 							password: $('#password').val()
 							
-						   },
+					},
 					success: function( data ) { // if success do something ;data is returned
 						
-						if(data == 'true')
-						{
-							
-							var url_2 = "<?php echo base_url('payment/get_member_profile') ?>";
-							//alert(url_2);								
-							$.getJSON(url_2, function(data){
-																		
-							if(data !='' )
-							{
-								$('#step1').css('display','none');
-								$('#step2').css('display','block');
-								$('#step3').css('display','none');
-								$('#step4').css('display','none');
-								
-								$('.head-step1').css('color','#A0A0A0');
-								$('.head-step2').css('color','#353535');
-								$('.head-step3').css('color','#A0A0A0');
-								$('.head-step4').css('color','#A0A0A0');							
-								
-								$("#first_name").val(data.first_name);//assign value to html
-								$("#last_name").val(data.last_name);
-								$("#telephone").val(data.telephone);
-								$("#mobile").val(data.mobile);
-								$("#address").val(data.address);
-								$("#postcode").val(data.postcode);
-								
-								
-							}
-							else
-							{
-								alert(data);
-							}						
-						
-											
-							});	
-						}
-						else
+						if(data != 'true')
 						{
 							confirm('Please enter the information',data,this.href);
 						}
+						else
+						{
+						
+							$.ajax({
+								type: 'POST',
+								dataType: "json",
+								url: "<?php echo base_url('payment/get_member_profile');?>",//controller path; go function
+								data:  {e_mail: $('#e_mail').val(), // set data variable and assign value from body
+										password: $('#password').val()
+										
+								},
+								success: function( data ) {
+						
+									if(data !='' )
+									{
+										$('#step1').css('display','none');
+										$('#step2').css('display','block');
+										$('#step3').css('display','none');
+										$('#step4').css('display','none');
+										
+										$('.head-step1').css('color','#A0A0A0');
+										$('.head-step2').css('color','#353535');
+										$('.head-step3').css('color','#A0A0A0');
+										$('.head-step4').css('color','#A0A0A0');							
+										
+										$("#first_name").val(data.first_name);//assign value to html
+										$("#last_name").val(data.last_name);
+										$("#telephone").val(data.telephone);
+										$("#mobile").val(data.mobile);
+										$("#address").val(data.address);
+										$("#postcode").val(data.postcode);							
+										
+									}
+									else
+									{
+										alert(data);
+									}
+								}	
+							});	
+						}
+						
 					}
 				});
+				
 			});
 				
 				$('#submit-step2').click(function(event){
@@ -344,6 +350,9 @@
 							address: $('#address').val(),
 							postcode: $('#postcode').val()						
 						   },
+					error: function(data,textStatus,xhr) {
+						    alert(xhr );
+					},
 					success: function( data ) { // if success do something ;data is returned
 						
 							$("#first_name_3").html($('#first_name').val());//assign value to html

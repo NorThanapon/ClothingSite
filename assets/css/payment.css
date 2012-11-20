@@ -775,7 +775,7 @@ background: #EFEFEF;
 	margin-top:30px;
 }
 
-#invoice-page input[type="button"]{
+#invoice-page input[type="button"] {
 	border: none;
 	color: white;
 	float:right;
@@ -784,15 +784,35 @@ background: #EFEFEF;
 	background:#6F6F6F;
 	cursor: hand;cursor: pointer; 
 	height:24px;
-	width:110px;
+	width:130px;
 	margin-top:10px;
 	margin-left:2px;
 	margin-right:2px;
 	
 }
+#invoice-page input[type="submit"] {
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	width:130px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:2px;
+	margin-bottom:30px;
+	
+}
 
 
 #invoice-page input[type="button"]:hover{
+	background:#4F4F4F;
+	
+}
+#invoice-page input[type="submit"]:hover{
 	background:#4F4F4F;
 	
 }

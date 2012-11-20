@@ -143,10 +143,12 @@ class Payment extends CI_Controller {
 			
     }
 	public function get_member_profile()
-	{						
+	{	
 		$this->load->model('member_model');
 		$data['member_profile'] = $this->member_model->get($this->input->post('e_mail'));
 		echo json_encode($data['member_profile']);
+		
+		
 			
     }
 	
@@ -291,8 +293,8 @@ class Payment extends CI_Controller {
 		date_default_timezone_set('Asia/Bangkok');
 		//}
 		//echo "ini_get('date.timezone')".ini_get('date.timezone');
-		$time_exp = $time+(86400*2);
-		$order_data['date_expire'] = $time_exp ;
+		//$time_exp = $time+(86400*2);
+		$order_data['date_expire'] = mktime(0,0,0,date("m"),date("d")+3,date("y")) ;
 		$this->payment_model->add($member_id,$order_data);	
 		$data2[][]="";
 		$price = 0.0;
@@ -324,8 +326,8 @@ class Payment extends CI_Controller {
 			$data2[$i]['price'] = $price*$data2[$i]['unit_price'] ;
 			$this->payment_model->add_order_detail($order_id,$data2[$i]['item_id'],$data2[$i]['quantity'],$data2[$i]['unit_price']);
 		}
-		$datestring = "%d/%M/%Y  %h:%i %a";
-		$expire_date = mdate($datestring, $time_exp);
+		//$datestring = "d/M/Y  h:%i %a";
+		$expire_date = date('d F Y',mktime(0,0,0,date("m"),date("d")+2,date("y")));//mdate($datestring, $time_exp);
 		
 		$data['order_id'] = $order_id;
 		$data['page_title'] = 'Payment | BfashShop';
@@ -335,39 +337,59 @@ class Payment extends CI_Controller {
 		$this->load->view('sub_page',$data);		
 	}
 	public function invoice()
-	{
+	{	if($this->input->post('btn_go_to_homepage'))
+		{
+			redirect('');
+			return;
+		}
+		$data['page_title'] = 'Invoice | BfashShop';
+		$data['date_expire_full_month_name']="";
+		//$data['products']="";
+		$data['first_name'] = "";
+		$data['last_name'] = "";
+		$data['tel'] = "";
+		$data['mobile'] = "";
+		$data['address'] = "";
+		$data['postcode'] = "";	
+		$data['order_date'] = "";
+		$data['order_expire'] = "";
+		$data['date_expire_full_month_name'] = "";
+		$data['shipping'] = "";
+		$data['vat'] = "";
+		$data['total'] = "";
+		$data['subtotal'] = "";
+		$data['order_id'] ="";
+		
+		if($this->input->post('order_id')==null)
+		{
+			$data['page'] = 'Payment/invoice';
+			$this->load->view('sub_page',$data);
+			return;
+		}
 		$order_id = $this->input->post('order_id');		
 		$this->load->model('payment_model');
 		$data['order_id'] = $this->input->post('order_id');
 		$order = $this->payment_model->get_order($order_id);
-		
+		date_default_timezone_set('Asia/Bangkok');
 		$this->load->helper('date');
-		$datestring = "%d/%M/%Y  %h:%i %a";
+		$datestring = "%d/%M/%Y";
+		$datestring_full_month_name = "%d %F %Y";
 		$data['order_date'] = mdate($datestring, $order->date_add);
-		$data['order_expire'] = mdate($datestring, $order->date_expire);
-		
+		$date_exp = strtotime("-1 days",$order->date_expire);
+		$data['order_expire'] = mdate($datestring, $date_exp);		
+		$data['date_expire_full_month_name'] = mdate($datestring_full_month_name,$date_exp );
 		$data['shipping'] = number_format( $order->shipping_cost , 2, '.', ',');
 		$data['vat'] = number_format( $order->vat , 2, '.', ',');
 		$data['total'] = number_format( $order->total_price , 2, '.', ',');
 		$data['subtotal'] = number_format($order->total_price-$order->vat- $order->shipping_cost, 2, '.', ',');
-		
 		$address = explode(";",$order->shipping_address);
 		$data['first_name'] = $address[0];
 		$data['last_name'] = $address[1];
 		$data['tel'] = $address[2];
 		$data['mobile'] = $address[3];
 		$data['address'] = $address[4];
-		$data['postcode'] = $address[5];
-		
-		
+		$data['postcode'] = $address[5];			
 		$data['products'] = $this->payment_model->get_order_detail($order_id);
-		
-		
-		
-		
-		
-		
-		$data['page_title'] = 'Invoice | BfashShop';
 		$data['error'] = "No";  		
 		$data['page'] = 'Payment/invoice';
 		$this->load->view('sub_page',$data);

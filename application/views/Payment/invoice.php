@@ -65,6 +65,7 @@
 			</tr>
 			<?php
 				$i=1;
+				if(isset($products))
 				foreach($products as $item)
 				{
 					echo "<tr>";
@@ -86,7 +87,7 @@
 		<br /><font style="font-weight:bold">Bank:</font> <br />
 		<br />
 		<label for="date_expire_payment" id="date_expire_payment"></label>
-		Please make your payment by 19 November 2012 at 23:59.  
+		Please make your payment by <?php echo $date_expire_full_month_name;?>  
 		<br />After the transfer is completed, please upload your pay-in-slip<br />  
 		information at the &lsquo;<a href="###">payment confirmation page</a>&rsquo; or fax to 02-123-4567</label>
 	</div>
@@ -111,4 +112,7 @@
 </fieldset>	
 <div id="invoice-page">	
 <input type="button" value="Print this page" onclick="print()">	
+<?php echo form_open(''); ?>
+<input type="submit" name="btn_go_to_homepage" value="Continue Shopping" />
+</form>
 </div>
