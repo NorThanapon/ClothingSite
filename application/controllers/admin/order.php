@@ -8,7 +8,13 @@ class Order extends CI_Controller
             return;
         }
         $data['page_title'] = 'Admin: Order Management';
-        $this->load->view('order/list',$data);
+			
+		
+		$this->load->model('order_model');
+		$data['orders'] = $this->order_model->get_order();
+		$data['page'] = 'order/list';
+        $this->load->view('main_admin_page',$data);		
+       
     }
 }
 ?>
