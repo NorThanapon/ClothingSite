@@ -7,7 +7,8 @@
 				<div id="add-photo">
 				
 					<label for="photo">Photo:</label>
-					<input name="photo" type="file" id="photo"/>	
+					
+					<input name="photo[]" type="file" multiple="multiple" accept="png|jpg"  size="60" id="photo"/>	
 					<input type="hidden" name="product_id" value="<?php echo $product->product_id; ?>" />
 					<span class="button" id="btn-add-photo">Add Photo</span>
 
@@ -78,9 +79,18 @@
 		    confirm('Confirm for deletion','Do you want to delete this image.',this.href, 'Delete'); 
 		    return false;
 		});
-		$("#btn-add-photo").click(function(){
-			document.getElementById("form-add-photo").submit();
+		$("#btn-add-photo").click(function(){	
+			//document.write("test1");
+			var fileInput = document.getElementById ("photo");
+			if ('files' in fileInput) {
+                if (fileInput.files.length == 0) {
+                    message = "Please browse for one or more files.";
+                } 
+				else {
+					
+					document.getElementById("form-add-photo").submit();
+				}
+			}
 		});
-
 	});
 	</script>
