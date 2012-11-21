@@ -423,30 +423,62 @@ class Product extends CI_Controller
 		redirect('admin/product');
 		
 	}
-	function _upload_photo_file($photo_id, $form_name) 
-    {
-		
-        if (!empty($_FILES[$form_name]['name'])) 
-        {
-            $config['upload_path'] = './assets/db/products/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '2000';				
-            $config['overwrite'] = TRUE;		
-            $config['file_name'] = $photo_id.'_'.$form_name.'.'.substr(strrchr($_FILES[$form_name]['name'], '.'), 1);
+	
+	private function set_upload_options($photo_id,$form_name)
+	{   
+	//  upload an image options
+		$config = array();
+		$config['upload_path'] = './assets/db/products/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size'] = '2000';				
+        $config['overwrite'] = TRUE;		
+        $config['file_name'] = $photo_id.'_'.$form_name.'.'.substr(strrchr($_FILES[$form_name]['name'], '.'), 1);
 			
-            $this->upload->initialize($config);
-			
-            if ($this->upload->do_upload($form_name)) 
-            {		
+
+
+		return $config;
+	}
+	
+	function _upload_photo_file($photo_id,$files_upload,$form_name) 
+    {		
+			$this->load->model('image_model');
+			$this->load->library('upload');
+			$files = $files_upload;
+			$cpt = count($_FILES[$form_name]['name']);
+			for($i=0; $i<$cpt; $i++)
+			{
+				$_FILES[$form_name]['name']= $files['name'][$i];
+				$_FILES[$form_name]['type']= $files['type'][$i];
+				$_FILES[$form_name]['tmp_name']= $files['tmp_name'][$i];
+				$_FILES[$form_name]['error']= $files['error'][$i];
+				$_FILES[$form_name]['size']= $files['size'][$i];    
+
+				echo $_FILES[$form_name]['name']."<br />";
+				$get_config = $this->set_upload_options($photo_id,$form_name);
+				$this->upload->initialize($get_config);
 				
-				$this->_upload_resize_photo(1325,1725,$config['file_name'],'l');
-				$this->_upload_resize_photo(265,345,$config['file_name'],'m');
-				$this->_upload_resize_photo(57,74,$config['file_name'],'s');	
-                return $this->upload->data();				 
-            }
-			echo "error".$this->upload->display_errors();
-           // return array('error' => $this->upload->display_errors());    
-        }
+				if ($this->upload->do_upload($form_name)) 
+				{		
+				
+					$this->_upload_resize_photo(1325,1725,$get_config['file_name'],'l');
+					$this->_upload_resize_photo(265,345,$get_config['file_name'],'m');
+					$this->_upload_resize_photo(57,74,$get_config['file_name'],'s');	
+					//return $this->upload->data();				 
+				}
+				$photo_id++;
+								
+				$result_photo = $this->upload->data();
+				//return $this->upload->data();
+				$this->image_model->add_photo($result_photo['file_name']);				
+				
+			}
+			
+			
+		
+				
+			echo "error>>".$this->upload->display_errors()."<<";
+           // return array('error' => $this->upload->display_errors());   
+         
 		//echo "--No-------------";//----------------------------------------------------------------------------------------
         return FALSE;
     }
@@ -495,8 +527,7 @@ class Product extends CI_Controller
 		
 	}
 	public function add_photo()
-	{
-	
+	{	
 		if(!check_authen('staff',TRUE)) return;
 		 
 		$this->load->library('upload');
@@ -516,20 +547,18 @@ class Product extends CI_Controller
 			//redirect('admin/product/photo/'.$this->input->post('product_id'),$data);			
 			return;
 		}
-		
 		$photo_id = $this->image_model->get_latest()->image_id;
-		$photo_id++;		
-		
-        $result_photo = $this->_upload_photo_file($photo_id,'photo');	
-		//$this->product_model->save_main_image($this->input->post('main_image'));
+		$photo_id++;
+		$this->_upload_photo_file($photo_id,$_FILES['photo'],'photo');
 		$data['product'] =  $this->product_model->get($this->input->post('product_id'));
-		if ($data['product'] == FALSE)
-		{
-			redirect('admin/product');
-			return;
-		}
+			if ($data['product'] == FALSE)
+			{
+				redirect('admin/product');
+				return;
+			}
 		
-		$this->image_model->add_photo($result_photo['file_name']);
+		//$this->image_model->add_photo($result_photo['file_name']);		
+		
 		$data['product'] = $this->product_model->get($this->input->post('product_id'));
 		$data['photos'] = $this->image_model->get_photos('product_id');
 		redirect('admin/product/photo/'.$this->input->post('product_id'));
