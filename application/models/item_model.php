@@ -68,6 +68,13 @@ class Item_model extends CI_Model
 	    $query = $this->db->get_where('items', array('item_id' => $item_id));
 		return $query->row();
 	}
+	function save_main_image($item_id,$image_id){
+		$data = array(
+			'main_image' => $image_id
+		);	
+		$this->db->update('items', $data, array('item_id' => $item_id)); 
+		return;
+	}
 	
 	
 	function update_total_quantity($product_id,$quantity)

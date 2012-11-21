@@ -23,7 +23,7 @@
 		<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			<div class="scroll-content">
 				<?php 
-					$count =0;//_for_set_default_main_image
+					
 					if($photos == false){
 					?>
 						<div id="div-thumb" class="scroll-content-item ui-widget-header">					
@@ -55,9 +55,10 @@
 								<div id="div-thumb<?php echo $item->image_id;?>" class="scroll-content-item ui-widget-header">					
 									<img class="image_thumb" name="image_thumb<?php echo $item->image_id;?>" src="<?php echo asset_url().'db/products/m_'.$item->file_name."";?>" alt="" />
 								</div>
+								
 								<?php	
 						}
-					$count++;
+					
 					}
 					}
 					?>	
@@ -74,28 +75,39 @@
 		
 		<fieldset class="photo-field">
 		<legend>Choosen photos</legend>
-			
+			<form>
 			<div class="choosen-photo">
+			<input type='hidden' id='main_image_id' value='<?php if( $items->main_image !=null) echo $items->main_image;?>' />
 			<?php if(isset($images)){
+				$count =0;//_for_set_default_main_image
 				for($i=0 ;$i<count($images); $i++){
 			
 					echo "<div class='report-items photo-item'>	";			
 					echo "<a class='fancybox-button' rel='fancybox-button' href='".asset_url().'db/products/'.$images[$i]->file_name."' title='".$images[$i]->file_name."' >
 						  <img src='".asset_url().'db/products/'.$images[$i]->file_name."' alt='' />
 						  </a>";
-						
-					echo "<input type='hidden' name='image_id' value='".$images[$i]->image_id."' />";
 					echo "<br />";
-					echo anchor('admin/inventory/delete_image/'.$items->item_id.'/'.$images[$i]->image_id ,' ', array('title'=>"Delete this image from item",'class'=>'delete-button')); 
+					echo "<label class='label_main_image'>Main Image: </label>";
+					if($items->main_image == $images[$i]->image_id){
+						echo "<input class='main_image_radio' type='radio'  id='main_image".$i."' value=".$images[$i]->image_id." name='main_image' checked />";
+					}
+					else{
+						echo "<input class='main_image_radio' type='radio' id='main_image".$i."' value=".$images[$i]->image_id." name='main_image' />";
+					}
+					echo anchor('admin/inventory/delete_image/'.$items->item_id.'/'.$images[$i]->image_id ,' ', array('title'=>"Delete this image from item",'class'=>'delete-button','rel'=>$images[$i]->image_id)); 
 					echo "<br />";
 					echo "</div>";
-				
+					
 				}
+				echo "<input type='hidden' id='count_image' value='".count($images)."' />";
+			}
+			else{
+				echo "<input type='hidden' id='count_image' value='0' />";
 			}
 			?>
 			</div>
 			
-					
+			</form>		
 	    	
 		
 		</fieldset>
@@ -185,6 +197,8 @@
   
 	$(document).ready(function() {
 		
+		
+		
 		$('.fancybox-button').fancybox({
 				openEffect  : 'none',
 				closeEffect : 'none',
@@ -202,6 +216,25 @@
 				}
 		});
 		
+		
+		$('input[name=main_image]').change(function(){
+			var path = "<?php echo base_url('admin/inventory/save_main_image');?>";
+			var x = $(this).val();
+			$.ajax({
+				type: 'POST',
+				url: path,
+				data: {	image_id: $(this).val() ,
+						item_id: $('#item_id').val()
+				},
+				error: function(data, textStatus, xhr){
+					alert(xhr);
+				},
+				success: function(data){
+					$('input[value='+x+']').attr('checked',true);
+					$('#main_image_id').val(x);
+				}
+			});
+		});
 
 		$('.image_thumb').click(function(){
 			var n = $(this).attr("name").substring(11);
@@ -219,8 +252,6 @@
 					location.reload();
 				},
 				success: function(data){
-					//alert(data);
-					//alert(data['images'].length);
 					$('.choosen-photo').append($('<div></div>')
 						.attr('class','report-items photo-item')
 							.append($('<a></a>')
@@ -232,34 +263,60 @@
 										.attr('src','<?php echo asset_url().'db/products/'; ?>'+data['images'].file_name)
 										.attr('id', data['images'].image_id)
 											
-										)
+									)
 									
 							)
 							.append($('<br />'))
+							.append($('<label></label>')
+								.attr('class','label_main_image')
+								.html('Main Image: ')
+							)
+							.append($('<input></input>')
+								.attr('class','main_image_radio')
+								.attr('type','radio')
+								.attr('value',data['images'].image_id)
+								.attr('name','main_image')
+								.attr('id',$('#count_image').val())
+							)
 							.append($('<a></a>')
 												.attr('class','delete-button')
 												.attr('href','<?php echo base_url();?>'+'admin/inventory/delete_image/'+$('#item_id').val()+'/'+data['images'].image_id)
-												.attr('title','Delete this image from item')
+												.attr('title','Delete this image from the item.')
+												.attr('rel',data['images'].image_id)
+												.click(function() { 	
+													confirm('Confirm for deletion','Do you want to delete this image.',this.href, 'Delete'); 
+													return false;
+												})
 												
 							)
 														
 					);
-				
+					
+					if($('#count_image').val() == 0){
+						var path = "<?php echo base_url('admin/inventory/save_main_image');?>";
+						var x = data['images'].image_id;
+						$.ajax({
+							type: 'POST',
+							url: path,
+							data: {	image_id: data['images'].image_id ,
+									item_id: $('#item_id').val()
+							},
+							error: function(data, textStatus, xhr){
+								alert(xhr);
+							},
+							success: function(data){
+								$('input[value='+x+']').attr('checked',true);
+								$('#main_image_id').val(x);
+							}
+						});
+					
+					}
+					$('#count_image').val(parseInt($('#count_image').val())+1);
 				}
 			});
 			
 		});
-		
-		
-		
-		$('img').load(function() {
-			$('.scroll-content-item').css('width',$('.image_thumb').width());
-		});
-		$('.del-butt').click(function() { 
-		    alert('ABD');
-		    confirm('Confirm for deletion','Do you want to delete this image.',this.href, 'Delete'); 
-		    return false;
-		});
+
 		//add confirm event for delete button
 		$('a.delete-button').click(function() { 
 		    confirm('Confirm for deletion','Do you want to delete this image.',this.href, 'Delete'); 
@@ -268,6 +325,47 @@
 		$("#btn-add-photo").click(function(){
 			document.getElementById("form-add-photo").submit();
 		});
+		if(!$('input[name="main_image"]').is(":checked")){
+			if($('input[id="main_image0"]').val()!=null){
+			var path = "<?php echo base_url('admin/inventory/save_main_image');?>";
+			var x = $('input[id="main_image0"]').val();
+				$.ajax({
+					type: 'POST',
+					url: path,
+					data: {	image_id: x ,
+							item_id: $('#item_id').val()
+					},
+					error: function(data, textStatus, xhr){
+							alert(xhr);
+					},
+					success: function(data){
+						$('input[id="main_image0"]').attr('checked','true');
+						$('#main_image_id').val(x);
+					}
+			});
+			}
+			
+		}
+		if($('input[name="main_image"]').length <=0){
+		
+				alert('ss');
+				var path = "<?php echo base_url('admin/inventory/save_main_image');?>";
+				$.ajax({
+					type: 'POST',
+					url: path,
+					data: {	
+							item_id: $('#item_id').val()
+					},
+					error: function(data, textStatus, xhr){
+							alert(xhr);
+					},
+					success: function(data){
+						$('input[id="main_image0"]').attr('checked','true');
+						$('#main_image_id').val(x);
+					}
+				});
+			
+			}
 
 	});
 	</script>

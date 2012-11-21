@@ -290,9 +290,10 @@ class Inventory extends CI_Controller
 	
 	public function add_image_in_item(){
 		$this->load->model('image_model');
+		$this->load->model('item_model');
 		$image_id = $this->input->post('image_id');
 		$item_id = $this->input->post('item_id');
-
+		//$this->item_model->save_main_image($item_id,$image_id);
 		$this->image_model->add_item_image($item_id,$image_id);
 		$data['images'] = $this->image_model->get($image_id);
 		echo json_encode($data);
@@ -317,7 +318,17 @@ class Inventory extends CI_Controller
 	    redirect('admin/inventory');
 	}
 	
-	
+	public function save_main_image(){
+		$this->load->model('item_model');
+		$image_id = null;
+		if($this->input->post('image_id')){
+			$image_id = $this->input->post('image_id');
+		}
+		$item_id = $this->input->post('item_id');
+		
+		$this->item_model->save_main_image($item_id,$image_id);
+		return 'true';		
+	}
 	public function search($product_name=FALSE, $item_amount_low=FALSE, $item_amount_high=FALSE)
 	{
 	    if(!check_authen('staff',TRUE)) 
