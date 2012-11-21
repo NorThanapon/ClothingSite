@@ -7,7 +7,9 @@
 <link rel="stylesheet" href="<?php echo asset_url().'css/dd.css';?>" />
 <!--for enlarge size image-->
 <link rel="stylesheet" href="<?php echo asset_url().'css/jquery.fancybox-buttons.css';?>" />	
-<link rel="stylesheet" href="<?php echo asset_url().'css/jquery.fancybox.css';?>" media="screen" />
+<link rel="stylesheet" href="<?php echo asset_url().'css/jquery.fancybox.css';?>"  />
+<link rel="stylesheet" href="<?php echo asset_url().'css/jquery-ui-1.9.1.custom.css';?>" />
+<link rel="stylesheet" href="<?php echo asset_url().'css/jquery-ui-1.9.1.custom.min.css';?>"  />
 
 
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery-1.7.1.min.js';?>" charset="utf-8"></script>
@@ -20,7 +22,10 @@
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery.mousewheel-3.0.6.pack.js';?>"></script>
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery.fancybox.js';?>"></script>
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery.fancybox-buttons.js';?>"></script>
-
+<!-- demo ui -->
+<script type="text/javascript" src="<?php echo asset_url().'js/jquery-ui-1.9.1.custom.min.js';?>"></script>
+<script type="text/javascript" src="<?php echo asset_url().'js/jquery-ui-1.9.1.custom.js';?>"></script>
+	
 	
 	
 <!--[if gte IE 9]>

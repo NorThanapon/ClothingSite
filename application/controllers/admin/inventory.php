@@ -39,7 +39,7 @@ class Inventory extends CI_Controller
 		$data['products'] = $this->product_model->get();
 		//authenticated
 		$data['page_title'] = 'Admin: Inventory Management';
-		if (!$this->input->post('submit')) 
+		if (!$this->input->post('submit') && !$this->input->post('manage_photo')) 
 	    {    
 			$this->load->view('inventory/add',$data);
 			return;
@@ -87,6 +87,17 @@ class Inventory extends CI_Controller
 		$total = $total->total_quantity + $item_quantity;
 		$this->item_model->update_total_quantity($this->input->post('product_id'),$total);
 				
+		if($this->input->post('manage_photo')){
+			$item =  $this->item_model->get($this->input->post('item_id'));
+			if ($item == FALSE)
+			{
+				$data['page'] = 'inventory/list';
+				$this->load->view('main_admin_page',$data);
+			}
+            redirect('admin/inventory/photo/'.$item->item_id);
+            return;
+			
+		}		
 		redirect('admin/inventory');	
 	}
 	
@@ -189,9 +200,9 @@ class Inventory extends CI_Controller
 		$this->load->model('item_model');
 		$this->load->model('image_model');
 		$this->load->model('product_model');
-		$data['item'] = $this->item_model->get($item_id);
-		$data['photos'] = $this->image_model->get_photos($data['item']->product_id);
-		$data['product'] = $this->product_model->get($data['item']->product_id);
+		$data['items'] = $this->item_model->get($item_id);
+		$data['photos'] = $this->image_model->get_photos($data['items']->product_id);
+		$data['product'] = $this->product_model->get($data['items']->product_id);
 		
 		
 		$data['page_title']='Manage Photo';
@@ -203,12 +214,33 @@ class Inventory extends CI_Controller
         $data["picker_control_name"] = "color";
         $data["picker_control_id"] = "ddl-color";
 		$data['page'] = 'inventory/photo_management';
+		
+		
+		$result = $this->image_model->get_item_image($item_id);
+		
+		$where = "";
+		if($result!=FALSE){
+			for($i = 0;$i<count($result);$i++){
+				if($i==count($result)-1){
+					$where = $where."".$result[$i]->image_id;
+					break;
+				}
+				$where = $where."".$result[$i]->image_id.",";
+			}
+			//echo $where;
+			$data['images'] = $this->image_model->get_where($where);
+		}
+		//print_r($data['images']);
         $this->load->view('main_admin_page',$data);
 		
 		//$this->load->view('product/photo_management',$data);
 		 
 	}
-	
+	public function delete_image($item_id,$image_id){
+		$this->load->model('image_model');
+		$this->image_model->delete_item_image($item_id,$image_id);
+		redirect('admin/inventory/photo/'.$item_id);
+	}
     public function service_add() {
         if(!check_authen('staff',TRUE)) return;
         $this->load->model('color_model');
@@ -256,6 +288,15 @@ class Inventory extends CI_Controller
         return FALSE;
     }
 	
+	public function add_image_in_item(){
+		$this->load->model('image_model');
+		$image_id = $this->input->post('image_id');
+		$item_id = $this->input->post('item_id');
+
+		$this->image_model->add_item_image($item_id,$image_id);
+		$data['images'] = $this->image_model->get($image_id);
+		echo json_encode($data);
+	}
 	
 	public function delete($item_id=FALSE)
 	{

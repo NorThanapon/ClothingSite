@@ -31,7 +31,7 @@
 				<input type="hidden" name="image_id" value="<?php echo $item->image_id ; ?>" />
 				<br />
 					<?php echo anchor('admin/product/delete_photo/'.$item->image_id.'/'.$product->product_id, ' ', array('title'=>"Delete Photo",'class'=>'delete-button')); ?>
-					<br />					
+				<br />					
 				</div>
 		<?php	
 			$count++;
