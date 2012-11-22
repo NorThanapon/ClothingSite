@@ -11,12 +11,15 @@ class Ajax extends CI_Controller
 		$this->lang->load('content-history', $this->language_model->get());
 		//$this->lang->load('content_main_product_name', $this->language_model->get());
 		$data['re_name'] = str_replace('-',' ',$brand_name);
+		
 		$data['product_detail'] = $this->product_model->get_main_image($product_id);
-		$data['sub_image'] = $this->product_model->get_sub_image($product_id);	
+		$item = $this->product_model->get_main_image($product_id);
+		$data['sub_image'] = $this->product_model->get_sub_image($product_id,$item->color);	
 		
-		$default_size = $this->product_model->get_default_size($product_id);	
+		$size = $this->product_model->get_size($product_id);	
+
 		
-		$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$default_size->size);
+		$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$size->size);
 		
 		$data['item_detail_size'] = $this->product_model->get_item_detail_size($product_id);
 

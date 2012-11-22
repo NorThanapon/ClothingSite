@@ -69,8 +69,15 @@
 					<?php 
 					foreach($item_detail_size as $item)
 					{
-					?>
-						<option value="<?php echo $item->size; ?>"> <?php echo $item->size; ?> </option>
+						$select_value = " ";
+						if($product_detail->size == $item->size)
+						{
+							$select_value = "selected";
+							
+						}
+					?>	
+						<option value="<?php echo $item->size; ?>" <?php echo $select_value; ?>> <?php echo $item->size; ?> </option>
+						
 					<?php
 					}
 					?>
@@ -157,24 +164,23 @@
 						$("#select-color").val(this.id);						
 						
 						var color_id = this.id;
-						
 					var url_2 = "<?php echo base_url('ajax/item_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
 					//alert(url_2);
 					$.getJSON(url_2, function(data){
 						$("#item-detail").html("Item Code: "+data.item_id);
 						$("#item_id").val(data.item_id);
 					});
+
 					var url_3 = "<?php echo base_url('ajax/quantity_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
 					$.getJSON(url_3, function(data){
-						alert(data);
+						//alert(data);
 					});
 					
 					var c = $('input[name=sel-color]').val();
 					$('#'+c).css("border","none");
 					$('input[name=sel-color]').val(this.id);
 					$(this).css("border","1px solid #3A4F6C");
-						
-					});
+					
 					var url_4 = "<?php echo base_url('ajax/sub_image_ajax') . '/' . $product_detail->product_id; ?>/"+color_id;
 					$.getJSON(url_4, function(data){
 						var subimg_div = document.getElementById('sub-image');
@@ -193,6 +199,9 @@
 						a.appendChild(img);
 
 					});
+					
+					});
+					
 					
 				}
 			});

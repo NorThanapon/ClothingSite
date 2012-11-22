@@ -15,7 +15,7 @@ class Product_model extends CI_Model
 	var $material_en = '';
 	var $date_add = '';
 	var $is_active = '';
-	
+
 	function __construct() 
  	{
         parent::__construct();
@@ -237,18 +237,24 @@ class Product_model extends CI_Model
 		$query = $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where tag_id=".$tag_id." and image_id = main_image and product_is_active = '1' and brand_is_active = '1' and total_quantity > 0");
 		return $query->result();
 	}
-	function get_main_image($product_id)
+	function get_main_image($product_id,$item_id=FALSE)
 	{
-		$query =  $this->db->query("SELECT * FROM `products_brands_items_images_colors` where product_id=".$product_id." and image_id = main_image");
-	    return $query->row();
+		$query = $this->db->query("SELECT DISTINCT main_item FROM products_brands_items_images_colors WHERE product_id=".$product_id."");
+		$result_main_item = $query->row();
+		$item_id = $result_main_item->main_item;
+		$query = $this->db->query("SELECT * FROM products_brands_items_images_colors WHERE item_id='".$item_id."' AND image_id = main_image ");
+		return $query->row();
 	}
 	function get_sub_image($product_id, $color_id=FALSE)
 	{
 		if($color_id!=FALSE)
-			$query =  $this->db->query("SELECT image_file_name,product_id ,item_id FROM `products_brands_items_images_colors` WHERE product_id=".$product_id."  and item_id = '".$item_id."' LIMIT 4");
+			$query =  $this->db->query("SELECT image_file_name,product_id ,item_id FROM `products_brands_items_images_colors` WHERE product_id=".$product_id."  and color_id = '".$color_id."' LIMIT 4");
 		else
 		{
-			$query =  $this->db->query("SELECT image_file_name,product_id ,item_id FROM `products_brands_items_images_colors` WHERE product_id=".$product_id." LIMIT 4 ");
+			$query = $this->db->query("SELECT DISTINCT main_item FROM products_brands_items_images_colors WHERE product_id=".$product_id."");
+			$result_main_item = $query->row();
+			$item_id = $result_main_item->main_item;
+			$query = $this->db->query("SELECT * FROM products_brands_items_images_colors WHERE item_id='".$item_id."' LIMIT 4");
 		}
 		return $query->result();
 	}
@@ -262,7 +268,7 @@ class Product_model extends CI_Model
 		$query = $this->db->query("SELECT distinct color_file_name FROM products_brands_items_images_colors WHERE product_id=".$product_id."");
 		return $query->result();
 	}
-	function get_default_size($product_id)
+	function get_size($product_id)
 	{
 		$query = $this->db->query("SELECT distinct item_id,size FROM `products_brands_items_images_colors` WHERE product_id=".$product_id." ORDER BY size ASC");
 		return $query->row();
