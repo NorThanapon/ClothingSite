@@ -142,7 +142,7 @@
 		});
 		$("a.header-join").click(function(){
 			
-			if($("e_mail").val()!=null)
+			if($("#e_mail").val()!=null)
 			{
 				document.getElementById("open_account").submit();				
 			}

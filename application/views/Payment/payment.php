@@ -107,7 +107,7 @@
 					<div id="top-main-step3">
 						<div id="customer-info">
 							<div id="customer-head">
-								<label class="head">Customer Info.</label>
+								<label class="head">Customer Infomation</label>
 								<label class="sub-head">First name :</label>
 								<label class="sub-head">Last name :</label>
 								<label class="sub-head">Tel. :</label>
@@ -127,7 +127,7 @@
 						</div>
 						<div id="order-info">
 							<div id="order-head">
-								<label class="head">Order Info.</label>
+								<label class="head">Order Infomation</label>
 								<label class="sub-head">Order Number :</label>
 								<label class="sub-head">Ship by :</label>
 							</div>
@@ -172,7 +172,7 @@
 					<div id="top-main-step4">
 						<div id="customer-info">
 							<div id="customer-head">
-								<label class="head">Customer Info.</label>
+								<label class="head">Customer Infomation</label>
 								<label class="sub-head">First name :</label>
 								<label class="sub-head">Last name :</label>
 								<label class="sub-head">Tel. :</label>
@@ -192,7 +192,7 @@
 						</div>
 						<div id="order-info">
 							<div id="order-head">
-								<label class="head">Order Info.</label>
+								<label class="head">Order Infomation</label>
 								<label class="sub-head">Order Number :</label>
 								<label class="sub-head">Order date :</label>
 								<label class="sub-head">Ship by :</label>

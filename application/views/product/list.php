@@ -66,7 +66,7 @@
 		<input id="btn_filter" type="button" value="Search" />
 	    </fieldset>
         </div>
-		<!--<?php echo form_open('admin/product/delete_batch'); ?>-->
+		<!--<?php// echo form_open('admin/product/delete_batch'); ?>-->
 		<?php echo form_open('admin/product/update_status'); ?>
 		
         <div class="report-items">

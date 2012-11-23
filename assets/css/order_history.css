@@ -59,3 +59,26 @@
 #order-history-main .order-history-head-row{
 	border-bottom:1px solid #CFCFCF;
 }
+#customer-info{
+	display: block;
+	max-width: 1000px;
+	margin: 0 auto;
+	position: relative;
+	padding-bottom: 15px;
+	display: block;
+	float: left;
+	width: 70%;
+	padding-top: 20px;
+	padding-left: 50px;
+}
+#customer-head{
+	display: inline-block;
+	float: left;
+}
+#customer-info label {
+	display: block;
+}
+input[type="image"]{
+width: 17px ;
+height: 17px ;
+}
