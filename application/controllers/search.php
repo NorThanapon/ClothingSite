@@ -1,9 +1,9 @@
 <?php 
 class Search extends CI_Controller 
-{	public function index($search) 
-{
+{	public function index() 
+	{
         $data['page_title'] = "Welcome to BfashShop.com";
-		$this->load->model('product_model');
+		$this->load->model('brand_model');
 		$data['brand_list'] = $this->brand_model->get(); 				
 		$data['page'] = 'product_list';
         $this->load->view('main_page',$data);
@@ -20,13 +20,14 @@ class Search extends CI_Controller
 		$this->lang->load('content-history', $this->language_model->get());
 		$this->lang->load('content_main_product_list', $this->language_model->get());
 	
-		$data['re_name'] = str_replace('-',' ',$search_cat);
+		$data['re_name'] = str_replace(' ','-',$search);
 		
-		$data['base_url'] = base_url().'search/'.$search.'/page/'.$page.'/'.$per_page;
+		$data['base_url'] = base_url().'search/'.$search;
 		
 		//breadcrumbs
 		$data['breadcrumbs'] = array($this->lang->line('Home'), $search);
-		$data['link'] = array(site_url(), site_url().'search/'.$page.'/'.$per_page);
+		$data['link'] = array(site_url(), site_url().'search/'.$search);
+		
 		$data['products'] = $this->product_model->search_by_name($search);	
 		$data['page'] = 'front_product/content_main_product_list';
 			

@@ -135,7 +135,7 @@ class Product_model extends CI_Model
 	    $query = $this->db->get_where('products_brands_categories', array('brand_id' => $brand_id));
 	    return $query->result();
 	}
-
+	
 	function select($query)
 	{
 		$query = $this->db->query($query);
@@ -175,16 +175,6 @@ class Product_model extends CI_Model
 		
 		
 	}
-	
-	function update_main_item($product_id,$item_id)
-	{
-		$data = array(
-			
-			'main_item'   => $item_id
-		);
-		$this->db->update('products',$data,array('product_id'=>$product_id));
-	}
-	
 	function delete_batch($products)
 	{
 		//DELETE FROM `products` WHERE product_id in( '5','i')
@@ -255,17 +245,9 @@ class Product_model extends CI_Model
 		$query = $this->db->query("SELECT * FROM products_brands_items_images_colors WHERE item_id='".$item_id."' AND image_id = main_image ");
 		return $query->row();
 	}
-	function get_sub_image($product_id, $color_id=FALSE)
+	function get_sub_image($product_id,$size,$color_id)
 	{
-		if($color_id!=FALSE)
-			$query =  $this->db->query("SELECT image_file_name,product_id ,item_id FROM `products_brands_items_images_colors` WHERE product_id=".$product_id."  and color_id = '".$color_id."' LIMIT 4");
-		else
-		{
-			$query = $this->db->query("SELECT DISTINCT main_item FROM products_brands_items_images_colors WHERE product_id=".$product_id."");
-			$result_main_item = $query->row();
-			$item_id = $result_main_item->main_item;
-			$query = $this->db->query("SELECT * FROM products_brands_items_images_colors WHERE item_id='".$item_id."' LIMIT 4");
-		}
+		$query = $this->db->query("SELECT image_file_name FROM products_brands_items_images_colors WHERE product_id=".$product_id." AND size='".$size."' and color_id = ".$color_id."");
 		return $query->result();
 	}
 	function get_item_detail_size($product_id)
@@ -307,6 +289,30 @@ class Product_model extends CI_Model
 		$query = $this->db->query("SELECT quantity FROM products_brands_items_images_colors WHERE product_id=".$product_id." AND size='".$size."' and color_id = ".$color_id."");
 		return $query->row();
 	}
-
+	function get_main_image_when_change($product_id,$size,$color_id)
+	{
+		$query = $this->db->query("SELECT main_image FROM products_brands_items_images_colors WHERE product_id=".$product_id." AND size='".$size."' and color_id = ".$color_id."");
+		return $query->row();
+	}
+	function search_by_name($product_name = FALSE)
+	{
+	
+	    $where = "";
+		if($product_name === FALSE)
+		{
+			$query = $this->db->get('products_brands_items_images_colors');
+			if ($query->num_rows() > 0)
+				return $query->result();
+			return FALSE;
+		}
+		if ($product_name != "" && $product_name != " " && $product_name != FALSE)
+		{
+			if ($where != "" ) $where = $where . " AND ";
+			$where = $where . "(product_name_en LIKE '%".$product_name."%' OR product_name_th LIKE '%".$product_name."%')";
+		}
+		
+	   if ($where != "" ) $query = $this->db->get_where('products_brands_items_images_colors', $where);
+			return $query->result();
+	}
 }
 ?>
