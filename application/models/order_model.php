@@ -31,11 +31,16 @@ class Order_model extends CI_Model
     }
 	function up_slip($image)
 	{
-	$data = array(
+		$data = array(
 			'order_id'   => $this->input->post('order_id'),
 			'image_payment' => $image
 		);
 		$this->db->update('orders',$data,array('order_id'=>$this->input->post('order_id')));
+	}
+	function get_member_order($e_mail)
+	{
+		$query = $this->db->get_where('members_orders', array('e_mail' => $e_mail));
+		return $query->result();
 	}
 	
 

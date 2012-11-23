@@ -5,18 +5,21 @@
 	
     <div id="header-topmenu">
 			
-		<?php echo form_open('search'); ?>
-		<td><?php echo $this->lang->line('Welcome to');?> BfashShop&nbsp </td>
-		<?php echo anchor($join_link,$join_name, array('title'=>'Register', 'class' =>'header-join')); ?>
-        <?php echo anchor($sign_in_link, $sign_in , 'title="Sign in"'); ?><!-- first,where link ,word,attribute -->
-        
+		<?php echo form_open('orderhistory','id="open_account"') ?>
+			<div>
+				<td><?php echo $this->lang->line('Welcome to');?> BfashShop&nbsp </td>
+				<?php //echo anchor("javascript:void(0)",$join_name, array('title'=>$title_join, 'class' =>'header-join')); ?>
+				<a href="javascript:void(0)" class="header-join" title="<?php echo $title_join;?>"><?php echo $join_name;?></a>
+				<?php echo anchor($sign_in_link, $sign_in , 'title="'.$title_sign.'"'); ?><!-- first,where link ,word,attribute -->
+				<input type="hidden" name="e_mail" id="e_mail" value = "<?php if(isset($e_mail)){echo $e_mail;}?>">
+			</div>
+		</form>
 		
-		<?php //echo form_open('search'); ?>
+		<?php //echo form_open('search/product_nan'); ?>
 			<input id="product_search" type="text" placeholder="<?php echo $this->lang->line('Enter product name or code');?>" name="product_search"/>
 			<!--<input id="txt_tag_name" type="text" name="tag_name" value="<?php if(isset($search_name)) echo $search_name;  ?>"/>-->		
 			<input name="btn_filter" type="button" value="<?php echo $this->lang->line('Go'); ?>" >
-		
-        
+		<?php //echo form_close(); ?>
 		
 		<span class="lang-link">           
 			<a href="javascript:void(0)" class="language-en" title="English">EN</a>
@@ -129,12 +132,27 @@
 					window.location.reload();
 			}});
 		});
-		$('#btn_filter').click(function() {
-		    var url = document.URL;
-		    url = url.substring(0, url.indexOf('/search') + 7);
-		    url = url + $('#product_search').val() + '/' + <?php echo $product_id->product_id;?>;
-		    window.location = url;
+		$('input[name=btn_filter]').click(function() {
+			var word = $('#product_search').val();
+			window.location = "<?php echo base_url('search'); ?>/" + word;
+		    //var url = document.URL;
+		    //url = url.substring(0, url.indexOf('/search') + 7);
+		    //url = url + $('#product_search').val() + '/' + <?php //echo $product_id->product_id;?>;
+		    //window.location = url;
+		});
+		$("a.header-join").click(function(){
+			
+			if($("e_mail").val()!=null)
+			{
+				document.getElementById("open_account").submit();				
+			}
+			else
+			{
+				window.location.replace("<?php echo $join_link;?>");
+			}
 		});
 	});
 	
+	
+
 </script>

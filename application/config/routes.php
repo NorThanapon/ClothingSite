@@ -65,9 +65,10 @@ $route['tag/([-_a-zA-Z0-9]+)/(:num)'] = 'tag/index/$1/$2';
 $route['tag/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'tag/product_detail/$1/$2/$3';
 
 //search
-$route['search/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'search/product/$1/$2'; 
-$route['search/([-_a-zA-Z0-9]+)/(:num)'] = 'search/product/$1';
+$route['search/([-_a-zA-Z0-9]+)'] = 'search/product/$1';
 
+$route['search/([-_a-zA-Z0-9]+)/page/(:num)/(:num)'] = 'search/product_list/$1/$2/$3'; 
+$route['search/ ([-_a-zA-Z0-9]+)'] = 'search/product_list/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */?>

@@ -91,7 +91,7 @@
 			<label for="date_expire_payment" id="date_expire_payment"></label>
 			Please make your payment by <?php echo $date_expire_full_month_name;?>  
 			<br />After the transfer is completed, please upload your pay-in-slip<br />  
-			information at the &lsquo;<a href="javascript:void(0)" class="confirm" title="Thai">payment confirmation page</a>&rsquo; or fax to 02-123-4567</label>
+			information at the &lsquo;<a href="javascript:void(0)" class="confirm" title="payment confirmation page">payment confirmation page</a>&rsquo; or fax to 02-123-4567</label>
 		</div>
 		<input type="hidden" name="order_id" value = "<?php echo $order_id;?>">
 	
