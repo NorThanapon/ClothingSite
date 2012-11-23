@@ -95,9 +95,13 @@ height:230px;
 	padding-top: 5px;
 }
 
-.sub-product #detail-price h3{
+.sub-product #detail-price .on_sale{
 	font-size:85%;
 	text-decoration:line-through;
+}
+
+.sub-product #detail-price h3{
+	font-size:85%;
 }
 
 .sub-product #detail-price h2{
