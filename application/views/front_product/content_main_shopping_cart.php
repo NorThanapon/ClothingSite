@@ -155,7 +155,7 @@
 		<input type="submit" class="change-path" value=" " name="pay" />
 	</div>
 </div>
-
+<?php $this->load->view('common/confirm_box_ok');?>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.imgs-loading').hide();
@@ -297,6 +297,7 @@
 			
 			var s = $('input[name=first-id]').val();
 			//alert(n+"  "+size+"  "+color+"  "+qty);
+			
 			var path = "<?php echo base_url('cart/update_cookie');?>";
 			$.ajax({
 				type: 'POST',
@@ -307,18 +308,25 @@
 						item_qty: qty
 				},
 				error: function(data, textStatus, xhr){
-					alert(xhr);
+					alert(xhr); 
+					return false;
 				},
 				success: function(data){
-					//alert(data);
-					if(data = 'true'){
+					if(data == 'true'){
 						window.location.href = "<?php echo base_url('cart');?>";
 					}
+					else if(data == 'null'){
+						confirm('Alert','Please select color.',this.href); 
+						return false;
+						//alert('Please select color');
+					}
 					else{
-						alert(data);
+						confirm('Alert',data,this.href); 
+						return false;
 					}
 				}
 			});		
+			
 		});
 		$('.cancel-butt').click(function(){
 			var n = $(this).attr("name").substring(6);
@@ -348,7 +356,9 @@
 						window.location.href = "<?php echo base_url('payment');?>"; 
 					}
 					else{
-						alert(data);
+						confirm('Alert',data,this.href); 
+						return false;
+						//alert(data);
 					}
 				}
 			});		

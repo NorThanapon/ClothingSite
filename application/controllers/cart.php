@@ -147,6 +147,13 @@ class Cart extends CI_Controller {
 		$this->load->model('cart_model');
 		$result = $this->cart_model->get_item_id($size,$color);
 		
+		
+		if($result==FALSE)
+		{
+			echo 'null';
+			return ;
+		}
+		
 		//set new value to cookie
 		$temp = strstr($cookie_value,$id);
 		$tmp = strpos($temp, '&');
@@ -194,6 +201,7 @@ class Cart extends CI_Controller {
 		$this->input->set_cookie($cookie_cart);
 		
 		echo 'true';
+	
 	}
 	public function remove_item($item_id){
 		$this->load->model('cart_model');
