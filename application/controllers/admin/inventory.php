@@ -306,14 +306,29 @@ class Inventory extends CI_Controller
 			return;            
 	    }
 	    
+		
 		$data['page_title'] = 'Admin: Inventory Management';
 	    if($item_id===FALSE)
 	    {
 		    redirect('admin/inventory');
 	    }
 		$this->load->model('item_model');
-			    
+		$this->load->model('product_model');
+		$this->load->model('image_model');
+		
+		$result = $this->item_model->get($item_id);	
+		$product = $this->product_model->get($result->product_id);
+		
+		//delete image in item
+		$this->image_model->delete_item_image($item_id,null);
+		
+		// update total_quantity in product
+		$new_quantity = $product->total_quantity - $result->quantity;	
+		
 	    $this->item_model->delete($item_id);
+		
+		$this->product_model->update_totalquantity($product->product_id,$new_quantity);
+		
 	    $data['item_list'] = $this->item_model->get();
 	    redirect('admin/inventory');
 	}

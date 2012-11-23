@@ -84,7 +84,7 @@ class Image_model extends CI_Model
 	function delete_item_image($item_id,$image_id){
 	
 		if($image_id == null){
-			$this->db->delete('items_images',array('image_id' => $image_id));	
+			$this->db->delete('items_images',array('item_id' => $item_id));	
 			return;
 		}
 		$this->db->delete('items_images',array('item_id' => $item_id,'image_id'=>$image_id));	
