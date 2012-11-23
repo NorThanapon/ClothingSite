@@ -135,7 +135,7 @@ class Product_model extends CI_Model
 	    $query = $this->db->get_where('products_brands_categories', array('brand_id' => $brand_id));
 	    return $query->result();
 	}
-	
+
 	function select($query)
 	{
 		$query = $this->db->query($query);
@@ -175,6 +175,16 @@ class Product_model extends CI_Model
 		
 		
 	}
+	
+	function update_main_item($product_id,$item_id)
+	{
+		$data = array(
+			
+			'main_item'   => $item_id
+		);
+		$this->db->update('products',$data,array('product_id'=>$product_id));
+	}
+	
 	function delete_batch($products)
 	{
 		//DELETE FROM `products` WHERE product_id in( '5','i')

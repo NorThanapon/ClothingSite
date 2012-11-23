@@ -68,6 +68,19 @@ class Item_model extends CI_Model
 	    $query = $this->db->get_where('items', array('item_id' => $item_id));
 		return $query->row();
 	}
+	
+	function get_by_product_id($product_id = FALSE)
+	{
+		if ($product_id === FALSE) 
+		{			
+			$query = $this->db->get('items');	
+			return $query->result();
+	    }
+		
+		$query = $this->db->get_where('items', array('product_id' => $product_id));
+		return $query->result();
+	}
+	
 	function save_main_image($item_id,$image_id){
 		$data = array(
 			'main_image' => $image_id

@@ -83,7 +83,7 @@
 			<th>Date Add</th>
 			<th>On Sale</th>
 			<th>Show</th>			
-			<th width="30" >&nbsp;</th>
+			<th width="40" >&nbsp;</th>
 		    </tr>
 		</thead>
 		<tbody>
@@ -104,6 +104,7 @@
 				<td><?php if($item->product_is_active == 1) echo "show"; else echo "hide"; ?></td>				
 				<td><!--<a href ="<?php echo "product/detail/".$item->product_id;?>" >Detail</a>-->
 					<?php echo anchor('admin/product/edit/'.$item->product_id, ' ', array('title'=>"Edit Product",'class'=>'edit-button')); ?>
+					<?php echo anchor('admin/product/itemlist/'.$item->product_id, ' ', array('title'=>"Item List",'class'=>'itemlist-button')); ?>
 					<?php echo anchor('admin/product/delete/'.$item->product_id, ' ', array('title'=>"Delete Product",'class'=>'delete-button')); ?>
 				</td>
             </tr>

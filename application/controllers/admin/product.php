@@ -593,5 +593,42 @@ class Product extends CI_Controller
 		
 	}
 	*/
+	
+	public function itemlist($product_id = FALSE)
+	{
+		if(!check_authen('staff',TRUE)) 
+	    {
+			return;
+	    }
+		if($product_id===FALSE)
+        {
+			redirect('admin/product');
+        }
+		$data['page_title'] = 'Admin: Product Management';
+		$this->load->model('item_model');
+		$this->load->model('product_model');
+		$data['product'] =  $this->product_model->get($product_id);
+			
+		if($this->input->post('submit'))
+		{			
+			if($this->input->post('rb_select_item')!="") 
+			{
+				$temp['item_id'] = $this->input->post('rb_select_item');
+				$this->product_model->update_main_item($product_id,$temp['item_id']);
+			}
+			redirect('admin/product');
+            return;
+		}
+		if(!$this->product_model->has_items_under_products(array($product_id)))
+		{
+			$data['error_message'] = 'Don\'t have item in this product';
+		}
+		$data['item_list'] = $this->item_model->get_by_product_id($product_id);
+		
+		$data['page'] = 'product/mainitem_management';
+		$this->load->view('main_admin_page',$data);
+		return;
+		//redirect('admin/product');
+	}
 }
 ?>
