@@ -368,6 +368,7 @@
 							data_post += ";"+$('#address').val()+";"+ $('#postcode').val()+"'>";
 							data_post += "<input type='hidden' name='order_id' id='order_id' value='<?php echo $order_id ;?>'>";
 							data_post += "<input type='hidden' name='date_order' id='date_order' value='<?php echo $order_date ;?>'>";
+							data_post += "<input type='hidden' name='e_mail' id='e_mail_3' value ='"+$('#e_mail').val()+"'>";
 														
 							$("#data_post_step_3").html(data_post);
 							

@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="<?php echo asset_url().'css/pager.css';?>" />
 <link rel="stylesheet" href="<?php echo asset_url().'css/jqmodal.css';?>" />
 <link rel="stylesheet" href="<?php echo asset_url().'css/dd.css';?>" />
+<link rel="stylesheet" href="<?php echo asset_url().'css/admin_invoice.css';?>" />
 <!--for enlarge size image-->
 <link rel="stylesheet" href="<?php echo asset_url().'css/jquery.fancybox-buttons.css';?>" />	
 <link rel="stylesheet" href="<?php echo asset_url().'css/jquery.fancybox.css';?>"  />

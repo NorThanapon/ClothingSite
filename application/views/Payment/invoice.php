@@ -80,34 +80,38 @@
 			?>
 		</table>
 	</div>
-	<div id="pay-attention">
-		<label><font style="color:red;font-weight:bold">Note:</font> <br /><br />Please  transfer the total amount to:<br /> 
-		<br /><font style="font-weight:bold">ICC International Public Company Limited</font>
-		<br /><font style="font-weight:bold">Account Number:</font>  
-		<br /><font style="font-weight:bold">Bank:</font> <br />
-		<br />
-		<label for="date_expire_payment" id="date_expire_payment"></label>
-		Please make your payment by <?php echo $date_expire_full_month_name;?>  
-		<br />After the transfer is completed, please upload your pay-in-slip<br />  
-		information at the &lsquo;<a href="###">payment confirmation page</a>&rsquo; or fax to 02-123-4567</label>
-	</div>
-	<div id="total-price">
-		<div id="price-head">
-			<label>Subtotal :</label>
-			<label>Shipping :</label>
-			<label>VAT :</label>
-			<label class="text_bold" >Total :</label>					
+	
+	<?php echo form_open('uploadslip','id="upload-view"') ?>
+		<div id="pay-attention">
+			<label><font style="color:red;font-weight:bold">Note:</font> <br /><br />Please  transfer the total amount to:<br /> 
+			<br /><font style="font-weight:bold">ICC International Public Company Limited</font>
+			<br /><font style="font-weight:bold">Account Number:</font>  
+			<br /><font style="font-weight:bold">Bank:</font> <br />
+			<br />
+			<label for="date_expire_payment" id="date_expire_payment"></label>
+			Please make your payment by <?php echo $date_expire_full_month_name;?>  
+			<br />After the transfer is completed, please upload your pay-in-slip<br />  
+			information at the &lsquo;<a href="javascript:void(0)" class="confirm" title="Thai">payment confirmation page</a>&rsquo; or fax to 02-123-4567</label>
 		</div>
-		<div id="price-detial">
-			<label id="subtotal_4"  ><?php echo $subtotal;?></label>
-			<label id="shipping_4"><?php echo $shipping;?></label>
-			<label id="vat_4"><?php echo $vat;?></label>
-			<label id="total_4" class="text_bold" ><?php echo $total;?></label>
-		</div>
-		
-		
-	</div>				
-
+		<input type="hidden" name="order_id" value = "<?php echo $order_id;?>">
+	
+		<div id="total-price">
+			<div id="price-head">
+				<label>Subtotal :</label>
+				<label>Shipping :</label>
+				<label>VAT :</label>
+				<label class="text_bold" >Total :</label>					
+			</div>
+			<div id="price-detial">
+				<label id="subtotal_4"  ><?php echo $subtotal;?></label>
+				<label id="shipping_4"><?php echo $shipping;?></label>
+				<label id="vat_4"><?php echo $vat;?></label>
+				<label id="total_4" class="text_bold" ><?php echo $total;?></label>
+			</div>
+			
+			
+		</div>				
+	</form>
 </div>
 </fieldset>	
 <div id="invoice-page">	
@@ -116,3 +120,11 @@
 <input type="submit" name="btn_go_to_homepage" value="Continue Shopping" />
 </form>
 </div>
+<script type="text/javascript"> 
+	$(document).ready(function() {
+		//add confirm event for delete button
+		$("a.confirm").click(function(){
+			document.getElementById("upload-view").submit();
+		});
+	});
+</script>

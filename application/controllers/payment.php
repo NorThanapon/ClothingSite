@@ -283,7 +283,9 @@ class Payment extends CI_Controller {
 		//save to database
 		$this->load->model('payment_model');
 		$this->load->model('member_model');
-		$member_id = $this->member_model->get($this->input->post('e_mail'))->member_id;			
+		
+		$member_id = $this->member_model->get($this->input->post('e_mail'))->member_id;	
+
 		$this->load->helper('date');		
 		$time = time();		
 		$order_data['date_add'] = $time;//timestamp

@@ -1,0 +1,304 @@
+#main-step4{
+	margin:0 auto;
+	position:relative;
+	width:90%;
+	vertical-align:middle;	
+	padding-bottom:30px;
+}
+
+#main-step4 #customer-info{
+	display:block;
+	float:left;
+	width:70%;
+}
+
+#main-step4 #customer-head{
+	display:inline-block;
+	float:left;
+}
+
+#main-step4 #customer-detail{
+	margin-top:5px;
+	display:inline-block;
+	float:left;
+}
+
+#main-step4 #customer-info .head{
+	font-size:100%;
+	font-family:Sans-serif;
+	font-weight:bold;
+	padding-bottom:5px;
+}
+
+#main-step4 #customer-info .sub-head{
+	
+	font-size:80%;
+	font-family:Sans-serif;
+	line-height:170%;
+}
+
+#main-step4 #customer-info label{
+	display:block;
+}
+
+#main-step4 #order-info{
+	display:block;
+	float:left;
+	width:30%;
+}
+
+#main-step4 #order-info label{
+	display:block;
+}
+
+#main-step4 #order-info #order-head{
+	display:inline-block;
+	float:left;
+}
+
+#main-step4 #order-info #order-detail{
+	margin-top:5px;
+	display:inline-block;
+	float:left;
+}  
+
+#main-step4 #order-info .head{
+	font-size:100%;
+	font-family:Sans-serif;
+	font-weight:bold;
+	padding-bottom:5px;
+}
+
+#main-step4 #order-info .sub-head{
+
+	font-size:80%;
+	font-family:Sans-serif;
+	line-height:170%;
+}
+
+#top-main-step4{
+	display:block;
+	max-width:1000px;
+	margin:0 auto;
+	position:relative;
+	padding-bottom:180px;
+}
+
+#main-step4 #product-detail{
+	display:block;
+}
+
+
+#main-step4 #product-detail-table_4{
+	margin-top:10px;
+	margin-bottom:10px;
+	border-collapse: collapse;
+	width:100%;
+	text-align:center;
+	
+	font-family:Sans-serif;
+}
+
+#main-step4 #product-detail-table_4 th{
+	font-size:100%;
+	border-bottom: 2px solid #ccc;
+}
+
+#main-step4 #product-detail-table_4 td{
+font-size:90%;
+border-bottom: 1px solid #ccc;
+color: #666;
+background: #fff;
+padding: 5px;
+}
+
+#main-step4 #product-detail-table_4 tbody tr:hover td{
+color: #222;
+background: #EFEFEF;
+}
+
+#main-step4 #pay-attention{
+	color:Black;
+	display:inline-block;
+	margin-top:30px;
+	border:1px solid red;
+	padding:10px;
+}
+
+#main-step4 #pay-attention a{
+	color:Blue;
+}
+
+#main-step4 #total-price{
+	float:right;
+	width:26%;
+	margin-top:10px;
+	line-height:120%;
+	text-align:right;
+	margin-right:30px;
+}
+
+#main-step4 #total-price label{
+	display:block;
+	font-size:95%;
+	font-family:Sans-serif;
+	
+	
+}
+
+#main-step4 #total-price #price-head{
+	display:inline-block;
+	float:left;
+	margin-right:20px;
+	margin-left:10px;
+}
+
+#main-step4 #total-price #price-detail{
+	display:inline-block;
+	float:right;
+	text-align:right;	
+}
+.text_bold{
+	font-weight: bold;
+}
+.contact{
+	font-size: 10px;
+	float: right;
+	width:35%;
+}
+#invoice{
+	font-size: 14px;
+	max-width: 1000px;
+	position: relative;
+	width: 95%;
+	margin: 0 auto;
+	vertical-align: middle;
+	padding-top: 0px;
+	padding-bottom: 60px;
+	margin-top: 10px;
+}
+#invoice #customer-info{
+	display: block;
+	float: left;
+	width: 55%;
+	padding-left: 10px;
+	padding-top: 10px;
+	border-right: 1px solid #CFCFCF;
+	height: 140px;
+}
+#invoice  #total-price {
+	float: right;
+	width: 25%;
+	margin-top: 30px;
+	line-height: 120%;
+	text-align: right;
+	margin-right: 10px;
+	padding: 10px;
+	border: 1px solid #CFCFCF;
+}
+#invoice #order-info {
+	display: block;
+	float: left;
+	width: 40%;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+#invoice #payment-head{
+	max-width:1000px;
+	position:relative;
+	width: 90%;
+	margin: 0 auto;
+	vertical-align:middle;
+	height: 65px;
+	border-bottom: 1px solid #CFCFCF;
+
+}
+
+#invoice  #top-main-step4 {
+	display: block;
+	max-width: 1000px;
+	margin: 0 auto;
+	position: relative;
+	padding-bottom: 100px;
+	margin-bottom: 20px;
+	margin-top:20px;
+	border-bottom: 1px solid #CFCFCF;
+	border-top: 1px solid #CFCFCF;
+	height: 50px;
+	border-left: 1px solid #CFCFCF;
+	border-right: 1px solid #CFCFCF;
+}
+#invoice #header-logo {
+	float: left;
+	
+}
+#save_pdf{
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	display: none;
+	width:250px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:2px;
+}
+
+#invoice-page{
+	position:relative;
+	max-width: 1000px;
+	margin:0 auto;
+	width:95%;
+	vertical-align:middle;
+	margin-top:30px;
+}
+
+#invoice-page input[type="button"] {
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	width:130px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:2px;
+	
+}
+#invoice-page input[type="submit"] {
+	border: none;
+	color: white;
+	float:right;
+	border-radius: .2em;
+	color:#FFF;
+	background:#6F6F6F;
+	cursor: hand;cursor: pointer; 
+	height:24px;
+	width:130px;
+	margin-top:10px;
+	margin-left:2px;
+	margin-right:2px;
+	margin-bottom:30px;
+	
+}
+
+
+#invoice-page input[type="button"]:hover{
+	background:#4F4F4F;
+	
+}
+ #invoice-page input[type="submit"]:hover{
+	background:#4F4F4F;
+	
+}
+.upload_text{
+color: green;
+font-weight: bold;
+}
