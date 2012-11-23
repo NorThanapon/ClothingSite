@@ -250,16 +250,23 @@ class Product extends CI_Controller
 			$this->load->view('main_admin_page',$data);
 			return;
 		}
+		$this->product_model->delete($product_id);
+		
+		//delete image
 		$this->load->model('image_model');
-		$image_of_product = $this->image_model->get_photos($product_id);
-		foreach($image_of_product as $item)
+		$images = $this->image_model->get_photos($product_id);
+		foreach($images as $image)
 		{
-			//echo ">>>".$item->image_file_name;
-			$this->image_model->delete_photo($item->image_id,'./assets/db/products/'.$item->image_file_name);
+			
+			$this->image_model->delete_photo($image->image_id,"./assets/db/products/".$image->file_name);
+			$this->image_model->unlink_image("./assets/db/products/l_".$image->file_name);
+			$this->image_model->unlink_image("./assets/db/products/m_".$image->file_name);
+			$this->image_model->unlink_image("./assets/db/products/s_".$image->file_name);			
 		}
 		
 		
-		$this->product_model->delete($product_id);	   
+		//============
+		
 	    $data['product_list'] = $this->product_model->get();
 		redirect('admin/product');
 	}
@@ -453,7 +460,7 @@ class Product extends CI_Controller
 				$_FILES[$form_name]['error']= $files['error'][$i];
 				$_FILES[$form_name]['size']= $files['size'][$i];    
 
-				echo $_FILES[$form_name]['name']."<br />";
+				
 				$get_config = $this->set_upload_options($photo_id,$form_name);
 				$this->upload->initialize($get_config);
 				
@@ -476,7 +483,7 @@ class Product extends CI_Controller
 			
 		
 				
-			echo "error>>".$this->upload->display_errors()."<<";
+			//echo "error>>".$this->upload->display_errors()."<<";
            // return array('error' => $this->upload->display_errors());   
          
 		//echo "--No-------------";//----------------------------------------------------------------------------------------
