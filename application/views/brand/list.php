@@ -19,7 +19,7 @@
 						<th width="150">Name</th>
 						<th>Description</th>
 						<th width="64">show/hide</th>
-						<th width="30">&nbsp;</th>
+						<th width="40">&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,6 +34,7 @@
 						<td class="content-center"><?php if($item->is_active == 1) echo "show"; else echo "hide"; ?></td>
 						<td>
 							<?php echo anchor('admin/brand/edit/'.convert_url($item->brand_id), ' ', array('title'=>"Edit this brand",'class'=>'edit-button')); ?>
+							<?php echo anchor('admin/brand/size_chart/'.convert_url($item->brand_id), ' ', array('title'=>"Edit Size Chart",'class'=>'product-button')); ?> <!---->
 							<?php echo anchor('admin/brand/delete/'.convert_url($item->brand_id), ' ', array('title'=>"Delete this category",'class'=>'delete-button')); ?>
 						</td>
 					</tr>

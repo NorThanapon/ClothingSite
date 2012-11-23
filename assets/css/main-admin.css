@@ -783,6 +783,7 @@ vertical-align:bottom;
 	margin-top:5px;
 }
 
+<<<<<<< HEAD
 .photo-item-details label{
 	font-size:90%;
 	font-weight: bold;
@@ -847,3 +848,16 @@ vertical-align:bottom;
 .scroll-image{
 	width:880px;
 }
+=======
+#b_size_chart{
+	margin:0 auto;
+	position:relative;
+	max-width:1000px;
+}
+#b_size_chart textarea{
+	width:855px;
+	height:150px;
+}
+
+
+>>>>>>> size chart: read file back end, front end view

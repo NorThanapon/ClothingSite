@@ -62,6 +62,16 @@ class Brand extends CI_Controller
         }
         //no file error
         $this->brand_model->add($result_logo['file_name']);
+		
+		//create size chart
+		$size_chart_name = array("clothes","footwear");
+		$validbrandname = str_replace('-',' ',$data['form_brand_name']);
+		foreach($size_chart_name as $filename)
+		{
+			$file = "assets\\size_chart\\".$validbrandname."_".$filename.".txt";
+			file_put_contents($file, "");
+		}
+		
         redirect('admin/brand');
 		
     }
@@ -208,6 +218,53 @@ class Brand extends CI_Controller
             $this->load->view('main_admin_page',$data);
             return;
         }
+	}
+
+	public function size_chart($brand_id = FALSE)
+	{
+		if(!check_authen('staff',TRUE)) 
+	    {		
+			return;            
+	    }
+		if($brand_id===FALSE)
+        {
+			redirect('admin/brand');
+        }
+		$brand_id = revert_url($brand_id);
+		$this->load->model('brand_model');
+		//$data['brand'] =  $this->brand_model->get($this->input->post('brand_id'));
+		$data['brand'] =  $this->brand_model->get($brand_id);
+		//$data['cat'] = $cat;
+		//$data['page'] = 'size_chart_back/edit';
+		$data['page_title'] = 'Admin: Brand Management';
+		$data['page'] = 'brand/size_chart';
+		$this->load->view('main_admin_page',$data);
+	}
+	
+	public function edit_size_chart($brand_id = FALSE, $cat)
+	{
+		if(!check_authen('staff',TRUE)) 
+	    {		
+			return;            
+	    }
+		if($brand_id===FALSE)
+        {
+			redirect('admin/brand');
+        }
+		$this->load->model('brand_model');
+		$data['brand'] =  $this->brand_model->get($brand_id);
+		$data['cat'] = $cat;
+		$data['filename'] = str_replace('-',' ',$data['brand']->brand_name).'_'.$cat;
+		$data['page_title'] = 'Admin: Brand Management';
+		$data['page'] = 'brand/edit_size_chart';
+		$this->load->view('main_admin_page',$data);
+	}
+	
+	public function edit_size_chart_text($brand_id, $filename)
+	{
+		$text = $this->input->post('data');
+		file_put_contents("assets\\size_chart\\".$filename.".txt", $text);
+		redirect('admin/brand/size_chart/'.$brand_id);
 	}
 }
 ?>

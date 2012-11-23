@@ -255,12 +255,15 @@ class Tag extends CI_Controller
 		$data['dup_message_th']="";
 		$data['dup_message_en']="";
 		$this->load->model('tag_model');	
+		$this->load->model('product_model');
+		$data['product_list'] = $this->product_model->get();
 		$data['product_in_tag'] =  $this->tag_model->get_product_in_tag($tag_id);
 		if( $this->tag_model->product_exist($tag_id, $this->input->post('product')))
 		{
 			$this->load->library('form_validation');
 			$data['error_message'] = $this->tag_model->get_product_name($this->input->post('product'))->product_name_en.' already existed.';		
 			$data['tags'] =  $this->tag_model->get($tag_id);
+			$data['page_title'] = 'Admin: Tag Management';			
 			$data['page'] = 'tag/edit_product';
 			$this->load->view('main_admin_page',$data);
 			return;
