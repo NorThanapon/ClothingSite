@@ -64,8 +64,8 @@ class Brand extends CI_Controller
         $this->brand_model->add($result_logo['file_name']);
 		
 		//create size chart
-		$size_chart_name = array("clothes","footwear");
-		$validbrandname = str_replace('-',' ',$data['form_brand_name']);
+		$size_chart_name = array("clothes","footwear","shirt","belts");
+		$validbrandname = str_replace(' ','_',$data['form_brand_name']);
 		foreach($size_chart_name as $filename)
 		{
 			$file = "assets\\size_chart\\".$validbrandname."_".$filename.".txt";
@@ -254,7 +254,7 @@ class Brand extends CI_Controller
 		$this->load->model('brand_model');
 		$data['brand'] =  $this->brand_model->get($brand_id);
 		$data['cat'] = $cat;
-		$data['filename'] = str_replace('-',' ',$data['brand']->brand_name).'_'.$cat;
+		$data['filename'] = str_replace(' ','_',$data['brand']->brand_name).'_'.$cat;
 		$data['page_title'] = 'Admin: Brand Management';
 		$data['page'] = 'brand/edit_size_chart';
 		$this->load->view('main_admin_page',$data);
@@ -264,6 +264,7 @@ class Brand extends CI_Controller
 	{
 		$text = $this->input->post('data');
 		file_put_contents("assets\\size_chart\\".$filename.".txt", $text);
+		//file_put_contents("assets\\size_chart\\test.txt", $this->input->post('data_tab'));
 		redirect('admin/brand/size_chart/'.$brand_id);
 	}
 }

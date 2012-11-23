@@ -1,5 +1,5 @@
 		<div id="size-chart_content">
-		<div id="head-sizechart">SIZE GUIDE</div>		
+		<div id="head-sizechart">SIZE GUIDE <?php echo strtoupper($gender); ?></div>		
 			<table class="main-sizechart-table">
 				<tbody>
 				<tr>
@@ -14,13 +14,25 @@
 						<?php	
 							//$filename = $brand->brand_name.'_'.clothes;	
 							//$filename = "ELLE_clothes";
-							//$validbrandname = str_replace('-',' ',$brand->brand_name);
-							$validbrandname = "ELLE";
-							$size_chart_name = array("clothes","footwear");
+							//$validbrandname = str_replace(' ','_',$brand->brand_name);
+							$validbrandname = str_replace(' ','_',"a b");
+							//$validbrandname = "ELLE";
+							
+							$gender == "women";
+							if ($gender == "women")
+							{
+								$size_chart_name = array("clothes","footwear");
+							}
+							else if ($gender == "men")
+							{
+								$size_chart_name = array("shirt","belts");
+							}
+							
 							foreach ($size_chart_name as $filename)
 							{
 								$file = "assets\\size_chart\\".$validbrandname."_".$filename.".txt";
-								if (file_exists($file))
+
+								if (file_get_contents($file) != "")
 								{
 									$text = file_get_contents($file);
 									$line = explode("\n",$text);
@@ -29,7 +41,8 @@
 									<h2 class="size-title"><?php echo $line[0]; ?></h2>
 						<?php
 						//line 1
-									$string = explode(" ",$line[1]);
+									$line[1] = str_replace("\t\t","\t",$line[1]);
+									$string = explode("\t",$line[1]); //tab
 						?>					
 									<table class="col-size">
 										<tbody>
@@ -48,7 +61,7 @@
 						//content
 									for($i = 2; $i < count($line); $i++)
 									{
-										$string = explode(" ",$line[$i]);	
+										$string = explode("\t",$line[$i]);	 //tab
 						?>					
 											<tr>
 												<td class="first-col"><?php echo $string[0]; ?></td>
