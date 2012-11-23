@@ -220,6 +220,7 @@
 		$('input[name=main_image]').change(function(){
 			var path = "<?php echo base_url('admin/inventory/save_main_image');?>";
 			var x = $(this).val();
+			//alert(x);
 			$.ajax({
 				type: 'POST',
 				url: path,
@@ -347,9 +348,8 @@
 			
 		}
 		if($('input[name="main_image"]').length <=0){
-		
-				alert('ss');
 				var path = "<?php echo base_url('admin/inventory/save_main_image');?>";
+				//alert("ItemID: "+$('#item_id').val());
 				$.ajax({
 					type: 'POST',
 					url: path,
