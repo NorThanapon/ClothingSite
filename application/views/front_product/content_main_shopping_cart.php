@@ -147,15 +147,15 @@
 	<div class="total"><b>Total cost</b></div>
 	<div class="total-num"><?php echo number_format($total_price,2, '.', ','); ?></div>
 	</div>
-<?php echo form_open('cart/check_path'); ?>
+
 	<div class="footer-continue-button">
-		<input type="submit" value=" " name="continue" />
+		<input type="submit" class="change-path" value=" " name="continue" />
 	</div>
 	<div class="footer-button">
-		<input type="submit" value=" " name="pay" />
+		<input type="submit" class="change-path" value=" " name="pay" />
 	</div>
 </div>
-</form>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.imgs-loading').hide();
@@ -198,7 +198,7 @@
 					}
 					
 					//set quantity			
-					for(i=0; i<10 ; i++){
+					for(i=1; i<10 ; i++){
 						var option_qty = "<option value="+i+"> "+i+" </option>";
 						if(i == $('input[name=item-qty-'+n+']').val() ){
 							option_qty = "<option value="+i+" selected > "+i+" </option>";
@@ -325,6 +325,33 @@
 			$('#change'+n).hide();
 			$('#option'+n).show();
 		});
-		
+		$('.change-path').click(function(){
+			var n = $(this).attr("name");
+			var path = "<?php echo base_url('cart/check_path');?>";
+			$.ajax({
+				type: 'POST',
+				url: path,
+				data: {	
+						id: n
+				},
+				error: function(data, textStatus, xhr){
+					alert(xhr);
+				},
+				success: function(data){
+					
+					if(data == '1'){
+					
+						window.location.href = "<?php echo $this->session->userdata('redirect');?>"; 
+					}
+					else if(data == '2'){
+					
+						window.location.href = "<?php echo base_url('payment');?>"; 
+					}
+					else{
+						alert(data);
+					}
+				}
+			});		
+		});
 });
 </script>

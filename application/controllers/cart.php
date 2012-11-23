@@ -228,13 +228,34 @@ class Cart extends CI_Controller {
 	}
 	
 	public function check_path(){
-		if($this->input->post('continue')){
+		$this->load->model('item_model');
+		if($this->input->post('id')== 'continue'){
 			//echo $this->session->flashdata('redirect_url');
-			redirect( $this->session->userdata('redirect'));
+			//redirect( $this->session->userdata('redirect'));
+			echo '1';
 		}
-		if($this->input->post('pay')){
-		
-			redirect('payment');
+		if($this->input->post('id')=='pay'){
+				
+			$value = $this->encrypt->decode($this->input->cookie('cart'));
+			$detail = explode('&',$value);
+				
+			$where = "";
+			$amount = 0;
+			$isOutOfstock = false;
+			
+			for($i=0; $i<count($detail)-1; $i++){
+				$item = explode(',',$detail[$i]);
+					
+				$result = $this->item_model->get($item[0]);
+				if($item[1] > $result->quantity){
+					$isOutOfstock = true;
+					echo 'Item ID:'.$item[0].' is out of stock.';
+					//redirect('cart');
+					return;
+				}
+				
+			}
+			echo '2';
 		}
 	
 	}
