@@ -5,6 +5,7 @@
 		    <span>Log In</span>
 			</div>
 			<div id="hr-shadow"></div>
+			<div id="advantage-signin"></div>
 			<div id="main-signin">
 <?php echo form_open('authen/login_member') ?>
 		    <label for="e_mail">Email</label>
@@ -15,7 +16,7 @@
 		    <br/>
 		    <div class="content-left">
 			<span class="remember-password">
-			<input type="checkbox" name="remember-password"/>
+			<input type="checkbox" name="remember-password" />
 			Stay logged in</span>
 			<input type="submit" value="Log In" class="button"/>
 			</div>

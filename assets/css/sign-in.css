@@ -29,7 +29,8 @@
 }
 
 #head-signin img{
-	margin-right:390px;
+	margin-right: 600px;
+	margin-left: 20px;
 	
 	
 }
@@ -68,11 +69,13 @@ padding-right: 5px;
 	font-size:100%;
 }
 
-#main-signin input{
+#main-signin input[type="text"],input[type="password"]{
 	display:block;	
 	width:200px;
 	height: 25px;
 }
+
+
 
 #main-signin input[type="submit"]{
 	border: none;
@@ -95,9 +98,10 @@ padding-right: 5px;
 }
 
 #main-signin input[type="checkbox"]{
-	display:inline;
-	float:left;
-	margin-left:2px;
+	display: inline;
+float: left;
+margin-left: 2px;
+vertical-align: bottom;
 }
 
 #main-signin h1{
@@ -111,11 +115,19 @@ font-weight:normal;
 padding-right: 5px;
 }
 
-
+#advantage-signin{
+	float:left;
+	position:relative;
+	padding-left:20px;
+	padding-top:10px;
+	min-width:60%;
+	height:100px;
+}
 
 .remember-password{
-	font-size:70%;
-	vertical-align:bottom;
+	font-size: 70%;
+vertical-align: top;
+padding-left: 10px;
 }
 
 

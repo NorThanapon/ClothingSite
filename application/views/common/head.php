@@ -23,10 +23,13 @@
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery-1.7.1.min.js';?>" charset="utf-8"></script>
 <script type="text/javascript" src="<?php echo asset_url().'js/jmpress.min.js';?>" charset="utf-8"></script>
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery.jmslideshow.js';?>" charset="utf-8"></script>
-<script type="text/javascript" src="<?php echo asset_url().'js/modernizr.custom.48780.js';?> charset="utf-8"" ></script>
+<script type="text/javascript" src="<?php echo asset_url().'js/modernizr.custom.48780.js';?>" charset="utf-8" ></script>
 <script type="text/javascript" src="<?php echo asset_url().'js/jquery.jqmodal.js';?>" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo asset_url().'js/jquery.tablesorter.js';?>" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo asset_url().'js/jquery.tablesorter.pager.js';?>" charset="utf-8"></script>
 <script type="text/javascript" src="<?php echo asset_url().'js/clothing-app.js';?>" charset="utf-8"></script>
 <script type="text/javascript" src="<?php echo asset_url().'/js/jquery.jqzoom-core.js';?>" charset="utf-8"></script>
+
 <!--[if gte IE 9]>
 <style type="text/css">
     .gradient {

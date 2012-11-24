@@ -27,45 +27,56 @@
 			</div>
 		</div>
 	</div>
-	
-	<div id="order-history-main">
+
+	<div class="order-history-main">
+		
 		<?php echo form_open('orderhistory/detail'); ?>
+		<div class="report-items">
 			<table class="tablesorter">
-				<tr class="order-history-head-row" >
-					<th>Order ID</th>
-					<th>Order Date</th>
-					<th>Item</th>
-					<th>Price</th>
-					<th>Status</th>
-					<th>View payment slip</th>
-					<th>View Order detail</th>
-				</tr>
-				<?php
-				$i=0;
+				<thead>
+					<tr>
+						<th>Order ID</th>
+						<th>Order Date</th>
+						<th>Item</th>
+						<th>Price</th>
+						<th>Status</th>
+						<th>View payment slip</th>
+						<th>View Order detail</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php								
 				foreach($orders as $order)
 				{
-					echo "<tr class='order-history-head-row' >";
-					echo "<td>".$order->order_id."</td>";
-					echo "<td>".date("d/M/Y", $order->date_add)."</td>";
-					echo "<td>".$order->item_number."</td>";
-					echo "<td>".number_format($order->total_price,2)."</td>";
-					echo "<td>".$order->status."</td>";
-					echo "<td>"."slip"."</td>";
-					echo "<td>"."<input class='image_view_icon' type='image' src='".asset_url()."img/view_icon.png' alt='Submit' value='".$order->order_id."' name='order_id'>"."</td>";
-					echo "</tr>";
+				?>	
+					<tr>
+						<td><?php echo $order->order_id; ?></td>
+						<td><?php echo date("d/M/Y", $order->date_add); ?></td>
+						<td><?php echo $order->item_number; ?></td>
+						<td><?php echo number_format($order->total_price,2); ?></td>
+						<td><?php echo $order->status; ?></td>
+						<td>slip</td>
+						<td><input class='image_view_icon' type='image' src='<?php echo asset_url()."img/view_icon.png"; ?>' alt='Submit' value='<?php echo $order->order_id; ?>' name='order_id' /></td>
+					</tr>
+				<?php
 				}
 				?>
+				</tbody>				
 			</table>
+		</div>
 		</form>
 	</div>
+</div>
+<div class="table_page_order_history">
+<?php $this->load->view('common/table_pager');?>
 </div>
 <script type="text/javascript">		
 	$(document).ready(function() {	
 		$(".tablesorter").find("tr:even").addClass("even");
-		$(".tablesorter").tablesorter({
+		$(".tablesorter")
+		    .tablesorter({
 			headers: {
-			    0:{sorter:false},
-			    8:{sorter:false}
+				7:{sorter:false}
 			}
 		    })
 		    .tablesorterPager({
@@ -77,6 +88,6 @@
 		    //set striping color
 		    $(".tablesorter").find('tr').removeClass('even');
 		    $(".tablesorter").find("tr:even").addClass("even");
-		});
+		});	
 	}); 
 	</script>
