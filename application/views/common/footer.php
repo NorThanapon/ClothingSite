@@ -13,8 +13,8 @@
 		<span class="footer-menu">			
 			<a href="###"><?php echo $this->lang->line('Terms & Conditions'); ?></a>
 			<a href="###"><?php echo $this->lang->line('Return Instructions'); ?></a>
-			<a href="###"><?php echo $this->lang->line('Payment Channel'); ?></a>
-			<a href="###"><?php echo $this->lang->line('Confirm Payment'); ?></a>
+			<a href="###"><?php echo $this->lang->line('Payment Channel'); ?></a>			
+			<?php //echo anchor('uploadslip',$this->lang->line('Confirm Payment'),'title="Confirm payment"'); ?>
 		</span>
 		<span class="footer-menu">
 			<a href="http://www.b-fash.com/bfash/index.php">B-fash.com</a>
