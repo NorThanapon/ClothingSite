@@ -306,5 +306,26 @@ class Product_model extends CI_Model
 		$query = $this->db->query("SELECT * FROM products_brands_items_images_colors WHERE item_id='".$item_id."' AND image_id = main_image ");
 		return $query->row();*/
 	}
+	function search_by_key($key)
+	{
+		$query = $this->db->query("SELECT * FROM products_brands_items_images_colors 
+									WHERE (product_name_en  LIKE '%".$key."%' or
+									product_name_th like '%".$key."%' or
+									color_name like '%".$key."%'  or
+									item_id like '%".$key."%' or
+									size like '%".$key."%' or 
+									markup_price like '%".$key."%' or 
+									markdown_price like '%".$key."%' or 
+									product_description_th like '%".$key."%' or 
+									product_description_en like '%".$key."%' or 
+									material_th like '%".$key."%' or 
+									material_en like '%".$key."%' ) 
+									and main_image = image_id and
+									product_is_active = '1' and 
+									brand_is_active = '1' and 
+									total_quantity > 0");
+		return $query->result();
+	
+	}
 }
 ?>

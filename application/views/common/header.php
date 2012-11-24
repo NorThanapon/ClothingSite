@@ -133,7 +133,9 @@
 			}});
 		});
 		$('input[name=btn_filter]').click(function() {
-			var word = $('#product_search').val();
+			var word =  $.trim( $('#product_search').val());
+			var str = / /g;
+			word = word.replace(str,"-");//$(content).replaceAll(selector)
 			window.location = "<?php echo base_url('search'); ?>/" + word;
 		    //var url = document.URL;
 		    //url = url.substring(0, url.indexOf('/search') + 7);

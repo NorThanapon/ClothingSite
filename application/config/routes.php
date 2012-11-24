@@ -68,10 +68,9 @@ $route['tag/([-_a-zA-Z0-9]+)/(:num)'] = 'tag/index/$1/$2';
 $route['tag/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'tag/product_detail/$1/$2/$3';
 
 //search
-$route['search/([-_a-zA-Z0-9]+)'] = 'search/product/$1';
-
-$route['search/([-_a-zA-Z0-9]+)/page/(:num)/(:num)'] = 'search/product_list/$1/$2/$3'; 
-$route['search/ ([-_a-zA-Z0-9]+)'] = 'search/product_list/$1';
+$route['search/(:any)'] = 'search/product/$1';
+$route['search/(:any)/page/(:num)/(:num)'] = 'search/product_list/$1/$2/$3'; 
+$route['search/ (:any)/(:num)'] = 'search/product_list/$1';
 
 
 

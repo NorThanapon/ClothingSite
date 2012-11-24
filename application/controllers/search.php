@@ -5,8 +5,9 @@ class Search extends CI_Controller
         $data['page_title'] = "Welcome to BfashShop.com";
 		$this->load->model('brand_model');
 		$data['brand_list'] = $this->brand_model->get(); 				
-		$data['page'] = 'product_list';
-        $this->load->view('main_page',$data);
+		$data['page'] = '';
+        //$this->load->view('main_page',$data);
+		redirect('');
     }
 	public function product($search) 
 	{
@@ -16,7 +17,7 @@ class Search extends CI_Controller
 		$this->load->model('category_model');
 				
 		$data = $this->bfash_model->init();
-		
+		$search = str_replace("-"," ",$search);
 		$this->lang->load('content-history', $this->language_model->get());
 		$this->lang->load('content_main_product_list', $this->language_model->get());
 	
@@ -28,7 +29,7 @@ class Search extends CI_Controller
 		$data['breadcrumbs'] = array($this->lang->line('Home'), $search);
 		$data['link'] = array(site_url(), site_url().'search/'.$search);
 		
-		$data['products'] = $this->product_model->search_by_name($search);	
+		$data['products'] = $this->product_model->search_by_key($search);	
 		$data['page'] = 'front_product/content_main_product_list';
 			
 		//set page history
@@ -59,13 +60,13 @@ class Search extends CI_Controller
 		$this->load->model('product_model');
 		$this->load->model('image_model');
 		$this->load->model('category_model');
-		
+		$search = str_replace("-"," ",$search);
 		$data = $this->bfash_model->init();
 		$this->lang->load('content-history', $this->language_model->get());
 		$this->lang->load('content_main_product_list', $this->language_model->get());
 		
 		$data['re_name'] = str_replace('-',' ',$search);
-		$data['products'] = $this->product_model->search_by_name($search);
+		$data['products'] = $this->product_model->search_by_key($search);
 
 		$data['base_url'] = base_url().'search/'.$search.'/page/'.$page.'/'.$per_page;
 		//breadcrumbs
@@ -104,5 +105,6 @@ class Search extends CI_Controller
 		
 		$this->load->view('main_page',$data);
 	}
+
     
 }
