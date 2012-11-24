@@ -29,7 +29,7 @@
 				<td><?php echo $item_list[$i]->size;?></td>				
 				<td><?php echo $item_list[$i]->color_id;?></td>
 				<td><?php echo $item_list[$i]->quantity; ?></td>
-				<td><img src="<?php echo asset_url().'db/products/'.$item_list[$i]->main_image;?>" /></td>								
+				<td><img src="<?php echo asset_url().'db/products/'.$item_list[$i]->image_file_name;?>" /></td>								
 				
             </tr>
             <?php

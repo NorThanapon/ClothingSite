@@ -80,6 +80,11 @@ class Item_model extends CI_Model
 		$query = $this->db->get_where('items', array('product_id' => $product_id));
 		return $query->result();
 	}
+	function get_item_main_image($product_id = FALSE)
+	{
+		$query = $this->db->query("SELECT * FROM `products_brands_items_images_colors` WHERE main_image = image_id and product_id = ".$product_id);
+		return $query->result();
+	}
 	
 	function save_main_image($item_id,$image_id){
 		$data = array(

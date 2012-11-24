@@ -630,7 +630,7 @@ class Product extends CI_Controller
 		{
 			$data['error_message'] = 'Don\'t have item in this product';
 		}
-		$data['item_list'] = $this->item_model->get_by_product_id($product_id);
+		$data['item_list'] = $this->item_model->get_item_main_image($product_id);
 		
 		$data['page'] = 'product/mainitem_management';
 		$this->load->view('main_admin_page',$data);
