@@ -83,7 +83,8 @@
 					?>
 				</select>
 				<!--<input class="button btn-submit" type = "submit" name="submit" value="Size Chart"/>-->
-				<?php echo anchor('brand/size_chart/'.$brand_name.'/'.$brand_id.'/'.$product_id, 'Size Chart', array('title'=>"View Size Chart",'class'=>'button btn-submit')); ?>
+				<!--<?php echo anchor('brand/size_chart/'.$brand_name.'/'.$brand_id.'/'.$product_id, 'Size Chart', array('title'=>"View Size Chart",'class'=>'button btn-submit')); ?>-->
+				<a href=<?php echo base_url('brand/size_chart/'.$brand_name.'/'.$brand_id.'/'.$product_id); ?> target="_blank" class="button btn-submit">Size Chart</a>
 			</div>
 			<div id="product-color">
 			   

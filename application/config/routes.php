@@ -43,7 +43,7 @@ $route['admin'] = "admin/order";
 $route['404_override'] = '';
 
 //size chart
-$route['brand/size_chart/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'sizechart/index';
+$route['brand/size_chart/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'sizechart/index/$1/$2/$3';
 
 // brand
 $route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'ajax/index/$1/$2/$3';

@@ -64,7 +64,7 @@ class Brand extends CI_Controller
         $this->brand_model->add($result_logo['file_name']);
 		
 		//create size chart
-		$size_chart_name = array("clothes","footwear","shirt","belts");
+		$size_chart_name = array("WOMEN","MEN");
 		$validbrandname = str_replace(' ','_',$data['form_brand_name']);
 		foreach($size_chart_name as $filename)
 		{

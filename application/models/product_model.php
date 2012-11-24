@@ -300,11 +300,22 @@ class Product_model extends CI_Model
 	
 	function get_gender($product_id)
 	{
-		/*$query = $this->db->query("SELECT DISTINCT main_item FROM products_brands_items_images_colors WHERE product_id=".$product_id."");
-		$result_main_item = $query->row();
-		$item_id = $result_main_item->main_item;
-		$query = $this->db->query("SELECT * FROM products_brands_items_images_colors WHERE item_id='".$item_id."' AND image_id = main_image ");
-		return $query->row();*/
+		$query = $this->db->query("SELECT DISTINCT cat_id FROM products_brands_categories WHERE product_id =".$product_id."");
+		$result_cat_id = $query->row();
+		$cat_id = $result_cat_id->cat_id;
+		
+		$query = $this->db->query("SELECT cat_gender FROM products_brands_categories WHERE cat_id='".$cat_id."'");
+		return $query->row();
+	}
+	
+	function get_brand_name($product_id)
+	{
+		$query = $this->db->query("SELECT DISTINCT cat_id FROM products_brands_categories WHERE product_id =".$product_id."");
+		$result_cat_id = $query->row();
+		$cat_id = $result_cat_id->cat_id;
+		
+		$query = $this->db->query("SELECT brand_name FROM products_brands_categories WHERE cat_id='".$cat_id."'");
+		return $query->row();
 	}
 	function search_by_key($key)
 	{

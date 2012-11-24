@@ -1,13 +1,13 @@
 		<div id="size-chart_content">
-		<div id="head-sizechart">SIZE GUIDE <!--<?php echo strtoupper($gender); ?>--></div>		
+		<div id="head-sizechart"><?php echo $brand_name->brand_name; ?>: SIZE GUIDE <?php echo $gender->cat_gender; ?><!--<?php echo strtoupper($gender); ?>--></div>		
 			<table class="main-sizechart-table">
 				<tbody>
 				<tr>
 					<td class="figures">	
 						<div class="section">					
 							<h2 class="size-title">How to measure</h2>
-							<img src="<?php echo asset_url().'img/img_size_guide_women_en.png'; ?>" />
-							<!--<img src="<?php echo asset_url().'img/img_size_guide_'.$gender.'_en.png'; ?>" />-->
+							<!--<img src="<?php echo asset_url().'img/img_size_guide_women_en.png'; ?>" />-->
+							<img src="<?php echo asset_url().'img/img_size_guide_'.strtolower($gender->cat_gender).'_en.png'; ?>" />
 						</div>
 					</td>
 					<td class="size-section">
@@ -15,34 +15,27 @@
 						<?php	
 							//$filename = $brand->brand_name.'_'.clothes;	
 							//$filename = "ELLE_clothes";
-							//$validbrandname = str_replace(' ','_',$brand->brand_name);
-							$validbrandname = "ELLE";							
-							
-							$gender = "women";
-							if ($gender == "women")
-							{
-								$size_chart_name = array("clothes","footwear");
-							}
-							else if ($gender == "men")
-							{
-								$size_chart_name = array("shirt","belts");
-							}
-							
-							foreach ($size_chart_name as $filename)
-							{
-								$file = "assets\\size_chart\\".$validbrandname."_".$filename.".txt";
+							$validbrandname = str_replace(' ','_',$brand_name->brand_name);
+							//$validbrandname = "ELLE";							
 
-								if (file_get_contents($file) != "")
-								{
-									$text = file_get_contents($file);
-									$line = explode("\n",$text);
+							$file = "assets\\size_chart\\".$validbrandname."_".strtoupper($gender->cat_gender).".txt";
+
+							if (file_get_contents($file) != "")
+							{
+								$text = file_get_contents($file);
+								$line = explode("\n",$text);
+								
+								$c = 0;
+								while ($c < count($line))
+								{										
 						//title						
 						?>
-									<h2 class="size-title"><?php echo $line[0]; ?></h2>
+									<h2 class="size-title"><?php echo $line[$c++]; ?></h2>
 						<?php
 						//line 1
-									$line[1] = str_replace("\t\t","\t",$line[1]);
-									$string = explode("\t",$line[1]);
+									//$lineonetab = preg_replace('/\s\s+/', "\t", $line[$c++]);
+									$lineonetab = preg_replace('/[\t]+/', "\t", $line[$c++]);
+									$string = explode("\t",$lineonetab);
 						?>					
 									<table class="col-size">
 										<tbody>
@@ -59,9 +52,11 @@
 											</tr>
 						<?php
 						//content
-									for($i = 2; $i < count($line); $i++)
+									while ($c < count($line) && trim($line[$c]) != "@")
 									{
-										$string = explode("\t",$line[$i]);
+										$lineonetab = preg_replace('/[\t]+/', "\t", $line[$c++]);
+										$string = explode("\t",$lineonetab);
+										
 						?>					
 											<tr>
 												<td class="first-col"><?php echo $string[0]; ?></td>
@@ -77,6 +72,7 @@
 						<?php
 										
 									}
+									$c++;
 						?>
 									</tbody>
 									</table>
