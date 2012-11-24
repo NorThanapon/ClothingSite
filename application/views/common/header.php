@@ -12,8 +12,8 @@
 				<a href="javascript:void(0)" class="header-join" title="<?php echo $title_join;?>"><?php echo $join_name;?></a>
 				<?php echo anchor($sign_in_link, $sign_in , 'title="'.$title_sign.'"'); ?><!-- first,where link ,word,attribute -->
 				<input type="hidden" name="e_mail" id="e_mail" value = "<?php if(isset($e_mail)){echo $e_mail;}?>">
-			</div>
-		</form>
+			
+		
 		
 		<?php //echo form_open('search/product_nan'); ?>
 			<input id="product_search" type="text" placeholder="<?php echo $this->lang->line('Enter product name or code');?>" name="product_search"/>
@@ -25,7 +25,7 @@
 			<a href="javascript:void(0)" class="language-en" title="English">EN</a>
 			<a href="javascript:void(0)" class="language-th" title="Thai">TH</a>
         </span>
-		
+		</div>
 		</form>
     </div> <!-- end #header-menu -->
     <div id="header-logo">
