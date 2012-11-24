@@ -9,7 +9,7 @@ class Search extends CI_Controller
         //$this->load->view('main_page',$data);
 		redirect('');
     }
-	public function product($search) 
+	public function product($search,$product_id=FALSE) 
 	{
 		$this->load->model('bfash_model');
 		$this->load->model('product_model');
@@ -21,6 +21,39 @@ class Search extends CI_Controller
 		$this->lang->load('content-history', $this->language_model->get());
 		$this->lang->load('content_main_product_list', $this->language_model->get());
 	
+	
+	
+		if($product_id!=FALSE)
+		{
+			$data['product_detail'] = $this->product_model->get_main_image($product_id);
+			$item = $this->product_model->get_main_image($product_id);
+			$data['sub_image'] = $this->product_model->get_sub_image($product_id,$item->size,$item->color_id);	
+			
+			$size = $this->product_model->get_size($product_id);	
+
+			//for size chart
+			$data['brand_name'] = $item->brand_name;
+			$data['brand_id'] = $item->brand_id;
+			$data['product_id'] = $product_id;
+			
+			$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$size->size);
+			
+			$data['item_detail_size'] = $this->product_model->get_item_detail_size($product_id);
+
+			$data['base_url'] = base_url().'search/'.$search.'/'.$product_id;
+			
+			//breadcrumbs
+			$data['breadcrumbs'] = array($this->lang->line('Home'), $data['re_name']=0, $data['product_detail']->product_name_en);
+			$data['link'] = array(site_url(), site_url().'search/'.$search.'/'.$product_id, $data['base_url']);
+			
+			//set page history
+			$this->session->set_userdata('redirect',current_url());
+			
+			$data['page'] = 'front_product/content_main_product_name';
+			$this->load->view('main_page',$data);
+	
+		}
+		
 		$data['re_name'] = str_replace(' ','-',$search);
 		
 		$data['base_url'] = base_url().'search/'.$search;
@@ -50,11 +83,10 @@ class Search extends CI_Controller
 		}
 		$data['num_page'] = ceil($data['num_item']/$data['show_end']); // CHANGE to 20
 		$data['current_page'] = 1;
-		
 		$this->load->view('main_page',$data);
     }
 
-	public function product_list( $search, $page=0, $per_page=0 )
+	public function product_list( $search, $page=0, $per_page=0 ,$product_id=FALSE)
     {
 		$this->load->model('bfash_model');
 		$this->load->model('product_model');
@@ -65,7 +97,41 @@ class Search extends CI_Controller
 		$this->lang->load('content-history', $this->language_model->get());
 		$this->lang->load('content_main_product_list', $this->language_model->get());
 		
+		
+		
+		if($product_id!=FALSE)
+		{
+			$data['product_detail'] = $this->product_model->get_main_image($product_id);
+			$item = $this->product_model->get_main_image($product_id);
+			$data['sub_image'] = $this->product_model->get_sub_image($product_id,$item->size,$item->color_id);	
+			
+			$size = $this->product_model->get_size($product_id);	
+
+			//for size chart
+			$data['brand_name'] = $item->brand_name;
+			$data['brand_id'] = $item->brand_id;
+			$data['product_id'] = $product_id;
+			
+			$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$size->size);
+			
+			$data['item_detail_size'] = $this->product_model->get_item_detail_size($product_id);
+
+			$data['base_url'] = base_url().'search/'.$search.'/'.$product_id;
+			
+			//breadcrumbs
+			$data['breadcrumbs'] = array($this->lang->line('Home'), $data['re_name']=0, $data['product_detail']->product_name_en);
+			$data['link'] = array(site_url(), site_url().'search/'.$search.'/'.$product_id, $data['base_url']);
+			
+			//set page history
+			$this->session->set_userdata('redirect',current_url());
+			
+			$data['page'] = 'front_product/content_main_product_name';
+			$this->load->view('main_page',$data);
+	
+		}
+				
 		$data['re_name'] = str_replace('-',' ',$search);
+		
 		$data['products'] = $this->product_model->search_by_key($search);
 
 		$data['base_url'] = base_url().'search/'.$search.'/page/'.$page.'/'.$per_page;
@@ -105,6 +171,7 @@ class Search extends CI_Controller
 		
 		$this->load->view('main_page',$data);
 	}
+	
 
     
 }
