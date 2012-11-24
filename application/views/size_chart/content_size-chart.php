@@ -1,12 +1,13 @@
 		<div id="size-chart_content">
-		<div id="head-sizechart">SIZE GUIDE <?php echo strtoupper($gender); ?></div>		
+		<div id="head-sizechart">SIZE GUIDE <!--<?php echo strtoupper($gender); ?>--></div>		
 			<table class="main-sizechart-table">
 				<tbody>
 				<tr>
 					<td class="figures">	
 						<div class="section">					
 							<h2 class="size-title">How to measure</h2>
-							<img src="<?php echo asset_url().'img/img_size_guide_woman_en.png'; ?>" />
+							<img src="<?php echo asset_url().'img/img_size_guide_women_en.png'; ?>" />
+							<!--<img src="<?php echo asset_url().'img/img_size_guide_'.$gender.'_en.png'; ?>" />-->
 						</div>
 					</td>
 					<td class="size-section">
@@ -15,10 +16,9 @@
 							//$filename = $brand->brand_name.'_'.clothes;	
 							//$filename = "ELLE_clothes";
 							//$validbrandname = str_replace(' ','_',$brand->brand_name);
-							$validbrandname = str_replace(' ','_',"a b");
-							//$validbrandname = "ELLE";
+							$validbrandname = "ELLE";							
 							
-							$gender == "women";
+							$gender = "women";
 							if ($gender == "women")
 							{
 								$size_chart_name = array("clothes","footwear");
@@ -42,7 +42,7 @@
 						<?php
 						//line 1
 									$line[1] = str_replace("\t\t","\t",$line[1]);
-									$string = explode("\t",$line[1]); //tab
+									$string = explode("\t",$line[1]);
 						?>					
 									<table class="col-size">
 										<tbody>
@@ -61,7 +61,7 @@
 						//content
 									for($i = 2; $i < count($line); $i++)
 									{
-										$string = explode("\t",$line[$i]);	 //tab
+										$string = explode("\t",$line[$i]);
 						?>					
 											<tr>
 												<td class="first-col"><?php echo $string[0]; ?></td>

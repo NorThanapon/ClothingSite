@@ -42,6 +42,9 @@ $route['default_controller'] = "main";
 $route['admin'] = "admin/order";
 $route['404_override'] = '';
 
+//size chart
+$route['brand/size_chart/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'sizechart/index';
+
 // brand
 $route['brand/([-_a-zA-Z0-9]+)/(:num)/(:num)'] = 'ajax/index/$1/$2/$3';
 $route['brand/([-_a-zA-Z0-9]+)/(:num)'] = 'brand/product/$1/$2';
@@ -69,6 +72,8 @@ $route['search/([-_a-zA-Z0-9]+)'] = 'search/product/$1';
 
 $route['search/([-_a-zA-Z0-9]+)/page/(:num)/(:num)'] = 'search/product_list/$1/$2/$3'; 
 $route['search/ ([-_a-zA-Z0-9]+)'] = 'search/product_list/$1';
+
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */?>

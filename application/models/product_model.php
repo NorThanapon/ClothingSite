@@ -291,28 +291,20 @@ class Product_model extends CI_Model
 	}
 	function get_main_image_when_change($product_id,$size,$color_id)
 	{
-		$query = $this->db->query("SELECT main_image FROM products_brands_items_images_colors WHERE product_id=".$product_id." AND size='".$size."' and color_id = ".$color_id."");
+		$query = $this->db->query("SELECT DISTINCT main_image FROM products_brands_items_images_colors WHERE product_id=".$product_id." AND size='".$size."' and color_id = ".$color_id."");
+		$result_main_image = $query->row();
+		$main_image = $result_main_image->main_image;
+		$query = $this->db->query("SELECT image_file_name FROM products_brands_items_images_colors WHERE image_id='".$main_image."'");
 		return $query->row();
 	}
-	function search_by_name($product_name = FALSE)
-	{
 	
-	    $where = "";
-		if($product_name === FALSE)
-		{
-			$query = $this->db->get('products_brands_items_images_colors');
-			if ($query->num_rows() > 0)
-				return $query->result();
-			return FALSE;
-		}
-		if ($product_name != "" && $product_name != " " && $product_name != FALSE)
-		{
-			if ($where != "" ) $where = $where . " AND ";
-			$where = $where . "(product_name_en LIKE '%".$product_name."%' OR product_name_th LIKE '%".$product_name."%')";
-		}
-		
-	   if ($where != "" ) $query = $this->db->get_where('products_brands_items_images_colors', $where);
-			return $query->result();
+	function get_gender($product_id)
+	{
+		/*$query = $this->db->query("SELECT DISTINCT main_item FROM products_brands_items_images_colors WHERE product_id=".$product_id."");
+		$result_main_item = $query->row();
+		$item_id = $result_main_item->main_item;
+		$query = $this->db->query("SELECT * FROM products_brands_items_images_colors WHERE item_id='".$item_id."' AND image_id = main_image ");
+		return $query->row();*/
 	}
 }
 ?>

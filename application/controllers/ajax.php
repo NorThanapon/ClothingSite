@@ -14,10 +14,14 @@ class Ajax extends CI_Controller
 		
 		$data['product_detail'] = $this->product_model->get_main_image($product_id);
 		$item = $this->product_model->get_main_image($product_id);
-		$data['sub_image'] = $this->product_model->get_sub_image($product_id,$item->color);	
+		$data['sub_image'] = $this->product_model->get_sub_image($product_id,$item->size,$item->color_id);	
 		
 		$size = $this->product_model->get_size($product_id);	
 
+		//for size chart
+		$data['brand_name'] = $brand_name;
+		$data['brand_id'] = $brand_id;
+		$data['product_id'] = $product_id;
 		
 		$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$size->size);
 		
@@ -54,11 +58,16 @@ class Ajax extends CI_Controller
 		$data['quantity'] = $this->product_model->get_quantity($product_id, $size, $color_id);
 		echo json_encode($data['quantity']);
 	}
-	public function sub_image_ajax($product_id, $color_id)
+	public function sub_image_ajax($product_id,$size,$color_id)
 	{
 		$this->load->model('product_model');
-		$data['sub_image'] = $this->product_model->get_sub_image($product_id,$color_id);
+		$data['sub_image'] = $this->product_model->get_sub_image($product_id, $size, $color_id);
 		echo json_encode($data['sub_image']);
 	}
-	
+	public function main_image_ajax($product_id,$size,$color_id)
+	{
+		$this->load->model('product_model');
+		$data['main_image'] = $this->product_model->get_main_image_when_change($product_id,$size,$color_id);
+		echo json_encode($data['main_image']);
+	}
 }?>

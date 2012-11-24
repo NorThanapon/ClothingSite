@@ -1,7 +1,7 @@
 	<?php echo form_open('admin/tag/edit_product/'.$tags->tag_id); ?>
 	    <h1>Product in Tag</h1> 		
 		<div class="page-action">
-	    <span id="btn-add-product" class="button gradient"><img  src="<?php echo asset_url().'img/add-icon.png';?>" />Add Product</span>
+			<span id="btn-add-product" class="button gradient"><img  src="<?php echo asset_url().'img/add-icon.png';?>" />Add Product</span>
 		</div>
 	    <div class="form-input">
 		<fieldset>
@@ -10,6 +10,7 @@
 		    <input type="hidden" name="tag_id" value="<?php echo $tags->tag_id;?>" />
 		
 		<div class="report-items">
+			<?php $this->load->view('common/table_pager');?>
 			<table class="tablesorter">
 			<thead>
 				<tr>
@@ -40,8 +41,10 @@
 			</table>
  
 		</div>
+		
+		<?php $this->load->view('common/table_pager');?>
 		</fieldset>
-	    </div>
+	    </div>		
 	    <div class="form-action content-right">
 			<?php echo anchor('admin/tag','Save Change' ,array('class' => 'button-savechange btn-savechange')); ?>
 	    </div>

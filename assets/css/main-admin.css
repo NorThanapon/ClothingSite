@@ -532,17 +532,6 @@ div.report-items  .edit-button:hover{
 	display:inline-block;
 }
 
-div.report-items  .itemlist-button,
-div.report-items  .itemlist-button:active,
-div.report-items  .itemlist-button:focus,
-div.report-items  .itemlist-button:hover{
-	width:16px !important;
-	height:16px !important;
-	background-image:url(../img/clothes.png);
-	background-repeat:no-repeat;
-	display:inline-block;
-}
-
 div.report-items  .product-button,
 div.report-items  .product-button:active,
 div.report-items  .product-button:focus,
@@ -723,7 +712,7 @@ div.form-input textarea {
 	margin-bottom:5px;
 }
 div.form-input select {
-	min-width:100px;
+	min-width:10px;
 	margin-top:5px;
 	margin-bottom:5px;
 }
@@ -794,7 +783,6 @@ vertical-align:bottom;
 	margin-top:5px;
 }
 
-<<<<<<< HEAD
 .photo-item-details label{
 	font-size:90%;
 	font-weight: bold;
@@ -859,16 +847,8 @@ vertical-align:bottom;
 .scroll-image{
 	width:880px;
 }
-=======
-#b_size_chart{
-	margin:0 auto;
-	position:relative;
-	max-width:1000px;
-}
-#b_size_chart textarea{
-	width:855px;
-	height:150px;
-}
 
-
->>>>>>> size chart: read file back end, front end view
+#txtarea_size_chart{
+	width:100%;
+	height:400px;
+}

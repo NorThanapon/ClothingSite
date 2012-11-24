@@ -2,8 +2,8 @@
 	<div id="content-image">
 	<?php $color_in_size; ?>
 		<div class="main-image">
-			 <div class="clearfix">
-				<a href="<?php echo asset_url().'db/products/l_'.$product_detail->image_file_name; ?>" class="jqzoom" rel='gal1'  title=" " >			
+			 <div id='show_image' class="clearfix">
+				<a href="<?php echo asset_url().'db/products/l_'.$product_detail->image_file_name; ?>" class="jqzoom" rel='gal1'  title="" >
 					<img src="<?php echo asset_url().'db/products/m_'.$product_detail->image_file_name; ?>"  title=" "  style="width:265px;height:345px;"> 
 				</a>
 			 </div>
@@ -82,7 +82,8 @@
 					}
 					?>
 				</select>
-				<input class="button btn-submit" type = "submit" name="submit" value="Size Chart"/>
+				<!--<input class="button btn-submit" type = "submit" name="submit" value="Size Chart"/>-->
+				<?php echo anchor('brand/size_chart/'.$brand_name.'/'.$brand_id.'/'.$product_id, 'Size Chart', array('title'=>"View Size Chart",'class'=>'button btn-submit')); ?>
 			</div>
 			<div id="product-color">
 			   
@@ -137,8 +138,10 @@
 	</div>
 	<input type="hidden" name="sel-color" />
 	<script type="text/javascript">
-	
+		var cidx = new Array();
+		var n = 0;
 		$(document).ready(function() {
+		
 		$("#ddl-detail-size").change(function()
 		{
 			size = $(this).val();
@@ -156,53 +159,87 @@
 							.append($('<img></img>')
 								.attr('src','<?php echo asset_url().'db/colors/'; ?>'+color.color_file_name)
 								.attr('id', color.color_id)
-								
 							)
 						);
 					
 					$("#"+color.color_id).click(function() {
-						$("#select-color").val(this.id);						
-						
+						var cid = this.id;
+						$("#select-color").val(color.color_id);
 						var color_id = this.id;
-					var url_2 = "<?php echo base_url('ajax/item_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
-					//alert(url_2);
-					$.getJSON(url_2, function(data){
-						$("#item-detail").html("Item Code: "+data.item_id);
-						$("#item_id").val(data.item_id);
-					});
-
-					var url_3 = "<?php echo base_url('ajax/quantity_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
-					$.getJSON(url_3, function(data){
-						//alert(data);
-					});
-					
-					var c = $('input[name=sel-color]').val();
-					$('#'+c).css("border","none");
-					$('input[name=sel-color]').val(this.id);
-					$(this).css("border","1px solid #3A4F6C");
-					
-					var url_4 = "<?php echo base_url('ajax/sub_image_ajax') . '/' . $product_detail->product_id; ?>/"+color_id;
-					$.getJSON(url_4, function(data){
-						var subimg_div = document.getElementById('sub-image');
-						subimg_div.innerHTML = "";
 						
-						var li = document.createElement("li");
-						li.id = 'sub-image-list';
+						var url_5 = "<?php echo base_url('ajax/main_image_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
+						$.getJSON(url_5, function(data){
+							//alert("Main Image is " + data.image_file_name);
+							//alert("Main Image finished!");
+							$("#show_image").html("<a href=\"<?php echo asset_url().'db/products/l_'; ?>"+data.image_file_name+"\" class='jqzoom' rel='gal1'  title=' ' ><img src=\"<?php echo asset_url().'db/products/m_'; ?>"+data.image_file_name+"\"  title=' '  style='width:265px;height:345px;'></a>");
+							
+							$('.jqzoom').jqzoom({
+								zoomType: 'standard',
+								lens:true,
+								preloadImages: false,
+								alwaysOn:false
+							});
+						});
 						
-						var a = document.createElement("a");
-						a.setAttribute('href', 'javascript:void(0)');
-						//a.setAttribute('rel', '{gallery: 'gal1', smallimage: '<?php echo asset_url().'db/products/m_'; ?>+data.image_file_name+'\',largeimage: '<?php echo asset_url().'db/products/l_'; ?>+data.image_file_name+'\'}');	
-						li.appendChild(a);
+						var url_2 = "<?php echo base_url('ajax/item_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
+						$.getJSON(url_2, function(data){
+							$("#item-detail").html("Item Code: "+data.item_id);
+							$("#item_id").val(data.item_id);
+						});
 						
-						var img = document.createElement("img");
-						//img.setAttribute('src','<?php echo asset_url().'db/products/s_';?>' + data.image_file_name;
-						a.appendChild(img);
-
+						/*
+						var url_3 = "<?php echo base_url('ajax/quantity_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
+						$.getJSON(url_3, function(data){
+							//alert(data);
+						});
+						*/
+						
+						var c = $('input[name=sel-color]').val();
+						$('#'+c).css("border","none");
+						$('input[name=sel-color]').val(this.id);
+						$(this).css("border","1px solid #3A4F6C");
+						
+						var url_4 = "<?php echo base_url('ajax/sub_image_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
+						$.getJSON(url_4, function(data){
+							$("#thumblist").html("");
+							$.each(data, function(i, item){ // id='a-"+i+"'
+								$("#thumblist").append("<li id='sub-image-list'><a class='team' id='a-"+i+"' href='javascript:void(0);' rel=\"{gallery: 'gal1', smallimage: '<?php echo asset_url(); ?>db/products/m_"+item.image_file_name+"', largeimage: '<?php echo asset_url(); ?>db/products/l_"+item.image_file_name+"'}\"><img src='<?php echo asset_url(); ?>db/products/s_"+item.image_file_name+"'></a></li>");
+								
+								$("#a-"+i).data('file_name', item.image_file_name);
+								/*
+								$("#a-"+i).click(function() {
+									var filename = $("#a-"+i).data('file_name');
+									$("#show_image").html("<a href=\"<?php echo asset_url().'db/products/l_'; ?>"+item.image_file_name+"\" class='jqzoom' rel='gal1'  title=' ' ><img src=\"<?php echo asset_url().'db/products/m_'; ?>"+item.image_file_name+"\"  title=' '  style='width:265px;height:345px;'></a>");
+									//$("#"+cid).trigger('click');
+								});
+								*/
+							});
+							
+							/*
+							var li = document.getElementById('sub-image-list');
+							li.innerHTML = "";
+						
+							
+							var a = document.createElement("a");
+							a.setAttribute('href', 'javascript:void(0)');
+							a.setAttribute('rel', '{gallery: 'gal1', smallimage: '<?php echo asset_url().'db/products/m_'; ?>+data.image_file_name+'\',largeimage: '<?php echo asset_url().'db/products/l_'; ?>+data.image_file_name+'\'}');	
+							li.appendChild(a);
+							
+							var img = document.createElement("img");
+							img.setAttribute('src','<?php echo asset_url().'db/products/s_';?>' + data.image_file_name;
+							a.appendChild(img);
+							*/
+						});
+					
 					});
 					
+					/*
+					$(".team").click(function() {
+						var filename = $this.data('file_name');
+						//alert(file_name);
+						//$("#show_image").html("<a href=\"<?php echo asset_url().'db/products/l_'; ?>"+file_name+"\" class='jqzoom' rel='gal1'  title=' ' ><img src=\"<?php echo asset_url().'db/products/m_'; ?>"+file_name+"\"  title=' '  style='width:265px;height:345px;'></a>");
 					});
-					
-					
+					*/
 				}
 			});
 		}).change();
@@ -290,13 +327,12 @@
 		});
 		
 	$(document).ready(function() {
-	$('.jqzoom').jqzoom({
+		$('.jqzoom').jqzoom({
             zoomType: 'standard',
             lens:true,
             preloadImages: false,
             alwaysOn:false
         });
-	
 	});	
 
 	</script>

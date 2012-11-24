@@ -2,7 +2,7 @@
 <h1>Size Chart</h1> 
 <fieldset id="b_size_chart">
 <legend><?php echo $brand->brand_name; ?></legend>
-<textarea name="data" onkeydown="return catchTab(this,event)">
+<textarea name="data" id="txtarea_size_chart" onkeydown="return catchTab(this,event)">
 <?php
 	$file = "assets\\size_chart\\".$filename.".txt";
 
