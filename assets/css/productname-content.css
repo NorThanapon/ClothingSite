@@ -112,7 +112,7 @@ margin-top:5px;
 	margin-left:10px;
 }
 
-#product-sizecolor #detail-size input[type="submit"]{
+#product-sizecolor #detail-size a{
 	border: none;
 	color: white;
 	float:right;
@@ -127,7 +127,7 @@ margin-top:5px;
 	display:inline-block;
 }
 
-#product-sizecolor #detail-size input[type="submit"]:hover{
+#product-sizecolor #detail-size a:hover{
 	background:#4F4F4F;
 }
 
