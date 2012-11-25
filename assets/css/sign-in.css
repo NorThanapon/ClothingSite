@@ -20,6 +20,32 @@
 	border-bottom: 2px solid #CDCDCD;
 }
 
+#head-register{
+	margin:0 auto;
+	position:relative;
+	width:90%;
+	text-align:left;
+	padding-top:30px;	
+	padding-bottom:20px;
+	border-bottom: 2px solid #CDCDCD;
+}
+
+#head-register span{
+	font-weight: bold;
+	font-size: 190%;
+	font-family: Sans-serif;
+	color: #4F4F4F;
+	display: inline;
+	position: relative;
+}
+
+#head-register img{
+	margin-right: 370px;
+	margin-left: 20px;
+	display: inline;
+	position: relative;
+}
+
 #head-signin span{
 	font-weight: bold;
 	font-size: 190%;
@@ -31,7 +57,7 @@
 }
 
 #head-signin img{
-	margin-right: 370px;
+	margin-right: 600px;
 	margin-left: 20px;
 	display: inline;
 	position: relative;

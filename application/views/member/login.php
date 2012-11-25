@@ -1,7 +1,8 @@
 <div id="content-signin">
 
 			<div id="head-signin">
-			<img src="<?php echo asset_url().'img/LOGO-bfashshop.png'; ?>" />
+			<?php echo anchor(base_url(), '<img src='.asset_url().'img/LOGO-bfashshop.png />', 'title="BfashShop"'); ?>
+			
 		    <span>Log In</span>
 			</div>
 			<div id="hr-shadow"></div>

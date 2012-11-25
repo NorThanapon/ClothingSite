@@ -1,7 +1,8 @@
 <div id="content-signin">
 	<?php echo form_open('member/add'); ?>
-		<div id="head-signin">
-			<img src="<?php echo asset_url().'img/bfashshop.jpg'; ?>" />
+		<div id="head-register">
+			
+			<?php echo anchor(base_url(), '<img src='.asset_url().'img/bfashshop.jpg />', 'title="BfashShop"'); ?>
 			<span>Register</span>
 			
 		</div>
