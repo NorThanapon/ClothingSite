@@ -532,6 +532,17 @@ div.report-items  .edit-button:hover{
 	display:inline-block;
 }
 
+div.report-items  .itemlist-button,
+div.report-items  .itemlist-button:active,
+div.report-items  .itemlist-button:focus,
+div.report-items  .itemlist-button:hover{
+	width:16px !important;
+	height:16px !important;
+	background-image:url(../img/clothes.png);
+	background-repeat:no-repeat;
+	display:inline-block;
+}
+
 div.report-items  .product-button,
 div.report-items  .product-button:active,
 div.report-items  .product-button:focus,
