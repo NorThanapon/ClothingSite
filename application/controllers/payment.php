@@ -331,6 +331,11 @@ class Payment extends CI_Controller {
 		//$datestring = "d/M/Y  h:%i %a";
 		$expire_date = date('d F Y',mktime(0,0,0,date("m"),date("d")+2,date("y")));//mdate($datestring, $time_exp);
 		
+		//clear cookie
+		delete_cookie('cart');
+		//============
+		
+		
 		$data['order_id'] = $order_id;
 		$data['page_title'] = 'Payment | BfashShop';
 		$data['error'] = "No";  

@@ -242,6 +242,7 @@ class Cart extends CI_Controller {
 			//redirect( $this->session->userdata('redirect'));
 			echo '1';
 		}
+		
 		if($this->input->post('id')=='pay'){
 				
 			$value = $this->encrypt->decode($this->input->cookie('cart'));
