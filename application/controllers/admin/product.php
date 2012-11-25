@@ -7,6 +7,7 @@ class Product extends CI_Controller
         {
             return;
         }
+		
 		$this->load->model('product_model');
 		$this->load->model('category_model');
 		$this->load->model('brand_model');
@@ -234,6 +235,7 @@ class Product extends CI_Controller
 	    {
 		    redirect('admin/product');
 	    }
+		$data['page_title'] = 'Admin: Product Management';
 		$this->load->model('product_model');
 		$this->load->model('category_model');
 		$this->load->model('brand_model');
@@ -252,12 +254,13 @@ class Product extends CI_Controller
 		}
 		
 		$this->load->model('image_model');
-		$this->image_model->delete_image_by_product_id($product_id);
-		$this->product_model->delete($product_id);
+		
+		
 		
 		//delete image
 		
 		$images = $this->image_model->get_photos($product_id);
+		print_r($images);
 		foreach($images as $image)
 		{
 			
@@ -266,8 +269,8 @@ class Product extends CI_Controller
 			$this->image_model->unlink_image("./assets/db/products/m_".$image->file_name);
 			$this->image_model->unlink_image("./assets/db/products/s_".$image->file_name);			
 		}
-		
-		
+		$this->image_model->delete_image_by_product_id($product_id);
+		$this->product_model->delete($product_id);
 		//============
 		
 	    $data['product_list'] = $this->product_model->get();
@@ -283,7 +286,7 @@ class Product extends CI_Controller
 			$name =  rawurldecode($name);
 	    }
 	    
-	    
+	    $data['page_title'] = 'Admin: Product Management';
 	    $this->load->model('product_model');
 		$this->load->model('category_model');
 		$this->load->model('brand_model');
@@ -322,6 +325,7 @@ class Product extends CI_Controller
 			return;
 	    }		
 		$this->load->model('product_model');
+		$data['page_title'] = 'Admin: Product Management';
 		if(!$this->input->post('btn_update'))
 		{
 			$this->delete_batch();
