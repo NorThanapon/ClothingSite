@@ -42,6 +42,15 @@ class Order_model extends CI_Model
 		$query = $this->db->get_where('members_orders', array('e_mail' => $e_mail));
 		return $query->result();
 	}
+	function search($key,$status)
+	{
+		$this->db->like('order_id', $key); 
+		$this->db->or_like('first_name', $key); 
+		$this->db->or_like('last_name', $key); 
+		$this->db->or_like('status', $key); 
+		$query = $this->db->get('members_orders');
+		return $query->result();
+	}
 	
 
 	

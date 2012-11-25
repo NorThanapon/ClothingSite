@@ -34,14 +34,34 @@ class Cart extends CI_Controller {
 				$where = $where." '".$item[0]."', ";
 				$amount += $item[1];
 			}
+			if(!$this->_check_item($item[0]))
+			{
+				$this->remove_item($item[0]);
+			}
 		}
 		$data['cookie_amount'] = $amount;
 		$data['detail'] = $detail;
 		if($where != "")
 			$data['items'] = $this->cart_model->get_item_detail($where);
+		if($data['items'] == FALSE){
+			delete_cookie("cart");
+		}
 		$data['page'] = "front_product/content_main_shopping_cart";
         $this->load->view('main_page',$data);
     }
+	public function _check_item($item_id)
+	{
+		$this->load->model('item_model');
+		$result = $this->item_model->get($item_id);
+		if(count($result)<=0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 	public function add_to_cart(){
 		$this->load->model('cart_model');
 		$this->load->library('encrypt');

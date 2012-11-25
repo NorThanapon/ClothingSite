@@ -146,13 +146,8 @@
 	$('#btn_filter').click(function() {
 			
 		    var url = document.URL;
-			var product_name = $.trim( $('#txt_product_name').val());
-			var str = / /g;
-			product_name = product_name.replace(str,"-");
-			var brand_name = $('#ddl_brand').val().replace(str,"-");
-			var cat_id = $('#ddl_product_cat').val();
 		    url = url.substring(0, url.indexOf('/product') + 8);
-		    url = url + '/search/' +cat_id  + '/' + brand_name + '/' + $('#ddl_status').val()+ '/' + product_name;
+		    url = url + '/search/' + $('#ddl_product_cat').val() + '/' + $('#ddl_brand').val()+ '/' + $('#ddl_status').val()+ '/' + $('#txt_product_name').val();
 		    window.location = url;
 		});
 		$(".tablesorter").find("tr:even").addClass("even");

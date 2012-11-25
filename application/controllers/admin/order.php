@@ -145,6 +145,23 @@ class Order extends CI_Controller
 		
 		
 	}
+	public function search( $status, $key=FALSE)
+	{
+		if(!check_authen('staff',TRUE)) 
+	    {
+			return;
+	    }
+	    if($key !== FALSE) {
+			$key =  rawurldecode($key);
+	    }
+		
+		$data['page_title'] = 'Admin: Order Management';
+		$this->load->model('order_model');
+		$data['orders'] = $this->order_model->search($key,$status);
+		$data['page'] = 'order/list';
+        $this->load->view('main_admin_page',$data);		
+		
+	}
 
 }
 ?>

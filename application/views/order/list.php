@@ -2,17 +2,17 @@
         <div class="report-filter">
             <fieldset>
                 <legend>Search and Filter Options</legend>
-                <label for="order_id">Order NO.: </label>
-                <input name="order_id" type = "text"/>
+                <label for="key">Key word: </label>
+                <input name="key" id="key" type = "text"/>
                 <label>Status: </label>
-                <select>
+                <select id="status_search">
                     <option>Any Status</option>
                     <option>New</option>
                     <option>Paid</option>
                     <option>Shipped</option>
                     <option>Expired</option>
                 </select>
-                <input type="button" value="Search" />
+                <input type="button" id ="btn_filter" value="Search" />
             </fieldset>
         </div>
 	<?php echo form_open('admin/order/update_status'); ?>
@@ -76,8 +76,14 @@
             </fieldset>
 		</div> 
 	</form>
-	<script type="text/javascript">
-	    $(document).ready(function() {        
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#btn_filter').click(function() {			
+		    var url = document.URL;
+		    url = url.substring(0, url.indexOf('/order') + 6);
+		    url = url + '/search/' + $('#status_search').val() + '/' + $('#key').val();
+		    window.location = url;
+		});
 		$(".tablesorter").find("tr:even").addClass("even");
 		$(".tablesorter")
 		    .tablesorter({
@@ -97,5 +103,5 @@
 		    $(".tablesorter").find('tr').removeClass('even');
 		    $(".tablesorter").find("tr:even").addClass("even");
 		});
-	    }); 
-	</script>
+	}); 
+</script>

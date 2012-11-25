@@ -285,8 +285,10 @@ class Product extends CI_Controller
 	    if($name !== FALSE) {
 			$name =  rawurldecode($name);
 	    }
-	    $brand = str_replace("-"," ",$brand);
-		$name = str_replace("-"," ",$name);
+		if($brand !== FALSE) {
+			$brand =  rawurldecode($brand);
+	    }
+	    
 	    $data['page_title'] = 'Admin: Product Management';
 	    $this->load->model('product_model');
 		$this->load->model('category_model');
