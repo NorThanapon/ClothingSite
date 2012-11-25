@@ -250,10 +250,13 @@ class Product extends CI_Controller
 			$this->load->view('main_admin_page',$data);
 			return;
 		}
+		
+		$this->load->model('image_model');
+		$this->image_model->delete_image_by_product_id($product_id);
 		$this->product_model->delete($product_id);
 		
 		//delete image
-		$this->load->model('image_model');
+		
 		$images = $this->image_model->get_photos($product_id);
 		foreach($images as $image)
 		{

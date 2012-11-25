@@ -90,6 +90,10 @@ class Image_model extends CI_Model
 		$this->db->delete('items_images',array('item_id' => $item_id,'image_id'=>$image_id));	
 		return;
 	}
+	function delete_image_by_product_id($product_id)
+	{
+			$this->db->delete('images',array('product_id' => $product_id));	
+	}
 	/*
 	function edit_color($photo_id,$color_id)
 	{
