@@ -21,18 +21,20 @@
 }
 
 #head-signin span{
-	font-weight:bold;
-	font-size:190%;
-	font-family:Sans-serif;
-	color:#4F4F4F;
+	font-weight: bold;
+	font-size: 190%;
+	font-family: Sans-serif;
+	color: #4F4F4F;
+	display: inline;
+	position: relative;
 	
 }
 
 #head-signin img{
-	margin-right: 600px;
+	margin-right: 370px;
 	margin-left: 20px;
-	
-	
+	display: inline;
+	position: relative;
 }
 
 #main-sigin-image{
