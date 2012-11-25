@@ -1,4 +1,3 @@
-
 	<div id="content-image">
 	<?php $color_in_size; ?>
 		<div class="main-image">
@@ -83,8 +82,9 @@
 					?>
 				</select>
 				<!--<input class="button btn-submit" type = "submit" name="submit" value="Size Chart"/>-->
-				<!--<?php echo anchor('brand/size_chart/'.$brand_name.'/'.$brand_id.'/'.$product_id, 'Size Chart', array('title'=>"View Size Chart",'class'=>'button btn-submit')); ?>-->
-				<a href=<?php echo base_url('brand/size_chart/'.$brand_name.'/'.$brand_id.'/'.$product_id); ?> target="_blank" class="button btn-submit">Size Chart</a>
+				<!--<?php //echo anchor('brand/size_chart/'.$brand_name.'/'.$brand_id.'/'.$product_id, 'Size Chart', array('title'=>"View Size Chart",'class'=>'button btn-submit')); ?>-->
+				<a href='<?php echo base_url('brand/size_chart/'.$brand_name.'/'.$brand_id.'/'.$product_id); ?>' target="_blank" class="button btn-submit">Size Chart</a>
+			
 			</div>
 			<div id="product-color">
 			   
@@ -141,6 +141,7 @@
 	<script type="text/javascript">
 		var cidx = new Array();
 		var n = 0;
+		
 		$(document).ready(function() {
 		
 		$("#ddl-detail-size").change(function()
@@ -325,16 +326,13 @@
 		});
 		*/
 		
-		});
 		
-	$(document).ready(function() {
 		$('.jqzoom').jqzoom({
             zoomType: 'standard',
             lens:true,
             preloadImages: false,
             alwaysOn:false
         });
-	});	
-
+		});
 	</script>
 				

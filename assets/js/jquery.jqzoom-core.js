@@ -169,7 +169,9 @@
                 });
                 if (thumblist.length > 0) {
                     //getting the first to the last
-                    var first = thumblist.splice(0, 1);
+					var first = thumblist.splice(0, 1);
+					//var first = thumblist[0];
+					
                     thumblist.push(first);
                 }
                 thumblist.each(function () {
