@@ -205,9 +205,19 @@ padding-top:5px;
 padding-bottom:5px;
 }
 
+#content-product #product-add input[type="image"]{
+	width: auto;
+	height: auto;
+}
+
 #content-product #product-save{
 	float:right;
 	margin-top:10px;
+}
+
+#content-product #product-save input[type="image"]{
+	width: auto;
+	height: auto;
 }
 
 
