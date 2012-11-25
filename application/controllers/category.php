@@ -27,18 +27,23 @@ class Category extends CI_Controller {
 			//set lang
 			$product_name_att = 'product_name_'.$data['lang'];
 			$product_name_lang = $this->product_model->get_main_image($product_id)->$product_name_att;
-		
+			$item = $this->product_model->get_main_image($product_id);
+			
 			$data['page'] = 'front_product/content_main_product_name';
 			$data['base_url'] = base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id.'/'.$product_id;
 			//breadcrumbs
 			$data['breadcrumbs'] = array($this->lang->line('Home'), $cat_name_lang,$product_name_lang);
 			$data['link'] = array(site_url(), base_url().'category/'.$cat_gender.'/'.$cat_name.'/'.$cat_id, $data['base_url'], );
+			$product = $this->product_model->get($product_id);
+			$data['brand_id'] = $product->brand_id;
+			$data['brand_name'] = str_replace(' ','-',$product->brand_name);
 			
+			$data['product_id'] = $product_id;
 			//set page history
 			$this->session->set_userdata('redirect',current_url());
 		
 			$data['product_detail'] = $this->product_model->get_main_image($product_id);		
-			$data['sub_image'] = $this->product_model->get_sub_image($product_id);
+			$data['sub_image'] = $this->product_model->get_sub_image($product_id,$item ->size,$item->color_id);
 			$data['logo'] = $this->product_model->get_product_brand_image($data['product_detail']->brand_name);
 			$data['item_detail_size'] = $this->product_model->get_item_detail_size($product_id);
 			$data['item_detail_color'] = $this->product_model->get_item_detail_color($product_id);

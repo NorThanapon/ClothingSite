@@ -32,7 +32,7 @@ class Search extends CI_Controller
 			$size = $this->product_model->get_size($product_id);	
 
 			//for size chart
-			$data['brand_name'] = $item->brand_name;
+			$data['brand_name'] = str_replace(' ','-',$item->brand_name);
 			$data['brand_id'] = $item->brand_id;
 			$data['product_id'] = $product_id;
 			
@@ -108,7 +108,7 @@ class Search extends CI_Controller
 			$size = $this->product_model->get_size($product_id);	
 
 			//for size chart
-			$data['brand_name'] = $item->brand_name;
+			$data['brand_name'] = str_replace(' ','-',$item->brand_name);
 			$data['brand_id'] = $item->brand_id;
 			$data['product_id'] = $product_id;
 			
