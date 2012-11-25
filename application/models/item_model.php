@@ -125,8 +125,10 @@ class Item_model extends CI_Model
 			if ($where != "" ) $where = $where . " AND ";
 			$where = $where . "( quantity >= ".$item_amount_low." AND quantity <= ".$item_amount_high.")";
 		}
-	
-		if ($where != "" ) $query = $this->db->get_where('products_items', $where);
+		
+		$this->db->distinct();
+		$this->db->select('item_id,product_id,product_name_th,product_name_en,brand_name,brand_id,size,quantity,color_name,color_id,color_file_name');
+		if ($where != "" ) $query = $this->db->get_where('products_brands_items_images_colors', $where);
 		else $query = $this->db->get('items');
 		return $query->result();
 	}
