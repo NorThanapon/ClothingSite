@@ -5,17 +5,15 @@
 	
     <div id="header-topmenu">
 			
-		<?php echo form_open('orderhistory','id="open_account"') ?>
+		
 			<div>
+			<?php echo form_open('orderhistory','id="open_account"') ?>
 				<td><?php echo $this->lang->line('Welcome to');?> BfashShop&nbsp </td>
-				<?php //echo anchor("javascript:void(0)",$join_name, array('title'=>$title_join, 'class' =>'header-join')); ?>
-				<a href="javascript:void(0)" class="header-join" title="<?php echo $title_join;?>"><?php echo $join_name;?></a>
-				<?php echo anchor($sign_in_link, $sign_in , 'title="'.$title_sign.'"'); ?><!-- first,where link ,word,attribute -->
+				<?php echo anchor($join_link, $join_name , 'title="'.$title_join.'"'); ?>
+				<?php echo anchor($sign_in_link, $sign_in , 'title="'.$title_sign.'"'); ?>
 				<input type="hidden" name="e_mail" id="e_mail" value = "<?php if(isset($e_mail)){echo $e_mail;}?>">
-			
+			</form>
 		
-		
-		<?php //echo form_open('search/product_nan'); ?>
 			<input id="product_search" type="text" placeholder="<?php echo $this->lang->line('Enter product name or code');?>" name="product_search"/>
 			<!--<input id="txt_tag_name" type="text" name="tag_name" value="<?php if(isset($search_name)) echo $search_name;  ?>"/>-->		
 			<input name="btn_filter" type="button" value="<?php echo $this->lang->line('Go'); ?>" >
@@ -26,7 +24,7 @@
 			<a href="javascript:void(0)" class="language-th" title="Thai">TH</a>
         </span>
 		</div>
-		</form>
+		
     </div> <!-- end #header-menu -->
     <div id="header-logo">
 		<?php echo anchor(base_url(), '<img src='.asset_url().'img/bfashshop.jpg />', 'title="BfashShop"'); ?>
@@ -144,13 +142,15 @@
 		});
 		$("a.header-join").click(function(){
 			
-			if($("#e_mail").val()!=null)
+			if($("#e_mail").val()!="")
 			{
 				document.getElementById("open_account").submit();				
 			}
 			else
 			{
-				window.location.replace("<?php echo $join_link;?>");
+				alert('<?php echo $join_link;?>');
+				window.location = "<?php echo $join_link;?>";
+				//window.open('<?php echo $join_link;?>','_top','','false');
 			}
 		});
 	});

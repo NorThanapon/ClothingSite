@@ -12,6 +12,7 @@ class Member extends CI_Controller {
 		$data['show_message_password'] = 'Please enter password,<br /> 6 numbers or longer with at least 1 number';
         $this->load->view('sub_page',$data);
         //$this->load->view('registration',$data); 
+		
 
     }
 	public function add() 
