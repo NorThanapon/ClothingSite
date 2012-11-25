@@ -349,5 +349,11 @@ class Product_model extends CI_Model
 		return $query->result();
 	
 	}
+	function update_totalquantity($product_id,$total_quantity){
+		$data = array(
+			'total_quantity' => $total_quantity
+		);
+		$this->db->update('products',$data,array('product_id'=>$product_id));
+	}
 }
 ?>

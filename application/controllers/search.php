@@ -51,7 +51,7 @@ class Search extends CI_Controller
 			
 			$data['page'] = 'front_product/content_main_product_name';
 			$this->load->view('main_page',$data);
-	
+			return;
 		}
 		
 		$data['re_name'] = str_replace(' ','-',$search);

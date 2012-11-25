@@ -56,7 +56,7 @@ class Brand extends CI_Controller {
 
 	
 
-	public function product_list( $brand_name,$brand_id, $page=0, $per_page=0 ) {
+	public function product_list( $brand_name,$brand_id, $page=0, $per_page=0 ,$product_id = FALSE) {
 	
 		$this->load->model('bfash_model');
 		$this->load->model('product_model');
@@ -76,6 +76,37 @@ class Brand extends CI_Controller {
 		$data['breadcrumbs'] = array($this->lang->line('Home'), $data['re_name']);
 		$data['link'] = array(site_url(), site_url().'brand/'.$brand_name.'/'.$brand_id.'/page/'.$page.'/'.$per_page);
 		$data['page'] = 'front_product/content_main_product_list';
+		if($product_id!=FALSE)
+		{
+			$data['product_detail'] = $this->product_model->get_main_image($product_id);
+			$item = $this->product_model->get_main_image($product_id);
+			$data['sub_image'] = $this->product_model->get_sub_image($product_id,$item->size,$item->color_id);	
+			
+			$size = $this->product_model->get_size($product_id);	
+
+			//for size chart
+			$data['brand_name'] = str_replace(' ','-',$item->brand_name);
+			$data['brand_id'] = $item->brand_id;
+			$data['product_id'] = $product_id;
+			
+			$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$size->size);
+			
+			$data['item_detail_size'] = $this->product_model->get_item_detail_size($product_id);
+
+			
+			
+			//breadcrumbs
+			
+			
+			
+			//set page history
+			$this->session->set_userdata('redirect',current_url());
+			
+			$data['page'] = 'front_product/content_main_product_name';
+			$this->load->view('main_page',$data);
+			return;
+	
+		}
 		
 		$data['num_item'] = count($data['products']);
 			if($per_page == 0)
