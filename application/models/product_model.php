@@ -204,7 +204,17 @@ class Product_model extends CI_Model
 			return FALSE;
 		}
 	}
+	function update_main_item($product_id,$item_id)
+	{
+		$data = array(
+		
+			//'product_id' => $this->input->post('product_id'),
+			
+			'main_item'   => $item_id
+		);
+		$this->db->update('products',$data,array('product_id'=>$product_id));
 	
+	}
 	function save_main_image($image_id)
 	{			
 		//echo "model>>".$this->input->post('product_id')."...".$image_id;
@@ -229,12 +239,12 @@ class Product_model extends CI_Model
 	
 	function get_product_cat_image($cat_id)
 	{
-	    $query =  $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where cat_id=".$cat_id." and image_id = main_image and product_is_active = '1' and brand_is_active = '1' and total_quantity > 0");
+	    $query =  $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where cat_id=".$cat_id." and image_id = main_image and main_item = item_id and product_is_active = '1' and brand_is_active = '1' and total_quantity > 0");
 		return $query->result();
 	}
 	function get_product_tag_image($tag_id)
 	{
-		$query = $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where tag_id=".$tag_id." and image_id = main_image and product_is_active = '1' and brand_is_active = '1' and total_quantity > 0");
+		$query = $this->db->query("SELECT distinct(product_id),main_image,`product_name_th`,`product_name_en`,`markup_price`,`markdown_price`,`on_sale`,`image_file_name` FROM `products_brands_items_images_colors` where tag_id=".$tag_id." and image_id = main_image and product_is_active = '1' and and main_item = item_id brand_is_active = '1' and total_quantity > 0");
 		return $query->result();
 	}
 	function get_main_image($product_id,$item_id=FALSE)
@@ -332,7 +342,8 @@ class Product_model extends CI_Model
 									material_th like '%".$key."%' or 
 									material_en like '%".$key."%' ) 
 									and main_image = image_id and
-									product_is_active = '1' and 
+									product_is_active = '1' and
+									main_item = item_id and
 									brand_is_active = '1' and 
 									total_quantity > 0");
 		return $query->result();
