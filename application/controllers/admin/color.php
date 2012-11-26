@@ -15,8 +15,12 @@ class Color extends CI_Controller
     public function service_add() {
         if(!check_authen('staff',TRUE)) return;
         $this->load->model('color_model');
-        $id = $this->color_model->get_latest()->color_id;
-        $id++;
+		$id=0;
+		if(count($this->color_model->get_latest())>0)
+		{
+			$id = $this->color_model->get_latest()->color_id;
+		}
+		$id++;
         $this->load->library('upload');
         $result = $this->_upload_color_file($id, 'file_name');
         $this->color_model->add($result['file_name']);

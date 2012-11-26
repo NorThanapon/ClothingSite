@@ -35,8 +35,9 @@ class Color_model extends CI_Model
     }
     function get_latest()
     {
-	$this->db->order_by('color_id', 'desc');
-	$this->db->limit(1);
+		
+		$this->db->order_by('color_id', 'desc');
+		$this->db->limit(1);
         $query = $this->db->get('colors');	
         return $query->row();
 	
