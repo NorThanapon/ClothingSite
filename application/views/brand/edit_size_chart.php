@@ -4,16 +4,22 @@
 <legend><?php echo $brand->brand_name; ?></legend>
 <textarea name="data" id="txtarea_size_chart" onkeydown="return catchTab(this,event)">
 <?php
-	$file = "assets\\size_chart\\".$filename.".txt";
-
-	if (!file_exists($file))
-	{
-		echo "file not found";
-	}
-	else
-	{
-		echo file_get_contents($file);
-	}
+	//$file = '/domains/bfashshop.com/public_html/assets/size_chart/'.$filename.'.txt';
+	//$file = '.assets/size_chart/'.$filename.'.txt';
+	
+	//$file = asset_url().'size_chart/'.$filename.'.txt';
+	//echo $file;
+	
+	//if (!file_exists($file))
+	//{
+	//	echo "file not found";
+	//}
+	//else
+	//{
+		//echo file_get_contents($file);
+	//	 echo read_file($file);
+	//}
+	echo $text;
 ?>
 </textarea><br />
 </fieldset>

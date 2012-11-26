@@ -66,10 +66,14 @@ class Brand extends CI_Controller
 		//create size chart
 		$size_chart_name = array("WOMEN","MEN");
 		$validbrandname = str_replace(' ','_',$data['form_brand_name']);
+		$this->load->helper('file');
 		foreach($size_chart_name as $filename)
 		{
-			$file = "assets\\size_chart\\".$validbrandname."_".$filename.".txt";
-			file_put_contents($file, "");
+			//$file = asset_url().'size_chart/'.$validbrandname.'_'.$filename.'.txt';
+			//$file = '/domains/bfashshop.com/public_html/assets/size_chart/'.$validbrandname.'_'.$filename.'.txt';
+			//echo "path ".'./assets/size_chart/'.$validbrandname.'_'.$filename.'.txt';
+			write_file('./assets/size_chart/'.$validbrandname.'_'.$filename.'.txt', '');
+			//file_put_contents($file, "");
 		}
 		
         redirect('admin/brand');
@@ -185,8 +189,11 @@ class Brand extends CI_Controller
 			$this->load->view('main_admin_page',$data);
 			return;
 		}
-        
-        $logo = './assets/db/brands/'.$this->brand_model->get($brand_id)->logo;
+        $logo ="";
+		if($this->brand_model->get($brand_id)->logo != "")
+		{
+			$logo = './assets/db/brands/'.$this->brand_model->get($brand_id)->logo;
+		}
         $this->brand_model->delete($brand_id,$logo);		
         redirect('admin/brand');		
         return;		
@@ -241,7 +248,7 @@ class Brand extends CI_Controller
 		$this->load->view('main_admin_page',$data);
 	}
 	
-	public function edit_size_chart($brand_id = FALSE, $cat)
+	public function edit_size_chart($brand_id = FALSE, $gender)
 	{
 		if(!check_authen('staff',TRUE)) 
 	    {		
@@ -251,10 +258,22 @@ class Brand extends CI_Controller
         {
 			redirect('admin/brand');
         }
+		/*--------------
+		$this->load->helper('file');
+		$file = './assets/size_chart/test_3_WOMEN.txt';
+		$data['text'] = read_file($file);
+		echo $file ."text ".$data['text'];
+		*/
+		$this->load->helper('file');
 		$this->load->model('brand_model');
-		$data['brand'] =  $this->brand_model->get($brand_id);
-		$data['cat'] = $cat;
-		$data['filename'] = str_replace(' ','_',$data['brand']->brand_name).'_'.$cat;
+		$data['brand'] =  $this->brand_model->get($brand_id);		
+		$data['gender'] = $gender;
+		//echo $gender;
+		$data['filename'] = str_replace(' ','_',$data['brand']->brand_name).'_'.$gender;
+		//$filename = str_replace(' ','_',$data['brand']->brand_name).'_'.$gender;
+		$file = './assets/size_chart/'.$data['filename'].'.txt';
+		$data['text'] = read_file($file);
+		
 		$data['page_title'] = 'Admin: Brand Management';
 		$data['page'] = 'brand/edit_size_chart';
 		$this->load->view('main_admin_page',$data);
@@ -262,8 +281,13 @@ class Brand extends CI_Controller
 	
 	public function edit_size_chart_text($brand_id, $filename)
 	{
+	
+		$this->load->helper('file');
 		$text = $this->input->post('data');
-		file_put_contents("assets\\size_chart\\".$filename.".txt", $text);
+		//file_put_contents('/domains/bfashshop.com/public_html/assets/size_chart/'.$filename.'.txt', $text);
+		
+		write_file('./assets/size_chart/'.$filename.'.txt', $text);
+		
 		//file_put_contents("assets\\size_chart\\test.txt", $this->input->post('data_tab'));
 		redirect('admin/brand/size_chart/'.$brand_id);
 	}

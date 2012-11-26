@@ -55,7 +55,10 @@ class Brand_model extends CI_Model
 	
 	function delete($brand_id,$logo_name)
 	{
-		unlink($logo_name);
+		if($logo_name!="")
+		{		
+			unlink($logo_name);
+		}
 		$this->db->delete('brands',array('brand_id' => $brand_id));	
 		
 	}

@@ -1,3 +1,12 @@
+<?php
+		if($text == null)
+		{
+			
+			echo "<br /><span style='margin-left:20px;'>NO SIZE CHART AVAILABLE</span>";
+		}
+		else
+		{
+?>
 		<div id="size-chart_content">
 		<div id="head-sizechart"><?php echo $brand_name->brand_name; ?>: SIZE GUIDE <?php echo $gender->cat_gender; ?><!--<?php echo strtoupper($gender); ?>--></div>		
 			<table class="main-sizechart-table">
@@ -15,14 +24,20 @@
 						<?php	
 							//$filename = $brand->brand_name.'_'.clothes;	
 							//$filename = "ELLE_clothes";
-							$validbrandname = str_replace(' ','_',$brand_name->brand_name);
+							//$validbrandname = str_replace(' ','_',$brand_name->brand_name);
 							//$validbrandname = "ELLE";							
 
-							$file = "assets\\size_chart\\".$validbrandname."_".strtoupper($gender->cat_gender).".txt";
+							//$file = asset_url()."size_chart/".$validbrandname."_".strtoupper($gender->cat_gender).".txt";
+							//$file = '/domains/bfashshop.com/public_html/assets/size_chart/'.$validbrandname."_".strtoupper($gender->cat_gender).".txt";
 
-							if (file_get_contents($file) != "")
-							{
-								$text = file_get_contents($file);
+							//if (file_get_contents($file) != "")
+							//if($text == null)
+							//{
+							//	echo "NO SIZE CHART AVAILABLE";
+							//}
+							//else
+							//{
+								//$text = file_get_contents($file);
 								$line = explode("\n",$text);
 								
 								$c = 0;
@@ -79,7 +94,7 @@
 
 						<?php
 								}
-							}
+							//}
 						?>
 						</div>
 					</td>
@@ -96,6 +111,6 @@
 		});
 		
 		</script>
-
-
-				
+<?php
+}
+?>			
