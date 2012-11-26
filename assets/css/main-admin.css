@@ -863,3 +863,7 @@ vertical-align:bottom;
 	width:100%;
 	height:400px;
 }
+
+#content-detail .page-action a{
+	background:#e6fdf1 !important;
+}

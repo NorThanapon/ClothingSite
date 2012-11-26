@@ -110,7 +110,6 @@
 				
 				//console.log(data);
                 $('#msg-adding-color').hide();
-				alert(data);
                 option = jQuery.parseJSON(data);
 				
                 html_option = "<option value='"+option.color_id+"' title='<?php echo asset_url()."db/colors/"; ?>"+option.file_name+"'>";
