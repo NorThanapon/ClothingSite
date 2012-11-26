@@ -11,7 +11,7 @@
 		<fieldset>
 		    <legend>Item Information</legend>
 			<input name="item_id_key" type="hidden" value="<?php echo $items->item_id; ?>" />
-			<label for="item_id">Item ID:</label>
+			<label for="item_id">Item Number:</label>
 			<input name="item_id" value="<?php if(isset($form_item_id)) echo $form_item_id; else echo $items->item_id; ?>" type="text" />*
 			<?php echo form_error('item_id', '<span class="form-error-message">', '</span>'); ?>
 		    

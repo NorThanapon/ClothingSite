@@ -10,7 +10,7 @@
 	    <div class="form-input">
 		<fieldset>
 		    <legend>Item Information</legend>
-			<label for="item_id">Item ID:</label>
+			<label for="item_id">Item Number:</label>
 			<input name="item_id" value="<?php if(isset($form_item_id)) echo $form_item_id; ?>" type="text" />*
 			<?php echo form_error('item_id', '<span class="form-error-message">', '</span>'); ?>
 		    

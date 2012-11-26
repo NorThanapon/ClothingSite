@@ -31,7 +31,7 @@
 		<thead>
             <tr>
 				<th width="100">Brand</th>
-			    <th>Item ID</th>
+			    <th>Item Number</th>
 				<th>Product's Name</th>
 				<th>Size</th>
 				<th>Color</th>
