@@ -564,7 +564,15 @@ class Product extends CI_Controller
 			//redirect('admin/product/photo/'.$this->input->post('product_id'),$data);			
 			return;
 		}
-		$photo_id = $this->image_model->get_latest()->image_id;
+		if(count($this->image_model->get_latest())>0)
+		{
+		
+			$photo_id = $this->image_model->get_latest()->image_id;
+		}
+		else
+		{
+			$photo_id = 0;
+		}
 		$photo_id++;
 		$this->_upload_photo_file($photo_id,$_FILES['photo'],'photo');
 		$data['product'] =  $this->product_model->get($this->input->post('product_id'));
