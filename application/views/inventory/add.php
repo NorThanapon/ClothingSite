@@ -35,7 +35,7 @@
 		    
 		    <br />
 		    <label for="size">Size:</label>
-		    <input name="size" value="<?php if(isset($form_size)) echo $form_size; ?>" type ="text"/>*
+		    <input name="size" value="<?php if(isset($form_size)) echo $form_size; ?>" type ="text"/>
 		    <?php echo form_error('size', '<span class="form-error-message">', '</span>'); ?>
 		   
 		    <br />

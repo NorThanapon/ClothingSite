@@ -10,7 +10,7 @@ class Inventory extends CI_Controller
 		$this->load->model('product_model');
 		$this->load->model('item_model');
 		$this->load->model('color_model');
-        $data['page_title'] = 'Admin: Inventory Management';
+        $data['page_title'] = 'Admin: Item Management';
 		$data['product_list'] = $this->product_model->get();
 		$data['item_list'] = $this->item_model->get();
 		$data['colors'] = $this->color_model->get();
@@ -38,7 +38,7 @@ class Inventory extends CI_Controller
 		$this->load->model('product_model');
 		$data['products'] = $this->product_model->get();
 		//authenticated
-		$data['page_title'] = 'Admin: Inventory Management';
+		$data['page_title'] = 'Admin: Item Management';
 		if (!$this->input->post('submit') && !$this->input->post('manage_photo')) 
 	    {    
 			$this->load->view('inventory/add',$data);
@@ -55,7 +55,7 @@ class Inventory extends CI_Controller
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('item_id', 'Item ID', 'trim|required');
 		$this->form_validation->set_rules('product_id', 'Product ID', 'trim|required');
-		$this->form_validation->set_rules('size', 'Size', 'trim|required');
+		//$this->form_validation->set_rules('size', 'Size', 'trim|required');
 		//$this->form_validation->set_rules('color', 'Color Picker', 'trim|required');
 		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|required');
 	
@@ -130,7 +130,7 @@ class Inventory extends CI_Controller
 		$data['items'] = $this->item_model->get($item_id);
 		$data['products'] = $this->product_model->get();
 		
-		$data['page_title'] = 'Admin: Inventory Management';
+		$data['page_title'] = 'Admin: Item Management';
 		if (!$this->input->post('submit') && !$this->input->post('manage_photo')) 
 	    {    
 			$this->load->view('inventory/edit',$data);
@@ -146,7 +146,7 @@ class Inventory extends CI_Controller
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('item_id', 'Item ID', 'trim|required');
 		$this->form_validation->set_rules('product_id', 'Product ID', 'trim|required');
-		$this->form_validation->set_rules('size', 'Size', 'trim|required');
+		//$this->form_validation->set_rules('size', 'Size', 'trim|required');
 		$this->form_validation->set_rules('color', 'Color Picker', 'trim|required');
 		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|required');
 	
@@ -307,7 +307,7 @@ class Inventory extends CI_Controller
 	    }
 	    
 		
-		$data['page_title'] = 'Admin: Inventory Management';
+		$data['page_title'] = 'Admin: Item Management';
 	    if($item_id===FALSE)
 	    {
 		    redirect('admin/inventory');
@@ -361,7 +361,7 @@ class Inventory extends CI_Controller
 		$data['colors'] = $this->color_model->get();
 		if($product_name== '-' && $item_amount_low == '-' && $item_amount_high == '-')
 		{
-			$data['page_title'] = 'Admin: Inventory Management';
+			$data['page_title'] = 'Admin: Item Management';
 			$data['item_list'] = $this->item_model->get();
 			$data['product_list'] = $this->product_model->get();			
 			$this->load->view('inventory/list', $data);
@@ -370,7 +370,7 @@ class Inventory extends CI_Controller
 		
 		if(( !is_numeric($item_amount_high) &&  $item_amount_high != '-')|| (!is_numeric($item_amount_low) &&$item_amount_low != '-'))
 		{
-			$data['page_title'] = 'Admin: Inventory Management';
+			$data['page_title'] = 'Admin: Item Management';
 			$data['error_message'] = 'AAA';
 			//$data['item_list'] = $this->item_model->search($product_name, $item_amount_low, $item_amount_high);
 			$data['item_list'] = $this->item_model->get();
@@ -382,7 +382,7 @@ class Inventory extends CI_Controller
 	    $data['search_item_amount_low'] = $item_amount_low;
 		$data['search_item_amount_high'] = $item_amount_high;
 		
-	    $data['page_title'] = 'Admin: Inventory Management';
+	    $data['page_title'] = 'Admin: Item Management';
 	    $data['item_list'] = $this->item_model->search($product_name, $item_amount_low, $item_amount_high);
 		$data['item_list_2'] = $this->item_model->get();
 		$data['product_list'] = $this->product_model->get();

@@ -33,7 +33,7 @@
 		    
 		    <br />
 		    <label for="size">Size:</label>
-		    <input name="size" value="<?php if(isset($form_size)) echo $form_size; else echo $items->size;?>" type ="text"/>*
+		    <input name="size" value="<?php if(isset($form_size)) echo $form_size; else echo $items->size;?>" type ="text"/>
 		    <?php echo form_error('size', '<span class="form-error-message">', '</span>'); ?>
 		   
 		    <br />
@@ -50,7 +50,7 @@
 		</fieldset>
 	    </div>
 	    <div class="content-right form-action">
-		<?php echo anchor('admin/item','Cancel' ,array('class' => 'button')); ?>
+		<?php echo anchor('admin/inventory','Cancel' ,array('class' => 'button')); ?>
 		<input class="button btn-submit" type = "submit" name="submit" value="Save and Return"/>
 		<input class="button btn-submit" type = "submit" name="manage_photo" value="Save and Manage photo"/>
 	    </div>

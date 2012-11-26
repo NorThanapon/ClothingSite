@@ -5,7 +5,7 @@
     </head>
     <body>
         <?php $this->load->view('common/admin_header');?>
-	<h1>Inventory Management</h1>  
+	<h1>Item Management</h1>  
 	<div class="page-action">
 	    <a href="inventory/add" class="button gradient">
 		<img  src="<?php echo asset_url().'img/add-icon.png'?>" />
