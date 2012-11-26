@@ -18,10 +18,6 @@ class Ajax extends CI_Controller
 		
 		$size = $this->product_model->get_size($product_id);	
 
-		//for size chart
-		$data['brand_name'] = $brand_name;
-		$data['brand_id'] = $brand_id;
-		$data['product_id'] = $product_id;
 		
 		$data['color_in_size'] = $this->product_model->get_color_in_size($product_id,$size->size);
 		
@@ -69,5 +65,11 @@ class Ajax extends CI_Controller
 		$this->load->model('product_model');
 		$data['main_image'] = $this->product_model->get_main_image_when_change($product_id,$size,$color_id);
 		echo json_encode($data['main_image']);
+	}
+	public function default_color_ajax($product_id,$size)
+	{
+		$this->load->model('product_model');
+		$data['default_color'] = $this->product_model->get_default_color_in_size($product_id,$size);
+		echo json_encode($data['default_color']);
 	}
 }?>

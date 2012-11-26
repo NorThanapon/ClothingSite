@@ -1,3 +1,4 @@
+
 	<div id="content-image">
 	<?php $color_in_size; ?>
 		<div class="main-image">
@@ -37,7 +38,7 @@
 				<br />
 				<h1> <?php echo $product_detail->product_name_en ?> </h1>
 					<input type="hidden" id="item_id" value="" />
-					<span id="item-detail" value="item-detail">	</span>
+					<span id="item-detail" value="item-detail">	Item Code: <?php echo $product_detail->item_id; ?></span>
 				<br /><br />
 			</div>
 			
@@ -81,10 +82,7 @@
 					}
 					?>
 				</select>
-				<!--<input class="button btn-submit" type = "submit" name="submit" value="Size Chart"/>-->
-				<!--<?php //echo anchor('brand/size_chart/'.$brand_name.'/'.$brand_id.'/'.$product_id, 'Size Chart', array('title'=>"View Size Chart",'class'=>'button btn-submit')); ?>-->
-				<a href='<?php echo base_url('brand/size_chart/'.$brand_name.'/'.$brand_id.'/'.$product_id); ?>' target="_blank" class="button btn-submit">Size Chart</a>
-			
+				<input class="button btn-submit" type = "submit" name="submit" value="Size Chart"/>
 			</div>
 			<div id="product-color">
 			   
@@ -141,14 +139,22 @@
 	<script type="text/javascript">
 		var cidx = new Array();
 		var n = 0;
-		
 		$(document).ready(function() {
 		
 		$("#ddl-detail-size").change(function()
 		{
 			size = $(this).val();
-			url = "<?php echo base_url('ajax/color_ajax/'.$product_detail->product_id);?>/"+size; // we will fix this later
+			var color_id;
+			var default_url = "<?php echo base_url('ajax/default_color_ajax/'.$product_detail->product_id);?>/"+size;
+					$.getJSON(default_url, function(data){
+						color = data[0].color_id;
+						//alert(color);
+						$("#select-color").val(color);
+						$("#"+color).trigger('click');
+					});
 			
+			
+			url = "<?php echo base_url('ajax/color_ajax/'.$product_detail->product_id);?>/"+size; // we will fix this later
 			$.getJSON(url, function(data){
 				var color_div = document.getElementById('color-image');
 				color_div.innerHTML = "";
@@ -167,7 +173,7 @@
 					$("#"+color.color_id).click(function() {
 						var cid = this.id;
 						$("#select-color").val(color.color_id);
-						var color_id = this.id;
+						color_id = this.id;
 						
 						var url_5 = "<?php echo base_url('ajax/main_image_ajax') . '/' . $product_detail->product_id; ?>/"+size+"/"+color_id;
 						$.getJSON(url_5, function(data){
@@ -259,6 +265,7 @@
 			}
 			else{
 				var temp = document.getElementById("item-detail");
+				
 				var item = $("#item_id").val(); //temp.innerHTML;
 				$.ajax({
 					
@@ -326,13 +333,16 @@
 		});
 		*/
 		
+		});
 		
+	$(document).ready(function() {
 		$('.jqzoom').jqzoom({
             zoomType: 'standard',
             lens:true,
             preloadImages: false,
             alwaysOn:false
         });
-		});
+	});	
+
 	</script>
 				
